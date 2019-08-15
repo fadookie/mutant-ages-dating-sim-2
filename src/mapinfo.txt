@@ -11,55 +11,62 @@ gameinfo {
 
 ClearEpisodes
 
-Episode "SABMHC01"
+Episode "map01"
 {
-	Name = "WAD Wednesday 1 Year Anniversary Mapset"
+	Name = "X-Men Dating Origins 2: Electric Boogaloo"
 }
 
-Map "SABMHC01" "The Great Escape"
+// Map "SABMHC01" "The Great Escape"
+// {
+// 	music = "music/OBS"
+// 	levelnum = 1
+// 	sky1 = "SKY1"
+// 	Next = "AIRCOND"
+// 	exitpic = "HDYDFK"
+// 	Intermusic = "HDAYS"
+// }
+
+// Map "AIRCOND" "Air Conditioned Nightmare"
+// {
+// 	enterpic = "FB"
+// 	cluster = 1
+// 	levelnum = 2
+// 	sky1 = "SKY1"
+// 	music = "music/FISHER"
+// 	Next = "SEMICAKE"
+
+// }
+
+Map "map01" "test map"
 {
-	music = "music/OBS"
 	levelnum = 1
-	sky1 = "SKY1"
-	Next = "AIRCOND"
-	exitpic = "HDYDFK"
-	Intermusic = "HDAYS"
-}
-
-Map "AIRCOND" "Air Conditioned Nightmare"
-{
-	enterpic = "FB"
-	cluster = 1
-	levelnum = 2
-	sky1 = "SKY1"
-	music = "music/FISHER"
+	SpecialAction = "PartyCaco", "Door_Open", 666, 16
 	Next = "SEMICAKE"
-
 }
 
-Map "SEMICAKE" "Semiautobiographical Cakeitechture"
+Map "SEMICAKE" "Segway"
 {
 	music = "music/Nova_Observatory_Background.ogg"
-	levelnum = 3
+	levelnum = 2
 	SpecialAction = "PartyCaco", "Door_Open", 666, 16
 	Next = EndSequence, "Credits"
 }
 
-cluster 1
-{
-   flat = "FLOOR4_8"
-   entertext = "AS YOU BOLDLY TRAVEL INTO THE COMPUTER",
-   "YOU REACH WORLDS WHERE NO SPACE MARINE",
-   "HAS GONE BEFORE.  SUDDENLY YOU ARE IN THE",
-   "CLUTCHES OF A PSYCHIC CYBERDEMON!",
-   "HIS PSYCHIC POWERS OVERWHELM YOU...",
-   "",
-   "YOU STARE OUT THE WINDOW FROM YOUR ROOM ",
-   "AT THE SHADY ACRES RETIREMENT COMMUNITY. ",
-   "YOU ARE LISTENING FOR THE SOUND OF YOUR ",
-   "FAMILY PULLING UP, JUST AS YOU'VE DONE ",
-   "EVERY CHRISTMAS..."  
-}
+// cluster 1
+// {
+//    flat = "FLOOR4_8"
+//    entertext = "AS YOU BOLDLY TRAVEL INTO THE COMPUTER",
+//    "YOU REACH WORLDS WHERE NO SPACE MARINE",
+//    "HAS GONE BEFORE.  SUDDENLY YOU ARE IN THE",
+//    "CLUTCHES OF A PSYCHIC CYBERDEMON!",
+//    "HIS PSYCHIC POWERS OVERWHELM YOU...",
+//    "",
+//    "YOU STARE OUT THE WINDOW FROM YOUR ROOM ",
+//    "AT THE SHADY ACRES RETIREMENT COMMUNITY. ",
+//    "YOU ARE LISTENING FOR THE SOUND OF YOUR ",
+//    "FAMILY PULLING UP, JUST AS YOU'VE DONE ",
+//    "EVERY CHRISTMAS..."
+// }
 
 intermission Credits {
     

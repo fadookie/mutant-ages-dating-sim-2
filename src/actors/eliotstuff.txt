@@ -16,6 +16,26 @@ actor BdayCake : Megasphere 30000
   }
 }
 
+actor Wolverine : Actor 30004
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    WOLV A 10 A_Look
+    Loop
+  See:
+    WOLV A 3 A_Chase
+    Loop
+  }
+}
+
 actor PartyCaco : Cacodemon 30001
 {	
 	+FRIENDLY
