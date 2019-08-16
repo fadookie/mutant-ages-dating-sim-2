@@ -14,6 +14,7 @@ ClearEpisodes
 Episode "map01"
 {
 	Name = "X-Men Dating Origins 2: Electric Boogaloo"
+	noskillmenu
 }
 
 // Map "SABMHC01" "The Great Escape"
@@ -46,27 +47,23 @@ Map "map01" "test map"
 
 Map "SEMICAKE" "Segway"
 {
+	cluster = 1
 	music = "music/Nova_Observatory_Background.ogg"
 	levelnum = 2
 	SpecialAction = "PartyCaco", "Door_Open", 666, 16
 	Next = EndSequence, "Credits"
 }
 
-// cluster 1
-// {
-//    flat = "FLOOR4_8"
-//    entertext = "AS YOU BOLDLY TRAVEL INTO THE COMPUTER",
-//    "YOU REACH WORLDS WHERE NO SPACE MARINE",
-//    "HAS GONE BEFORE.  SUDDENLY YOU ARE IN THE",
-//    "CLUTCHES OF A PSYCHIC CYBERDEMON!",
-//    "HIS PSYCHIC POWERS OVERWHELM YOU...",
-//    "",
-//    "YOU STARE OUT THE WINDOW FROM YOUR ROOM ",
-//    "AT THE SHADY ACRES RETIREMENT COMMUNITY. ",
-//    "YOU ARE LISTENING FOR THE SOUND OF YOUR ",
-//    "FAMILY PULLING UP, JUST AS YOU'VE DONE ",
-//    "EVERY CHRISTMAS..."
-// }
+cluster 1
+{
+   flat = "FLOOR4_8"
+   entertext = "I can't believe Wolverine went on",
+   "a date with me! And another one! I guess he is",
+   "my boyfriend now... Yesterday I recieved",
+   "a mysterious invitation to meet him at the",
+   "X-Mansion. I hope he remembered that my birthday",
+   "is coming up soon!"
+}
 
 intermission Credits {
     

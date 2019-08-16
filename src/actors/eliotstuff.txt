@@ -16,26 +16,6 @@ actor BdayCake : Megasphere 30000
   }
 }
 
-actor Wolverine : Actor 30004
-{
-	+FRIENDLY
-	+BUDDHA
-	+NOBLOOD
-	+LOOKALLAROUND
-	
-	PainChance 0
-	
-  States
-  {
-  Spawn:
-    WOLV A 10 A_Look
-    Loop
-  See:
-    WOLV A 3 A_Chase
-    Loop
-  }
-}
-
 actor PartyCaco : Cacodemon 30001
 {	
 	+FRIENDLY
@@ -169,4 +149,52 @@ actor Cupcake_Missile : Actor
 		ELCM A 4 Bright
 		Stop
 	}
+}
+
+actor Wolverine : Actor 30004
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    WOLV A 10 A_Look
+    Loop
+  See:
+    WOLV A 3 A_Chase
+    Loop
+  }
+}
+
+actor Cyclops : Actor 30005
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    CYCL A 10 A_Look
+    Loop
+  }
+}
+
+actor ScottsBox : Inventory 31000
+{
+  Inventory.PickupMessage "Found Scott's butt plug collection!"
+    States
+  {
+  Spawn:
+    CBOX A 10
+    Loop
+  }
 }
