@@ -5,6 +5,7 @@
 //===========================================================================
 
 gameinfo {
+	PlayerClasses = "Poochy"
 	creditpage = "CREDIT1", "CREDIT2"
 	finalepage = "credits"
 	titlemusic = "music/xmen.mid"
@@ -60,11 +61,12 @@ cluster 1
 {
    flat = "FLOOR4_8"
    entertext = "I can't believe Wolverine went on",
-   "a date with me! And another one! I guess he is",
-   "my boyfriend now... Yesterday I recieved",
-   "a mysterious invitation to meet him at the",
+   "a date with me! And then more! I guess he is",
+   "my boyfriend now... ",
+   "",
+   "Yesterday I recieved a mysterious invitation to meet him at the",
    "X-Mansion. I hope he remembered that my birthday",
-   "is coming up soon!"
+   "is today!"
 }
 
 intermission Credits {
