@@ -7,6 +7,8 @@
 gameinfo {
 	creditpage = "CREDIT1", "CREDIT2"
 	finalepage = "credits"
+	titlemusic = "music/xmen.mid"
+	chatsound = "el/menuselect"
 }
 
 ClearEpisodes
@@ -41,7 +43,7 @@ Episode "map01"
 Map "map01" "test map"
 {
 	levelnum = 1
-	SpecialAction = "PartyCaco", "Door_Open", 666, 16
+	music = "D_STALKS"
 	Next = "SEMICAKE"
 }
 
