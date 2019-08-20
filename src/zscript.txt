@@ -32,8 +32,42 @@ class Poochy : DoomPlayer
     {
 		super.PostBeginPlay();
 		A_Log("Player init");
+		ClearInventory();
 // 		A_GiveInventory ("Mana1", 200);
 		//bInvulnerable = true;  // It works to set invulnerable flag here to switch to godmode mugshot - iddqd also works but not after teleport happens :/
+	}
+	
+		
+	const Z_CHANGE_PER_TICK = 1;
+	bool levitating;
+	
+	override void Tick()
+	{
+		Super.Tick();
+		if (levitating) {
+			Vector3 newpos = pos;
+			newpos.z += Z_CHANGE_PER_TICK;
+			SetOrigin(newpos, true);
+		}
+	}
+	
+	States
+	{
+		Spawn:
+		TNT1 A 2 {
+// 			A_Log("Poochy.Spawn");
+		}
+		Loop;
+		
+		Levitating:
+		TNT1 A 10 {
+			A_Log("Poochy.Levitating");
+// 			self.ViewHeight = 100;
+			self.bFly = true;
+			self.bNogravity = true;
+			levitating = true;
+		}
+		Loop;
 	}
 }
 
