@@ -19,77 +19,7 @@
  */
  
  /*
-script "SetMusic" (int track)
-{
-	//Log(s:"SetMusic:", i:track);
 
-	switch (track) {
-		case MUSIC_E1M1:
-			SetMusic("D_E1M1", 0);
-			break;
-		case MUSIC_OFFICE:
-			SetMusic("music/DoomJazz.mp3", 0);
-			break;
-		case MUSIC_E1M3:
-			SetMusic("D_E1M3", 0);
-			break;
-		default: {
-			Log(s:"Unrecognized music track ", i:track);
-			SetMusic("", 0);
-			break;
-		}
-	}
-}
-
-script "SetPlayerType" (int type)
-{
-	switch (type) {
-		case PLAYER_TYPE_IMP:
-			ClearInventory();
-			GiveInventory("Fist", 1);
-			GiveInventory("ImpGun", 1);
-			SetWeapon("ImpGun");
-			break;
-		case PLAYER_TYPE_FORMERHUMAN: {
-			ClearInventory();
-			GiveInventory("Fist", 1);
-			GiveInventory("Pistol", 1);
-			GiveInventory("Clip", 50);
-			break;
-		}
-		default:
-			Log(s:"Unrecognized PlayerType ", i:type);
-			break;
-	}
-}
-
-script "BuddyRaise" (void)
-{
-	PlaySound(BUDDY_TID, "impgibberish1");
-	PrintBold(s:"\c[Yellow]Very funny, Terry. Quit screwing around or we might get busted again.");
-	Delay(3 * TICS_PER_SECOND);
-	// HudMessage(s:"\c[Yellow]Have you been out on that ledge so long you forgot how to talk to people?\nPress the ", k:"+use", s:" key.";
-		// HUDMSG_PLAIN, 1, CR_YELLOW, 1.5, 0.5, 3); // Nnot working...
-	if (!talked_to_buddy) {
-		PlaySound(BUDDY_TID, "impgibberish2");
-		PrintBold(s:"\c[Yellow]Have you been out on that ledge so long you forgot how to talk to people?");
-		Delay(3 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Press the ", k:"+use", s:" key, fool.");
-	}
-}
-
-script "E1M3PlayerEnter" (void) {
-	PlaySound(BUDDY_TID, "impgibberish3");
-	Print(s:"\c[Yellow]Hang on... sounds like we've got a live one.");
-	
-	Delay(2 * TICS_PER_SECOND);
-	
-	SpawnSpot("EnemyPlayerShotgun", 546, FAKE_PLAYER_TID, 180);
-	Thing_Hate(BUDDY_TID, FAKE_PLAYER_TID, 6);
-	Thing_Hate(FAKE_PLAYER_TID, BUDDY_TID, 4);
-	Thing_SetGoal(FAKE_PLAYER_TID, 98, 0, true);
-	Thing_SetTranslation(FAKE_PLAYER_TID, -1);
-}
 */
 /**
  * Special trigger scripts
@@ -100,8 +30,8 @@ script "E1M3PlayerEnter" (void) {
  }
  
  script 2 (void) {
- 	Log(s:"ACS SCRIPT 2");
-	SetActorState(0, "Levitating", true);
+ 	Log(s:"ACS Trigger Jean Levitation");
+	SetActorState(0, "StartLevitating", true);
  }
 
 // script 33 ENTER

@@ -39,14 +39,23 @@ class Poochy : DoomPlayer
 	
 		
 	const Z_CHANGE_PER_TICK = 1;
+	const TOTAL_LEVITATION_TIME_S = 5;
 	bool levitating;
+	int levitationStartTimeTk;
 	
 	override void Tick()
 	{
 		Super.Tick();
 		if (levitating) {
+			int elapsedTimeTk = level.time - levitationStartTimeTk;
+			int elapsedTimeS = Tics2Seconds(elapsedTimeTk);
+			A_Log("elapsedTimeS:");
+			A_LogInt(elapsedTimeS);
+			if (elapsedTimeS > TOTAL_LEVITATION_TIME_S) {
+				SetState(ResolveState("Falling"));
+			}
 			Vector3 newpos = pos;
-			newpos.z += Z_CHANGE_PER_TICK;
+			newpos.z += sin(elapsedTimeTk) / 2.0;
 			SetOrigin(newpos, true);
 		}
 	}
@@ -59,15 +68,29 @@ class Poochy : DoomPlayer
 		}
 		Loop;
 		
-		Levitating:
-		TNT1 A 10 {
-			A_Log("Poochy.Levitating");
+		StartLevitating:
+		TNT1 A 0 {
+			A_Log("Poochy.StartLevitating");
 // 			self.ViewHeight = 100;
 			self.bFly = true;
 			self.bNogravity = true;
 			levitating = true;
+			levitationStartTimeTk = level.time;
+		}
+		
+		Levitating:
+		TNT1 A 2 {
 		}
 		Loop;
+		
+		Falling:
+		TNT1 A 0 {
+			self.bFly = false;
+			self.bNogravity = false;
+			levitating = false;
+		}
+		Goto Spawn;
+		
 	}
 }
 
