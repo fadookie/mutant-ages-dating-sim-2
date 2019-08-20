@@ -47,11 +47,22 @@ class PhoenixPowerHandler : EventHandler
 			int elapsedTimeS = Thinker.Tics2Seconds(elapsedTimeTk);
 			if (elapsedTimeS > TOTAL_LEVITATION_TIME_S) {
                 levitating = false;
+                // Reset doodads
+                for (let i = 0; i < doodads.Size(); ++i) {
+                    Actor doodad = doodads[i];
+                    Vector3 newpos = doodad.pos;
+                    newpos.z = 0;
+                    doodad.SetOrigin(newpos, true);
+                    doodad.bNOGRAVITY = false;
+                    doodad.bFLY = false;
+                }
 			}
             for (let i = 0; i < doodads.Size(); ++i) {
                 Actor doodad = doodads[i];
+                doodad.bNOGRAVITY = true;
+                doodad.bFLY = true;
                 Vector3 newpos = doodad.pos;
-                newpos.z += sin(elapsedTimeTk) / 2.0;
+                newpos.z += sin(elapsedTimeTk + i * 5.0) / 2.0;
                 doodad.SetOrigin(newpos, true);
             }
 		}
