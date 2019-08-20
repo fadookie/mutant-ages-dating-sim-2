@@ -1,0 +1,369 @@
+class PhoenixPowerHandler : EventHandler
+{
+// 	const UPDATE_FREQUENCY_SECONDS = 1;
+
+// 	const BOARD_SPOT_TID = 65534;
+	
+// 	const GRID_SIZE = 50;
+// 	const GRID_TO_WORLD_SCALE = 50;
+// 	const NUM_PRESETS = 4;
+// 	bool board[GRID_SIZE][GRID_SIZE];
+// 	bool boardNext[GRID_SIZE][GRID_SIZE];
+	
+// 	int lastUpdateTime;
+// 	int generationCount;
+// 	int currentPreset;
+
+	const DOODAD_TID = 666;
+	const TOTAL_LEVITATION_TIME_S = 5;
+	
+	PoochyPlayer player;
+	Array<Actor> doodads;
+// 	Actor boardSpot;
+	bool levitating;
+	int levitationStartTimeTk;
+	
+	override void WorldLoaded(WorldEvent e) {
+		player = FindPlayer();
+		FindDoodads();
+// 		boardSpot = FindActor(BOARD_SPOT_TID);
+// 		if (boardSpot == null) {
+// 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
+// 			boardSpot = player.Spawn("Shotgun", (0,0,0), NO_REPLACE);
+// 		}
+// 		currentPreset = 1;
+// 		InitBoardFromPreset();
+// 		SpawnBoardMarkers();
+// 		SpawnBoardInteractables();
+// 		UpdateWorldBoardView();
+// 		PrintBoard();
+	}
+	
+	override void WorldTick()
+	{
+		let timeSeconds = Thinker.Tics2Seconds(level.time);
+		if (levitating) {
+			int elapsedTimeTk = level.time - levitationStartTimeTk;
+			int elapsedTimeS = Thinker.Tics2Seconds(elapsedTimeTk);
+			if (elapsedTimeS > TOTAL_LEVITATION_TIME_S) {
+                levitating = false;
+			}
+            for (let i = 0; i < doodads.Size(); ++i) {
+                Actor doodad = doodads[i];
+                Vector3 newpos = doodad.pos;
+                newpos.z += sin(elapsedTimeTk) / 2.0;
+                doodad.SetOrigin(newpos, true);
+            }
+		}
+	}
+
+// 	override void WorldThingDamaged(WorldEvent e) {
+// 		//For some reason e.Inflictor is null here so we have to save it off in GridCell#DamageMobj
+// 		Console.Printf("WorldThingDamaged thing:" .. e.Thing.GetClassName() .. ", Inflictor: " .. e.Inflictor);
+// 		int x, y;
+// 		let gridCell = GridCell(e.thing);
+// 		if (gridCell != null) {
+// 			[x, y] = gridCell.GetCoords();
+// 			Console.Printf("WTD:Cell shot at x:" .. x .. ", y:" .. y .. " by inflictor:" .. gridCell.lastInflictor.GetClassName());
+// 			MakeCellAlive(x, y);
+// 			return;
+// 		}
+// 		let imp = ConwayImp(e.Thing);
+// 		if (imp != null) {
+// 			[x, y] = SzudzikUnpair(imp.tid);
+// 			if (!IsDead(imp)) {
+// 				Console.Printf("WTD:fired on living imp at %i, %i", x, y);
+// 				MakeCellDead(x, y);
+// 			} else {
+// 				Console.Printf("WTD:fired on dead imp at %i, %i", x, y);
+// 				MakeCellAlive(x, y);
+// 			}
+// 			return;
+// 		}
+// 	}
+
+	//override void ConsoleProcess(ConsoleEvent e) {
+	//	if (e.Name == "start") {
+	//		self.running = true;
+	//	} else if (e.Name == "stop") {
+	//		self.running = false;
+	//	}
+	//}
+	
+	
+	void FindDoodads() {
+		ActorIterator iterator = level.CreateActorIterator(DOODAD_TID);
+		Actor current;
+		while(true) {
+			current = iterator.Next();
+			Console.Printf("FindDoodads for TID: " .. DOODAD_TID .. " :" .. current);
+			if (current == null) {
+				Console.Printf("PhoenixPowerHandler#FindDoodads, found " .. doodads.Size() .. " doodads.");
+				return;
+			} else {
+				doodads.Push(current);
+			}
+		}
+	}
+	
+	PoochyPlayer FindPlayer() {
+		ThinkerIterator playerFinder = ThinkerIterator.Create("PoochyPlayer");
+		let playerResult = PoochyPlayer(playerFinder.Next());
+		if (playerResult == null) {
+			Console.Printf("Error! No player found.");
+		} else {
+			Console.Printf("Found player: " .. playerResult);
+		}
+		return playerResult;
+	}
+	
+	void StartLevitationSequence() {
+		Console.Printf("PhoenixPowerHandler#StartLevitationSequence");
+// 		FindDoodads();
+		levitating = true;
+		levitationStartTimeTk = level.time;
+	}
+	
+	/*
+	void InitBoardFromPreset() {
+		//Console.Printf("InitBoardFromPreset currentPreset:%i", currentPreset);
+		switch (currentPreset) {
+			case 0:
+				Console.Printf("Loading preset: Glider");
+				board[0][1] = true;
+				board[1][2] = true;
+				board[2][0] = true;
+				board[2][1] = true;
+				board[2][2] = true;
+				return;
+			case 1:
+				Console.Printf("Loading preset: Spinner");
+				board[1][1] = true;
+				board[1][2] = true;
+				board[1][3] = true;
+				return;
+			case 2:
+				Console.Printf("Loading preset: Lightweight Spaceship");
+				board[0][3] = true;
+				board[0][5] = true;
+				board[1][2] = true;
+				board[2][2] = true;
+				board[3][2] = true;
+				board[3][5] = true;
+				board[4][2] = true;
+				board[4][3] = true;
+				board[4][4] = true;
+				return;
+			case 3:
+				Console.Printf("Loading preset: R-Pentomino");
+				// board[3][4] = true;
+				// board[3][5] = true;
+				// board[4][3] = true;
+				// board[4][4] = true;
+				// board[5][4] = true;
+
+				board[22][24] = true;
+				board[22][25] = true;
+				board[23][23] = true;
+				board[23][24] = true;
+				board[24][24] = true;
+				return;
+			default:
+				Console.Printf("Unknown preset %i", currentPreset);
+				return;
+		}
+	}
+	
+	// This basically hashes two positive numbers into a unique third number, see https://stackoverflow.com/a/13871379/350761
+	int SzudzikPair(int a, int b) {
+		return a >= b ? a * a + a + b : a + b * b;
+	}
+
+	int, int SzudzikUnpair(int z) {
+	  let sqrtz = floor(sqrt(z)),
+		sqz = sqrtz * sqrtz;
+		if ((z - sqz) >= sqrtz) {
+			return sqrtz, z - sqz - sqrtz;
+		}
+	  	return z - sqz, sqrtz;
+	}
+	
+	Vector3 GetWorldPosForGrid(int x, int y) {
+		return (boardSpot.pos.x + (x * GRID_TO_WORLD_SCALE), boardSpot.pos.y + (y * GRID_TO_WORLD_SCALE), boardSpot.pos.z);
+	}
+	
+	bool IsDead(ConwayImp actor) {
+		let isDead = actor.InStateSequence(actor.CurState, actor.ResolveState("XDeath"))
+			|| actor.InStateSequence(actor.CurState, actor.ResolveState("Death"));
+					//Console.Printf("actor.CurState:%s", actor.CurState);
+		// let nameCount = ThingCountName(actor.Name, actor.tid);
+		//Console.Printf("actor.name:" .. actor.GetClassName() .. " isDead:" .. !actor.alive);
+		return !actor.alive;
+	}
+	
+	void MakeCellAlive(int x, int y) {
+		board[x][y] = true;
+		let cellTid = SzudzikPair(x, y);
+		let cellActor = FindActor(cellTid);
+		//Console.Printf("Spawn Cell tid:" .. cellTid);
+		if (cellActor == null) {
+			//Console.Printf("SPAWN:SPAWN " .. cellTid);
+			cellActor = player.Spawn("ConwayImp", GetWorldPosForGrid(x, y), NO_REPLACE);
+			let cellImp = ConwayImp(cellActor);
+			cellImp.ChangeTid(cellTid);
+			cellImp.alive = true;
+		} else {
+			// Raise if dead, otherwise do nothing
+			let cellImp = ConwayImp(cellActor);
+			if (IsDead(cellImp)) {
+				//Console.Printf("SPAWN:REZ " .. cellTid);
+				cellImp.SetState(cellActor.ResolveState("Raise"));
+				cellImp.alive = true;
+				//Thing_Raise(cellTid, true);
+			} else {
+				//Console.Printf("SPAWN:NOP " .. cellTid);
+			}
+		}
+		cellActor.bFRIENDLY = true;
+		cellActor.bSTANDSTILL = true;
+		cellActor.bBUDDHA = true;
+		cellActor.bDONTTHRUST = true;
+		//Thing_Deactivate(cellTid);
+	}
+	
+	void MakeCellDead(int x, int y) {
+		board[x][y] = false;
+		let cellTid = SzudzikPair(x, y);
+		let cellActor = FindActor(cellTid);
+		if (cellActor != null) {
+			//Thing_Destroy(cellTid);
+			let cellImp = ConwayImp(cellActor);
+			if (!IsDead(cellImp)) {
+				cellImp.SetState(cellActor.ResolveState("XDeath"));
+				cellImp.alive = false;
+				//Console.Printf("MakeCellDead tid:" .. cellTid);
+			}
+		}
+	}
+	
+	// override void WorldThingRevived(WorldEvent e) {
+		// Console.Printf("WorldThingRevived:" .. e.Thing);
+		// e.Thing.bDormant = true;
+	// }
+	
+	void UpdateWorldBoardView() {
+		for (let x = 0; x < GRID_SIZE; x++) {
+			for (let y = 0; y < GRID_SIZE; y++) {
+				if (board[x][y]) {
+					MakeCellAlive(x, y);
+				} else {
+					MakeCellDead(x, y);
+				}
+			}
+		}
+	}
+
+	void PrintBoard() {
+		Console.Printf("======NEW GENERATION=====");
+		for (let x = 0; x < GRID_SIZE; x++) {
+			let l = "";
+			for (let y = 0; y < GRID_SIZE; y++) {
+				if (board[x][y]) {
+					l = l .. "X";
+				} else {
+					l = l .. "_";
+				}
+			}
+			Console.Printf(l);
+		}
+	}
+
+	void SpawnBoardMarkers() {
+		player.Spawn("Column", GetWorldPosForGrid(0, 0), NO_REPLACE); 
+		player.Spawn("Column", GetWorldPosForGrid(0, GRID_SIZE), NO_REPLACE); 
+		player.Spawn("Column", GetWorldPosForGrid(GRID_SIZE, 0), NO_REPLACE); 
+		player.Spawn("Column", GetWorldPosForGrid(GRID_SIZE, GRID_SIZE), NO_REPLACE); 
+	}
+
+	void SpawnBoardInteractables() {
+		for (let x = 0; x < GRID_SIZE; x++) {
+			for (let y = 0; y < GRID_SIZE; y++) {
+				let cell = GridCell(player.Spawn("GridCell", GetWorldPosForGrid(x, y), NO_REPLACE)); 
+				cell.SetCoords(x, y);
+			}
+		}
+	}
+
+	void ClearBoard() {
+		for(let i = 0; i < GRID_SIZE; ++i) {
+			for(let j = 0; j < GRID_SIZE; ++j) {
+				MakeCellDead(i, j);
+			}
+		}
+	}
+	
+	void ClearBoardNext() {
+		for(let i = 0; i < GRID_SIZE; ++i) {
+			for(let j = 0; j < GRID_SIZE; ++j) {
+				boardNext[i][j] = false;
+			}
+		}
+	}
+	
+	void CopyNextToCurrent() {
+		for(let i = 0; i < GRID_SIZE; ++i) {
+			for(let j = 0; j < GRID_SIZE; ++j) {
+				board[i][j] = boardNext[i][j];
+			}
+		}
+	}
+	
+	// Implementation of life rules based on https://rosettacode.org/wiki/Conway%27s_Game_of_Life#JavaScript
+	void NextGen() {
+		ClearBoardNext();
+		
+		for (let x = 0; x < GRID_SIZE; x++) {
+			for (let y = 0; y < GRID_SIZE; y++) {
+				let n = 0;
+				for (let dx = -1; dx <= 1; dx++) {
+					for (let dy = -1; dy <= 1; dy++) {
+						if ( dx == 0 && dy == 0) {
+						} else if (x+dx < GRID_SIZE
+								&& x+dx >= 0
+								&& y+dy < GRID_SIZE
+								&& y+dy >= 0
+								&& board[x+dx][y+dy]) {
+							n++;
+						}
+					}
+				}
+				let c = board[x][y];
+				switch (n) {
+					case 0:
+					case 1:
+						c = 0;
+						break;
+					case 2:
+						break;
+					case 3:
+						c = 1;
+						break;
+					default:
+						c = 0;
+				}
+				boardNext[x][y] = c;
+			}
+		}
+		
+		CopyNextToCurrent();
+		++generationCount;
+	}
+
+	void CyclePreset() {
+		ClearBoard();
+		currentPreset = (currentPreset + 1) % NUM_PRESETS;
+		InitBoardFromPreset();
+		UpdateWorldBoardView();
+	}
+	*/
+}

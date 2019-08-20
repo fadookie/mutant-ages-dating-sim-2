@@ -5,7 +5,8 @@
 //===========================================================================
 
 gameinfo {
-	PlayerClasses = "Poochy"
+	PlayerClasses = "PoochyPlayer"
+	AddEventHandlers = "PhoenixPowerHandler"
 	creditpage = "CREDIT1", "CREDIT2"
 	finalepage = "credits"
 	titlemusic = "music/xmen.mid"
