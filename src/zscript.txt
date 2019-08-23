@@ -1,4 +1,5 @@
 version "4.1"
 
-#include "xmen_zscript/PoochyPlayer.txt"
-#include "xmen_zscript/PhoenixPowerHandler.txt"
+#include "xmen_zscript/PoochyPlayer.zs"
+#include "xmen_zscript/PhoenixPowerHandler.zs"
+#include "xmen_zscript/Dazzler.zs"

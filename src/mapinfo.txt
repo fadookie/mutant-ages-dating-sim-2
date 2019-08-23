@@ -13,6 +13,11 @@ gameinfo {
 	chatsound = "el/menuselect"
 }
 
+DoomEdNums
+{
+	20010 = DazzlerBall
+}
+
 ClearEpisodes
 
 Episode "map01"
