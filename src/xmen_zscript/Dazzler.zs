@@ -3,10 +3,13 @@ class DazzlerBall : DoomImpBall
   static const String TRANSLATIONS[] =
   {
       // "GreenBall",
-      "BlueBall",
-      "BlueColorize",
+      // "Ice"
+      // "BlueBall",
+      // "BlueColorize",
       "BlueDesat",
-      "Ice"
+      "GreenDesat",
+      "YellowDesat",
+      "PinkDesat"
   };
 
 	override void PostBeginPlay() {
