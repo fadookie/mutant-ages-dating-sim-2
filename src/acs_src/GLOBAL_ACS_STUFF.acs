@@ -34,6 +34,11 @@
 	SetActorState(0, "StartLevitating", true);
  }
 
+ script 3 (void) {
+ 	Log(s:"ACS Trigger Dance Sequence");
+	ScriptCall("CallBus", "StartDanceSequence");
+ }
+
 // script 33 ENTER
 // {
 //   SetCVar ("numPlayerRespawns", PLAYER_RESPAWNS_INITIAL);
