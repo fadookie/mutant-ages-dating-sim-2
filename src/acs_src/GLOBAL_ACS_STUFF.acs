@@ -17,6 +17,11 @@
 /***
  * Global functions
  */
+
+script "PrintDazzlerDesyncWarning" (void)
+{
+	Print(s:"Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...");
+}
  
  /*
 
