@@ -7,9 +7,11 @@ class DazzlerPowerHandler : EventHandler
 	int danceStartTimeTk;
 	uint danceStartTimeMs;
 	float danceStartSync;
+	PoochyPlayer player;
 
 	override void WorldLoaded(WorldEvent e) {
-			Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
+		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
+		player = CallBus.FindPlayer();
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
 // 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
@@ -49,7 +51,8 @@ class DazzlerPowerHandler : EventHandler
 				// MidPrint(Font fontname, string textlabel, bool bold = false);
 				let font = Font.GetFont("SMALLFONT");
 				// Console.MidPrint(font, "Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...", bold: false);
-				// CallBus.instance().PrintDazzlerDesyncWarning();
+				// CallBus.PrintDazzlerDesyncWarning();
+				player.A_Print("Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...", 7.0, "BIGFONT");
 				// ACS_NamedExecute("PrintDazzlerDesyncWarning", 0);
 				EndDanceSequence();
 			}
@@ -68,7 +71,7 @@ class DazzlerPowerHandler : EventHandler
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
 		danceStartSync = calculateSync(danceStartTimeTk, danceStartTimeMs);
-		//  S_ChangeMusic(String music_name, int order = 0, bool looping = true, bool force = false)
+		// S_ChangeMusic(String music_name, int order = 0, bool looping = true, bool force = false)
 		// Force restart of music if already playing
 		S_ChangeMusic("*", force: true);
 		S_ChangeMusic("music/clickTrack.mp3", force: true);

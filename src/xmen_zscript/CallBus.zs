@@ -1,21 +1,8 @@
 /**
- * This class acts as glue code to allow ACS to call into ZScript classes and handlers via ScriptCall()
+ * This class acts as glue code to allow ACS to call into ZScript classes and handlers via ScriptCall() and player Actor
  */
-class CallBus : Actor
+class CallBus
 {
-  // static CallBus _instance;
-
-  // play static CallBus instance() {
-  //   if (_instance) return _instance;
-  //   _instance = CallBus(Spawn("CallBus"));
-  //   return _instance;
-  // }
-
-	// override void PostBeginPlay()
-  // {
-  //   super.PostBeginPlay();
-  // }
-
   play static void StartDanceSequence(Actor activator)
   {
 		Console.Printf("CallBus.StartDanceSequence");
@@ -27,7 +14,14 @@ class CallBus : Actor
     }
   }
 
-  play void PrintDazzlerDesyncWarning() {
-    ACS_NamedExecute("PrintDazzlerDesyncWarning", 0);
-  }
+	play static PoochyPlayer FindPlayer() {
+		ThinkerIterator playerFinder = ThinkerIterator.Create("PoochyPlayer");
+		let playerResult = PoochyPlayer(playerFinder.Next());
+		if (playerResult == null) {
+			Console.Printf("Error! No player found.");
+		} else {
+			Console.Printf("Found player: " .. playerResult);
+		}
+		return playerResult;
+	}
 }

@@ -24,7 +24,7 @@ class PhoenixPowerHandler : EventHandler
 	int levitationStartTimeTk;
 	
 	override void WorldLoaded(WorldEvent e) {
-		player = FindPlayer();
+		player = CallBus.FindPlayer();
 		FindDoodads();
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
@@ -115,17 +115,6 @@ class PhoenixPowerHandler : EventHandler
 				doodads.Push(current);
 			}
 		}
-	}
-	
-	PoochyPlayer FindPlayer() {
-		ThinkerIterator playerFinder = ThinkerIterator.Create("PoochyPlayer");
-		let playerResult = PoochyPlayer(playerFinder.Next());
-		if (playerResult == null) {
-			Console.Printf("Error! No player found.");
-		} else {
-			Console.Printf("Found player: " .. playerResult);
-		}
-		return playerResult;
 	}
 	
 	void StartLevitationSequence() {
