@@ -10,7 +10,7 @@ class PoochyPlayer : DoomPlayer
 // 		Height 32;
 // 		CameraHeight 100;
 		Player.ViewHeight 75;
-// 		+BUDDHA
+		+BUDDHA
 		//-PICKUP
 		
 // 		Player.WeaponSlot 1, "ImpFist", "BroomWeapon";

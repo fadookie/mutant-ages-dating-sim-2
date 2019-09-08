@@ -80,12 +80,12 @@ class DazzlerPowerHandler : EventHandler
 				Actor SpawnMissileAngleZ (double z, class<Actor> type, double angle, double vz)
 					return SpawnMissileAngleZSpeed (z, type, angle, vz, GetDefaultSpeed (type));
 				*/
-				dazzler.SpawnMissile(target, "DazzlerBall");
+				// dazzler.SpawnMissile(target, "DazzlerBall");
 
 				// Circle
-				let radius = 64.0 * 2.0;
-				let NUM_BALLS = 64;
-				let offset = (0.0, 0.0, 64.0 * 2);
+				let radius = 64.0 * 1.5;
+				let NUM_BALLS = 32;
+				let offset = (0.0, 0.0, 64.0 * 1.5);
 				for(int i = 0; i < NUM_BALLS; ++i) {
 					let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
 					let result = Utils.Polar2Cartesian(radius, theta);
