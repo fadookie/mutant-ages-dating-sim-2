@@ -24,4 +24,9 @@ class CallBus
 		}
 		return playerResult;
 	}
+
+  play static Actor FindActor(int tid) {
+		let actorFinder = ActorIterator.Create(tid);
+		return actorFinder.Next(); 
+	}
 }

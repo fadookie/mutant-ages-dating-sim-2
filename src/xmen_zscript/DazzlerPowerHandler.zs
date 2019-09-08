@@ -2,16 +2,19 @@ class DazzlerPowerHandler : EventHandler
 {
 	const DESYNC_THRESHOLD_S = 0.5;
 	const NUM_EVENTS = 6;
+	const TARGET_TID = 999;
 	float eventTimestampsS[NUM_EVENTS];
 	int currentEventIdx;
 	int danceStartTimeTk;
 	uint danceStartTimeMs;
 	float danceStartSync;
 	PoochyPlayer player;
+	Actor target;
 
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 		player = CallBus.FindPlayer();
+		target = CallBus.FindActor(TARGET_TID);
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
 // 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
@@ -54,6 +57,7 @@ class DazzlerPowerHandler : EventHandler
 				// CallBus.PrintDazzlerDesyncWarning();
 				player.A_Print("Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...", 7.0, "BIGFONT");
 				// ACS_NamedExecute("PrintDazzlerDesyncWarning", 0);
+				player.SpawnMissile(target, "DazzlerBall");
 				EndDanceSequence();
 			}
 
