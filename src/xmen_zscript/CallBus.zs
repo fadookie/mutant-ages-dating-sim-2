@@ -15,14 +15,25 @@ class CallBus
   }
 
 	play static PoochyPlayer FindPlayer() {
-		ThinkerIterator playerFinder = ThinkerIterator.Create("PoochyPlayer");
-		let playerResult = PoochyPlayer(playerFinder.Next());
-		if (playerResult == null) {
+		ThinkerIterator finder = ThinkerIterator.Create("PoochyPlayer");
+		let result = PoochyPlayer(finder.Next());
+		if (result == null) {
 			Console.Printf("Error! No player found.");
 		} else {
-			Console.Printf("Found player: " .. playerResult);
+			Console.Printf("Found player: " .. result);
 		}
-		return playerResult;
+		return result;
+	}
+
+	play static Dazzler FindDazzler() {
+		ThinkerIterator finder = ThinkerIterator.Create("Dazzler");
+		let result = Dazzler(finder.Next());
+		if (result == null) {
+			Console.Printf("Error! No Dazzler found.");
+		} else {
+			Console.Printf("Found Dazzler: " .. result);
+		}
+		return result;
 	}
 
   play static Actor FindActor(int tid) {
