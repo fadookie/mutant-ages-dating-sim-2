@@ -16,6 +16,7 @@ gameinfo {
 DoomEdNums
 {
 	20010 = DazzlerBall
+	20011 = Dazzler
 }
 
 ClearEpisodes
