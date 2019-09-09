@@ -1,11 +1,22 @@
+enum DazzlerEventType
+{
+		SINGLE,
+		CIRCLE,
+		HORIZONTAL_LINE,
+}
+
 class DazzlerPowerHandler : EventHandler
 {
+
 	// const PI = 3.14159265358979323846;
+	const DANCE_QUEUE_TIME_S = 3.0;
 	const DESYNC_THRESHOLD_S = 0.5;
 	const NUM_EVENTS = 6;
 	const TARGET_TID = 999;
 	float eventTimestampsS[NUM_EVENTS];
+	float eventTypes[NUM_EVENTS];
 	int currentEventIdx;
+	int danceQueueTimeTk;
 	int danceStartTimeTk;
 	uint danceStartTimeMs;
 	float danceStartSync;
@@ -25,11 +36,26 @@ class DazzlerPowerHandler : EventHandler
 // 		}
 
 		eventTimestampsS[0] = 0.0; // Measure 1
+		eventTypes			[0] = HORIZONTAL_LINE;
+
 		eventTimestampsS[1] = 2.0; // Measure 2
+		eventTypes			[1] = CIRCLE;
+
 		eventtimestampss[2] = 4.0; // Measure 3
+		eventTypes			[2] = HORIZONTAL_LINE;
+		// eventTypes			[2] = CIRCLE;
+
 		eventTimestampsS[3] = 6.0;
+		eventTypes			[3] = CIRCLE;
+		// eventTypes			[3] = SINGLE;
+
 		eventTimestampsS[4] = 8.0;
+		eventTypes			[4] = HORIZONTAL_LINE;
+		// eventTypes			[4] = CIRCLE;
+
 		eventTimestampsS[5] = 10.0;
+		eventTypes			[5] = CIRCLE;
+		eventTypes			[5] = CIRCLE;
 		// eventTimestampsS[6] = 12.0;
 		// eventTimestampsS[7] = 14.0;
 		// eventTimestampsS[8] = 16.0;
@@ -42,11 +68,17 @@ class DazzlerPowerHandler : EventHandler
 		if (currentEventIdx >= NUM_EVENTS) {
 			EndDanceSequence();
 		}
+		if (danceQueueTimeTk > 0
+			&& Thinker.Tics2Seconds(level.time - danceQueueTimeTk) > DANCE_QUEUE_TIME_S) {
+			danceQueueTimeTk = 0;
+			StartDanceSequence();
+		}
 		if (danceStartTimeTk > 0) {
 			let timeSinceStartTk = level.time - danceStartTimeTk;
 			let timeSinceStartS = Thinker.Tics2Seconds(timeSinceStartTk);
 
 			float currentEventTimeS = eventTimestampsS[currentEventIdx];
+			let currentEventType = eventTypes[currentEventIdx];
 
 			// Console.Printf("timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
 
@@ -80,33 +112,60 @@ class DazzlerPowerHandler : EventHandler
 				Actor SpawnMissileAngleZ (double z, class<Actor> type, double angle, double vz)
 					return SpawnMissileAngleZSpeed (z, type, angle, vz, GetDefaultSpeed (type));
 				*/
-				// dazzler.SpawnMissile(target, "DazzlerBall");
 
-				// Circle
-				let radius = 64.0 * 1.5;
-				let NUM_BALLS = 32;
-				let offset = (0.0, 0.0, 64.0 * 1.5);
-				for(int i = 0; i < NUM_BALLS; ++i) {
-					let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
-					let result = Utils.Polar2Cartesian(radius, theta);
-					let pos = (0.0, result.x, result.y);
-					pos += offset;
-					// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
-					dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall");
+				switch(currentEventType) {
+					case SINGLE: {
+						let ball = DazzlerBall(dazzler.SpawnMissile(target, "DazzlerBall"));
+						ball.SetRandomTranslation();
+						break;
+					}
+
+					case CIRCLE: {
+						let radius = 64.0 * 1.5;
+						let NUM_BALLS = 32;
+						let offset = (0.0, 0.0, 64.0 * 1.5);
+						for(int i = 0; i < NUM_BALLS; ++i) {
+							let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
+							let result = Utils.Polar2Cartesian(radius, theta);
+							let pos = (0.0, result.x, result.y);
+							pos += offset;
+							// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
+							let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+							ball.SetTranslation(i);
+						}
+						break;
+					}
+
+					case HORIZONTAL_LINE: {
+						let NUM_BALLS = 20;
+						let BALL_SPACING = 16.0;
+						for(int i = 0; i < NUM_BALLS; ++i) {
+							let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
+							let pos = (0.0, posY, 64.0);
+							let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+							ball.SetTranslation(i);
+						}
+						break;
+					}
+
+					default:
+						ThrowAbortException("Unknown event type.");
 				}
-
-				// Cross?
-				// dazzler.SpawnMissileXYZ((0.0, 0.0, 0.0), target, "DazzlerBall");
-				// dazzler.SpawnMissileXYZ((0.0, 64.0, 0.0), target, "DazzlerBall");
-				// dazzler.SpawnMissileXYZ((0.0, 64.0, 64.0), target, "DazzlerBall");
 
 				++currentEventIdx;
 			}
 		}
 	}
 
+	void QueueDanceSequence() {
+		Console.Printf("DazzlerPowerHandler#QueueDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
+		danceQueueTimeTk = level.time;
+		player.A_Print("Get ready in 3, 2, 1...", 3.0, "BIGFONT");
+	}
+
 	void StartDanceSequence() {
 		Console.Printf("DazzlerPowerHandler#StartDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
+		player.A_Print("Let's jam!", 1.0, "BIGFONT");
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
 		danceStartSync = calculateSync(danceStartTimeTk, danceStartTimeMs);

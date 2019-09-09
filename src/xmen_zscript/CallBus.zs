@@ -8,7 +8,7 @@ class CallBus
 		Console.Printf("CallBus.StartDanceSequence");
     DazzlerPowerHandler dazzlerPowerHandler = DazzlerPowerHandler(EventHandler.Find("DazzlerPowerHandler"));
     if(dazzlerPowerHandler) {
-      dazzlerPowerHandler.StartDanceSequence();
+      dazzlerPowerHandler.QueueDanceSequence();
     } else {
       Console.Printf("Error! DazzlerPowerHandler not found!");
     }

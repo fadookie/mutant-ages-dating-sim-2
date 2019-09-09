@@ -64,15 +64,19 @@ class DazzlerBall : DoomImpBall
 	override void PostBeginPlay() {
 		super.PostBeginPlay();
 		// A_Log("DazzlerBall init");
-    SetRandomTranslation();
+    // SetRandomTranslation();
   }
 
   void SetRandomTranslation() {
     int randIdx = Random(0, TRANSLATIONS.Size() - 1);
     // int randIdx = (TID - 1) % TRANSLATIONS.Size();
+    // int randIdx = 0;
     // Console.Printf("TID" .. TID .. ", randIdx:" .. randIdx);
-    String randTranslation = TRANSLATIONS[randIdx];
-		A_SetTranslation(randTranslation);
+    SetTranslation(randIdx);
+  }
 
+  void SetTranslation(int translationIdx) {
+    let randTranslation = TRANSLATIONS[translationIdx % TRANSLATIONS.Size()];
+		A_SetTranslation(randTranslation);
   }
 }
