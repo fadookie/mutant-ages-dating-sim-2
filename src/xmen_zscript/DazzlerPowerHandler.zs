@@ -2,19 +2,19 @@ enum DazzlerEventType
 {
 		SINGLE,
 		CIRCLE,
-		HORIZONTAL_LINE,
+		HORIZONTAL_LINE_CROUCH,
+		HORIZONTAL_LINE_JUMP,
 }
 
 class DazzlerPowerHandler : EventHandler
 {
-
 	// const PI = 3.14159265358979323846;
-	const DANCE_QUEUE_TIME_S = 3.0;
+	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
 	const NUM_EVENTS = 6;
 	const TARGET_TID = 999;
 	float eventTimestampsS[NUM_EVENTS];
-	float eventTypes[NUM_EVENTS];
+	DazzlerEventType eventTypes[NUM_EVENTS];
 	int currentEventIdx;
 	int danceQueueTimeTk;
 	int danceStartTimeTk;
@@ -36,25 +36,25 @@ class DazzlerPowerHandler : EventHandler
 // 		}
 
 		eventTimestampsS[0] = 0.0; // Measure 1
-		eventTypes			[0] = HORIZONTAL_LINE;
+		eventTypes			[0] = HORIZONTAL_LINE_CROUCH;
 
 		eventTimestampsS[1] = 2.0; // Measure 2
-		eventTypes			[1] = CIRCLE;
+		eventTypes			[1] = HORIZONTAL_LINE_JUMP;
 
 		eventtimestampss[2] = 4.0; // Measure 3
-		eventTypes			[2] = HORIZONTAL_LINE;
+		eventTypes			[2] = HORIZONTAL_LINE_CROUCH;
 		// eventTypes			[2] = CIRCLE;
 
 		eventTimestampsS[3] = 6.0;
-		eventTypes			[3] = CIRCLE;
+		eventTypes			[3] = HORIZONTAL_LINE_JUMP;
 		// eventTypes			[3] = SINGLE;
 
 		eventTimestampsS[4] = 8.0;
-		eventTypes			[4] = HORIZONTAL_LINE;
+		eventTypes			[4] = CIRCLE;
 		// eventTypes			[4] = CIRCLE;
 
 		eventTimestampsS[5] = 10.0;
-		eventTypes			[5] = CIRCLE;
+		eventTypes			[5] = HORIZONTAL_LINE_CROUCH;
 		eventTypes			[5] = CIRCLE;
 		// eventTimestampsS[6] = 12.0;
 		// eventTimestampsS[7] = 14.0;
@@ -69,7 +69,7 @@ class DazzlerPowerHandler : EventHandler
 			EndDanceSequence();
 		}
 		if (danceQueueTimeTk > 0
-			&& Thinker.Tics2Seconds(level.time - danceQueueTimeTk) > DANCE_QUEUE_TIME_S) {
+			&& Thinker.Tics2Seconds(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
 			danceQueueTimeTk = 0;
 			StartDanceSequence();
 		}
@@ -136,24 +136,33 @@ class DazzlerPowerHandler : EventHandler
 						break;
 					}
 
-					case HORIZONTAL_LINE: {
-						let NUM_BALLS = 20;
-						let BALL_SPACING = 16.0;
-						for(int i = 0; i < NUM_BALLS; ++i) {
-							let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
-							let pos = (0.0, posY, 64.0);
-							let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
-							ball.SetTranslation(i);
-						}
+					case HORIZONTAL_LINE_CROUCH: {
+						SpawnBallLine(32.0);	
+						break;
+					}
+
+					case HORIZONTAL_LINE_JUMP: {
+						SpawnBallLine(8.0);	
 						break;
 					}
 
 					default:
-						ThrowAbortException("Unknown event type.");
+						ThrowAbortException("Unknown event type: %d", currentEventType);
 				}
 
 				++currentEventIdx;
 			}
+		}
+	}
+
+	void SpawnBallLine(double height) {
+		let NUM_BALLS = 20;
+		let BALL_SPACING = 16.0;
+		for(int i = 0; i < NUM_BALLS; ++i) {
+			let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
+			let pos = (0.0, posY, height);
+			let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+			ball.SetTranslation(i);
 		}
 	}
 

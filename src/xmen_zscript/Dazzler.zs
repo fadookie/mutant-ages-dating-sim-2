@@ -49,6 +49,19 @@ class Dazzler: Actor
 
 class DazzlerBall : DoomImpBall
 {
+	// Default
+	// {
+	// 	Height 64;
+  //   MissileHeight 64;
+  // }
+
+	// States
+	// {
+	// Spawn:
+	// 	BAL1 AB 4 BRIGHT Offset(10,42);
+	// 	Loop;
+  // }
+
   static const String TRANSLATIONS[] =
   {
       // "GreenBall",

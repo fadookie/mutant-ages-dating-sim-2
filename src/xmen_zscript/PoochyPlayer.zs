@@ -7,8 +7,9 @@ class PoochyPlayer : DoomPlayer
 	int levitationStartTimeTk;
 	
 	Default {
-// 		Height 32;
+		// Height 32;
 // 		CameraHeight 100;
+		// ProjectilePassHeight 75;
 		Player.ViewHeight 75;
 		+BUDDHA
 		//-PICKUP
