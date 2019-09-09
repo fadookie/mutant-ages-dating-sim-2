@@ -4,6 +4,8 @@ enum DazzlerEventType
 		CIRCLE,
 		HORIZONTAL_LINE_CROUCH,
 		HORIZONTAL_LINE_JUMP,
+		BARRAGE,
+		NOOP,
 }
 
 class DazzlerPowerHandler : EventHandler
@@ -11,15 +13,23 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 6;
+	const NUM_EVENTS = 2;
 	const TARGET_TID = 999;
+
 	float eventTimestampsS[NUM_EVENTS];
 	DazzlerEventType eventTypes[NUM_EVENTS];
 	int currentEventIdx;
+
 	int danceQueueTimeTk;
+
 	int danceStartTimeTk;
 	uint danceStartTimeMs;
 	float danceStartSync;
+
+	int barrageStartTimeTk;
+	int barrageMaxBalls;
+	int barrageNumBallsFired;
+
 	PoochyPlayer player;
 	Dazzler dazzler;
 	Actor target;
@@ -36,26 +46,29 @@ class DazzlerPowerHandler : EventHandler
 // 		}
 
 		eventTimestampsS[0] = 0.0; // Measure 1
-		eventTypes			[0] = HORIZONTAL_LINE_CROUCH;
+		eventTypes			[0] = BARRAGE;
+		// eventTypes			[0] = HORIZONTAL_LINE_CROUCH;
 
-		eventTimestampsS[1] = 2.0; // Measure 2
-		eventTypes			[1] = HORIZONTAL_LINE_JUMP;
+		// eventTimestampsS[1] = 2.0; // Measure 2
+		eventTimestampsS[1] = 20.0; // Measure 2
+		eventTypes			[1] = NOOP;
+		// eventTypes			[1] = HORIZONTAL_LINE_JUMP;
 
-		eventtimestampss[2] = 4.0; // Measure 3
-		eventTypes			[2] = HORIZONTAL_LINE_CROUCH;
-		// eventTypes			[2] = CIRCLE;
+		// eventtimestampss[2] = 4.0; // Measure 3
+		// eventTypes			[2] = BARRAGE;
+		// eventTypes			[2] = HORIZONTAL_LINE_CROUCH;
 
-		eventTimestampsS[3] = 6.0;
-		eventTypes			[3] = HORIZONTAL_LINE_JUMP;
-		// eventTypes			[3] = SINGLE;
+		// eventTimestampsS[3] = 6.0;
+		// eventTypes			[3] = BARRAGE;
+		// eventTypes			[3] = HORIZONTAL_LINE_JUMP;
 
-		eventTimestampsS[4] = 8.0;
-		eventTypes			[4] = CIRCLE;
+		// eventTimestampsS[4] = 8.0;
+		// eventTypes			[4] = BARRAGE;
 		// eventTypes			[4] = CIRCLE;
 
-		eventTimestampsS[5] = 10.0;
-		eventTypes			[5] = HORIZONTAL_LINE_CROUCH;
-		eventTypes			[5] = CIRCLE;
+		// eventTimestampsS[5] = 10.0;
+		// eventTypes			[5] = BARRAGE;
+		// eventTypes			[5] = HORIZONTAL_LINE_CROUCH;
 		// eventTimestampsS[6] = 12.0;
 		// eventTimestampsS[7] = 14.0;
 		// eventTimestampsS[8] = 16.0;
@@ -67,90 +80,126 @@ class DazzlerPowerHandler : EventHandler
 	{
 		if (currentEventIdx >= NUM_EVENTS) {
 			EndDanceSequence();
+			return;
 		}
 		if (danceQueueTimeTk > 0
 			&& Thinker.Tics2Seconds(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
 			danceQueueTimeTk = 0;
 			StartDanceSequence();
 		}
-		if (danceStartTimeTk > 0) {
-			let timeSinceStartTk = level.time - danceStartTimeTk;
-			let timeSinceStartS = Thinker.Tics2Seconds(timeSinceStartTk);
+		if (danceStartTimeTk <= 0) {
+			return;
+		}
+		let timeSinceStartTk = level.time - danceStartTimeTk;
+		let timeSinceStartS = Thinker.Tics2Seconds(timeSinceStartTk);
 
-			float currentEventTimeS = eventTimestampsS[currentEventIdx];
-			let currentEventType = eventTypes[currentEventIdx];
+		float currentEventTimeS = eventTimestampsS[currentEventIdx];
+		let currentEventType = eventTypes[currentEventIdx];
 
-			// Console.Printf("timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
+		// Console.Printf("timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
 
-			let currentSync = calculateSync(level.time, MSTime());
-			let desync = Abs(currentSync - danceStartSync);
-			// Console.Printf("DazzlerHandler#WorldTick desync check level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
-			if (desync > DESYNC_THRESHOLD_S) {
-				Console.Printf("Desync detected!");
-				// MidPrint(Font fontname, string textlabel, bool bold = false);
-				let font = Font.GetFont("SMALLFONT");
-				// Console.MidPrint(font, "Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...", bold: false);
-				// CallBus.PrintDazzlerDesyncWarning();
-				player.A_Print("Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...", 7.0, "BIGFONT");
-				// ACS_NamedExecute("PrintDazzlerDesyncWarning", 0);
-				EndDanceSequence();
-			}
+		let currentSync = calculateSync(level.time, MSTime());
+		let desync = Abs(currentSync - danceStartSync);
+		// Console.Printf("DazzlerHandler#WorldTick desync check level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
+		if (desync > DESYNC_THRESHOLD_S) {
+			Console.Printf("Desync detected!");
+			// MidPrint(Font fontname, string textlabel, bool bold = false);
+			// let font = Font.GetFont("SMALLFONT");
+			// Console.MidPrint(font, "Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...", bold: false);
+			// CallBus.PrintDazzlerDesyncWarning();
+			player.A_Print("Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...", 7.0, "BIGFONT");
+			// ACS_NamedExecute("PrintDazzlerDesyncWarning", 0);
+			EndDanceSequence();
+		}
 
-			if (timeSinceStartS >= currentEventTimeS) {
-				Console.Printf("Event at " .. currentEventTimeS);
-				// Console.Printf("DazzlerHandler#WorldTick event level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
-				/* Missile options:
-				native Actor SpawnMissile(Actor dest, class<Actor> type, Actor owner = null);
-				native Actor SpawnMissileXYZ(Vector3 pos, Actor dest, Class<Actor> type, bool checkspawn = true, Actor owner = null);
-				native Actor SpawnMissileZ (double z, Actor dest, class<Actor> type);
-				native Actor SpawnMissileAngleZSpeed (double z, class<Actor> type, double angle, double vz, double speed, Actor owner = null, bool checkspawn = true);
-				native Actor SpawnMissileZAimed (double z, Actor dest, Class<Actor> type);
-				native Actor OldSpawnMissile(Actor dest, class<Actor> type, Actor owner = null);
-				// FUNC P_SpawnMissileAngle
-				Actor SpawnMissileAngle (class<Actor> type, double angle, double vz)
-					return SpawnMissileAngleZSpeed (pos.z + 32 + GetBobOffset(), type, angle, vz, GetDefaultSpeed (type));
-				Actor SpawnMissileAngleZ (double z, class<Actor> type, double angle, double vz)
-					return SpawnMissileAngleZSpeed (z, type, angle, vz, GetDefaultSpeed (type));
-				*/
+		if (timeSinceStartS >= currentEventTimeS) {
+			Console.Printf("Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
+			// Console.Printf("DazzlerHandler#WorldTick event level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
+			/* Missile options:
+			native Actor SpawnMissile(Actor dest, class<Actor> type, Actor owner = null);
+			native Actor SpawnMissileXYZ(Vector3 pos, Actor dest, Class<Actor> type, bool checkspawn = true, Actor owner = null);
+			native Actor SpawnMissileZ (double z, Actor dest, class<Actor> type);
+			native Actor SpawnMissileAngleZSpeed (double z, class<Actor> type, double angle, double vz, double speed, Actor owner = null, bool checkspawn = true);
+			native Actor SpawnMissileZAimed (double z, Actor dest, Class<Actor> type);
+			native Actor OldSpawnMissile(Actor dest, class<Actor> type, Actor owner = null);
+			// FUNC P_SpawnMissileAngle
+			Actor SpawnMissileAngle (class<Actor> type, double angle, double vz)
+				return SpawnMissileAngleZSpeed (pos.z + 32 + GetBobOffset(), type, angle, vz, GetDefaultSpeed (type));
+			Actor SpawnMissileAngleZ (double z, class<Actor> type, double angle, double vz)
+				return SpawnMissileAngleZSpeed (z, type, angle, vz, GetDefaultSpeed (type));
+			*/
 
-				switch(currentEventType) {
-					case SINGLE: {
-						let ball = DazzlerBall(dazzler.SpawnMissile(target, "DazzlerBall"));
-						ball.SetRandomTranslation();
-						break;
-					}
-
-					case CIRCLE: {
-						let radius = 64.0 * 1.5;
-						let NUM_BALLS = 32;
-						let offset = (0.0, 0.0, 64.0 * 1.5);
-						for(int i = 0; i < NUM_BALLS; ++i) {
-							let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
-							let result = Utils.Polar2Cartesian(radius, theta);
-							let pos = (0.0, result.x, result.y);
-							pos += offset;
-							// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
-							let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
-							ball.SetTranslation(i);
-						}
-						break;
-					}
-
-					case HORIZONTAL_LINE_CROUCH: {
-						SpawnBallLine(32.0);	
-						break;
-					}
-
-					case HORIZONTAL_LINE_JUMP: {
-						SpawnBallLine(8.0);	
-						break;
-					}
-
-					default:
-						ThrowAbortException("Unknown event type: %d", currentEventType);
+			switch(currentEventType) {
+				case SINGLE: {
+					let ball = DazzlerBall(dazzler.SpawnMissile(target, "DazzlerBall"));
+					ball.SetRandomTranslation();
+					break;
 				}
 
-				++currentEventIdx;
+				case CIRCLE: {
+					let radius = 64.0 * 1.5;
+					let NUM_BALLS = 32;
+					let offset = (0.0, 0.0, 64.0 * 1.5);
+					for(int i = 0; i < NUM_BALLS; ++i) {
+						let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
+						let result = Utils.Polar2Cartesian(radius, theta);
+						let pos = (0.0, result.x, result.y);
+						pos += offset;
+						// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
+						let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+						ball.SetTranslation(i);
+					}
+					break;
+				}
+
+				case HORIZONTAL_LINE_CROUCH: {
+					SpawnBallLine(32.0);	
+					break;
+				}
+
+				case HORIZONTAL_LINE_JUMP: {
+					SpawnBallLine(8.0);	
+					break;
+				}
+
+				case BARRAGE: {
+					barrageStartTimeTk = level.time;
+					barrageMaxBalls = 10;
+					break;
+				}
+
+				case NOOP:
+					break;
+
+				default:
+					ThrowAbortException("Unknown event type: %d", currentEventType);
+			}
+			++currentEventIdx;
+		}
+
+		// Process barrage time slice
+		if (barrageStartTimeTk > 0) {
+			let NUM_BALLS = barrageMaxBalls;
+			let BALL_SPACING = 16.0;
+			let height = 32.0;
+
+			let BARRAGE_INTERVAL_TK = 10;
+			let timeSinceBarrageStartTk = level.time - barrageStartTimeTk;
+			// Console.Printf("Barrage in progress, barrageStartTimeTk:" .. barrageStartTimeTk .. " timeSinceStart:" .. timeSinceBarrageStartTk);
+			if (timeSinceBarrageStartTk % BARRAGE_INTERVAL_TK == 0) {
+				// We just crossed the interval time
+				int intervalIdx = timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK;
+				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
+				let pos = (0.0, posY, height);
+				let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+				ball.SetTranslation(intervalIdx);
+				Console.Printf("Barrage FIRE, numFired:" .. barrageNumBallsFired .. " maxBalls:" .. barrageMaxBalls .. " intervalIdx:" .. intervalIdx);
+				++barrageNumBallsFired;
+			}
+			if (barrageNumBallsFired >= barrageMaxBalls) {
+				Console.Printf("Barrage terminate numFired:" .. barrageNumBallsFired .. " maxBalls:");
+				barrageNumBallsFired = 0;
+				barrageStartTimeTk = 0;
 			}
 		}
 	}
