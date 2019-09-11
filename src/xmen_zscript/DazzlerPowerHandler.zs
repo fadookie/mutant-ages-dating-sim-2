@@ -13,7 +13,7 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 2;
+	const NUM_EVENTS = 6;
 	const TARGET_TID = 999;
 
 	float eventTimestampsS[NUM_EVENTS];
@@ -46,29 +46,28 @@ class DazzlerPowerHandler : EventHandler
 // 		}
 
 		eventTimestampsS[0] = 0.0; // Measure 1
-		eventTypes			[0] = BARRAGE;
-		// eventTypes			[0] = HORIZONTAL_LINE_CROUCH;
+		eventTypes			[0] = HORIZONTAL_LINE_CROUCH;
 
-		// eventTimestampsS[1] = 2.0; // Measure 2
-		eventTimestampsS[1] = 20.0; // Measure 2
-		eventTypes			[1] = NOOP;
+		eventTimestampsS[1] = 2.0; // Measure 2
+		eventTypes			[1] = HORIZONTAL_LINE_JUMP;
 		// eventTypes			[1] = HORIZONTAL_LINE_JUMP;
 
-		// eventtimestampss[2] = 4.0; // Measure 3
-		// eventTypes			[2] = BARRAGE;
+		eventtimestampss[2] = 4.0; // Measure 3
+		eventTypes			[2] = CIRCLE;
 		// eventTypes			[2] = HORIZONTAL_LINE_CROUCH;
 
-		// eventTimestampsS[3] = 6.0;
-		// eventTypes			[3] = BARRAGE;
+		eventTimestampsS[3] = 6.0;
+		eventTypes			[3] = BARRAGE;
 		// eventTypes			[3] = HORIZONTAL_LINE_JUMP;
 
-		// eventTimestampsS[4] = 8.0;
-		// eventTypes			[4] = BARRAGE;
+		eventTimestampsS[4] = 8.0;
+		eventTypes			[4] = HORIZONTAL_LINE_JUMP;
 		// eventTypes			[4] = CIRCLE;
 
-		// eventTimestampsS[5] = 10.0;
+		eventTimestampsS[5] = 10.0;
+		eventTypes			[5] = HORIZONTAL_LINE_CROUCH;
 		// eventTypes			[5] = BARRAGE;
-		// eventTypes			[5] = HORIZONTAL_LINE_CROUCH;
+
 		// eventTimestampsS[6] = 12.0;
 		// eventTimestampsS[7] = 14.0;
 		// eventTimestampsS[8] = 16.0;

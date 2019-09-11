@@ -216,6 +216,23 @@ actor Phoenix : Actor 30006
   }
 }
 
+actor EmmaFrost : Actor 30007
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    WQNS A 10 A_Look
+    Loop
+  }
+}
+
 actor ScottsBox : Inventory 31000
 {
   Inventory.PickupMessage "Found Scott's butt plug collection!"
@@ -225,4 +242,40 @@ actor ScottsBox : Inventory 31000
     CBOX A 10
     Loop
   }
+}
+
+actor WizardInventory : Inventory
+{
+	Inventory.PickupMessage "Yummy!"
+	Inventory.Amount 100
+	Inventory.MaxAmount 999
+	Tag "Wizard"
+	Inventory.Icon "ELCPA0"
+	
+	/*
+	States
+	{
+		Spawn:
+		ELCP A 4
+		Loop
+	}
+	*/
+}
+
+actor WarcraftInventory : Inventory
+{
+	Inventory.PickupMessage "Yummy!"
+	Inventory.Amount 100
+	Inventory.MaxAmount 999
+	Tag "Warcraft"
+	Inventory.Icon "ELCPA0"
+	
+	/*
+	States
+	{
+		Spawn:
+		ELCP A 4
+		Loop
+	}
+	*/
 }
