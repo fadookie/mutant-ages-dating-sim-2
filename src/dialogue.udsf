@@ -289,13 +289,35 @@ conversation
 	}
 	page //6
 	{
+		name = "Magneto";
+		panel = "MGNPA0";
+		dialog = "\c[Purple]I have 100 XP from last session, I would like to purchase a new skill.";
+		choice
+		{
+			text = "Next";
+			nextpage = 7;
+		}
+	}
+	page //7
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]That will have to wait until the next long rest. Now, let's begin.";
+		choice
+		{
+			text = "Next";
+			nextpage = 8;
+		}
+	}
+	page //8
+	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]You are in a dark forest. Something is putting you on edge, but you aren't sure what. What would you like to do?";
 		choice
 		{
 			text = "(Poochy) I use my AE Vision!";
-			nextpage = 7;
+			nextpage = 9;
 			cost
 			{
 					item = "PoochyDnDInventory";
@@ -306,7 +328,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft) I listen and smell for danger.";
-			nextpage = 8;
+			nextpage = 10;
 			cost
 			{
 					item = "WarcraftDnDInventory";
@@ -315,7 +337,7 @@ conversation
 			}
 		}
 	}
-	page //7
+	page //9
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -323,10 +345,10 @@ conversation
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 9;
+			nextpage = 11;
 		}
 	}
-	page //8
+	page //10
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -334,28 +356,18 @@ conversation
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 9;
+			nextpage = 11;
 		}
 	}
-	page //9
-	{
-		name = "Magneto";
-		panel = "MGNPA0";
-		dialog = "\c[Purple]I have 100 XP from last session, I would like to purchase a new skill.";
-		choice
-		{
-			text = "Next";
-			nextpage = 10;
-		}
-	}
-	page //8
+	page //11
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]That will have to wait until the next long rest. Now, let's begin.";
+		dialog = "\c[White]You succeed! You can sense the nasty boys lying in ambush up ahead.";
 		choice
 		{
 			text = "Next";
+			nextpage = 12;
 		}
 	}
 }

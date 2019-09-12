@@ -65,7 +65,7 @@ suggestors = [
 for suggestor in suggestors:
     codemod.Query(
       suggestor,
-      root_directory='../src',
+      root_directory='../raw/dialogue',
       path_filter=codemod.path_filter(
         extensions=['udsf']
       ),
