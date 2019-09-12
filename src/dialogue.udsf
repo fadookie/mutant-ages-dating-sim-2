@@ -199,7 +199,7 @@ conversation
 	actor = "Dazzler";
 	page //1
 	{
-		name = "Alison";
+		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
 		dialog = "Wanna dance for me, hotshot?";
 		choice
@@ -217,9 +217,9 @@ conversation
 	actor = "EmmaFrost";
 	page //1
 	{
-		name = "Emma";
+		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Alright boys and girls, let's get started! We have some newcomers at The Hellfire D&D Club, why don't you introduce yourselves?";
+		dialog = "\c[White]Alright boys and girls, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
 		choice
 		{
 			text = "I'm Ryan!"; // give inventory
@@ -233,19 +233,19 @@ conversation
 	}
 	page //2
 	{
-		name = "Emma";
+		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]And what class would you like to play in the campaign?";
 		choice
 		{
-			text = "Wizard";
-			giveitem = "WizardInventory";
+			text = "Dr. Nathaniel \"Poochy\" Chainlink";
+			giveitem = "PoochyDnDInventory";
 			nextpage = 3;
 		}
 		choice
 		{
-			text = "Warcraft";
-			giveitem = "WarcraftInventory";
+			text = "A Warcraft!";
+			giveitem = "WarcraftDnDInventory";
 			nextpage = 3;
 		}
 // 		choice
@@ -256,9 +256,9 @@ conversation
 	}
 	page //3
 	{
-		name = "Emma";
+		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]And how about you, handsome?";
+		dialog = "\c[White]And how about you, fuzzball?";
 		choice
 		{
 			text = "Next";
@@ -278,7 +278,7 @@ conversation
 	}
 	page //5
 	{
-		name = "Emma";
+		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]Okay tough guy, let's make you a warrior.";
 		choice
@@ -289,47 +289,70 @@ conversation
 	}
 	page //6
 	{
-		name = "Emma";
+		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]TEST";
+		dialog = "\c[White]You are in a dark forest. Something is putting you on edge, but you aren't sure what. What would you like to do?";
 		choice
 		{
-			text = "Wizard action";
+			text = "(Poochy) I use my AE Vision!";
 			nextpage = 7;
 			cost
-            {
-                item = "WizardInventory";
-				amount = 1;
-				nomessage = "\c[White]Sorry, you're not allowed to do that.";
-            }
+			{
+					item = "PoochyDnDInventory";
+					amount = 1;
+					nomessage = "\c[White]Sorry, you're not allowed to do that.";
+			}
 		}
 		choice
 		{
-			text = "Warcraft action";
+			text = "(Warcraft) I listen and smell for danger.";
 			nextpage = 8;
 			cost
-            {
-                item = "WarcraftInventory";
-				amount = 1;
-				nomessage = "\c[White]Sorry, you're not allowed to do that.";
-            }
+			{
+					item = "WarcraftDnDInventory";
+					amount = 1;
+					nomessage = "\c[White]Sorry, you're not allowed to do that.";
+			}
 		}
 	}
 	page //7
 	{
-		name = "Emma";
+		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]You're a wizard!";
+		dialog = "\c[White]I'm not really sure what that is... but sure, roll a d20 for wisdom check.";
 		choice
 		{
-			text = "Next";
+			text = "Roll 1d20";
+			nextpage = 9;
 		}
 	}
 	page //8
 	{
-		name = "Emma";
+		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]You're a Warcraft!";
+		dialog = "\c[White]Okay, roll a d20 for wisdom check.";
+		choice
+		{
+			text = "Roll 1d20";
+			nextpage = 9;
+		}
+	}
+	page //9
+	{
+		name = "Magneto";
+		panel = "MGNPA0";
+		dialog = "\c[Purple]I have 100 XP from last session, I would like to purchase a new skill.";
+		choice
+		{
+			text = "Next";
+			nextpage = 10;
+		}
+	}
+	page //8
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]That will have to wait until the next long rest. Now, let's begin.";
 		choice
 		{
 			text = "Next";

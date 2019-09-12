@@ -262,7 +262,7 @@ actor AEVision : PowerupGiver 31010
 	}
 }
 
-actor WizardInventory : Inventory
+actor PoochyDnDInventory : Inventory
 {
 	Inventory.PickupMessage "Yummy!"
 	Inventory.Amount 100
@@ -280,7 +280,7 @@ actor WizardInventory : Inventory
 	*/
 }
 
-actor WarcraftInventory : Inventory
+actor WarcraftDnDInventory : Inventory
 {
 	Inventory.PickupMessage "Yummy!"
 	Inventory.Amount 100
