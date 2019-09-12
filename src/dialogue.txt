@@ -1,0 +1,338 @@
+namespace = "ZDoom";
+
+conversation
+{
+	actor = "Wolverine";
+	page //1
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I thought you were gonna stand me up!";
+		choice
+		{
+			text = "I would never!";
+			yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
+			closedialog = true;
+// 			special = 80;
+// 			arg0 = 13;
+		}
+		choice
+		{
+			text = "Says the king of fucking off to Alaska without telling anybody.";
+			nextpage = 2;
+		}
+	}
+	page //2
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Hey now, we all need a little alone time to brood now and then.";
+		choice
+		{
+			text = "And what have you been brooding about recently, babe?";
+			nextpage = 3;
+		}
+	}
+	page //3
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Oh, the usual. Jean is back so I don't get to fuck Scott anymore.";
+		choice
+		{
+			text = "Oh, cry me a river. I thought I was the only one for you?";
+			nextpage = 4;
+		}
+	}
+	page //4
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Come on now, did you really think you could tame the Wolverine? Don't worry, I'll always have room for you in by bed, babe.";
+		choice
+		{
+			text = "Sure, if you've earned it! So why did you invite me over exactly?";
+			nextpage = 5;
+		}
+	}
+	page //5
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Oh, heh heh... I had planned a little surprise for you but I seem to have misplaced the key to the X-Jet Hangar... could you help me find it?";
+		choice
+		{
+			text = "Of course! Let me look...";
+			yesmessage = "\c[Yellow]Thanks! I think it was in a box somewhere...";
+			closedialog = true;
+		}
+		choice
+		{
+			text = "Wow, some surprise...";
+			yesmessage = "\c[Yellow]Sorry... trust me it will be great! I think it was in a box somewhere...";
+			closedialog = true;
+		}
+		ifitem
+        {
+            item = "BlueCard";
+        }
+		link = 6;
+	}
+	page //6
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
+		goodbye = "I can't wait! Let's go!";
+	}
+}
+
+conversation
+{
+	actor = "Cyclops";
+	page //1
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]What do you want?";
+		choice
+		{
+			text = "Stay away from Logan, he's mine!";
+			yesmessage = "\c[Cyan]Logan was just a rebound, I'm back with Jean now! Don't you know I'm a super straight superhero?";
+			closedialog = true;
+// 			special = 80;
+// 			arg0 = 13;
+		}
+// 		ifitem
+//         {
+//             item = "ScottsBox";
+//         }
+// 		link = 2;
+		choice
+		{
+			text = "Hey, could you help me with something?";
+			nextpage = 2;
+			nomessage = "\c[Cyan]With what? Come back when you've found something I can help with.";
+			cost
+            {
+                item = "ScottsBox";
+				amount = 1;
+            }
+		}
+	}
+	page //2
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Hey, where did you get that? Give it back!";
+		choice
+		{
+			text = "I'm looking for the key to the hangar! If you blast it open I'll give everything else back.";
+			nextpage = 3;
+		}
+	}
+	page //3
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Fine, but you are not allowed to call me a tool like Logan does! And don't look at what else is inside!";
+		choice
+		{
+			text = "I pinkie swear.";
+			giveitem = "BlueCard";
+			nextpage = 4;
+		}
+	}
+	page //4
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Okay, here's the key. If I hear you tell anyone else about this box I will have Xavier wipe your memories!";
+		choice
+		{
+			text = "It's okay, I won't tell anyone else you love butt plugs.";
+			yesmessage = "\c[Cyan]Hey! I'm warning you, punk!";
+			closedialog = true;
+		}
+	}
+}
+
+conversation
+{
+	actor = "Phoenix";
+	page //1
+	{
+		name = "Jean";
+		panel = "PNXPA0";
+		dialog = "\c[Orange]Hey there! How can I help you?";
+		choice
+		{
+			text = "I'm looking for the hangar key, do you know where it is?";
+			yesmessage = "\c[Orange]Hm.... I'm not sure! I could pry the door open with my mind, but I think Charles would get annoyed that I was actually doing someting...";
+			closedialog = true;
+			special = 80;
+			arg0 = 2;
+		}
+		choice
+		{
+			text = "How are you doing, Jean?";
+			nextpage = 2;
+		}
+	}
+	page { //2
+		name = "Jean";
+		panel = "PNXPA0";
+		dialog = "\c[Orange]I'm so glad the Phoenix Force finally left me alone. I'm all back to normal now with my perfect boyfriend, Scott, whom I totally love!";
+		choice
+		{
+			text = "Fine with me, I was getting a little tired of sharing Logan with him.";
+			yesmessage = "\c[Orange]Yes, tell him to stay away from Scott!";
+			closedialog = true;
+			special = 80;
+			arg0 = 2;
+		}
+	}
+}
+
+conversation
+{
+	actor = "Dazzler";
+	page //1
+	{
+		name = "Alison";
+		panel = "DZLPA0";
+		dialog = "Wanna dance for me, hotshot?";
+		choice
+		{
+			text = "Let's do this!";
+			closedialog = true;
+			special = 80;
+			arg0 = 3;
+		}
+	}
+}
+
+conversation
+{
+	actor = "EmmaFrost";
+	page //1
+	{
+		name = "Emma";
+		panel = "WQNPA0";
+		dialog = "\c[White]Alright boys and girls, let's get started! We have some newcomers at The Hellfire D&D Club, why don't you introduce yourselves?";
+		choice
+		{
+			text = "I'm Ryan!"; // give inventory
+			nextpage = 2;
+		}
+		choice
+		{
+			text = "The name's Poochy. Dr. Poochy Chainlink.";
+			nextpage = 2;
+		}
+	}
+	page //2
+	{
+		name = "Emma";
+		panel = "WQNPA0";
+		dialog = "\c[White]And what class would you like to play in the campaign?";
+		choice
+		{
+			text = "Wizard";
+			giveitem = "WizardInventory";
+			nextpage = 3;
+		}
+		choice
+		{
+			text = "Warcraft";
+			giveitem = "WarcraftInventory";
+			nextpage = 3;
+		}
+// 		choice
+// 		{
+// 			text = "Mary Sue!";
+// 			nextpage = 3;
+// 		}
+	}
+	page //3
+	{
+		name = "Emma";
+		panel = "WQNPA0";
+		dialog = "\c[White]And how about you, handsome?";
+		choice
+		{
+			text = "Next";
+			nextpage = 4;
+		}
+	}
+	page //4
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm Logan! I like to break stuff!";
+		choice
+		{
+			text = "Next";
+			nextpage = 5;
+		}
+	}
+	page //5
+	{
+		name = "Emma";
+		panel = "WQNPA0";
+		dialog = "\c[White]Okay tough guy, let's make you a warrior.";
+		choice
+		{
+			text = "Next";
+			nextpage = 6;
+		}
+	}
+	page //6
+	{
+		name = "Emma";
+		panel = "WQNPA0";
+		dialog = "\c[White]TEST";
+		choice
+		{
+			text = "Wizard action";
+			nextpage = 7;
+			cost
+            {
+                item = "WizardInventory";
+				amount = 1;
+				nomessage = "\c[White]Sorry, you're not allowed to do that.";
+            }
+		}
+		choice
+		{
+			text = "Warcraft action";
+			nextpage = 8;
+			cost
+            {
+                item = "WarcraftInventory";
+				amount = 1;
+				nomessage = "\c[White]Sorry, you're not allowed to do that.";
+            }
+		}
+	}
+	page //7
+	{
+		name = "Emma";
+		panel = "WQNPA0";
+		dialog = "\c[White]You're a wizard!";
+		choice
+		{
+			text = "Next";
+		}
+	}
+	page //8
+	{
+		name = "Emma";
+		panel = "WQNPA0";
+		dialog = "\c[White]You're a Warcraft!";
+		choice
+		{
+			text = "Next";
+		}
+	}
+}
