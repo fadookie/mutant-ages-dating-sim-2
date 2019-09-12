@@ -1,5 +1,10 @@
 import re
+import argparse
 import codemod
+
+parser = argparse.ArgumentParser()
+parser.add_argument('increment', type=int, nargs='?', default=1)
+arguments = parser.parse_args()
 
 # print(dir(codemod));
 
@@ -40,7 +45,7 @@ def base_suggestor(regex, line_transformation_factory, ignore_case=False,
 
 def page_comment_line_transform(regex):
     def substitution(matchobj):
-        new_page_num = int(matchobj.group(1)) + 1
+        new_page_num = int(matchobj.group(1)) + arguments.increment
         return f' //{new_page_num}'
 
     return lambda line: regex.sub(substitution, line)
@@ -48,7 +53,7 @@ def page_comment_line_transform(regex):
 
 def link_line_transform(regex):
     def substitution(matchobj):
-        new_page_num = int(matchobj.group(1)) + 1
+        new_page_num = int(matchobj.group(1)) + arguments.increment
         return f' = {new_page_num}'
 
     return lambda line: regex.sub(substitution, line)

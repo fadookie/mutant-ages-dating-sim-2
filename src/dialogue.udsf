@@ -73,9 +73,9 @@ conversation
 			closedialog = true;
 		}
 		ifitem
-        {
-            item = "BlueCard";
-        }
+		{
+				item = "BlueCard";
+		}
 		link = 6;
 	}
 	page //6
@@ -223,11 +223,13 @@ conversation
 		choice
 		{
 			text = "I'm Ryan!"; // give inventory
+			giveitem = "IsRyanInventory";
 			nextpage = 2;
 		}
 		choice
 		{
-			text = "The name's Poochy. Dr. Poochy Chainlink.";
+			text = "The name's Poochy. Dr. Poochy.";
+			giveitem = "IsPoochyInventory";
 			nextpage = 2;
 		}
 	}
@@ -238,15 +240,15 @@ conversation
 		dialog = "\c[White]And what class would you like to play in the campaign?";
 		choice
 		{
-			text = "Dr. Nathaniel \"Poochy\" Chainlink";
-			giveitem = "PoochyDnDInventory";
+			text = "A Warcraft!";
+			giveitem = "WarcraftDnDInventory";
 			nextpage = 3;
 		}
 		choice
 		{
-			text = "A Warcraft!";
-			giveitem = "WarcraftDnDInventory";
-			nextpage = 3;
+			text = "Dr. Nathaniel \"Poochy\" Chainlink.";
+			giveitem = "PoochyDnDInventory";
+			nextpage = 4;
 		}
 // 		choice
 // 		{
@@ -258,29 +260,34 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]And how about you, fuzzball?";
+		dialog = "\c[White]You mean like the MMO? That doesn't make any sense, but whatever. At least Shaw isn't here messing up my campaign like in the bad old days.";
 		choice
 		{
 			text = "Next";
-			nextpage = 4;
+			nextpage = 6;
 		}
 	}
 	page //4
 	{
-		name = "Logan";
-		panel = "WOLPA2";
-		dialog = "\c[Yellow]I'm Logan! I like to break stuff!";
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]I don't know who that is or what class they should be, but whatever. At least Shaw isn't here messing up my campaign like in the bad old days.";
 		choice
 		{
 			text = "Next";
-			nextpage = 5;
+			nextpage = 6;
 		}
+		ifitem
+		{
+			item = "IsPoochyInventory";
+		}
+		link = 5;
 	}
 	page //5
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Okay tough guy, let's make you a warrior.";
+		dialog = "\c[White]So you mean to tell me that you, a self-insert fanfiction character, would like to play your own self-insert character in my D&D campaign without even attempting to conceal this? You're hurting my brain... but, whatever. Just don't blame me for breaking the fourth wall, you started it.";
 		choice
 		{
 			text = "Next";
@@ -289,9 +296,9 @@ conversation
 	}
 	page //6
 	{
-		name = "Magneto";
-		panel = "MGNPA0";
-		dialog = "\c[Purple]I have 100 XP from last session, I would like to purchase a new skill.";
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]*sigh* And how about you, fuzzball?";
 		choice
 		{
 			text = "Next";
@@ -300,9 +307,9 @@ conversation
 	}
 	page //7
 	{
-		name = "Emma Frost";
-		panel = "WQNPA0";
-		dialog = "\c[White]That will have to wait until the next long rest. Now, let's begin.";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]The name's Logan, bub. I like to break stuff!";
 		choice
 		{
 			text = "Next";
@@ -313,11 +320,44 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
+		dialog = "\c[White]Okay tough guy, let's make you a warrior.";
+		choice
+		{
+			text = "Next";
+			nextpage = 9;
+		}
+	}
+	page //9
+	{
+		name = "Magneto";
+		panel = "MGNPA0";
+		dialog = "\c[Purple]I have 100 XP from last session, I would like to purchase a new skill.";
+		choice
+		{
+			text = "Next";
+			nextpage = 10;
+		}
+	}
+	page //10
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]That will have to wait until the next long rest. Now, let's begin.";
+		choice
+		{
+			text = "Next";
+			nextpage = 11;
+		}
+	}
+	page //11
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
 		dialog = "\c[White]You are in a dark forest. Something is putting you on edge, but you aren't sure what. What would you like to do?";
 		choice
 		{
 			text = "(Poochy) I use my AE Vision!";
-			nextpage = 9;
+			nextpage = 12;
 			cost
 			{
 					item = "PoochyDnDInventory";
@@ -328,7 +368,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft) I listen and smell for danger.";
-			nextpage = 10;
+			nextpage = 13;
 			cost
 			{
 					item = "WarcraftDnDInventory";
@@ -337,29 +377,29 @@ conversation
 			}
 		}
 	}
-	page //9
+	page //12
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]I'm not really sure what that is... but sure, roll a d20 for wisdom check.";
+		dialog = "\c[White]I'm not really sure what that is... but sure, roll a d20 for perception check.";
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 11;
+			nextpage = 14;
 		}
 	}
-	page //10
+	page //13
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Okay, roll a d20 for wisdom check.";
+		dialog = "\c[White]Okay, roll a d20 for perception check.";
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 11;
+			nextpage = 14;
 		}
 	}
-	page //11
+	page //14
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -367,7 +407,7 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 12;
+			nextpage = 15;
 		}
 	}
 }
