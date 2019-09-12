@@ -244,6 +244,24 @@ actor ScottsBox : Inventory 31000
   }
 }
 
+actor AEVision : PowerupGiver 31010
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	Powerup.Type "PowerLightAmp"
+	Inventory.PickupMessage "Got AE Vision!"
+
+	States
+	{
+	Spawn:
+		PVIS A 6 Bright
+		PVIS B 6
+		Loop
+	}
+}
+
 actor WizardInventory : Inventory
 {
 	Inventory.PickupMessage "Yummy!"
