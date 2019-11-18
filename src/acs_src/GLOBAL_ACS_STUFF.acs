@@ -7,6 +7,13 @@
  */
 
 #define TICS_PER_SECOND 35
+ 
+#define INTRO_MESSAGE_FADETIME_S 2
+#define INTRO_MESSAGE_HOLDTIME_S 5
+#define INTRO_MESSAGE_DELAY_TICS ((INTRO_MESSAGE_FADETIME_S * 2) + INTRO_MESSAGE_HOLDTIME_S + 1) * TICS_PER_SECOND
+// The way to cast ints to fixed point in ACS is by bit-shifting by 16, see https://zdoom.org/wiki/Fixed_point_number
+#define INTRO_MESSAGE_FADETIME_S_FIX INTRO_MESSAGE_FADETIME_S << 16
+#define INTRO_MESSAGE_HOLDTIME_S_FIX INTRO_MESSAGE_HOLDTIME_S << 16
 
 /***
  * Variables
@@ -21,9 +28,31 @@
 /**
  * Special trigger scripts
  */
+
  
  script 1 ENTER {
 	Log(s:"ACS ENTER");
+	// disable player movement
+	SetActorProperty(0, APROP_Speed, 0.0);
+	ChangeCamera(5, TRUE, FALSE);
+	
+	// black out screen
+	FadeTo(0, 0, 0, 1.0, 0.0);
+
+	SetFont("BIGFONT");
+	Delay(2 * TICS_PER_SECOND);
+	HudMessage(s:"I can't believe Wolverine went on a date with me! And then more! I guess he is my boyfriend now... "; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+	Delay(INTRO_MESSAGE_DELAY_TICS);
+	HudMessage(s:"Yesterday I recieved a mysterious invitation to meet him at the X-Mansion. I hope he remembered that my birthday is today!"; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+	Delay(INTRO_MESSAGE_DELAY_TICS);
+	
+	// fade from black
+	FadeTo(0, 0, 0, 0.0, 3.0);
+		
+	// Restore movement, music
+	SetMusic("D_STALKS", 0);
+	SetActorProperty(0, APROP_Speed, 1.0);
+	ChangeCamera(0, TRUE, FALSE);
  }
  
  script 2 (void) {

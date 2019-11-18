@@ -51,7 +51,7 @@ Episode "map01"
 Map "map01" "test map"
 {
 	levelnum = 1
-	music = "D_STALKS"
+	music = "D_READ_M"
 	Next = "SEMICAKE"
 }
 
@@ -64,17 +64,18 @@ Map "SEMICAKE" "Segway"
 	Next = EndSequence, "Credits"
 }
 
-cluster 1
-{
-   flat = "FLOOR4_8"
-   entertext = "I can't believe Wolverine went on",
-   "a date with me! And then more! I guess he is",
-   "my boyfriend now... ",
-   "",
-   "Yesterday I recieved a mysterious invitation to meet him at the",
-   "X-Mansion. I hope he remembered that my birthday",
-   "is today!"
-}
+// Cluster text only works between levels, can't be shown before first level
+// cluster 1
+// {
+//    flat = "FLOOR4_8"
+//    entertext = "I can't believe Wolverine went on",
+//    "a date with me! And then more! I guess he is",
+//    "my boyfriend now... ",
+//    "",
+//    "Yesterday I recieved a mysterious invitation to meet him at the",
+//    "X-Mansion. I hope he remembered that my birthday",
+//    "is today!"
+// }
 
 intermission Credits {
     
