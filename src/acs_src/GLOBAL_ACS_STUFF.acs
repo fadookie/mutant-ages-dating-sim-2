@@ -35,6 +35,28 @@
  	Log(s:"ACS Trigger Dance Sequence");
 	ScriptCall("CallBus", "StartDanceSequence");
  }
+ 
+ // Logan intro chat
+ script 4 (void) {
+ 	Log(s:"ACS Trigger Logan Sequence");
+	SetFont("BIGFONT");
+	print(s:"\c[Yellow]Hey, you came! What's up?");
+
+	Delay(3 * TICS_PER_SECOND);
+	PrintBold(s:"\c[Yellow]Cat got your tongue?");
+	
+	Delay(3 * TICS_PER_SECOND);
+	PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", bub!");
+	
+	Delay(6 * TICS_PER_SECOND);
+	PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Press ", k:"+use", s:"!");
+ }
+ 
+ script 5 (void) // Started Logan dialogue
+{
+	Log(s:"Started Logan dialogue script called");
+	ACS_Terminate(4, 0);
+}
 
 // script 33 ENTER
 // {

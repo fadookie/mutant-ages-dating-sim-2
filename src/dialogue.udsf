@@ -11,25 +11,27 @@ conversation
 		choice
 		{
 			text = "I would never!";
-			yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
-			closedialog = true;
-// 			special = 80;
-// 			arg0 = 13;
+			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
+			nextpage = 2;
+			special = 80;
+			arg0 = 5;
 		}
 		choice
 		{
 			text = "Says the king of fucking off to Alaska without telling anybody.";
-			nextpage = 2;
+			nextpage = 3;
+			special = 80;
+			arg0 = 5;
 		}
 	}
 	page //2
 	{
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]Hey now, we all need a little alone time to brood now and then.";
+		dialog = "\c[Yellow]Sure, tell that to your other boyfriends...";
 		choice
 		{
-			text = "And what have you been brooding about recently, babe?";
+			text = "You seem a little down, what's wrong?";
 			nextpage = 3;
 		}
 	}
@@ -37,10 +39,10 @@ conversation
 	{
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]Oh, the usual. Jean is back so I don't get to fuck Scott anymore.";
+		dialog = "\c[Yellow]Hey now, we all need a little alone time to brood now and then.";
 		choice
 		{
-			text = "Oh, cry me a river. I thought I was the only one for you?";
+			text = "And what have you been brooding about recently, babe?";
 			nextpage = 4;
 		}
 	}
@@ -48,14 +50,25 @@ conversation
 	{
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]Come on now, did you really think you could tame the Wolverine? Don't worry, I'll always have room for you in by bed, babe.";
+		dialog = "\c[Yellow]Oh, the usual. Jean is back so I don't get to fuck Scott anymore.";
 		choice
 		{
-			text = "Sure, if you've earned it! So why did you invite me over exactly?";
+			text = "Oh, cry me a river. I thought I was the only one for you?";
 			nextpage = 5;
 		}
 	}
 	page //5
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Come on now, did you really think you could tame the Wolverine? Don't worry, I'll always have room for you in by bed, babe.";
+		choice
+		{
+			text = "Sure, if you've earned it! So why did you invite me over exactly?";
+			nextpage = 6;
+		}
+	}
+	page //6
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -72,13 +85,35 @@ conversation
 			yesmessage = "\c[Yellow]Sorry... trust me it will be great! I think it was in a box somewhere...";
 			closedialog = true;
 		}
+		choice
+		{
+			text = "Can't you just cut a hole in the door?";
+			nextpage = 7;
+		}
 		ifitem
 		{
 				item = "BlueCard";
 		}
-		link = 6;
+		link = 8;
 	}
-	page //6
+	page //7
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Xavier only just stopped whining about the last time I did that. \"Logan, don't you know it's almost impossible for mutants to get business insurance? Blah blah blah...\" It would save me a real headache if you could just find the key, bub.";
+		choice
+		{
+			text = "Fine, I'll look for it.";
+			yesmessage = "\c[Yellow]Sorry... trust me it will be great! I think it was in a box somewhere...";
+			closedialog = true;
+		}
+		ifitem
+		{
+				item = "BlueCard";
+		}
+		link = 8;
+	}
+	page //8
 	{
 		name = "Logan";
 		panel = "WOLPA2";

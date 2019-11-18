@@ -10,3 +10,5 @@ This tool is designed to insert pages inside an existing UDSF conversation and s
 or 
 
 `pipenv shell`
+
+The script is currently hard-coded to process any files with the `.udsf` extension in the [..raw/dialogue](../raw/dialogue) folder.
