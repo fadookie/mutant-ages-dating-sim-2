@@ -7,6 +7,8 @@
  */
 
 #define TICS_PER_SECOND 35
+
+#define INTRO_ENABLED false
  
 #define INTRO_MESSAGE_FADETIME_S 2
 #define INTRO_MESSAGE_HOLDTIME_S 5
@@ -32,27 +34,32 @@
  
  script 1 ENTER {
 	Log(s:"ACS ENTER");
-	// disable player movement
-	SetActorProperty(0, APROP_Speed, 0.0);
-	ChangeCamera(5, TRUE, FALSE);
-	
-	// black out screen
-	FadeTo(0, 0, 0, 1.0, 0.0);
 
-	SetFont("BIGFONT");
-	Delay(2 * TICS_PER_SECOND);
-	HudMessage(s:"I can't believe Wolverine went on a date with me! And then more! I guess he is my boyfriend now... "; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
-	Delay(INTRO_MESSAGE_DELAY_TICS);
-	HudMessage(s:"Yesterday I recieved a mysterious invitation to meet him at the X-Mansion. I hope he remembered that my birthday is today!"; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
-	Delay(INTRO_MESSAGE_DELAY_TICS);
-	
-	// fade from black
-	FadeTo(0, 0, 0, 0.0, 3.0);
+	if(INTRO_ENABLED) {
+		// disable player movement
+		SetActorProperty(0, APROP_Speed, 0.0);
+		ChangeCamera(5, TRUE, FALSE);
 		
-	// Restore movement, music
-	SetMusic("D_STALKS", 0);
-	SetActorProperty(0, APROP_Speed, 1.0);
-	ChangeCamera(0, TRUE, FALSE);
+		// black out screen
+		FadeTo(0, 0, 0, 1.0, 0.0);
+
+		Delay(2 * TICS_PER_SECOND);
+		HudMessage(s:"This game is mutant ages canon."; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+		SetFont("BIGFONT");
+		Delay(INTRO_MESSAGE_DELAY_TICS);
+		HudMessage(s:"I can't believe Wolverine went on a date with me! And then more! I guess he is my boyfriend now... "; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+		Delay(INTRO_MESSAGE_DELAY_TICS);
+		HudMessage(s:"Yesterday I recieved a mysterious invitation to meet him at the X-Mansion. I hope he remembered that my birthday is today!"; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+		Delay(INTRO_MESSAGE_DELAY_TICS);
+		
+		// fade from black
+		FadeTo(0, 0, 0, 0.0, 3.0);
+			
+		// Restore movement, music
+		SetMusic("D_STALKS", 0);
+		SetActorProperty(0, APROP_Speed, 1.0);
+		ChangeCamera(0, TRUE, FALSE);
+	}
  }
  
  script 2 (void) {

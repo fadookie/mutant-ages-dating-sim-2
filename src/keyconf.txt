@@ -3,3 +3,7 @@
 // KEYCONF
 //
 //===========================================================================
+
+addkeysection "Mutant Ages Dating Sim 2 Debug Keys" MutantAgesDebugKeys
+addmenukey "Print Inventory" MutantAges_PrintInventory
+alias MutantAges_PrintInventory "set print_inventory_flag 1"

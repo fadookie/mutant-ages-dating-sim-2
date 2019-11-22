@@ -4,4 +4,4 @@
 //
 //===========================================================================
 
-#include "actors/eliotstuff.txt"
+#include "actors/eliotstuff.decorate"

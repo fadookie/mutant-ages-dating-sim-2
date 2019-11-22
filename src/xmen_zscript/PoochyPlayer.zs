@@ -59,6 +59,15 @@ class PoochyPlayer : DoomPlayer
 			newpos.z += sin(elapsedTimeTk) / 2.0;
 			SetOrigin(newpos, true);
 		}
+
+		// Check for DEBUG options
+		let printInventoryFlagCV = CVar.FindCVar("print_inventory_flag");
+		if (printInventoryFlagCV.GetInt() != 0) {
+			Console.Printf("Print Inventory.");
+			printInventoryFlagCV.SetInt(0);
+			Console.Printf("ScottsBox:" .. CountInv("ScottsBox"));
+			Console.Printf("UselessJunk:" .. CountInv("UselessJunk"));
+		}
 	}
 	
 	States

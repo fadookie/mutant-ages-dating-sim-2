@@ -236,10 +236,36 @@ actor EmmaFrost : Actor 30007
 actor ScottsBox : Inventory 31000
 {
   Inventory.PickupMessage "Found Scott's butt plug collection!"
+	Inventory.Amount 500
+	Inventory.MaxAmount 999
     States
   {
   Spawn:
     CBOX A 10
+    Loop
+  }
+}
+
+actor UselessJunk : Ammo 31001
+{
+  Inventory.PickupMessage "Found some useless junk!"
+	Inventory.Amount 1
+	Inventory.MaxAmount 999
+    States
+  {
+  Spawn:
+    JNK0 A 10
+    Loop
+  }
+}
+
+actor AirConditioner : UselessJunk 31002
+{
+  Inventory.PickupMessage "Is that an air conditioner?"
+    States
+  {
+  Spawn:
+    AIRC A 10
     Loop
   }
 }
