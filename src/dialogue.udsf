@@ -317,7 +317,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]You mean like the MMO? That doesn't make any sense, but whatever. At least Shaw isn't here messing up my campaign like in the bad old days.";
+		dialog = "\c[White]You mean like the MMO? That doesn't make any sense, but whatever. At least Shaw isn't here messing up my campaign like in the bad old days. You said that's kind of like a wolf? I guess we'll make you a druid.";
 		choice
 		{
 			text = "Next";
@@ -328,7 +328,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]I don't know who that is or what class they should be, but whatever. At least Shaw isn't here messing up my campaign like in the bad old days.";
+		dialog = "\c[White]I don't know who that is or what class they should be, but whatever. You want to be a doctor, I guess we'll make you a Cleric. At least Shaw isn't here messing up my campaign like in the bad old days.";
 		choice
 		{
 			text = "Next";
@@ -377,7 +377,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Okay tough guy, let's make you a warrior.";
+		dialog = "\c[White]Okay tough guy, let's make you a barbarian.";
 		choice
 		{
 			text = "Next";
@@ -388,7 +388,7 @@ conversation
 	{
 		name = "Magneto";
 		panel = "MGNPA0";
-		dialog = "\c[Purple]I have 100 XP from last session, I would like to purchase a new skill.";
+		dialog = "\c[Purple]I would like to convert a spell slot into sorcery points.";
 		choice
 		{
 			text = "Next";
@@ -399,7 +399,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]That will have to wait until the next long rest. Now, let's begin.";
+		dialog = "\c[White]Sure, mark it down on your character sheet. Now, let's begin.";
 		choice
 		{
 			text = "Next";
@@ -438,7 +438,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]I'm not really sure what that is... but sure, roll a d20 for perception check.";
+		dialog = "\c[White]I'm not really sure what that is... but sure, make a perception check. Roll a d20 and add your perception bonus.";
 		choice
 		{
 			text = "Roll 1d20";
@@ -449,7 +449,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Okay, roll a d20 for perception check.";
+		dialog = "\c[White]Okay, make a perception check. Roll a d20 and add your perception bonus.";
 		choice
 		{
 			text = "Roll 1d20";
@@ -460,11 +460,38 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]You succeed! You can sense the nasty boys lying in ambush up ahead.";
+		dialog = "\c[White]That's 15 total? You succeed! You can sense the nasty boys lying in ambush up ahead.";
 		choice
 		{
 			text = "Next";
 			nextpage = 15;
+		}
+	}
+	page //15
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Let's attack them!";
+		choice
+		{
+			text = "Next";
+			nextpage = 16;
+		}
+	}
+	page //16
+	{
+		name = "Magneto";
+		panel = "MGNPA0";
+		dialog = "\c[Purple]Slow your roll there, cowboy. We don't even know that these people are hostile. Maybe we should just talk to them first.";
+		choice
+		{
+			text = "Let's try talking.";
+			nextpage = 17;
+		}
+		choice
+		{
+			text = "Attack!";
+			nextpage = 17;
 		}
 	}
 }
