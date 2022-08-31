@@ -229,7 +229,7 @@ class DazzlerPowerHandler : EventHandler
 		// S_ChangeMusic(String music_name, int order = 0, bool looping = true, bool force = false)
 		// Force restart of music if already playing
 		S_ChangeMusic("*", force: true);
-		S_ChangeMusic("music/clickTrack.mp3", force: true);
+		S_ChangeMusic("music/Petty-Edit.ogg", force: true);
 	}
 
 	void EndDanceSequence() {

@@ -21,8 +21,8 @@ DoomEdNums
 
 ClearEpisodes
 
-// Episode "map01"
-Episode "XMENEL"
+Episode "map01"
+// Episode "XMENEL"
 {
 	Name = "X-Men Dating Origins 2: Electric Boogaloo"
 	noskillmenu
