@@ -90,6 +90,7 @@ class DazzlerBall : DoomImpBall
 
   void SetTranslation(int translationIdx) {
     let randTranslation = TRANSLATIONS[translationIdx % TRANSLATIONS.Size()];
+		Console.Printf("DazzlerBall#SetTranslation index:" .. translationIdx .. ", randTranslation:" .. randTranslation);
 		A_SetTranslation(randTranslation);
   }
 }

@@ -46,7 +46,7 @@ class DazzlerPowerHandler : EventHandler
 // 		}
 
 		eventTimestampsS[0] = 0.0; // Measure 1
-		eventTypes			[0] = HORIZONTAL_LINE_CROUCH;
+		eventTypes			[0] = SINGLE; //HORIZONTAL_LINE_CROUCH;
 
 		eventTimestampsS[1] = 2.0; // Measure 2
 		eventTypes			[1] = HORIZONTAL_LINE_JUMP;
@@ -131,7 +131,11 @@ class DazzlerPowerHandler : EventHandler
 			switch(currentEventType) {
 				case SINGLE: {
 					let ball = DazzlerBall(dazzler.SpawnMissile(target, "DazzlerBall"));
-					ball.SetRandomTranslation();
+					if (ball) {
+						ball.SetRandomTranslation();
+					} else {
+						Console.Printf("WorldTick Single Event encountered null ball");
+					}
 					break;
 				}
 
@@ -142,11 +146,15 @@ class DazzlerPowerHandler : EventHandler
 					for(int i = 0; i < NUM_BALLS; ++i) {
 						let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
 						let result = Utils.Polar2Cartesian(radius, theta);
-						let pos = (0.0, result.x, result.y);
+						let pos = (dazzler.Pos.x, dazzler.Pos.y + result.x, result.y);
 						pos += offset;
 						// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
 						let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
-						ball.SetTranslation(i);
+						if (ball) {
+							ball.SetTranslation(i);
+						} else {
+							Console.Printf("WorldTick Circle Event encountered null ball");
+						}
 					}
 					break;
 				}
@@ -189,9 +197,13 @@ class DazzlerPowerHandler : EventHandler
 				// We just crossed the interval time
 				int intervalIdx = timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK;
 				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
-				let pos = (0.0, posY, height);
+				let pos = (dazzler.Pos.x, dazzler.Pos.y + posY, height);
 				let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
-				ball.SetTranslation(intervalIdx);
+				if (ball) {
+					ball.SetTranslation(intervalIdx);
+				} else {
+					Console.Printf("Barrage time slice encountered null ball");
+				}
 				Console.Printf("Barrage FIRE, numFired:" .. barrageNumBallsFired .. " maxBalls:" .. barrageMaxBalls .. " intervalIdx:" .. intervalIdx);
 				++barrageNumBallsFired;
 			}
@@ -208,9 +220,13 @@ class DazzlerPowerHandler : EventHandler
 		let BALL_SPACING = 16.0;
 		for(int i = 0; i < NUM_BALLS; ++i) {
 			let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
-			let pos = (0.0, posY, height);
+			let pos = (dazzler.Pos.x, dazzler.Pos.y + posY, height);
 			let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
-			ball.SetTranslation(i);
+			if (ball) {
+				ball.SetTranslation(i);
+			} else {
+				Console.Printf("SpawnBallLine encountered null ball");
+			}
 		}
 	}
 

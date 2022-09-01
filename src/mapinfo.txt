@@ -53,17 +53,17 @@ Map "XMENEL" "Eliot's test map copy"
 {
 	levelnum = 1
 	music = "D_READ_M"
-	Next = "SEMICAKE"
+	Next = "map01"
 }
 
 Map "XMEN" "Patrick's test map copy"
 {
 	levelnum = 2
 	music = "D_READ_M"
-	Next = "SEMICAKE"
+	Next = "map01"
 }
 
-Map "map01" "test map"
+Map "map01" "code test map"
 {
 	levelnum = 2
 	music = "D_READ_M"
