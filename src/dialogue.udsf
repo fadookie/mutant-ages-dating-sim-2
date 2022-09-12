@@ -276,7 +276,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Alright boys and girls, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
+		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
 		choice
 		{
 			text = "I'm Ryan!"; // give inventory
@@ -388,7 +388,7 @@ conversation
 	{
 		name = "Magneto";
 		panel = "MGNPA0";
-		dialog = "\c[Purple]I would like to convert a spell slot into sorcery points.";
+		dialog = "\c[Purple]I would like to use my downtime to craft a spell scroll.";
 		choice
 		{
 			text = "Next";
@@ -399,7 +399,7 @@ conversation
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Sure, mark it down on your character sheet. Now, let's begin.";
+		dialog = "\c[White]You're not getting any downtime. Now, let's begin.";
 		choice
 		{
 			text = "Next";
