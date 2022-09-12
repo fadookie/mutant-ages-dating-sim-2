@@ -45,26 +45,26 @@ class DazzlerPowerHandler : EventHandler
 // 			boardSpot = player.Spawn("Shotgun", (0,0,0), NO_REPLACE);
 // 		}
 
-		eventTimestampsS[0] = 0.0; // Measure 1
-		eventTypes			[0] = SINGLE; //HORIZONTAL_LINE_CROUCH;
+		eventTimestampsS[0] = 3.692; // Measure 1
+		eventTypes			[0] = HORIZONTAL_LINE_JUMP; //HORIZONTAL_LINE_CROUCH;
 
-		eventTimestampsS[1] = 2.0; // Measure 2
-		eventTypes			[1] = HORIZONTAL_LINE_JUMP;
+		eventTimestampsS[1] = 5.538; // Measure 2
+		eventTypes			[1] = HORIZONTAL_LINE_CROUCH;
 		// eventTypes			[1] = HORIZONTAL_LINE_JUMP;
 
-		eventtimestampss[2] = 4.0; // Measure 3
-		eventTypes			[2] = CIRCLE;
+		eventtimestampss[2] = 7.384; // Measure 3
+		eventTypes			[2] = HORIZONTAL_LINE_JUMP;
 		// eventTypes			[2] = HORIZONTAL_LINE_CROUCH;
 
-		eventTimestampsS[3] = 6.0;
-		eventTypes			[3] = BARRAGE;
+		eventTimestampsS[3] = 9.230;
+		eventTypes			[3] = HORIZONTAL_LINE_CROUCH;
 		// eventTypes			[3] = HORIZONTAL_LINE_JUMP;
 
-		eventTimestampsS[4] = 8.0;
+		eventTimestampsS[4] = 11.076;
 		eventTypes			[4] = HORIZONTAL_LINE_JUMP;
 		// eventTypes			[4] = CIRCLE;
 
-		eventTimestampsS[5] = 10.0;
+		eventTimestampsS[5] = 14.769;
 		eventTypes			[5] = HORIZONTAL_LINE_CROUCH;
 		// eventTypes			[5] = BARRAGE;
 
