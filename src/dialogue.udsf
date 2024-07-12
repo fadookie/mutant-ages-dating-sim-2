@@ -228,7 +228,7 @@ conversation
 			yesmessage = "\c[Orange]Hm.... I'm not sure! I could pry the door open with my mind, but I think Charles would get annoyed that I was actually doing someting...";
 			closedialog = true;
 			special = 80;
-			arg0 = 2;
+			arg0 = 12;
 		}
 		choice
 		{
@@ -246,7 +246,7 @@ conversation
 			yesmessage = "\c[Orange]Yes, tell him to stay away from Scott!";
 			closedialog = true;
 			special = 80;
-			arg0 = 2;
+			arg0 = 12;
 		}
 	}
 }
@@ -264,7 +264,7 @@ conversation
 			text = "Let's do this!";
 			closedialog = true;
 			special = 80;
-			arg0 = 3;
+			arg0 = 13;
 		}
 	}
 }
