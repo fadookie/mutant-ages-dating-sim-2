@@ -14,14 +14,14 @@ conversation
 			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
 			nextpage = 2;
 			special = 80;
-			arg0 = 5;
+			arg0 = 15;
 		}
 		choice
 		{
 			text = "Says the king of fucking off to Alaska without telling anybody.";
 			nextpage = 3;
 			special = 80;
-			arg0 = 5;
+			arg0 = 15;
 		}
 	}
 	page //2

@@ -32,7 +32,7 @@
  */
 
  
- script 1 ENTER {
+ script 11 ENTER {
 	Log(s:"ACS ENTER");
 
 	if(INTRO_ENABLED) {
@@ -62,19 +62,19 @@
 	}
  }
  
- script 2 (void) {
+ script 12 (void) {
  	Log(s:"ACS Trigger Jean Levitation");
 	SetActorState(0, "StartLevitating", true);
  }
 
- script 3 (void) {
+ script 13 (void) {
  	Log(s:"ACS Trigger Dance Sequence");
 	ScriptCall("CallBus", "StartDanceSequence");
 	Door_Open(13, 16); // TODO move this to happen later
  }
  
  // Logan intro chat
- script 4 (void) {
+ script 14 (void) {
  	Log(s:"ACS Trigger Logan Sequence");
 	SetFont("BIGFONT");
 	print(s:"\c[Yellow]Hey, you came! What's up?");
@@ -89,11 +89,11 @@
 	PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Press ", k:"+use", s:"!");
  }
  
- script 5 (void) // Started Logan dialogue
+ script 15 (void) // Started Logan dialogue
 {
 	Log(s:"Started Logan dialogue script called");
-	ACS_Terminate(4, 0);
-	Door_Open(1, 16);
+	ACS_Terminate(14, 0);
+	Line_SetPortalTarget(42,1);
 }
 
 // script 33 ENTER
