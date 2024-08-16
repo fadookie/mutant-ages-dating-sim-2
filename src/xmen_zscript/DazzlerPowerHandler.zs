@@ -39,6 +39,11 @@ class DazzlerPowerHandler : EventHandler
 		player = CallBus.FindPlayer();
 		dazzler = CallBus.FindDazzler();
 		target = CallBus.FindActor(TARGET_TID);
+		if (target == null) {
+			Console.Printf("Error! No Dazzler target found.");
+		} else {
+			Console.Printf("Found Dazzler Target: " .. target);
+		}
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
 // 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
