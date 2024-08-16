@@ -70,7 +70,7 @@
  script 13 (void) {
  	Log(s:"ACS Trigger Dance Sequence");
 	ScriptCall("CallBus", "StartDanceSequence");
-	Door_Open(13, 16); // TODO move this to happen later
+	Door_Open(716, 16); // TODO move this to happen later
  }
  
  // Logan intro chat
