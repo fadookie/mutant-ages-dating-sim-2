@@ -14,6 +14,7 @@ class DazzlerPowerHandler : EventHandler
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
 	const NUM_EVENTS = 6;
+	const SPAWN_ORIGIN_TID = 998;
 	const TARGET_TID = 999;
 
 	float eventTimestampsS[NUM_EVENTS];
@@ -32,12 +33,19 @@ class DazzlerPowerHandler : EventHandler
 
 	PoochyPlayer player;
 	Dazzler dazzler;
+	Actor spawnOrigin;
 	Actor target;
 
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 		player = CallBus.FindPlayer();
 		dazzler = CallBus.FindDazzler();
+		spawnOrigin = CallBus.FindActor(SPAWN_ORIGIN_TID);
+		if (spawnOrigin == null) {
+			Console.Printf("Error! No Dazzler spawnOrigin found.");
+		} else {
+			Console.Printf("Found Dazzler spawnOrigin: " .. spawnOrigin);
+		}
 		target = CallBus.FindActor(TARGET_TID);
 		if (target == null) {
 			Console.Printf("Error! No Dazzler target found.");
@@ -135,7 +143,7 @@ class DazzlerPowerHandler : EventHandler
 
 			switch(currentEventType) {
 				case SINGLE: {
-					let ball = DazzlerBall(dazzler.SpawnMissile(target, "DazzlerBall"));
+					let ball = DazzlerBall(spawnOrigin.SpawnMissile(target, "DazzlerBall"));
 					if (ball) {
 						ball.SetRandomTranslation();
 					} else {
@@ -151,10 +159,10 @@ class DazzlerPowerHandler : EventHandler
 					for(int i = 0; i < NUM_BALLS; ++i) {
 						let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
 						let result = Utils.Polar2Cartesian(radius, theta);
-						let pos = (dazzler.Pos.x, dazzler.Pos.y + result.x, result.y);
+						let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + result.x, result.y);
 						pos += offset;
 						// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
-						let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+						let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 						if (ball) {
 							ball.SetTranslation(i);
 						} else {
@@ -202,8 +210,8 @@ class DazzlerPowerHandler : EventHandler
 				// We just crossed the interval time
 				int intervalIdx = timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK;
 				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
-				let pos = (dazzler.Pos.x, dazzler.Pos.y + posY, height);
-				let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+				let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + posY, height);
+				let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 				if (ball) {
 					ball.SetTranslation(intervalIdx);
 				} else {
@@ -225,8 +233,8 @@ class DazzlerPowerHandler : EventHandler
 		let BALL_SPACING = 16.0;
 		for(int i = 0; i < NUM_BALLS; ++i) {
 			let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
-			let pos = (dazzler.Pos.x, dazzler.Pos.y + posY, height);
-			let ball = DazzlerBall(dazzler.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+			let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + posY, height);
+			let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 			if (ball) {
 				ball.SetTranslation(i);
 			} else {
