@@ -153,9 +153,9 @@ class DazzlerPowerHandler : EventHandler
 				}
 
 				case CIRCLE: {
-					let radius = 64.0 * 1.5;
+					let radius = 70.0 * 1.5;
 					let NUM_BALLS = 32;
-					let offset = (0.0, 0.0, 64.0 * 1.5);
+					let offset = (0.0, 0.0, 70.0 * 1.5);
 					for(int i = 0; i < NUM_BALLS; ++i) {
 						let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
 						let result = Utils.Polar2Cartesian(radius, theta);
@@ -200,7 +200,7 @@ class DazzlerPowerHandler : EventHandler
 		// Process barrage time slice
 		if (barrageStartTimeTk > 0) {
 			let NUM_BALLS = barrageMaxBalls;
-			let BALL_SPACING = 16.0;
+			let BALL_SPACING = 38.0;
 			let height = 32.0;
 
 			let BARRAGE_INTERVAL_TK = 10;
@@ -209,7 +209,7 @@ class DazzlerPowerHandler : EventHandler
 			if (timeSinceBarrageStartTk % BARRAGE_INTERVAL_TK == 0) {
 				// We just crossed the interval time
 				int intervalIdx = timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK;
-				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
+				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 				let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + posY, height);
 				let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 				if (ball) {
@@ -230,9 +230,9 @@ class DazzlerPowerHandler : EventHandler
 
 	void SpawnBallLine(double height) {
 		let NUM_BALLS = 20;
-		let BALL_SPACING = 16.0;
+		let BALL_SPACING = 18.0;
 		for(int i = 0; i < NUM_BALLS; ++i) {
-			let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2);
+			let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 			let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + posY, height);
 			let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 			if (ball) {
