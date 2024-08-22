@@ -94,6 +94,13 @@ class DazzlerPowerHandler : EventHandler
 			EndDanceSequence();
 			return;
 		}
+		
+		if (players[consoleplayer].health == 1) {
+			EndDanceSequence();
+			players[consoleplayer].health = 100;
+			return;
+		}
+		
 		if (danceQueueTimeTk > 0
 			&& Thinker.Tics2Seconds(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
 			danceQueueTimeTk = 0;
