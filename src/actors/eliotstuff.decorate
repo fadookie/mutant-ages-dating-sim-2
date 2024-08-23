@@ -233,6 +233,40 @@ actor EmmaFrost : Actor 30007
   }
 }
 
+actor Magnito : Actor 30008
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    MAGN A 10 A_Look
+    Loop
+  }
+}
+
+actor Gambit : Actor 30009
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    GAMB A 10 A_Look
+    Loop
+  }
+}
+
 actor ScottsBox : Inventory 31000
 {
   Inventory.PickupMessage "Found Scott's butt plug collection!"
