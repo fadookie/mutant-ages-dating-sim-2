@@ -69,6 +69,7 @@
 
  script 13 (void) {
  	Log(s:"ACS Trigger Dance Sequence");
+	HealThing(100,100);
 	ScriptCall("CallBus", "StartDanceSequence");
 	Door_Open(716, 16); // TODO move this to happen later
  }

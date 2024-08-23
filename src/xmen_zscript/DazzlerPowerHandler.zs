@@ -97,7 +97,6 @@ class DazzlerPowerHandler : EventHandler
 		
 		if (players[consoleplayer].health == 1) {
 			EndDanceSequence();
-			players[consoleplayer].health = 100;
 			return;
 		}
 		
