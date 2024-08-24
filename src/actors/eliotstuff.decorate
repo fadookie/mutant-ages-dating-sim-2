@@ -267,6 +267,74 @@ actor Gambit : Actor 30009
   }
 }
 
+actor Blob : Actor 30010
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    BLOB A 10 A_Look
+    Loop
+  }
+}
+
+actor Pyro : Actor 30011
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    PYRO A 10 A_Look
+    Loop
+  }
+}
+
+actor Gator : Actor 30012
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    GATO A 10 A_Look
+    Loop
+  }
+}
+
+actor Mono : Actor 30013
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    MONO A 10 A_Look
+    Loop
+  }
+}
+
 actor ScottsBox : Inventory 31000
 {
   Inventory.PickupMessage "Found Scott's butt plug collection!"
