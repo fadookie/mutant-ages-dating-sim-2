@@ -18,7 +18,7 @@ actor BdayCake : Megasphere 30000
 
 actor PartyCaco : Cacodemon 30001
 {	
-	+FRIENDLY
+	// +FRIENDLY
 	+BUDDHA
 	+NOBLOOD
 	+LOOKALLAROUND
@@ -34,7 +34,7 @@ actor PartyCaco : Cacodemon 30001
     Loop
   Missile:
     HEAD BC 5 A_FaceTarget
-    HEAD D 5 Bright A_HeadAttack
+    HEAD D 5 //Bright A_HeadAttack
     Goto See
   Pain:
 	ELPC A 56 A_Playsound("el/horn",CHAN_WEAPON,1.0) // Sound is 1.6 seconds * 35 tics per second = 56

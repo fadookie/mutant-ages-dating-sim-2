@@ -13,3 +13,5 @@ Thumbs.db
 #Ultimate Doom Builder meta files
 /src/maps/*.dbs
 /src/maps/*.wad.backup*
+
+/raw

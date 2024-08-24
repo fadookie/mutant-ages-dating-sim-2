@@ -279,6 +279,13 @@ conversation
 		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
 		choice
 		{
+			text = "SKIP DIALOGUE";
+			closedialog = true;
+			special = 80;
+			arg0 = 16;
+		}
+		choice
+		{
 			text = "I'm Ryan!"; // give inventory
 			giveitem = "IsRyanInventory";
 			nextpage = 2;

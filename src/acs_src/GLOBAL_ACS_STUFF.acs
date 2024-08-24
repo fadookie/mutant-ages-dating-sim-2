@@ -97,6 +97,31 @@
 	Line_SetPortalTarget(42,1);
 }
 
+script 16 (void) // Trigger D&D end sequence
+{
+	Log(s:"Trigger end of D&D sequence");
+	// Raise the cake
+	Floor_RaiseToNearest(718, 16);
+	
+	// Remove invisible wall around cake
+	Line_SetBlocking(2, 0, BLOCKF_EVERYTHING);
+
+	Delay(6 * TICS_PER_SECOND);
+
+	// Open monster closet
+	Door_Open(717, 16);
+	
+	// Wait for all PartyCacos to die
+	while(ThingCount(T_NONE, 1) > 0)
+    {
+        Delay(1);
+    }
+	
+	Log(s:"All PartyCacos are Dead");
+	
+	StartConversation(2, 1);
+}
+
 // script 33 ENTER
 // {
 //   SetCVar ("numPlayerRespawns", PLAYER_RESPAWNS_INITIAL);
