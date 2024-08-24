@@ -159,7 +159,7 @@ class DazzlerPowerHandler : EventHandler
 		}
 		
 		if (danceQueueTimeTk > 0
-			&& Thinker.Tics2Seconds(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
+			&& CallBus.Tics2Secondsf(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
 			danceQueueTimeTk = 0;
 			StartDanceSequence();
 		}
@@ -167,12 +167,12 @@ class DazzlerPowerHandler : EventHandler
 			return;
 		}
 		let timeSinceStartTk = level.time - danceStartTimeTk;
-		let timeSinceStartS = Thinker.Tics2Seconds(timeSinceStartTk);
+		let timeSinceStartS = CallBus.Tics2Secondsf(timeSinceStartTk);
 
 		float currentEventTimeS = eventTimestampsS[currentEventIdx];
 		let currentEventType = eventTypes[currentEventIdx];
 
-		// Console.Printf("timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
+		Console.Printf("timeSinceStartTk:" .. timeSinceStartTk .. " timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
 
 		let currentSync = calculateSync(level.time, MSTime());
 		let desync = Abs(currentSync - danceStartSync);

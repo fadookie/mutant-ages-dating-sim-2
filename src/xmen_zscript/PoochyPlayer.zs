@@ -49,7 +49,7 @@ class PoochyPlayer : DoomPlayer
 		Super.Tick();
 		if (levitating) {
 			int elapsedTimeTk = level.time - levitationStartTimeTk;
-			int elapsedTimeS = Thinker.Tics2Seconds(elapsedTimeTk);
+			float elapsedTimeS = CallBus.Tics2Secondsf(elapsedTimeTk);
 // 			A_Log("elapsedTimeS:");
 // 			A_LogInt(elapsedTimeS);
 			if (elapsedTimeS > TOTAL_LEVITATION_TIME_S) {
