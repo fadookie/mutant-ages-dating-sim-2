@@ -4,7 +4,11 @@ enum DazzlerEventType
 		HUD_2,
 		HUD_3,
 		HUD_4,
-		SINGLE,
+		SINGLE_0,
+		SINGLE_1,
+		SINGLE_2,
+		SINGLE_3,
+		SINGLE_4,
 		CIRCLE,
 		HORIZONTAL_LINE_CROUCH,
 		HORIZONTAL_LINE_JUMP,
@@ -18,7 +22,8 @@ class DazzlerPowerHandler : EventHandler
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
 	const NUM_EVENTS = 11;
-	const SPAWN_ORIGIN_TID = 998;
+	const NUM_SPAWN_ORIGINS = 5;
+	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
 
 	float eventTimestampsS[NUM_EVENTS];
@@ -37,19 +42,26 @@ class DazzlerPowerHandler : EventHandler
 
 	PoochyPlayer player;
 	Dazzler dazzler;
-	Actor spawnOrigin;
+	Actor spawnOrigins[NUM_SPAWN_ORIGINS];
+	Actor centerSpawnOrigin;
 	Actor target;
 
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 		player = CallBus.FindPlayer();
 		dazzler = CallBus.FindDazzler();
-		spawnOrigin = CallBus.FindActor(SPAWN_ORIGIN_TID);
-		if (spawnOrigin == null) {
-			Console.Printf("Error! No Dazzler spawnOrigin found.");
-		} else {
-			Console.Printf("Found Dazzler spawnOrigin: " .. spawnOrigin);
+
+		for(int i = 0; i < NUM_SPAWN_ORIGINS; ++i) {
+			let spawnOriginTID = SPAWN_ORIGIN_TID_RANGE_START + i;
+			spawnOrigins[i] = CallBus.FindActor(spawnOriginTID);
+			if (spawnOrigins[i] == null) {
+				Console.Printf("Error! No Dazzler spawnOrigin found for spawnOrigins[" .. i .. "], TID:" .. spawnOriginTID);
+			} else {
+				Console.Printf("Found Dazzler spawnOrigin: spawnOrigins[" .. i .. "], TID:" .. spawnOriginTID .. " actor: ".. spawnOrigins[i]);
+			}
 		}
+		centerSpawnOrigin = spawnOrigins[2];
+
 		target = CallBus.FindActor(TARGET_TID);
 		if (target == null) {
 			Console.Printf("Error! No Dazzler target found.");
@@ -103,19 +115,19 @@ class DazzlerPowerHandler : EventHandler
 		eventTypes			[2] = HUD_3;
 
 		eventtimestampss[3] = 1.384;
-		eventTypes			[3] = HUD_4;
+		eventTypes			[3] = SINGLE_0;
 
 		eventTimestampsS[4] = 1.846;
-		eventTypes			[4] = SINGLE;
+		eventTypes			[4] = SINGLE_1;
 
 		eventTimestampsS[5] = 2.307;
-		eventTypes			[5] = SINGLE;
+		eventTypes			[5] = SINGLE_2;
 
 		eventTimestampsS[6] = 2.769;
-		eventTypes			[6] = SINGLE;
+		eventTypes			[6] = SINGLE_3;
 
 		eventTimestampsS[7] = 3.230;
-		eventTypes			[7] = SINGLE;
+		eventTypes			[7] = SINGLE_4;
 
 		eventTimestampsS[8] = 3.692;
 		eventTypes			[8] = HORIZONTAL_LINE_JUMP;
@@ -177,7 +189,7 @@ class DazzlerPowerHandler : EventHandler
 		}
 
 		if (timeSinceStartS >= currentEventTimeS) {
-			// Console.Printf("Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
+			Console.Printf("Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
 			// Console.Printf("DazzlerHandler#WorldTick event level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
 			/* Missile options:
 			native Actor SpawnMissile(Actor dest, class<Actor> type, Actor owner = null);
@@ -194,15 +206,25 @@ class DazzlerPowerHandler : EventHandler
 			*/
 
 			switch(currentEventType) {
-				case SINGLE: {
-					let ball = DazzlerBall(spawnOrigin.SpawnMissile(target, "DazzlerBall"));
-					if (ball) {
-						ball.SetRandomTranslation();
-					} else {
-						Console.Printf("WorldTick Single Event encountered null ball");
-					}
+				case SINGLE_0:
+					SpawnSingleBall(spawnOrigins[0]);
 					break;
-				}
+
+				case SINGLE_1:
+					SpawnSingleBall(spawnOrigins[1]);
+					break;
+
+				case SINGLE_2:
+					SpawnSingleBall(spawnOrigins[2]);
+					break;
+
+				case SINGLE_3:
+					SpawnSingleBall(spawnOrigins[3]);
+					break;
+
+				case SINGLE_4:
+					SpawnSingleBall(spawnOrigins[4]);
+					break;
 
 				case CIRCLE: {
 					let radius = 70.0 * 1.5;
@@ -211,10 +233,10 @@ class DazzlerPowerHandler : EventHandler
 					for(int i = 0; i < NUM_BALLS; ++i) {
 						let theta = Utils.Mapd(i, 0.0, NUM_BALLS, 0, 360);
 						let result = Utils.Polar2Cartesian(radius, theta);
-						let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + result.x, result.y);
+						let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + result.x, result.y);
 						pos += offset;
 						// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
-						let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+						let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 						if (ball) {
 							ball.SetTranslation(i);
 						} else {
@@ -279,8 +301,8 @@ class DazzlerPowerHandler : EventHandler
 				// We just crossed the interval time
 				int intervalIdx = timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK;
 				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
-				let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + posY, height);
-				let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+				let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
+				let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 				if (ball) {
 					ball.SetTranslation(intervalIdx);
 				} else {
@@ -297,13 +319,22 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
+	void SpawnSingleBall(Actor origin) {
+		let ball = DazzlerBall(origin.SpawnMissile(target, "DazzlerBall"));
+		if (ball) {
+			ball.SetRandomTranslation();
+		} else {
+			Console.Printf("WorldTick Single Event encountered null ball");
+		}
+	}
+
 	void SpawnBallLine(double height) {
 		let NUM_BALLS = 20;
 		let BALL_SPACING = 18.0;
 		for(int i = 0; i < NUM_BALLS; ++i) {
 			let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
-			let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y + posY, height);
-			let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+			let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
+			let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 			if (ball) {
 				ball.SetTranslation(i);
 			} else {

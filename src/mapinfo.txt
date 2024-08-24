@@ -24,7 +24,7 @@ ClearEpisodes
 // Episode "map01"
 Episode "XMEN2"
 {
-	Name = "X-Men Dating Origins 2: Electric Boogaloo"
+	Name = "X-Men: Dates of Future Past"
 	noskillmenu
 }
 
@@ -56,13 +56,6 @@ Map "XMENEL" "Eliot's test map copy"
 	Next = "map01"
 }
 
-Map "XMENEL2" "Eliot's test map 2"
-{
-	levelnum = 1
-	music = "D_READ_M"
-	Next = "map01"
-}
-
 Map "XMEN" "Patrick's test map copy"
 {
 	levelnum = 2
@@ -77,6 +70,15 @@ Map "XMEN2" "Patrick's test map 2"
 	Next = "map01"
 	Sky1 = "B_SKY"
 }
+
+Map "XMEN2EL" "Patrick's test map 2 Eliot copy"
+{
+	levelnum = 2
+	music = "D_READ_M"
+	Next = "map01"
+	Sky1 = "B_SKY"
+}
+
 
 Map "map01" "code test map"
 {
