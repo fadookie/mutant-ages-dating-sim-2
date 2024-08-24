@@ -13,4 +13,9 @@ class Utils
   clearscope static double Mapd(double value, double start1, double stop1, double start2, double stop2) {
     return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
   }
+
+	clearscope static float Tics2Secondsf(int tics)
+	{
+		return float(tics) / float(TICRATE);
+	}
 }

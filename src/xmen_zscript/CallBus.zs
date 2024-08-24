@@ -40,9 +40,4 @@ class CallBus
 		let actorFinder = ActorIterator.Create(tid);
 		return actorFinder.Next(); 
 	}
-
-	play static float Tics2Secondsf(int tics)
-	{
-		return float(tics) / float(TICRATE);
-	}
 }

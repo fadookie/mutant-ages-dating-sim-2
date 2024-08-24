@@ -4,11 +4,8 @@ enum DazzlerEventType
 		HUD_2,
 		HUD_3,
 		HUD_4,
-		SINGLE_0,
-		SINGLE_1,
-		SINGLE_2,
-		SINGLE_3,
-		SINGLE_4,
+		SINGLE,
+		VERTICAL_LINE,
 		CIRCLE,
 		HORIZONTAL_LINE_CROUCH,
 		HORIZONTAL_LINE_JUMP,
@@ -21,13 +18,14 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 11;
+	const NUM_EVENTS = 15;
 	const NUM_SPAWN_ORIGINS = 5;
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
 
 	float eventTimestampsS[NUM_EVENTS];
 	DazzlerEventType eventTypes[NUM_EVENTS];
+	int eventArg0Ints[NUM_EVENTS];
 	int currentEventIdx;
 
 	int danceQueueTimeTk;
@@ -115,19 +113,24 @@ class DazzlerPowerHandler : EventHandler
 		eventTypes			[2] = HUD_3;
 
 		eventtimestampss[3] = 1.384;
-		eventTypes			[3] = SINGLE_0;
+		eventTypes			[3] = SINGLE;
+		eventArg0Ints		[4] = 0;
 
 		eventTimestampsS[4] = 1.846;
-		eventTypes			[4] = SINGLE_1;
+		eventTypes			[4] = SINGLE;
+		eventArg0Ints		[4] = 1;
 
 		eventTimestampsS[5] = 2.307;
-		eventTypes			[5] = SINGLE_2;
+		eventTypes			[5] = SINGLE;
+		eventArg0Ints		[5] = 2;
 
 		eventTimestampsS[6] = 2.769;
-		eventTypes			[6] = SINGLE_3;
+		eventTypes			[6] = SINGLE;
+		eventArg0Ints		[6] = 3;
 
 		eventTimestampsS[7] = 3.230;
-		eventTypes			[7] = SINGLE_4;
+		eventTypes			[7] = SINGLE;
+		eventArg0Ints		[7] = 4;
 
 		eventTimestampsS[8] = 3.692;
 		eventTypes			[8] = HORIZONTAL_LINE_JUMP;
@@ -135,9 +138,25 @@ class DazzlerPowerHandler : EventHandler
 		eventTimestampsS[9] = 4.615;
 		eventTypes			[9] = HORIZONTAL_LINE_CROUCH;
 
+		eventTimestampsS[10] = 5.538;
+		eventTypes			[10] = VERTICAL_LINE;
+		eventArg0Ints		[10] = 0;
+
+		eventTimestampsS[11] = 6.461;
+		eventTypes			[11] = VERTICAL_LINE;
+		eventArg0Ints		[11] = 1;
+
+		eventTimestampsS[12] = 7.384;
+		eventTypes			[12] = VERTICAL_LINE;
+		eventArg0Ints		[12] = 3;
+
+		eventTimestampsS[13] = 8.307;
+		eventTypes			[13] = VERTICAL_LINE;
+		eventArg0Ints		[13] = 4;
+
 		// End of song - marker for end of game
-		eventTimestampsS[10] = 93.544;
-		eventTypes			[10] = NOOP;
+		eventTimestampsS[NUM_EVENTS - 1] = 93.544;
+		eventTypes			[NUM_EVENTS - 1] = NOOP;
 		
 
 		// eventTimestampsS[7] = 14.0;
@@ -159,7 +178,7 @@ class DazzlerPowerHandler : EventHandler
 		}
 		
 		if (danceQueueTimeTk > 0
-			&& CallBus.Tics2Secondsf(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
+			&& Utils.Tics2Secondsf(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
 			danceQueueTimeTk = 0;
 			StartDanceSequence();
 		}
@@ -167,12 +186,12 @@ class DazzlerPowerHandler : EventHandler
 			return;
 		}
 		let timeSinceStartTk = level.time - danceStartTimeTk;
-		let timeSinceStartS = CallBus.Tics2Secondsf(timeSinceStartTk);
+		let timeSinceStartS = Utils.Tics2Secondsf(timeSinceStartTk);
 
 		float currentEventTimeS = eventTimestampsS[currentEventIdx];
 		let currentEventType = eventTypes[currentEventIdx];
 
-		Console.Printf("timeSinceStartTk:" .. timeSinceStartTk .. " timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
+		// Console.Printf("timeSinceStartTk:" .. timeSinceStartTk .. " timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
 
 		let currentSync = calculateSync(level.time, MSTime());
 		let desync = Abs(currentSync - danceStartSync);
@@ -206,25 +225,34 @@ class DazzlerPowerHandler : EventHandler
 			*/
 
 			switch(currentEventType) {
-				case SINGLE_0:
-					SpawnSingleBall(spawnOrigins[0]);
+				case SINGLE: {
+					let originIndex = eventArg0Ints[currentEventIdx];
+					let ball = DazzlerBall(spawnOrigins[originIndex].SpawnMissile(target, "DazzlerBall"));
+					if (ball) {
+						ball.SetRandomTranslation();
+					} else {
+						Console.Printf("WorldTick Single Event encountered null ball");
+					}
 					break;
+				}
 
-				case SINGLE_1:
-					SpawnSingleBall(spawnOrigins[1]);
+				case VERTICAL_LINE: {
+					let originIndex = eventArg0Ints[currentEventIdx];
+					let spawnOrigin = spawnOrigins[originIndex];
+					let NUM_BALLS = 10;
+					let BALL_SPACING = 15.0;
+					for(int i = 0; i < NUM_BALLS; ++i) {
+						let zOffset = i * BALL_SPACING;
+						let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y, spawnOrigin.Pos.z + zOffset);
+						let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+						if (ball) {
+							ball.SetTranslation(i);
+						} else {
+							Console.Printf("SpawnBallLine encountered null ball");
+						}
+					}
 					break;
-
-				case SINGLE_2:
-					SpawnSingleBall(spawnOrigins[2]);
-					break;
-
-				case SINGLE_3:
-					SpawnSingleBall(spawnOrigins[3]);
-					break;
-
-				case SINGLE_4:
-					SpawnSingleBall(spawnOrigins[4]);
-					break;
+				}
 
 				case CIRCLE: {
 					let radius = 70.0 * 1.5;
@@ -316,15 +344,6 @@ class DazzlerPowerHandler : EventHandler
 				barrageNumBallsFired = 0;
 				barrageStartTimeTk = 0;
 			}
-		}
-	}
-
-	void SpawnSingleBall(Actor origin) {
-		let ball = DazzlerBall(origin.SpawnMissile(target, "DazzlerBall"));
-		if (ball) {
-			ball.SetRandomTranslation();
-		} else {
-			Console.Printf("WorldTick Single Event encountered null ball");
 		}
 	}
 
