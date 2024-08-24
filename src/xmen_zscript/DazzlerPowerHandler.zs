@@ -1,5 +1,9 @@
 enum DazzlerEventType
 {
+		HUD_1,
+		HUD_2,
+		HUD_3,
+		HUD_4,
 		SINGLE,
 		CIRCLE,
 		HORIZONTAL_LINE_CROUCH,
@@ -13,7 +17,7 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 6;
+	const NUM_EVENTS = 11;
 	const SPAWN_ORIGIN_TID = 998;
 	const TARGET_TID = 999;
 
@@ -58,6 +62,7 @@ class DazzlerPowerHandler : EventHandler
 // 			boardSpot = player.Spawn("Shotgun", (0,0,0), NO_REPLACE);
 // 		}
 
+/* OLD sequence
 		eventTimestampsS[0] = 3.692; // Measure 1
 		eventTypes			[0] = HORIZONTAL_LINE_JUMP; //HORIZONTAL_LINE_CROUCH;
 
@@ -82,6 +87,47 @@ class DazzlerPowerHandler : EventHandler
 		// eventTypes			[5] = BARRAGE;
 
 		// eventTimestampsS[6] = 12.0;
+		// eventTimestampsS[7] = 14.0;
+		// eventTimestampsS[8] = 16.0;
+		// eventTimestampsS[9] = 18.0;
+		// eventTimestampsS[10] = 20.0; // Measure 11
+		*/
+
+		eventTimestampsS[0] = 0;
+		eventTypes			[0] = HUD_1;
+
+		eventTimestampsS[1] = 0.461;
+		eventTypes			[1] = HUD_2;
+
+		eventTimestampsS[2] = 0.923;
+		eventTypes			[2] = HUD_3;
+
+		eventtimestampss[3] = 1.384;
+		eventTypes			[3] = HUD_4;
+
+		eventTimestampsS[4] = 1.846;
+		eventTypes			[4] = SINGLE;
+
+		eventTimestampsS[5] = 2.307;
+		eventTypes			[5] = SINGLE;
+
+		eventTimestampsS[6] = 2.769;
+		eventTypes			[6] = SINGLE;
+
+		eventTimestampsS[7] = 3.230;
+		eventTypes			[7] = SINGLE;
+
+		eventTimestampsS[8] = 3.692;
+		eventTypes			[8] = HORIZONTAL_LINE_JUMP;
+
+		eventTimestampsS[9] = 4.615;
+		eventTypes			[9] = HORIZONTAL_LINE_CROUCH;
+
+		// End of song - marker for end of game
+		eventTimestampsS[10] = 93.544;
+		eventTypes			[10] = NOOP;
+		
+
 		// eventTimestampsS[7] = 14.0;
 		// eventTimestampsS[8] = 16.0;
 		// eventTimestampsS[9] = 18.0;
@@ -125,13 +171,13 @@ class DazzlerPowerHandler : EventHandler
 			// let font = Font.GetFont("SMALLFONT");
 			// Console.MidPrint(font, "Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...", bold: false);
 			// CallBus.PrintDazzlerDesyncWarning();
-			player.A_Print("Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...", 7.0, "BIGFONT");
+			Console.MidPrint("BIGFONT", "Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...");
 			// ACS_NamedExecute("PrintDazzlerDesyncWarning", 0);
 			EndDanceSequence();
 		}
 
 		if (timeSinceStartS >= currentEventTimeS) {
-			Console.Printf("Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
+			// Console.Printf("Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
 			// Console.Printf("DazzlerHandler#WorldTick event level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
 			/* Missile options:
 			native Actor SpawnMissile(Actor dest, class<Actor> type, Actor owner = null);
@@ -197,6 +243,23 @@ class DazzlerPowerHandler : EventHandler
 				case NOOP:
 					break;
 
+				case HUD_1:
+					// Was trying to use Console.MidPrint but it doesn't seem to be able to update fast enough
+					Console.Printf("1");
+					break;
+
+				case HUD_2:
+					Console.Printf("2");
+					break;
+
+				case HUD_3:
+					Console.Printf("3");
+					break;
+
+				case HUD_4:
+					Console.Printf("4");
+					break;
+
 				default:
 					ThrowAbortException("Unknown event type: %d", currentEventType);
 			}
@@ -252,19 +315,19 @@ class DazzlerPowerHandler : EventHandler
 	void QueueDanceSequence() {
 		Console.Printf("DazzlerPowerHandler#QueueDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
 		danceQueueTimeTk = level.time;
-		player.A_Print("Get ready in 3, 2, 1...", 3.0, "BIGFONT");
+		Console.MidPrint("BIGFONT", "Get ready in 3, 2, 1...");
 	}
 
 	void StartDanceSequence() {
 		Console.Printf("DazzlerPowerHandler#StartDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
-		player.A_Print("Let's jam!", 1.0, "BIGFONT");
+		Console.MidPrint("BIGFONT", "Let's jam!");
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
 		danceStartSync = calculateSync(danceStartTimeTk, danceStartTimeMs);
 		// S_ChangeMusic(String music_name, int order = 0, bool looping = true, bool force = false)
 		// Force restart of music if already playing
 		S_ChangeMusic("*", force: true);
-		S_ChangeMusic("music/Petty-Edit.ogg", force: true);
+		S_ChangeMusic("music/petty-0.75-clicktrack.ogg", force: true);
 	}
 
 	void EndDanceSequence() {
