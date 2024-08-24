@@ -389,6 +389,50 @@ actor AirConditioner : UselessJunk 31002
   }
 }
 
+actor TeddyBear : UselessJunk 31003
+{
+  Inventory.PickupMessage "Is that an air conditioner?"
+    States
+  {
+  Spawn:
+    TEDY A 10
+    Loop
+  }
+}
+
+actor Backback : UselessJunk 31004
+{
+  Inventory.PickupMessage "Is that an air conditioner?"
+    States
+  {
+  Spawn:
+    JBPK A 10
+    Loop
+  }
+}
+
+actor Picture : UselessJunk 31005
+{
+  Inventory.PickupMessage "Is that an air conditioner?"
+    States
+  {
+  Spawn:
+    PICT A 10
+    Loop
+  }
+}
+
+actor Lamp : UselessJunk 31006
+{
+  Inventory.PickupMessage "Is that an air conditioner?"
+    States
+  {
+  Spawn:
+    LAMP A 10 Bright
+    Loop
+  }
+}
+
 actor AEVision : PowerupGiver 31010
 {
 	+COUNTITEM
