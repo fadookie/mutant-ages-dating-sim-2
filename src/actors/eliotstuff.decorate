@@ -467,6 +467,28 @@ actor Lamp : Actor 31006
   }
 }
 
+actor Plant : Actor 31007
+{
+
+    States
+  {
+  Spawn:
+    PLAN A 10
+    Loop
+  }
+}
+
+actor Statue : Actor 31008
+{
+
+    States
+  {
+  Spawn:
+    STAT A 10
+    Loop
+  }
+}
+
 actor AEVision : PowerupGiver 31010
 {
 	+COUNTITEM
