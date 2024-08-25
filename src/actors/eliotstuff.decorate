@@ -389,9 +389,9 @@ actor AirConditioner : UselessJunk 31002
   }
 }
 
-actor TeddyBear : UselessJunk 31003
+actor TeddyBear : Actor 31003
 {
-  Inventory.PickupMessage "Is that an air conditioner?"
+
     States
   {
   Spawn:
@@ -400,9 +400,9 @@ actor TeddyBear : UselessJunk 31003
   }
 }
 
-actor Backback : UselessJunk 31004
+actor Backback : Actor 31004
 {
-  Inventory.PickupMessage "Is that an air conditioner?"
+
     States
   {
   Spawn:
@@ -411,9 +411,9 @@ actor Backback : UselessJunk 31004
   }
 }
 
-actor Picture : UselessJunk 31005
+actor Picture : Actor 31005
 {
-  Inventory.PickupMessage "Is that an air conditioner?"
+
     States
   {
   Spawn:
@@ -422,9 +422,9 @@ actor Picture : UselessJunk 31005
   }
 }
 
-actor Lamp : UselessJunk 31006
+actor Lamp : Actor 31006
 {
-  Inventory.PickupMessage "Is that an air conditioner?"
+
     States
   {
   Spawn:
