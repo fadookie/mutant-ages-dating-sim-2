@@ -21,16 +21,16 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 36;
 	const NUM_SPAWN_ORIGINS = 5;
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
 	const EXIT_DOOR_SECTOR_TAG = 715;
 	const INNER_CIRCLE_DOOR_SECTOR_TAG = 716;
+	const EVENT_ARG_NA = -1; // Constant for when an event arg is not applicable
 
-	float eventTimestampsS[NUM_EVENTS];
-	DazzlerEventType eventTypes[NUM_EVENTS];
-	int eventArg0Ints[NUM_EVENTS];
+	Array<float> eventTimestampsS;
+	Array<DazzlerEventType> eventTypes;
+	Array<int> eventArg0Ints;
 	int currentEventIdx;
 
 	int danceQueueTimeTk;
@@ -78,151 +78,169 @@ class DazzlerPowerHandler : EventHandler
 // 		}
 
 		// #region Event definitions
-		eventTimestampsS[0] = 0;
-		eventTypes      [0] = HUD_1;
+		eventTimestampsS.Push(0);
+		eventTypes.Push(HUD_1);
+		eventArg0Ints.Push(EVENT_ARG_NA);
 
-		eventTimestampsS[1] = 0.461;
-		eventTypes      [1] = HUD_2;
+		eventTimestampsS.Push(0.461);
+		eventTypes.Push(HUD_2);
+		eventArg0Ints.Push(EVENT_ARG_NA);
 
-		eventTimestampsS[2] = 0.923;
-		eventTypes      [2] = HUD_3;
-
-		// Double event
-		eventTimestampsS[3] = 1.384;
-		eventTypes      [3] = HUD_4;
-
-		eventTimestampsS[4] = 1.384;
-		eventTypes      [4] = SINGLE;
-		eventArg0Ints   [4] = 0;
-
-		eventTimestampsS[5] = 1.846;
-		eventTypes      [5] = SINGLE;
-		eventArg0Ints   [5] = 1;
-
-		eventTimestampsS[6] = 1.846;
-		eventTypes      [6] = HUD_GO;
-
-		eventTimestampsS[7] = 2.307;
-		eventTypes      [7] = SINGLE;
-		eventArg0Ints   [7] = 2;
-
-		eventTimestampsS[8] = 2.769;
-		eventTypes      [8] = SINGLE;
-		eventArg0Ints   [8] = 3;
-
-		eventTimestampsS[9] = 3.230;
-		eventTypes      [9] = SINGLE;
-		eventArg0Ints   [9] = 4;
-
-		// Double event	
-		eventTimestampsS[10] = 3.692;
-		eventTypes      [10] = HORIZONTAL_LINE_JUMP;
-
-		eventTimestampsS[11] = 3.692;
-		eventTypes      [11] = HUD_JUMP;
-
-		// Double event	
-		eventTimestampsS[12] = 4.615;
-		eventTypes      [12] = HORIZONTAL_LINE_CROUCH;
-
-		eventTimestampsS[13] = 4.615;
-		eventTypes      [13] = HUD_CROUCH;
-
-		eventTimestampsS[14] = 5.538;
-		eventTypes      [14] = VERTICAL_LINE;
-		eventArg0Ints   [14] = 0;
-
-		eventTimestampsS[15] = 6.461;
-		eventTypes      [15] = VERTICAL_LINE;
-		eventArg0Ints   [15] = 1;
-
-		eventTimestampsS[16] = 7.384;
-		eventTypes      [16] = VERTICAL_LINE;
-		eventArg0Ints   [16] = 3;
-
-		eventTimestampsS[17] = 8.307;
-		eventTypes      [17] = VERTICAL_LINE;
-		eventArg0Ints   [17] = 4;
-
-		eventTimestampsS[18] = 9.230;
-		eventTypes      [18] = VERTICAL_LINE;
-		eventArg0Ints   [18] = 3;
-
-		eventTimestampsS[19] = 10.153;
-		eventTypes      [19] = VERTICAL_LINE;
-		eventArg0Ints   [19] = 2;
-
-		// Quadruple event
-		eventTimestampsS[20] = 11.076;
-		eventTypes      [20] = VERTICAL_LINE;
-		eventArg0Ints   [20] = 1;
-
-		eventTimestampsS[21] = 11.076;
-		eventTypes      [21] = HORIZONTAL_LINE_CROUCH;
-
-		eventTimestampsS[22] = 11.076;
-		eventTypes      [22] = VERTICAL_LINE;
-		eventArg0Ints   [22] = 3;
-
-		eventTimestampsS[23] = 11.076;
-		eventTypes      [23] = HUD_CROUCH;
-
-
-		// Quadruple event
-		eventTimestampsS[24] = 12.000;
-		eventTypes      [24] = VERTICAL_LINE;
-		eventArg0Ints   [24] = 0;
-
-		eventTimestampsS[25] = 12.000;
-		eventTypes      [25] = HORIZONTAL_LINE_JUMP;
-
-		eventTimestampsS[26] = 12.000;
-		eventTypes      [26] = VERTICAL_LINE;
-		eventArg0Ints   [26] = 4;
-
-		eventTimestampsS[27] = 12.000;
-		eventTypes      [27] = HUD_JUMP;
-
-
-		eventTimestampsS[28] = 12.461;
-		eventTypes      [28] = SINGLE;
-		eventArg0Ints   [28] = 2;
-
-		eventTimestampsS[29] = 12.923;
-		eventTypes      [29] = SINGLE;
-		eventArg0Ints   [29] = 1;
-
-		eventTimestampsS[30] = 13.384;
-		eventTypes      [30] = SINGLE;
-		eventArg0Ints   [30] = 3;
-
-		eventTimestampsS[31] = 13.846;
-		eventTypes      [31] = SINGLE;
-		eventArg0Ints   [31] = 4;
-
-		eventTimestampsS[32] = 14.307;
-		eventTypes      [32] = SINGLE;
-		eventArg0Ints   [32] = 0;
+		eventTimestampsS.Push(0.923);
+		eventTypes.Push(HUD_3);
+		eventArg0Ints.Push(EVENT_ARG_NA);
 
 		// Double event
-		eventTimestampsS[33] = 15.230;
-		eventTypes      [33] = VERTICAL_LINE;
-		eventArg0Ints   [33] = 1;
+		eventTimestampsS.Push(1.384);
+		eventTypes.Push(HUD_4);
+		eventArg0Ints.Push(EVENT_ARG_NA);
 
-		eventTimestampsS[34] = 15.230;
-		eventTypes      [34] = VERTICAL_LINE;
-		eventArg0Ints   [34] = 3;
+		eventTimestampsS.Push(1.384);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(0);
+
+		eventTimestampsS.Push(1.846);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(1);
+
+		eventTimestampsS.Push(1.846);
+		eventTypes.Push(HUD_GO);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(2.307);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(2);
+
+		eventTimestampsS.Push(2.769);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(3);
+
+		eventTimestampsS.Push(3.230);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(4);
+
+		// Double event	
+		eventTimestampsS.Push(3.692);
+		eventTypes.Push(HORIZONTAL_LINE_JUMP);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(3.692);
+		eventTypes.Push(HUD_JUMP);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+		// Double event	
+		eventTimestampsS.Push(4.615);
+		eventTypes.Push(HORIZONTAL_LINE_CROUCH);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(4.615);
+		eventTypes.Push(HUD_CROUCH);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(5.538);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(0);
+
+		eventTimestampsS.Push(6.461);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(1);
+
+		eventTimestampsS.Push(7.384);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(3);
+
+		eventTimestampsS.Push(8.307);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(4);
+
+		eventTimestampsS.Push(9.230);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(3);
+
+		eventTimestampsS.Push(10.153);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(2);
+
+		// Quadruple event
+		eventTimestampsS.Push(11.076);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(1);
+
+		eventTimestampsS.Push(11.076);
+		eventTypes.Push(HORIZONTAL_LINE_CROUCH);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(11.076);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(3);
+
+		eventTimestampsS.Push(11.076);
+		eventTypes.Push(HUD_CROUCH);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+
+		// Quadruple event
+		eventTimestampsS.Push(12.000);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(0);
+
+		eventTimestampsS.Push(12.000);
+		eventTypes.Push(HORIZONTAL_LINE_JUMP);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(12.000);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(4);
+
+		eventTimestampsS.Push(12.000);
+		eventTypes.Push(HUD_JUMP);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+
+
+		eventTimestampsS.Push(12.461);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(2);
+
+		eventTimestampsS.Push(12.923);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(1);
+
+		eventTimestampsS.Push(13.384);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(3);
+
+		eventTimestampsS.Push(13.846);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(4);
+
+		eventTimestampsS.Push(14.307);
+		eventTypes.Push(SINGLE);
+		eventArg0Ints.Push(0);
+
+		// Double event
+		eventTimestampsS.Push(15.230);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(1);
+
+		eventTimestampsS.Push(15.230);
+		eventTypes.Push(VERTICAL_LINE);
+		eventArg0Ints.Push(3);
 
 		// End of song - marker for end of game
-		eventTimestampsS[NUM_EVENTS - 1] = eventTimestampsS[NUM_EVENTS - 2] + 5.0; // 93.544; = REAL VALUE
-		eventTypes      [NUM_EVENTS - 1] = NOOP;
+		eventTimestampsS.Push(eventTimestampsS[eventTimestampsS.Size() - 2] + 5.0); // 93.544; = REAL VALUE
+		eventTypes.Push(NOOP);
+		eventArg0Ints.Push(EVENT_ARG_NA);
 
 		// #endregion Event definitions
+
+		if (eventTimestampsS.Size() != eventTypes.Size() || eventTimestampsS.Size() != eventArg0Ints.Size()) {
+				ThrowAbortException("event array sizes did not match. eventTimeStampS=%d eventTypes=%d eventArg0Ints=%d", eventTimestampsS.Size(), eventTypes.Size(), eventArg0Ints.Size());
+		}
 	}
 	
 	override void WorldTick()
 	{
-		if (currentEventIdx >= NUM_EVENTS) {
+		if (currentEventIdx >= eventTimestampsS.Size()) {
 			EndDanceSequence();
 			CheckWinCondition();
 			return;
@@ -258,7 +276,7 @@ class DazzlerPowerHandler : EventHandler
 			if(CheckDesync()) { return; }
 			FireEvent(currentEventType, currentEventTimeS);
 			++currentEventIdx;
-			if (currentEventIdx >= NUM_EVENTS) {
+			if (currentEventIdx >= eventTimestampsS.Size()) {
 				// We've reached the end of the dance sequence.
 				EndDanceSequence();
 				CheckWinCondition();
