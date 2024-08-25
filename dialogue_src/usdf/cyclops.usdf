@@ -1,0 +1,70 @@
+conversation
+{
+	actor = "Cyclops";
+	page //1
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]What do you want?";
+		choice
+		{
+			text = "Stay away from Logan, he's mine!";
+			yesmessage = "\c[Cyan]Logan was just a rebound, I'm back with Jean now! Don't you know I'm a super straight superhero?";
+			closedialog = true;
+// 			special = 80;
+// 			arg0 = 13;
+		}
+// 		ifitem
+//         {
+//             item = "ScottsBox";
+//         }
+// 		link = 2;
+		choice
+		{
+			text = "Hey, could you help me with something?";
+			nextpage = 2;
+			nomessage = "\c[Cyan]With what? Come back when you've found something I can help with.";
+			cost
+			{
+					item = "ScottsBox";
+					amount = 1;
+			}
+		}
+	}
+	page //2
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Hey, where did you get that? Give it back!";
+		choice
+		{
+			text = "I'm looking for the key to the hangar! If you blast it open I'll give everything else back.";
+			nextpage = 3;
+		}
+	}
+	page //3
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Fine, but you are not allowed to call me a tool like Logan does! And don't look at what else is inside!";
+		choice
+		{
+			text = "I pinkie swear.";
+			giveitem = "BlueCard";
+			nextpage = 4;
+		}
+	}
+	page //4
+	{
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Okay, here's the key. If I hear you tell anyone else about this box I will have Xavier wipe your memories!";
+		choice
+		{
+			text = "It's okay, I won't tell anyone else you love butt plugs.";
+			yesmessage = "\c[Cyan]Hey! I'm warning you, punk!";
+			closedialog = true;
+		}
+	}
+}
+

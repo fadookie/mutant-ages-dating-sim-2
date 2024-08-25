@@ -1,0 +1,234 @@
+conversation
+{
+	actor = "EmmaFrost";
+	page //1
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
+		choice
+		{
+			text = "SKIP DIALOGUE";
+			closedialog = true;
+			special = 80;
+			arg0 = 16;
+		}
+		choice
+		{
+			text = "I'm Ryan!"; // give inventory
+			giveitem = "IsRyanInventory";
+			nextpage = 2;
+		}
+		choice
+		{
+			text = "The name's Poochy. Dr. Poochy.";
+			giveitem = "IsPoochyInventory";
+			nextpage = 2;
+		}
+	}
+	page //2
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]And what class would you like to play in the campaign?";
+		choice
+		{
+			text = "A Warcraft!";
+			giveitem = "WarcraftDnDInventory";
+			nextpage = 3;
+		}
+		choice
+		{
+			text = "Dr. Nathaniel \"Poochy\" Chainlink.";
+			giveitem = "PoochyDnDInventory";
+			nextpage = 4;
+		}
+// 		choice
+// 		{
+// 			text = "Mary Sue!";
+// 			nextpage = 3;
+// 		}
+	}
+	page //3
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]You mean like the MMO? That doesn't make any sense, but whatever. At least Shaw isn't here messing up my campaign like in the bad old days. You said that's kind of like a wolf? I guess we'll make you a druid.";
+		choice
+		{
+			text = "Next";
+			nextpage = 6;
+		}
+	}
+	page //4
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]I don't know who that is or what class they should be, but whatever. You want to be a doctor, I guess we'll make you a Cleric. At least Shaw isn't here messing up my campaign like in the bad old days.";
+		choice
+		{
+			text = "Next";
+			nextpage = 6;
+		}
+		ifitem
+		{
+			item = "IsPoochyInventory";
+		}
+		link = 5;
+	}
+	page //5
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]So you mean to tell me that you, a self-insert fanfiction character, would like to play your own self-insert character in my D&D campaign without even attempting to conceal this? You're hurting my brain... but, whatever. Just don't blame me for breaking the fourth wall, you started it.";
+		choice
+		{
+			text = "Next";
+			nextpage = 6;
+		}
+	}
+	page //6
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]*sigh* And how about you, fuzzball?";
+		choice
+		{
+			text = "Next";
+			nextpage = 7;
+		}
+	}
+	page //7
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]The name's Logan, bub. I like to break stuff!";
+		choice
+		{
+			text = "Next";
+			nextpage = 8;
+		}
+	}
+	page //8
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]Okay tough guy, let's make you a barbarian.";
+		choice
+		{
+			text = "Next";
+			nextpage = 9;
+		}
+	}
+	page //9
+	{
+		name = "Magneto";
+		panel = "MGNPA0";
+		dialog = "\c[Purple]I would like to use my downtime to craft a spell scroll.";
+		choice
+		{
+			text = "Next";
+			nextpage = 10;
+		}
+	}
+	page //10
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]You're not getting any downtime. Now, let's begin.";
+		choice
+		{
+			text = "Next";
+			nextpage = 11;
+		}
+	}
+	page //11
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]You are in a dark forest. Something is putting you on edge, but you aren't sure what. What would you like to do?";
+		choice
+		{
+			text = "(Poochy) I use my AE Vision!";
+			nextpage = 12;
+			cost
+			{
+					item = "PoochyDnDInventory";
+					amount = 1;
+					nomessage = "\c[White]Sorry, you're not allowed to do that.";
+			}
+		}
+		choice
+		{
+			text = "(Warcraft) I listen and smell for danger.";
+			nextpage = 13;
+			cost
+			{
+					item = "WarcraftDnDInventory";
+					amount = 1;
+					nomessage = "\c[White]Sorry, you're not allowed to do that.";
+			}
+		}
+	}
+	page //12
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]I'm not really sure what that is... but sure, make a perception check. Roll a d20 and add your perception bonus.";
+		choice
+		{
+			text = "Roll 1d20";
+			nextpage = 14;
+		}
+	}
+	page //13
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]Okay, make a perception check. Roll a d20 and add your perception bonus.";
+		choice
+		{
+			text = "Roll 1d20";
+			nextpage = 14;
+		}
+	}
+	page //14
+	{
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]That's 15 total? You succeed! You can sense the nasty boys lying in ambush up ahead.";
+		choice
+		{
+			text = "Next";
+			nextpage = 15;
+		}
+	}
+	page //15
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Let's attack them!";
+		choice
+		{
+			text = "Next";
+			nextpage = 16;
+		}
+	}
+	page //16
+	{
+		name = "Magneto";
+		panel = "MGNPA0";
+		dialog = "\c[Purple]Slow your roll there, cowboy. We don't even know that these people are hostile. Maybe we should just talk to them first.";
+		choice
+		{
+			text = "Let's try talking.";
+			nextpage = 17;
+		}
+		choice
+		{
+			text = "Attack!";
+			nextpage = 17;
+		}
+	}
+}
+

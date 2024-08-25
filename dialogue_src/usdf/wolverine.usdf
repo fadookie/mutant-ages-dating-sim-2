@@ -1,0 +1,144 @@
+conversation
+{
+	actor = "Wolverine";
+	page //1
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I thought you were gonna stand me up!";
+		choice
+		{
+			text = "I would never!";
+			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
+			nextpage = 2;
+			special = 80;
+			arg0 = 15;
+		}
+		choice
+		{
+			text = "Says the king of fucking off to Alaska without telling anybody.";
+			nextpage = 3;
+			special = 80;
+			arg0 = 15;
+		}
+	}
+	page //2
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Sure, tell that to your other boyfriends...";
+		choice
+		{
+			text = "You seem a little down, what's wrong?";
+			nextpage = 3;
+		}
+	}
+	page //3
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Hey now, we all need a little alone time to brood now and then.";
+		choice
+		{
+			text = "And what have you been brooding about recently, babe?";
+			nextpage = 4;
+		}
+	}
+	page //4
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Oh, the usual. Jean is back so I don't get to fuck Scott anymore.";
+		choice
+		{
+			text = "Oh, cry me a river. I thought I was the only one for you?";
+			nextpage = 5;
+		}
+	}
+	page //5
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Come on now, did you really think you could tame the Wolverine? Don't worry, I'll always have room for you in by bed, babe.";
+		choice
+		{
+			text = "Sure, if you've earned it! So why did you invite me over exactly?";
+			nextpage = 6;
+		}
+	}
+	page //6
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Oh, heh heh... I had planned a little surprise for you but I seem to have misplaced the key to the X-Jet Hangar... could you help me find it?";
+		choice
+		{
+			text = "Of course! Let me look...";
+			yesmessage = "\c[Yellow]Thanks! I think it was in a box somewhere...";
+			closedialog = true;
+		}
+		choice
+		{
+			text = "Wow, some surprise...";
+			yesmessage = "\c[Yellow]Sorry... trust me it will be great! I think it was in a box somewhere...";
+			closedialog = true;
+		}
+		choice
+		{
+			text = "Can't you just cut a hole in the door?";
+			nextpage = 7;
+		}
+		ifitem
+		{
+				item = "UselessJunk";
+		}
+		link = 8;
+	}
+	page //7
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Xavier only just stopped whining about the last time I did that. \"Logan, don't you know it's almost impossible for mutants to get business insurance? Blah blah blah...\" It would save me a real headache if you could just find the key, bub.";
+		choice
+		{
+			text = "Fine, I'll look for it.";
+			yesmessage = "\c[Yellow]Sorry... trust me it will be great! I think it was in a box somewhere...";
+			closedialog = true;
+		}
+		ifitem
+		{
+				item = "UselessJunk";
+		}
+		link = 8;
+	}
+	page //8
+	{ // Player only found useless junk
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]That ain't no key, bub! Keep lookin'.";
+		ifitem
+		{
+				item = "ScottsBox";
+		}
+		link = 9;
+	}
+	page //9
+	{ //Player found (but hasn't opened) scott's box - Note: FORCE THE PLAYER TO PICK UP JUNK FIRST or they will get stuck in the logic above!!!!
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]It must be in there, I can smell the ozone! I'd open it for you, but Jeannie might not take too kindly to me going through Scott's private effects, if you catch my drift. Maybe you can find a way to do it?";
+		ifitem
+		{
+				item = "BlueCard";
+		}
+		link = 10;
+	}
+	page //10
+	{
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
+		goodbye = "I can't wait! Let's go!";
+	}
+}
+
