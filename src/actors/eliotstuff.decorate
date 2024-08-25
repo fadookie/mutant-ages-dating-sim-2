@@ -352,6 +352,40 @@ actor CoffeGuy : Actor 30014
   }
 }
 
+actor Colossus : Actor 30015
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    COLL A 10 A_Look
+    Loop
+  }
+}
+
+actor Storm : Actor 30016
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    STOR A 10 A_Look
+    Loop
+  }
+}
+
 actor ScottsBox : Inventory 31000
 {
   Inventory.PickupMessage "Found Scott's butt plug collection!"
