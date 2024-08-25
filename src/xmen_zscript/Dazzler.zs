@@ -78,6 +78,9 @@ class DazzlerBall : DoomImpBall
 		super.PostBeginPlay();
 		// A_Log("DazzlerBall init");
     // SetRandomTranslation();
+
+		// Make SeeSound a bit quieter
+		A_SoundVolume(CHAN_VOICE, 0.1);
   }
 
   void SetRandomTranslation() {
