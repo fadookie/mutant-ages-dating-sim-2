@@ -15,8 +15,7 @@ class CallBus
   }
 
 	play static PoochyPlayer FindPlayer() {
-		ThinkerIterator finder = ThinkerIterator.Create("PoochyPlayer");
-		let result = PoochyPlayer(finder.Next());
+		let result = PoochyPlayer(players[consoleplayer].Mo);
 		if (result == null) {
 			Console.Printf("Error! No player found.");
 		} else {

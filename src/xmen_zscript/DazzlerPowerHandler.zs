@@ -26,6 +26,7 @@ class DazzlerPowerHandler : EventHandler
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
 	const EXIT_DOOR_SECTOR_TAG = 715;
+	const INNER_CIRCLE_DOOR_SECTOR_TAG = 716;
 
 	float eventTimestampsS[NUM_EVENTS];
 	DazzlerEventType eventTypes[NUM_EVENTS];
@@ -182,7 +183,7 @@ class DazzlerPowerHandler : EventHandler
 		eventTypes      [27] = HUD_JUMP;
 
 		// End of song - marker for end of game
-		eventTimestampsS[NUM_EVENTS - 1] = 93.544;
+		eventTimestampsS[NUM_EVENTS - 1] = 13.0; // 93.544; = REAL VALUE
 		eventTypes      [NUM_EVENTS - 1] = NOOP;
 
 		// #endregion Event definitions
@@ -192,17 +193,20 @@ class DazzlerPowerHandler : EventHandler
 	{
 		if (currentEventIdx >= NUM_EVENTS) {
 			EndDanceSequence();
+			CheckWinCondition();
 			return;
 		}
 		
-		if (players[consoleplayer].health == 1) {
+		if (player.health == 1) {
 			EndDanceSequence();
+			PrintLoseMessage();
 			return;
 		}
 		
 		if (danceQueueTimeTk > 0
 			&& Utils.Tics2Secondsf(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
 			danceQueueTimeTk = 0;
+			// Just in case a dance sequence was still going (player is forcing a restart), end any active sequence
 			EndDanceSequence();
 			StartDanceSequence();
 		}
@@ -224,7 +228,9 @@ class DazzlerPowerHandler : EventHandler
 			FireEvent(currentEventType, currentEventTimeS);
 			++currentEventIdx;
 			if (currentEventIdx >= NUM_EVENTS) {
+				// We've reached the end of the dance sequence.
 				EndDanceSequence();
+				CheckWinCondition();
 				return;
 			}
 			currentEventTimeS = eventTimestampsS[currentEventIdx];
@@ -260,6 +266,22 @@ class DazzlerPowerHandler : EventHandler
 				barrageStartTimeTk = 0;
 			}
 		}
+	}
+
+	// Should only be called after reaching end of events list
+	void CheckWinCondition() {
+		if (player.health > 1) {
+			// Player won
+			Console.MidPrint("BIGFONT", "Nice footwork! You impressed me.\nI'll let you through to see my friends in the inner circle...");
+			Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
+		} else {
+			// Player was too hurt to win
+			PrintLoseMessage();
+		}
+	}
+
+	void PrintLoseMessage() {
+		Console.MidPrint("BIGFONT", "Ooh, nice try, but you looked a little clumsy out there.\nWhy don't we give it another shot?");
 	}
 
 	void FireEvent(DazzlerEventType currentEventType, float currentEventTimeS) {
@@ -418,6 +440,8 @@ class DazzlerPowerHandler : EventHandler
 		// Close exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
 		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 128, 8 + 64);
+
+		player.A_ResetHealth();
 	}
 
 	void EndDanceSequence() {
@@ -430,6 +454,8 @@ class DazzlerPowerHandler : EventHandler
 		// Open exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
 		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 64, 8);
+
+		player.A_ResetHealth();
 	}
 
 	bool CheckDesync() {
@@ -443,8 +469,8 @@ class DazzlerPowerHandler : EventHandler
 			// Console.MidPrint(font, "Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...", bold: false);
 			// CallBus.PrintDazzlerDesyncWarning();
 			// Console.MidPrint("BIGFONT", "Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...");
-			player.ACS_NamedExecute("DazzlerPrintDesync", 0);
 			EndDanceSequence();
+			player.ACS_NamedExecute("DazzlerPrintDesync", 0);
 			return true;
 		}
 		return false;
