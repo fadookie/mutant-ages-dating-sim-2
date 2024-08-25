@@ -18,10 +18,11 @@
 #define INTRO_MESSAGE_HOLDTIME_S_FIX INTRO_MESSAGE_HOLDTIME_S << 16
 
 /***
- * Variables
+ * Global Variables
  */
 // bool talked_to_buddy = false;
 // int corpses_cleaned = 0;
+bool talked_logan_mnsn_entrance = false;
 
 /***
  * Global functions
@@ -51,29 +52,31 @@ script "DazzlerPrintDesync" (void)
  * Special trigger scripts
  */
 
-script 1 (void) {
-	Line_SetPortalTarget(42,1);
+script 1 (void) { // open mansion front door
+	if (talked_logan_mnsn_entrance) {
+		Line_SetPortalTarget(42,1);
+	}
 }
 
-script 2 (void) {
+script 2 (void) { // close mansion front door
 	Line_SetPortalTarget(42,0);
 }
 
-script 3 (void) {
+script 3 (void) { // top of mansion foyer stairs - does what?
 	Line_SetPortalTarget(44,46);
 }
 
-script 4 (void) {
+script 4 (void) { // bottom of mansion foyer stairs - does what?
 	Line_SetPortalTarget(44,45);
 }
 
-script 5 (void) {
+script 5 (void) { // mansion elevaor
 	FloorAndCeiling_LowerByValue(800, 64, 600);
 	Delay(64);
 	Line_SetPortalTarget(800, 801);
 }
 
-script 6 (void) {
+script 6 (void) { // scott's maze powerup remover
 	TakeInventory("PowerLightAmp", 1);
 }
 
@@ -134,11 +137,12 @@ script 11 ENTER {
 	PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Press ", k:"+use", s:"!");
  }
  
- script 15 (void) // Started Logan dialogue
+ script 15 (void) // Got quest from Logan dialogue
 {
-	Log(s:"Started Logan dialogue script called");
+	Log(s:"Got quest from Logan dialogue script called");
 	ACS_Terminate(14, 0);
 	Line_SetPortalTarget(42,1);
+	talked_logan_mnsn_entrance = true;
 }
 
 script 16 (void) // Trigger D&D end sequence
