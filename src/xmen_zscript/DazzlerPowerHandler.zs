@@ -25,6 +25,7 @@ class DazzlerPowerHandler : EventHandler
 	const NUM_SPAWN_ORIGINS = 5;
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
+	const EXIT_DOOR_SECTOR_TAG = 715;
 
 	float eventTimestampsS[NUM_EVENTS];
 	DazzlerEventType eventTypes[NUM_EVENTS];
@@ -413,6 +414,10 @@ class DazzlerPowerHandler : EventHandler
 		// Force restart of music if already playing
 		S_ChangeMusic("*", force: true);
 		S_ChangeMusic("music/petty-0.75-clicktrack.ogg", force: true);
+
+		// Close exit door
+		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
+		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 128, 8 + 64);
 	}
 
 	void EndDanceSequence() {
@@ -421,6 +426,10 @@ class DazzlerPowerHandler : EventHandler
 		danceStartTimeTk = 0;
 		// Restore default music
 		S_ChangeMusic("*");
+
+		// Open exit door
+		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
+		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 64, 8);
 	}
 
 	bool CheckDesync() {
