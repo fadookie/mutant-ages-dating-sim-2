@@ -51,8 +51,34 @@ script "DazzlerPrintDesync" (void)
  * Special trigger scripts
  */
 
+script 1 (void) {
+	Line_SetPortalTarget(42,1);
+}
+
+script 2 (void) {
+	Line_SetPortalTarget(42,0);
+}
+
+script 3 (void) {
+	Line_SetPortalTarget(44,46);
+}
+
+script 4 (void) {
+	Line_SetPortalTarget(44,45);
+}
+
+script 5 (void) {
+	FloorAndCeiling_LowerByValue(800, 64, 600);
+	Delay(64);
+	Line_SetPortalTarget(800, 801);
+}
+
+script 6 (void) {
+	TakeInventory("PowerLightAmp", 1);
+}
+
  
- script 11 ENTER {
+script 11 ENTER {
 	Log(s:"ACS ENTER");
 
 	if(INTRO_ENABLED) {
