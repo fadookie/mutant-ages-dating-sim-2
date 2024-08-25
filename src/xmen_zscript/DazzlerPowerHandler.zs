@@ -21,7 +21,7 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 29;
+	const NUM_EVENTS = 36;
 	const NUM_SPAWN_ORIGINS = 5;
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
@@ -167,6 +167,7 @@ class DazzlerPowerHandler : EventHandler
 		eventTimestampsS[23] = 11.076;
 		eventTypes      [23] = HUD_CROUCH;
 
+
 		// Quadruple event
 		eventTimestampsS[24] = 12.000;
 		eventTypes      [24] = VERTICAL_LINE;
@@ -182,8 +183,38 @@ class DazzlerPowerHandler : EventHandler
 		eventTimestampsS[27] = 12.000;
 		eventTypes      [27] = HUD_JUMP;
 
+
+		eventTimestampsS[28] = 12.461;
+		eventTypes      [28] = SINGLE;
+		eventArg0Ints   [28] = 2;
+
+		eventTimestampsS[29] = 12.923;
+		eventTypes      [29] = SINGLE;
+		eventArg0Ints   [29] = 1;
+
+		eventTimestampsS[30] = 13.384;
+		eventTypes      [30] = SINGLE;
+		eventArg0Ints   [30] = 3;
+
+		eventTimestampsS[31] = 13.846;
+		eventTypes      [31] = SINGLE;
+		eventArg0Ints   [31] = 4;
+
+		eventTimestampsS[32] = 14.307;
+		eventTypes      [32] = SINGLE;
+		eventArg0Ints   [32] = 0;
+
+		// Double event
+		eventTimestampsS[33] = 15.230;
+		eventTypes      [33] = VERTICAL_LINE;
+		eventArg0Ints   [33] = 1;
+
+		eventTimestampsS[34] = 15.230;
+		eventTypes      [34] = VERTICAL_LINE;
+		eventArg0Ints   [34] = 3;
+
 		// End of song - marker for end of game
-		eventTimestampsS[NUM_EVENTS - 1] = 13.0; // 93.544; = REAL VALUE
+		eventTimestampsS[NUM_EVENTS - 1] = eventTimestampsS[NUM_EVENTS - 2] + 5.0; // 93.544; = REAL VALUE
 		eventTypes      [NUM_EVENTS - 1] = NOOP;
 
 		// #endregion Event definitions
