@@ -41,10 +41,10 @@ class PhoenixPowerHandler : EventHandler
 	
 	override void WorldTick()
 	{
-		let timeSeconds = CallBus.Tics2Secondsf(level.time);
+		let timeSeconds = Utils.Tics2Secondsf(level.time);
 		if (levitating) {
 			int elapsedTimeTk = level.time - levitationStartTimeTk;
-			let elapsedTimeS = CallBus.Tics2Secondsf(elapsedTimeTk);
+			let elapsedTimeS = Utils.Tics2Secondsf(elapsedTimeTk);
 			if (elapsedTimeS > TOTAL_LEVITATION_TIME_S) {
                 levitating = false;
                 // Reset doodads

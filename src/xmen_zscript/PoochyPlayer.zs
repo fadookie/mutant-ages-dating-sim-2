@@ -12,6 +12,7 @@ class PoochyPlayer : DoomPlayer
 		// ProjectilePassHeight 75;
 		Player.ViewHeight 75;
 		+BUDDHA
+		+NOBLOOD
 		//-PICKUP
 		
 // 		Player.WeaponSlot 1, "ImpFist", "BroomWeapon";
@@ -49,7 +50,7 @@ class PoochyPlayer : DoomPlayer
 		Super.Tick();
 		if (levitating) {
 			int elapsedTimeTk = level.time - levitationStartTimeTk;
-			float elapsedTimeS = CallBus.Tics2Secondsf(elapsedTimeTk);
+			float elapsedTimeS = Utils.Tics2Secondsf(elapsedTimeTk);
 // 			A_Log("elapsedTimeS:");
 // 			A_LogInt(elapsedTimeS);
 			if (elapsedTimeS > TOTAL_LEVITATION_TIME_S) {
