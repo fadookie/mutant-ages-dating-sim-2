@@ -49,11 +49,13 @@ class Dazzler: Actor
 
 class DazzlerBall : DoomImpBall
 {
-	// Default
-	// {
+	Default
+	{
+		Damage 1;
+		DeathSound "";
 	// 	Height 64;
   //   MissileHeight 64;
-  // }
+  }
 
 	// States
 	// {

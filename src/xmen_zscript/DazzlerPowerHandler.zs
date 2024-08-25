@@ -1,5 +1,6 @@
 enum DazzlerEventType
 {
+		NOOP,
 		HUD_1,
 		HUD_2,
 		HUD_3,
@@ -12,8 +13,14 @@ enum DazzlerEventType
 		CIRCLE,
 		HORIZONTAL_LINE_CROUCH,
 		HORIZONTAL_LINE_JUMP,
-		BARRAGE,
-		NOOP,
+		BARRAGE_RTL,
+		BARRAGE_LTR,
+}
+
+enum BarrageType {
+	NONE,
+	LTR,
+	RTL,
 }
 
 class DazzlerPowerHandler : EventHandler
@@ -21,16 +28,15 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 29;
 	const NUM_SPAWN_ORIGINS = 5;
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
 	const EXIT_DOOR_SECTOR_TAG = 715;
 	const INNER_CIRCLE_DOOR_SECTOR_TAG = 716;
 
-	float eventTimestampsS[NUM_EVENTS];
-	DazzlerEventType eventTypes[NUM_EVENTS];
-	int eventArg0Ints[NUM_EVENTS];
+	bool CHEAT_INVINCIBLE; // Player can't fail sequence
+
+	DazzlerPowerEventSequence events;
 	int currentEventIdx;
 
 	int danceQueueTimeTk;
@@ -42,6 +48,7 @@ class DazzlerPowerHandler : EventHandler
 	int barrageStartTimeTk;
 	int barrageMaxBalls;
 	int barrageNumBallsFired;
+	BarrageType barrageType;
 
 	PoochyPlayer player;
 	Dazzler dazzler;
@@ -51,6 +58,12 @@ class DazzlerPowerHandler : EventHandler
 
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
+
+ 		CHEAT_INVINCIBLE = true; // TODO: Disable
+		
+		events = New("DazzlerPowerEventSequence");
+		events.Init();
+
 		player = CallBus.FindPlayer();
 		dazzler = CallBus.FindDazzler();
 
@@ -76,128 +89,17 @@ class DazzlerPowerHandler : EventHandler
 // 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
 // 			boardSpot = player.Spawn("Shotgun", (0,0,0), NO_REPLACE);
 // 		}
-
-		// #region Event definitions
-		eventTimestampsS[0] = 0;
-		eventTypes      [0] = HUD_1;
-
-		eventTimestampsS[1] = 0.461;
-		eventTypes      [1] = HUD_2;
-
-		eventTimestampsS[2] = 0.923;
-		eventTypes      [2] = HUD_3;
-
-		// Double event
-		eventTimestampsS[3] = 1.384;
-		eventTypes      [3] = HUD_4;
-
-		eventTimestampsS[4] = 1.384;
-		eventTypes      [4] = SINGLE;
-		eventArg0Ints   [4] = 0;
-
-		eventTimestampsS[5] = 1.846;
-		eventTypes      [5] = SINGLE;
-		eventArg0Ints   [5] = 1;
-
-		eventTimestampsS[6] = 1.846;
-		eventTypes      [6] = HUD_GO;
-
-		eventTimestampsS[7] = 2.307;
-		eventTypes      [7] = SINGLE;
-		eventArg0Ints   [7] = 2;
-
-		eventTimestampsS[8] = 2.769;
-		eventTypes      [8] = SINGLE;
-		eventArg0Ints   [8] = 3;
-
-		eventTimestampsS[9] = 3.230;
-		eventTypes      [9] = SINGLE;
-		eventArg0Ints   [9] = 4;
-
-		// Double event	
-		eventTimestampsS[10] = 3.692;
-		eventTypes      [10] = HORIZONTAL_LINE_JUMP;
-
-		eventTimestampsS[11] = 3.692;
-		eventTypes      [11] = HUD_JUMP;
-
-		// Double event	
-		eventTimestampsS[12] = 4.615;
-		eventTypes      [12] = HORIZONTAL_LINE_CROUCH;
-
-		eventTimestampsS[13] = 4.615;
-		eventTypes      [13] = HUD_CROUCH;
-
-		eventTimestampsS[14] = 5.538;
-		eventTypes      [14] = VERTICAL_LINE;
-		eventArg0Ints   [14] = 0;
-
-		eventTimestampsS[15] = 6.461;
-		eventTypes      [15] = VERTICAL_LINE;
-		eventArg0Ints   [15] = 1;
-
-		eventTimestampsS[16] = 7.384;
-		eventTypes      [16] = VERTICAL_LINE;
-		eventArg0Ints   [16] = 3;
-
-		eventTimestampsS[17] = 8.307;
-		eventTypes      [17] = VERTICAL_LINE;
-		eventArg0Ints   [17] = 4;
-
-		eventTimestampsS[18] = 9.230;
-		eventTypes      [18] = VERTICAL_LINE;
-		eventArg0Ints   [18] = 3;
-
-		eventTimestampsS[19] = 10.153;
-		eventTypes      [19] = VERTICAL_LINE;
-		eventArg0Ints   [19] = 2;
-
-		// Quadruple event
-		eventTimestampsS[20] = 11.076;
-		eventTypes      [20] = VERTICAL_LINE;
-		eventArg0Ints   [20] = 1;
-
-		eventTimestampsS[21] = 11.076;
-		eventTypes      [21] = HORIZONTAL_LINE_CROUCH;
-
-		eventTimestampsS[22] = 11.076;
-		eventTypes      [22] = VERTICAL_LINE;
-		eventArg0Ints   [22] = 3;
-
-		eventTimestampsS[23] = 11.076;
-		eventTypes      [23] = HUD_CROUCH;
-
-		// Quadruple event
-		eventTimestampsS[24] = 12.000;
-		eventTypes      [24] = VERTICAL_LINE;
-		eventArg0Ints   [24] = 0;
-
-		eventTimestampsS[25] = 12.000;
-		eventTypes      [25] = HORIZONTAL_LINE_JUMP;
-
-		eventTimestampsS[26] = 12.000;
-		eventTypes      [26] = VERTICAL_LINE;
-		eventArg0Ints   [26] = 4;
-
-		eventTimestampsS[27] = 12.000;
-		eventTypes      [27] = HUD_JUMP;
-
-		// End of song - marker for end of game
-		eventTimestampsS[NUM_EVENTS - 1] = 13.0; // 93.544; = REAL VALUE
-		eventTypes      [NUM_EVENTS - 1] = NOOP;
-
-		// #endregion Event definitions
 	}
 	
 	override void WorldTick()
 	{
-		if (currentEventIdx >= NUM_EVENTS) {
+		if (currentEventIdx >= events.eventTimestampsS.Size()) {
 			EndDanceSequence();
 			CheckWinCondition();
 			return;
 		}
 		
-		if (player.health == 1) {
+		if (!CHEAT_INVINCIBLE && player.health == 1) {
 			EndDanceSequence();
 			PrintLoseMessage();
 			return;
@@ -218,8 +120,8 @@ class DazzlerPowerHandler : EventHandler
 
 		if(CheckDesync()) { return; }
 
-		float currentEventTimeS = eventTimestampsS[currentEventIdx];
-		let currentEventType = eventTypes[currentEventIdx];
+		float currentEventTimeS = events.eventTimestampsS[currentEventIdx];
+		let currentEventType = events.eventTypes[currentEventIdx];
 
 		// Console.Printf("timeSinceStartTk:" .. timeSinceStartTk .. " timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
 
@@ -227,14 +129,14 @@ class DazzlerPowerHandler : EventHandler
 			if(CheckDesync()) { return; }
 			FireEvent(currentEventType, currentEventTimeS);
 			++currentEventIdx;
-			if (currentEventIdx >= NUM_EVENTS) {
+			if (currentEventIdx >= events.eventTimestampsS.Size()) {
 				// We've reached the end of the dance sequence.
 				EndDanceSequence();
 				CheckWinCondition();
 				return;
 			}
-			currentEventTimeS = eventTimestampsS[currentEventIdx];
-			currentEventType = eventTypes[currentEventIdx];
+			currentEventTimeS = events.eventTimestampsS[currentEventIdx];
+			currentEventType = events.eventTypes[currentEventIdx];
 		};
 
 		// Process barrage time slice
@@ -243,12 +145,23 @@ class DazzlerPowerHandler : EventHandler
 			let BALL_SPACING = 38.0;
 			let height = 32.0;
 
-			let BARRAGE_INTERVAL_TK = 10;
+			let BARRAGE_INTERVAL_TK = 5;
 			let timeSinceBarrageStartTk = level.time - barrageStartTimeTk;
 			// Console.Printf("Barrage in progress, barrageStartTimeTk:" .. barrageStartTimeTk .. " timeSinceStart:" .. timeSinceBarrageStartTk);
 			if (timeSinceBarrageStartTk % BARRAGE_INTERVAL_TK == 0) {
 				// We just crossed the interval time
-				int intervalIdx = timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK;
+				int intervalIdx;
+				switch (barrageType) {
+					case RTL:
+						intervalIdx = timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK;
+						break;
+					case LTR:
+						intervalIdx = (NUM_BALLS - 1) - (timeSinceBarrageStartTk / BARRAGE_INTERVAL_TK);
+						break;
+					default:
+						ThrowAbortException("Unknown barrage type: %d", barrageType);
+				}
+				Console.Printf("intervalIdx:" .. intervalIdx);
 				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 				let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
 				let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
@@ -270,7 +183,7 @@ class DazzlerPowerHandler : EventHandler
 
 	// Should only be called after reaching end of events list
 	void CheckWinCondition() {
-		if (player.health > 1) {
+		if (player.health > 1 || CHEAT_INVINCIBLE) {
 			// Player won
 			Console.MidPrint("BIGFONT", "Nice footwork! You impressed me.\nI'll let you through to see my friends in the inner circle...");
 			Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
@@ -303,7 +216,7 @@ class DazzlerPowerHandler : EventHandler
 
 		switch(currentEventType) {
 			case SINGLE: {
-				let originIndex = eventArg0Ints[currentEventIdx];
+				let originIndex = events.eventArg0Ints[currentEventIdx];
 				let ball = DazzlerBall(spawnOrigins[originIndex].SpawnMissile(target, "DazzlerBall"));
 				if (ball) {
 					ball.SetRandomTranslation();
@@ -314,7 +227,7 @@ class DazzlerPowerHandler : EventHandler
 			}
 
 			case VERTICAL_LINE: {
-				let originIndex = eventArg0Ints[currentEventIdx];
+				let originIndex = events.eventArg0Ints[currentEventIdx];
 				let spawnOrigin = spawnOrigins[originIndex];
 				let NUM_BALLS = 10;
 				let BALL_SPACING = 15.0;
@@ -361,9 +274,19 @@ class DazzlerPowerHandler : EventHandler
 				break;
 			}
 
-			case BARRAGE: {
+			case BARRAGE_RTL: {
 				barrageStartTimeTk = level.time;
 				barrageMaxBalls = 10;
+				barrageNumBallsFired = 0;
+				barrageType = RTL;
+				break;
+			}
+
+			case BARRAGE_LTR: {
+				barrageStartTimeTk = level.time;
+				barrageMaxBalls = 10;
+				barrageNumBallsFired = 0;
+				barrageType = LTR;
 				break;
 			}
 
@@ -427,7 +350,7 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	void StartDanceSequence() {
-		Console.Printf("DazzlerPowerHandler#StartDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
+		Console.Printf("DazzlerPowerHandler#StartDanceSequence CHEAT_INVINCIBLE:" .. CHEAT_INVINCIBLE .. " level.time:" .. level.time .. " MSTime:" .. MSTime());
 		Console.MidPrint("BIGFONT", "Let's jam!");
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
