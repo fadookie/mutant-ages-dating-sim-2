@@ -26,6 +26,26 @@
 /***
  * Global functions
  */
+
+script "DazzlerPrintJump" (void)
+{
+	SetFont("BIGFONT");
+	PrintBold(s:"\c[White]JUMP! Press ", k:"+jump", s:".");
+}
+
+script "DazzlerPrintCrouch" (void)
+{
+	SetFont("BIGFONT");
+	PrintBold(s:"\c[White]CROUCH! Press ", k:"crouch", s:".");
+}
+
+script "DazzlerPrintDesync" (void)
+{
+	SetFont("BIGFONT");
+	HudMessageBold(s:"Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...";
+		HUDMSG_PLAIN, 0, CR_WHITE, 1.5, 0.5, 8.0 /* hold time in seconds */);
+	//HudMessageBold(s:"I can't believe Wolverine went on a date with me! And then more! I guess he is my boyfriend now... "; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+}
  
 /**
  * Special trigger scripts

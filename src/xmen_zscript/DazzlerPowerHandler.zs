@@ -21,7 +21,7 @@ class DazzlerPowerHandler : EventHandler
 	// const PI = 3.14159265358979323846;
 	const DANCE_QUEUE_TIME_S = 1.0;
 	const DESYNC_THRESHOLD_S = 0.5;
-	const NUM_EVENTS = 27;
+	const NUM_EVENTS = 29;
 	const NUM_SPAWN_ORIGINS = 5;
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
 	const TARGET_TID = 999;
@@ -75,6 +75,7 @@ class DazzlerPowerHandler : EventHandler
 // 			boardSpot = player.Spawn("Shotgun", (0,0,0), NO_REPLACE);
 // 		}
 
+		// #region Event definitions
 		eventTimestampsS[0] = 0;
 		eventTypes      [0] = HUD_1;
 
@@ -149,7 +150,7 @@ class DazzlerPowerHandler : EventHandler
 		eventTypes      [19] = VERTICAL_LINE;
 		eventArg0Ints   [19] = 2;
 
-		// Triple event
+		// Quadruple event
 		eventTimestampsS[20] = 11.076;
 		eventTypes      [20] = VERTICAL_LINE;
 		eventArg0Ints   [20] = 1;
@@ -161,21 +162,29 @@ class DazzlerPowerHandler : EventHandler
 		eventTypes      [22] = VERTICAL_LINE;
 		eventArg0Ints   [22] = 3;
 
-		// Triple event
-		eventTimestampsS[23] = 12.000;
-		eventTypes      [23] = VERTICAL_LINE;
-		eventArg0Ints   [23] = 0;
+		eventTimestampsS[23] = 11.076;
+		eventTypes      [23] = HUD_CROUCH;
 
+		// Quadruple event
 		eventTimestampsS[24] = 12.000;
-		eventTypes      [24] = HORIZONTAL_LINE_JUMP;
+		eventTypes      [24] = VERTICAL_LINE;
+		eventArg0Ints   [24] = 0;
 
 		eventTimestampsS[25] = 12.000;
-		eventTypes      [25] = VERTICAL_LINE;
-		eventArg0Ints   [25] = 4;
+		eventTypes      [25] = HORIZONTAL_LINE_JUMP;
+
+		eventTimestampsS[26] = 12.000;
+		eventTypes      [26] = VERTICAL_LINE;
+		eventArg0Ints   [26] = 4;
+
+		eventTimestampsS[27] = 12.000;
+		eventTypes      [27] = HUD_JUMP;
 
 		// End of song - marker for end of game
 		eventTimestampsS[NUM_EVENTS - 1] = 93.544;
 		eventTypes      [NUM_EVENTS - 1] = NOOP;
+
+		// #endregion Event definitions
 	}
 	
 	override void WorldTick()
@@ -193,6 +202,7 @@ class DazzlerPowerHandler : EventHandler
 		if (danceQueueTimeTk > 0
 			&& Utils.Tics2Secondsf(level.time - danceQueueTimeTk) >= DANCE_QUEUE_TIME_S) {
 			danceQueueTimeTk = 0;
+			EndDanceSequence();
 			StartDanceSequence();
 		}
 		if (danceStartTimeTk <= 0) {
@@ -358,11 +368,13 @@ class DazzlerPowerHandler : EventHandler
 				break;
 
 			case HUD_JUMP:
-				Console.MidPrint("BIGFONT", "JUMP!");
+				// Console.MidPrint("BIGFONT", "JUMP!");
+				player.ACS_NamedExecute("DazzlerPrintJump", 0);
 				break;
 
 			case HUD_CROUCH:
-				Console.MidPrint("BIGFONT", "CROUCH!");
+				// Console.MidPrint("BIGFONT", "CROUCH!");
+				player.ACS_NamedExecute("DazzlerPrintCrouch", 0);
 				break;
 
 			default:
@@ -421,8 +433,8 @@ class DazzlerPowerHandler : EventHandler
 			// let font = Font.GetFont("SMALLFONT");
 			// Console.MidPrint(font, "Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...", bold: false);
 			// CallBus.PrintDazzlerDesyncWarning();
-			Console.MidPrint("BIGFONT", "Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...");
-			// ACS_NamedExecute("PrintDazzlerDesyncWarning", 0);
+			// Console.MidPrint("BIGFONT", "Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...");
+			player.ACS_NamedExecute("DazzlerPrintDesync", 0);
 			EndDanceSequence();
 			return true;
 		}
