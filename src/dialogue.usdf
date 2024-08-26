@@ -7,6 +7,97 @@ namespace = "ZDoom";
 
 conversation
 {
+	actor = "Magneto";
+  panel = "MGNPA0";
+	page
+	{
+		name = "Magneto";
+		dialog = "Welcome, friend. I'm busy at the moment, please talk to Emma.";
+	}
+}
+
+conversation
+{
+	actor = "Gambit";
+	page
+	{
+		name = "Gambit";
+		dialog = "Gambit don't like the food here much, but the entertainment is good.";
+	}
+}
+
+conversation
+{
+	actor = "Blob";
+	page
+	{
+		name = "Fred Dukes";
+		dialog = "Bro, do you even lift?";
+	}
+}
+
+conversation
+{
+	actor = "Pyro";
+	page
+	{
+		name = "Pyro";
+		dialog = "Need a light?";
+	}
+}
+
+conversation
+{
+	actor = "Gator";
+	page
+	{
+		name = "Off-duty Alligator Guard";
+		dialog = "I guess this Dazzler chick is OK, but I prefer croc music.";
+	}
+}
+
+conversation
+{
+	actor = "Mono";
+	page
+	{
+		name = "Living Monolith (Ahmet Abdol)";
+		dialog = "They let me in here because I promised I was done creating pyramid schemes.";
+	}
+}
+
+conversation
+{
+	actor = "CoffeeGuy";
+	page
+	{
+		name = "Ordinary Working Stiff";
+		dialog = "I love this place! I come here every day after work at Imps 'R Us, with my 20 closest friends.";
+	}
+}
+
+conversation
+{
+	actor = "Colossus";
+	page
+	{
+		name = "Colossus";
+		dialog = "I order white russian, server tell me limit one per table! Nyet.";
+	}
+}
+
+conversation
+{
+	actor = "Storm";
+	page
+	{
+		name = "Storm";
+		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, time for another round.";
+	}
+}
+
+conversation
+{
 	actor = "Cyclops";
 	page //ID={{PAGE_START}} Index=1
 	{
