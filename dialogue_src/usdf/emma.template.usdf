@@ -1,7 +1,7 @@
 conversation
 {
 	actor = "EmmaFrost";
-	page //1
+	page //ID={{PAGE_START}} Index=<%= PAGE_START %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -17,16 +17,16 @@ conversation
 		{
 			text = "I'm Ryan!"; // give inventory
 			giveitem = "IsRyanInventory";
-			nextpage = 2;
+			nextpage = <%= PAGE_CLASS_SELECT %>; // PAGE_CLASS_SELECT 
 		}
 		choice
 		{
 			text = "The name's Poochy. Dr. Poochy.";
 			giveitem = "IsPoochyInventory";
-			nextpage = 2;
+			nextpage = <%= PAGE_CLASS_SELECT %>; // PAGE_CLASS_SELECT 
 		}
 	}
-	page //2
+	page //ID={{PAGE_CLASS_SELECT}} Index=<%= PAGE_CLASS_SELECT %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -35,13 +35,13 @@ conversation
 		{
 			text = "A Warcraft!";
 			giveitem = "WarcraftDnDInventory";
-			nextpage = 3;
+			nextpage = <%= PAGE_CLASS_SELECT_WARCRAFT %>; // PAGE_CLASS_SELECT_WARCRAFT 
 		}
 		choice
 		{
 			text = "Dr. Nathaniel \"Poochy\" Chainlink.";
 			giveitem = "PoochyDnDInventory";
-			nextpage = 4;
+			nextpage = <%= PAGE_CLASS_SELECT_POOCHY %>; // PAGE_CLASS_SELECT_POOCHY 
 		}
 // 		choice
 // 		{
@@ -49,7 +49,7 @@ conversation
 // 			nextpage = 3;
 // 		}
 	}
-	page //3
+	page //ID={{PAGE_CLASS_SELECT_WARCRAFT}} Index=<%= PAGE_CLASS_SELECT_WARCRAFT %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -57,10 +57,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 6;
+			nextpage = <%= PAGE_LOGAN_CLASS_QUESTION %>; // PAGE_LOGAN_CLASS_QUESTION  
 		}
 	}
-	page //4
+	page //ID={{PAGE_CLASS_SELECT_POOCHY}} Index=<%= PAGE_CLASS_SELECT_POOCHY %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -68,15 +68,15 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 6;
+			nextpage = <%= PAGE_LOGAN_CLASS_QUESTION %>; // PAGE_LOGAN_CLASS_QUESTION  
 		}
 		ifitem
 		{
 			item = "IsPoochyInventory";
 		}
-		link = 5;
+		link = <%= PAGE_CLASS_SELECT_DOUBLE_POOCHY %>; // PAGE_CLASS_SELECT_DOUBLE_POOCHY   
 	}
-	page //5
+	page //ID={{PAGE_CLASS_SELECT_DOUBLE_POOCHY}} Index=<%= PAGE_CLASS_SELECT_DOUBLE_POOCHY %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -84,10 +84,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 6;
+			nextpage = <%= PAGE_LOGAN_CLASS_QUESTION %>; // PAGE_LOGAN_CLASS_QUESTION  
 		}
 	}
-	page //6
+	page //ID={{PAGE_LOGAN_CLASS_QUESTION}} Index=<%= PAGE_LOGAN_CLASS_QUESTION %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -95,10 +95,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 7;
+			nextpage = <%= PAGE_LOGAN_CLASS_RESPONSE %>; // PAGE_LOGAN_CLASS_RESPONSE  
 		}
 	}
-	page //7
+	page //ID={{PAGE_LOGAN_CLASS_RESPONSE}} Index=<%= PAGE_LOGAN_CLASS_RESPONSE %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -106,10 +106,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 8;
+			nextpage = <%= PAGE_LOGAN_CLASS_ASSIGNMENT %>; // PAGE_LOGAN_CLASS_ASSIGNMENT  
 		}
 	}
-	page //8
+	page //ID={{PAGE_LOGAN_CLASS_ASSIGNMENT}} Index=<%= PAGE_LOGAN_CLASS_ASSIGNMENT %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -117,10 +117,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 9;
+			nextpage = <%= PAGE_MAGNETO_CRAFTING %>; // PAGE_MAGNETO_CRAFTING
 		}
 	}
-	page //9
+	page //ID={{PAGE_MAGNETO_CRAFTING}} Index=<%= PAGE_MAGNETO_CRAFTING %>
 	{
 		name = "Magneto";
 		panel = "MGNPA0";
@@ -128,10 +128,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 10;
+			nextpage = <%= PAGE_EMMA_NO_CRAFTING %>; // PAGE_EMMA_NO_CRAFTING 
 		}
 	}
-	page //10
+	page //ID={{PAGE_EMMA_NO_CRAFTING}} Index=<%= PAGE_EMMA_NO_CRAFTING %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -139,10 +139,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 11;
+			nextpage = <%= PAGE_EMMA_FOREST_INTRO %>; // PAGE_EMMA_FOREST_INTRO 
 		}
 	}
-	page //11
+	page //ID={{PAGE_EMMA_FOREST_INTRO}} Index=<%= PAGE_EMMA_FOREST_INTRO %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -150,7 +150,7 @@ conversation
 		choice
 		{
 			text = "(Poochy) I use my AE Vision!";
-			nextpage = 12;
+			nextpage = <%= PAGE_EMMA_POOCHY_PERCEPTION_CHECK %>; // PAGE_EMMA_POOCHY_PERCEPTION_CHECK 
 			cost
 			{
 					item = "PoochyDnDInventory";
@@ -161,7 +161,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft) I listen and smell for danger.";
-			nextpage = 13;
+			nextpage = <%= PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK %>; // PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK 
 			cost
 			{
 					item = "WarcraftDnDInventory";
@@ -170,7 +170,7 @@ conversation
 			}
 		}
 	}
-	page //12
+	page //ID={{PAGE_EMMA_POOCHY_PERCEPTION_CHECK}} Index=<%= PAGE_EMMA_POOCHY_PERCEPTION_CHECK %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -178,10 +178,10 @@ conversation
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 14;
+			nextpage = <%= PAGE_EMMA_PERCEPTION_CHECK_RESULT %>; // PAGE_EMMA_PERCEPTION_CHECK_RESULT 
 		}
 	}
-	page //13
+	page //ID={{PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK}} Index=<%= PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -189,10 +189,10 @@ conversation
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 14;
+			nextpage = <%= PAGE_EMMA_PERCEPTION_CHECK_RESULT %>; // PAGE_EMMA_PERCEPTION_CHECK_RESULT 
 		}
 	}
-	page //14
+	page //ID={{PAGE_EMMA_PERCEPTION_CHECK_RESULT}} Index=<%= PAGE_EMMA_PERCEPTION_CHECK_RESULT %>
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -200,10 +200,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 15;
+			nextpage = <%= PAGE_LOGAN_WANTS_ATTACK %>; // PAGE_LOGAN_WANTS_ATTACK 
 		}
 	}
-	page //15
+	page //ID={{PAGE_LOGAN_WANTS_ATTACK}} Index=<%= PAGE_LOGAN_WANTS_ATTACK %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -211,10 +211,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 16;
+			nextpage = <%= PAGE_MAGNETO_WAIT_ATTACK %>; // PAGE_MAGNETO_WAIT_ATTACK 
 		}
 	}
-	page //16
+	page //ID={{PAGE_MAGNETO_WAIT_ATTACK}} Index=<%= PAGE_MAGNETO_WAIT_ATTACK %>
 	{
 		name = "Magneto";
 		panel = "MGNPA0";
@@ -222,12 +222,12 @@ conversation
 		choice
 		{
 			text = "Let's try talking.";
-			nextpage = 17;
+			// nextpage = 17;
 		}
 		choice
 		{
 			text = "Attack!";
-			nextpage = 17;
+			// nextpage = 17;
 		}
 	}
 }

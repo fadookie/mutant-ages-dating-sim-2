@@ -2,7 +2,7 @@
 conversation
 {
 	actor = "Phoenix";
-	page //{{PAGE_WELCOME}} <%= PAGE_WELCOME %>
+	page //ID={{PAGE_START}} Index=<%= PAGE_START %>
 	{
 		name = "Jean";
 		panel = "PNXPA0";
@@ -18,10 +18,10 @@ conversation
 		choice
 		{
 			text = "How are you doing, Jean?";
-			nextpage = <%= PAGE_PHOENIXLEFT %>;
+			nextpage = <%= PAGE_PHOENIXLEFT %>; // PAGE_PHOENIXLEFT 
 		}
 	}
-	page { //{{PAGE_PHOENIXLEFT}} <%= PAGE_PHOENIXLEFT %>
+	page { //ID={{PAGE_PHOENIXLEFT}} Index=<%= PAGE_PHOENIXLEFT %>
 		name = "Jean";
 		panel = "PNXPA0";
 		dialog = "\c[Orange]I'm so glad the Phoenix Force finally left me alone. I'm all back to normal now with my perfect boyfriend, Scott, whom I totally love!";

@@ -1,9 +1,14 @@
 namespace = "ZDoom";
 
+// This is a build artifact from template-tool.js. DO NOT EDIT DIRECTLY!
+// Edit the source templates in dialogue_src/usdf and then run template-tool to update!
+
+
+
 conversation
 {
 	actor = "Cyclops";
-	page //1
+	page //ID={{PAGE_START}} Index=1
 	{
 		name = "Scott";
 		panel = "CYCPA0";
@@ -24,7 +29,7 @@ conversation
 		choice
 		{
 			text = "Hey, could you help me with something?";
-			nextpage = 2;
+			nextpage = 2; // PAGE_WHERE_GET 
 			nomessage = "\c[Cyan]With what? Come back when you've found something I can help with.";
 			cost
 			{
@@ -33,7 +38,7 @@ conversation
 			}
 		}
 	}
-	page //2
+	page //ID={{PAGE_WHERE_GET}} Index=2
 	{
 		name = "Scott";
 		panel = "CYCPA0";
@@ -41,10 +46,10 @@ conversation
 		choice
 		{
 			text = "I'm looking for the key to the hangar! If you blast it open I'll give everything else back.";
-			nextpage = 3;
+			nextpage = 3; // PAGE_OK 
 		}
 	}
-	page //3
+	page //ID={{PAGE_OK}} Index=3
 	{
 		name = "Scott";
 		panel = "CYCPA0";
@@ -53,10 +58,10 @@ conversation
 		{
 			text = "I pinkie swear.";
 			giveitem = "BlueCard";
-			nextpage = 4;
+			nextpage = 4; // PAGE_GIVEKEY 
 		}
 	}
-	page //4
+	page //ID={{PAGE_GIVEKEY}} Index=4
 	{
 		name = "Scott";
 		panel = "CYCPA0";
@@ -70,10 +75,12 @@ conversation
 	}
 }
 
+
+
 conversation
 {
 	actor = "Dazzler";
-	page //1
+	page //ID={{PAGE_START}} Index=1
 	{
 		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
@@ -88,10 +95,12 @@ conversation
 	}
 }
 
+
+
 conversation
 {
 	actor = "EmmaFrost";
-	page //1
+	page //ID={{PAGE_START}} Index=1
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -107,16 +116,16 @@ conversation
 		{
 			text = "I'm Ryan!"; // give inventory
 			giveitem = "IsRyanInventory";
-			nextpage = 2;
+			nextpage = 2; // PAGE_CLASS_SELECT 
 		}
 		choice
 		{
 			text = "The name's Poochy. Dr. Poochy.";
 			giveitem = "IsPoochyInventory";
-			nextpage = 2;
+			nextpage = 2; // PAGE_CLASS_SELECT 
 		}
 	}
-	page //2
+	page //ID={{PAGE_CLASS_SELECT}} Index=2
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -125,13 +134,13 @@ conversation
 		{
 			text = "A Warcraft!";
 			giveitem = "WarcraftDnDInventory";
-			nextpage = 3;
+			nextpage = 3; // PAGE_CLASS_SELECT_WARCRAFT 
 		}
 		choice
 		{
 			text = "Dr. Nathaniel \"Poochy\" Chainlink.";
 			giveitem = "PoochyDnDInventory";
-			nextpage = 4;
+			nextpage = 4; // PAGE_CLASS_SELECT_POOCHY 
 		}
 // 		choice
 // 		{
@@ -139,7 +148,7 @@ conversation
 // 			nextpage = 3;
 // 		}
 	}
-	page //3
+	page //ID={{PAGE_CLASS_SELECT_WARCRAFT}} Index=3
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -147,10 +156,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 6;
+			nextpage = 6; // PAGE_LOGAN_CLASS_QUESTION  
 		}
 	}
-	page //4
+	page //ID={{PAGE_CLASS_SELECT_POOCHY}} Index=4
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -158,15 +167,15 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 6;
+			nextpage = 6; // PAGE_LOGAN_CLASS_QUESTION  
 		}
 		ifitem
 		{
 			item = "IsPoochyInventory";
 		}
-		link = 5;
+		link = 5; // PAGE_CLASS_SELECT_DOUBLE_POOCHY   
 	}
-	page //5
+	page //ID={{PAGE_CLASS_SELECT_DOUBLE_POOCHY}} Index=5
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -174,10 +183,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 6;
+			nextpage = 6; // PAGE_LOGAN_CLASS_QUESTION  
 		}
 	}
-	page //6
+	page //ID={{PAGE_LOGAN_CLASS_QUESTION}} Index=6
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -185,10 +194,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 7;
+			nextpage = 7; // PAGE_LOGAN_CLASS_RESPONSE  
 		}
 	}
-	page //7
+	page //ID={{PAGE_LOGAN_CLASS_RESPONSE}} Index=7
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -196,10 +205,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 8;
+			nextpage = 8; // PAGE_LOGAN_CLASS_ASSIGNMENT  
 		}
 	}
-	page //8
+	page //ID={{PAGE_LOGAN_CLASS_ASSIGNMENT}} Index=8
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -207,10 +216,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 9;
+			nextpage = 9; // PAGE_MAGNETO_CRAFTING
 		}
 	}
-	page //9
+	page //ID={{PAGE_MAGNETO_CRAFTING}} Index=9
 	{
 		name = "Magneto";
 		panel = "MGNPA0";
@@ -218,10 +227,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 10;
+			nextpage = 10; // PAGE_EMMA_NO_CRAFTING 
 		}
 	}
-	page //10
+	page //ID={{PAGE_EMMA_NO_CRAFTING}} Index=10
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -229,10 +238,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 11;
+			nextpage = 11; // PAGE_EMMA_FOREST_INTRO 
 		}
 	}
-	page //11
+	page //ID={{PAGE_EMMA_FOREST_INTRO}} Index=11
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -240,7 +249,7 @@ conversation
 		choice
 		{
 			text = "(Poochy) I use my AE Vision!";
-			nextpage = 12;
+			nextpage = 12; // PAGE_EMMA_POOCHY_PERCEPTION_CHECK 
 			cost
 			{
 					item = "PoochyDnDInventory";
@@ -251,7 +260,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft) I listen and smell for danger.";
-			nextpage = 13;
+			nextpage = 13; // PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK 
 			cost
 			{
 					item = "WarcraftDnDInventory";
@@ -260,7 +269,7 @@ conversation
 			}
 		}
 	}
-	page //12
+	page //ID={{PAGE_EMMA_POOCHY_PERCEPTION_CHECK}} Index=12
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -268,10 +277,10 @@ conversation
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 14;
+			nextpage = 14; // PAGE_EMMA_PERCEPTION_CHECK_RESULT 
 		}
 	}
-	page //13
+	page //ID={{PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK}} Index=13
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -279,10 +288,10 @@ conversation
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 14;
+			nextpage = 14; // PAGE_EMMA_PERCEPTION_CHECK_RESULT 
 		}
 	}
-	page //14
+	page //ID={{PAGE_EMMA_PERCEPTION_CHECK_RESULT}} Index=14
 	{
 		name = "Emma Frost";
 		panel = "WQNPA0";
@@ -290,10 +299,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 15;
+			nextpage = 15; // PAGE_LOGAN_WANTS_ATTACK 
 		}
 	}
-	page //15
+	page //ID={{PAGE_LOGAN_WANTS_ATTACK}} Index=15
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -301,10 +310,10 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = 16;
+			nextpage = 16; // PAGE_MAGNETO_WAIT_ATTACK 
 		}
 	}
-	page //16
+	page //ID={{PAGE_MAGNETO_WAIT_ATTACK}} Index=16
 	{
 		name = "Magneto";
 		panel = "MGNPA0";
@@ -312,20 +321,23 @@ conversation
 		choice
 		{
 			text = "Let's try talking.";
-			nextpage = 17;
+			// nextpage = 17;
 		}
 		choice
 		{
 			text = "Attack!";
-			nextpage = 17;
+			// nextpage = 17;
 		}
 	}
 }
 
+
+
+
 conversation
 {
 	actor = "Phoenix";
-	page //1
+	page //ID={{PAGE_START}} Index=1
 	{
 		name = "Jean";
 		panel = "PNXPA0";
@@ -341,10 +353,10 @@ conversation
 		choice
 		{
 			text = "How are you doing, Jean?";
-			nextpage = 2;
+			nextpage = 2; // PAGE_PHOENIXLEFT 
 		}
 	}
-	page { //2
+	page { //ID={{PAGE_PHOENIXLEFT}} Index=2
 		name = "Jean";
 		panel = "PNXPA0";
 		dialog = "\c[Orange]I'm so glad the Phoenix Force finally left me alone. I'm all back to normal now with my perfect boyfriend, Scott, whom I totally love!";
@@ -362,7 +374,7 @@ conversation
 conversation
 {
 	actor = "Wolverine";
-	page //1
+	page //ID={{PAGE_START}} Index=1
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -371,19 +383,19 @@ conversation
 		{
 			text = "I would never!";
 			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
-			nextpage = 2;
+			nextpage = 2; // PAGE_OTHER_BOYFRIENDS 
 			special = 80;
 			arg0 = 15;
 		}
 		choice
 		{
 			text = "Says the king of fucking off to Alaska without telling anybody.";
-			nextpage = 3;
+			nextpage = 3; // PAGE_BROOD 
 			special = 80;
 			arg0 = 15;
 		}
 	}
-	page //2
+	page //ID={{PAGE_OTHER_BOYFRIENDS}} Index=2
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -391,10 +403,10 @@ conversation
 		choice
 		{
 			text = "You seem a little down, what's wrong?";
-			nextpage = 3;
+			nextpage = 3; // PAGE_BROOD 
 		}
 	}
-	page //3
+	page //ID={{PAGE_BROOD}} Index=3
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -402,10 +414,10 @@ conversation
 		choice
 		{
 			text = "And what have you been brooding about recently, babe?";
-			nextpage = 4;
+			nextpage = 4; // PAGE_JEAN_BACK 
 		}
 	}
-	page //4
+	page //ID={{PAGE_JEAN_BACK}} Index=4
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -413,10 +425,10 @@ conversation
 		choice
 		{
 			text = "Oh, cry me a river. I thought I was the only one for you?";
-			nextpage = 5;
+			nextpage = 5; // PAGE_POLYCULE 
 		}
 	}
-	page //5
+	page //ID={{PAGE_POLYCULE}} Index=5
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -424,10 +436,10 @@ conversation
 		choice
 		{
 			text = "Sure, if you've earned it! So why did you invite me over exactly?";
-			nextpage = 6;
+			nextpage = 6; // PAGE_SURPRISE 
 		}
 	}
-	page //6
+	page //ID={{PAGE_SURPRISE}} Index=6
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -447,15 +459,15 @@ conversation
 		choice
 		{
 			text = "Can't you just cut a hole in the door?";
-			nextpage = 7;
+			nextpage = 7; // PAGE_WONT_BREAK_DOOR 
 		}
 		ifitem
 		{
 				item = "UselessJunk";
 		}
-		link = 8;
+		link = 8; // PAGE_FOUND_JUNK 
 	}
-	page //7
+	page //ID={{PAGE_WONT_BREAK_DOOR}} Index=7
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -470,9 +482,9 @@ conversation
 		{
 				item = "UselessJunk";
 		}
-		link = 8;
+		link = 8; // PAGE_FOUND_JUNK 
 	}
-	page //8
+	page //ID={{PAGE_FOUND_JUNK}} Index=8
 	{ // Player only found useless junk
 		name = "Logan";
 		panel = "WOLPA2";
@@ -481,9 +493,9 @@ conversation
 		{
 				item = "ScottsBox";
 		}
-		link = 9;
+		link = 9; // PAGE_FOUND_SCOTTS_BOX 
 	}
-	page //9
+	page //ID={{PAGE_FOUND_SCOTTS_BOX}} Index=9
 	{ //Player found (but hasn't opened) scott's box - Note: FORCE THE PLAYER TO PICK UP JUNK FIRST or they will get stuck in the logic above!!!!
 		name = "Logan";
 		panel = "WOLPA2";
@@ -492,9 +504,9 @@ conversation
 		{
 				item = "BlueCard";
 		}
-		link = 10;
+		link = 10; // PAGE_GOT_HANGAR_KEY 
 	}
-	page //10
+	page //ID={{PAGE_GOT_HANGAR_KEY}} Index=10
 	{
 		name = "Logan";
 		panel = "WOLPA2";
