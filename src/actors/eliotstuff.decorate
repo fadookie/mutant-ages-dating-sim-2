@@ -23,6 +23,7 @@ actor PartyCaco : Cacodemon 30001
 	+NOBLOOD
 	+LOOKALLAROUND
 	
+	Speed 16
 	PainChance 0
   States
   {
@@ -77,7 +78,7 @@ actor Cupcake_Gun: Weapon 30002
 	States
 	{
 		Spawn:
-		ELCP A -1
+		ELCK A -1
 		Stop
 		
 		Select:
