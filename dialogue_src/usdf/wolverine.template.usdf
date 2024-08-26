@@ -1,7 +1,7 @@
 conversation
 {
 	actor = "Wolverine";
-	page //1
+	page //ID={{PAGE_START}} Index=<%= PAGE_START %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -10,19 +10,19 @@ conversation
 		{
 			text = "I would never!";
 			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
-			nextpage = 2;
+			nextpage = <%= PAGE_OTHER_BOYFRIENDS %>; // PAGE_OTHER_BOYFRIENDS 
 			special = 80;
 			arg0 = 15;
 		}
 		choice
 		{
 			text = "Says the king of fucking off to Alaska without telling anybody.";
-			nextpage = 3;
+			nextpage = <%= PAGE_BROOD %>; // PAGE_BROOD 
 			special = 80;
 			arg0 = 15;
 		}
 	}
-	page //2
+	page //ID={{PAGE_OTHER_BOYFRIENDS}} Index=<%= PAGE_OTHER_BOYFRIENDS %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -30,10 +30,10 @@ conversation
 		choice
 		{
 			text = "You seem a little down, what's wrong?";
-			nextpage = 3;
+			nextpage = <%= PAGE_BROOD %>; // PAGE_BROOD 
 		}
 	}
-	page //3
+	page //ID={{PAGE_BROOD}} Index=<%= PAGE_BROOD %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -41,10 +41,10 @@ conversation
 		choice
 		{
 			text = "And what have you been brooding about recently, babe?";
-			nextpage = 4;
+			nextpage = <%= PAGE_JEAN_BACK %>; // PAGE_JEAN_BACK 
 		}
 	}
-	page //4
+	page //ID={{PAGE_JEAN_BACK}} Index=<%= PAGE_JEAN_BACK %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -52,10 +52,10 @@ conversation
 		choice
 		{
 			text = "Oh, cry me a river. I thought I was the only one for you?";
-			nextpage = 5;
+			nextpage = <%= PAGE_POLYCULE %>; // PAGE_POLYCULE 
 		}
 	}
-	page //5
+	page //ID={{PAGE_POLYCULE}} Index=<%= PAGE_POLYCULE %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -63,10 +63,10 @@ conversation
 		choice
 		{
 			text = "Sure, if you've earned it! So why did you invite me over exactly?";
-			nextpage = 6;
+			nextpage = <%= PAGE_SURPRISE %>; // PAGE_SURPRISE 
 		}
 	}
-	page //6
+	page //ID={{PAGE_SURPRISE}} Index=<%= PAGE_SURPRISE %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -86,15 +86,15 @@ conversation
 		choice
 		{
 			text = "Can't you just cut a hole in the door?";
-			nextpage = 7;
+			nextpage = <%= PAGE_WONT_BREAK_DOOR %>; // PAGE_WONT_BREAK_DOOR 
 		}
 		ifitem
 		{
 				item = "UselessJunk";
 		}
-		link = 8;
+		link = <%= PAGE_FOUND_JUNK %>; // PAGE_FOUND_JUNK 
 	}
-	page //7
+	page //ID={{PAGE_WONT_BREAK_DOOR}} Index=<%= PAGE_WONT_BREAK_DOOR %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";
@@ -109,9 +109,9 @@ conversation
 		{
 				item = "UselessJunk";
 		}
-		link = 8;
+		link = <%= PAGE_FOUND_JUNK %>; // PAGE_FOUND_JUNK 
 	}
-	page //8
+	page //ID={{PAGE_FOUND_JUNK}} Index=<%= PAGE_FOUND_JUNK %>
 	{ // Player only found useless junk
 		name = "Logan";
 		panel = "WOLPA2";
@@ -120,9 +120,9 @@ conversation
 		{
 				item = "ScottsBox";
 		}
-		link = 9;
+		link = <%= PAGE_FOUND_SCOTTS_BOX %>; // PAGE_FOUND_SCOTTS_BOX 
 	}
-	page //9
+	page //ID={{PAGE_FOUND_SCOTTS_BOX}} Index=<%= PAGE_FOUND_SCOTTS_BOX %>
 	{ //Player found (but hasn't opened) scott's box - Note: FORCE THE PLAYER TO PICK UP JUNK FIRST or they will get stuck in the logic above!!!!
 		name = "Logan";
 		panel = "WOLPA2";
@@ -131,9 +131,9 @@ conversation
 		{
 				item = "BlueCard";
 		}
-		link = 10;
+		link = <%= PAGE_GOT_HANGAR_KEY %>; // PAGE_GOT_HANGAR_KEY 
 	}
-	page //10
+	page //ID={{PAGE_GOT_HANGAR_KEY}} Index=<%= PAGE_GOT_HANGAR_KEY %>
 	{
 		name = "Logan";
 		panel = "WOLPA2";

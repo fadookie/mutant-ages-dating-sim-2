@@ -233,7 +233,7 @@ actor EmmaFrost : Actor 30007
   }
 }
 
-actor Magnito : Actor 30008
+actor Magneto : Actor 30008
 {
 	+FRIENDLY
 	+BUDDHA
@@ -335,7 +335,7 @@ actor Mono : Actor 30013
   }
 }
 
-actor CoffeGuy : Actor 30014
+actor CoffeeGuy : Actor 30014
 {
 	+FRIENDLY
 	+BUDDHA

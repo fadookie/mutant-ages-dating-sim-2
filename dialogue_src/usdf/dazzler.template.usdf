@@ -1,7 +1,7 @@
 conversation
 {
 	actor = "Dazzler";
-	page //1
+	page //ID={{PAGE_START}} Index=<%= PAGE_START %>
 	{
 		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
