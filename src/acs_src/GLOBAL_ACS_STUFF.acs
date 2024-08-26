@@ -104,11 +104,12 @@ script 11 ENTER {
 		// fade from black
 		FadeTo(0, 0, 0, 0.0, 3.0);
 			
-		// Restore movement, music
-		SetMusic("D_STALKS", 0);
+		// Restore movement
 		SetActorProperty(0, APROP_Speed, 1.0);
 		ChangeCamera(0, TRUE, FALSE);
 	}
+	// Restore music
+	SetMusic("D_STALKS", 0);
  }
  
  script 12 (void) {
