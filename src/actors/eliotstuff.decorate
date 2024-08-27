@@ -280,7 +280,7 @@ actor Blob : Actor 30010
   States
   {
   Spawn:
-    BLOB A 10 A_Look
+    BLOB BC 15 A_Look
     Loop
   }
 }
@@ -365,7 +365,7 @@ actor Colossus : Actor 30015
   States
   {
   Spawn:
-    COLL A 10 A_Look
+    COLL BC 15 A_Look
     Loop
   }
 }
