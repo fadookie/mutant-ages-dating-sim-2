@@ -33,6 +33,7 @@ class DazzlerPowerHandler : EventHandler
 	const TARGET_TID = 999;
 	const EXIT_DOOR_SECTOR_TAG = 715;
 	const INNER_CIRCLE_DOOR_SECTOR_TAG = 716;
+	const CHEERING_ACTOR_TID = 3;
 
 	bool CHEAT_INVINCIBLE; // Player can't fail sequence
 
@@ -55,6 +56,7 @@ class DazzlerPowerHandler : EventHandler
 	Actor spawnOrigins[NUM_SPAWN_ORIGINS];
 	Actor centerSpawnOrigin;
 	Actor target;
+	ActorIterator cheeringActorFinder;
 
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
@@ -84,6 +86,9 @@ class DazzlerPowerHandler : EventHandler
 		} else {
 			Console.Printf("Found Dazzler Target: " .. target);
 		}
+
+		cheeringActorFinder = ActorIterator.Create(CHEERING_ACTOR_TID);
+
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
 // 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
@@ -365,6 +370,8 @@ class DazzlerPowerHandler : EventHandler
 		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 128, 8 + 64);
 
 		player.A_ResetHealth();
+
+		SetCheeringActorState(true);
 	}
 
 	void EndDanceSequence() {
@@ -379,6 +386,8 @@ class DazzlerPowerHandler : EventHandler
 		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 64, 8);
 
 		player.A_ResetHealth();
+
+		SetCheeringActorState(false);
 	}
 
 	bool CheckDesync() {
@@ -408,6 +417,19 @@ class DazzlerPowerHandler : EventHandler
 			let sync = ticksInSeconds - epochMsInSeconds;
 			// Console.Printf("DazzlerPowerHandler#calculateSync(ticks:" .. ticks .. " epochMs:" .. epochMs .. ") => ticksInSeconds:" .. ticksInSeconds .. " - epochMsInSeconds" .. epochMsInSeconds .. " = sync:" .. sync);
 			return sync;
+	}
+
+	void SetCheeringActorState(bool cheering) {
+		cheeringActorFinder.Reinit();
+		let actor = cheeringActorFinder.Next(); 
+		while (actor != null) {
+			if (cheering) {
+				actor.SetStateLabel("Cheer");
+			} else {
+				actor.SetStateLabel("Spawn");
+			}
+			actor = cheeringActorFinder.Next();
+		}
 	}
 
 /*
