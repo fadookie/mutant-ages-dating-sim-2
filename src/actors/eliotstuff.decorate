@@ -280,6 +280,10 @@ actor Blob : Actor 30010
   States
   {
   Spawn:
+	BLOB A 15 A_Look
+	Loop
+  
+  Cheer:
     BLOB BC 15 A_Look
     Loop
   }
@@ -365,6 +369,10 @@ actor Colossus : Actor 30015
   States
   {
   Spawn:
+    COLL A 15 A_Look
+    Loop
+	
+  Cheer:
     COLL BC 15 A_Look
     Loop
   }
@@ -486,6 +494,17 @@ actor Statue : Actor 31008
   {
   Spawn:
     STAT A 10
+    Loop
+  }
+}
+
+actor Chair : Actor 31009
+{
+
+    States
+  {
+  Spawn:
+    CHAI A 10
     Loop
   }
 }
