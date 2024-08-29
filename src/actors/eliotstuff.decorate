@@ -511,6 +511,39 @@ actor Chair : Actor 31009
   }
 }
 
+actor BackRightGear : Actor 31011
+{
+
+    States
+  {
+  Spawn:
+    BRGR A 10
+    Loop
+  }
+}
+
+actor BackLeftGear : Actor 31012
+{
+
+    States
+  {
+  Spawn:
+    BLGR A 10
+    Loop
+  }
+}
+
+actor FrontGear : Actor 31013
+{
+
+    States
+  {
+  Spawn:
+    FGER A 10
+    Loop
+  }
+}
+
 actor AEVision : PowerupGiver 31010
 {
 	+COUNTITEM
