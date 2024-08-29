@@ -120,6 +120,8 @@ class PhoenixPowerHandler : EventHandler
 	void StartLevitationSequence() {
 		Console.Printf("PhoenixPowerHandler#StartLevitationSequence");
 // 		FindDoodads();
+		let pheonix = CallBus.FindActor(4);
+		pheonix.SetStateLabel("Freak");
 		levitating = true;
 		levitationStartTimeTk = level.time;
 	}

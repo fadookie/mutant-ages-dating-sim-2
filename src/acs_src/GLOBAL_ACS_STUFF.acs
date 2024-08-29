@@ -80,6 +80,10 @@ script 6 (void) { // scott's maze powerup remover
 	TakeInventory("PowerLightAmp", 1);
 }
 
+script 7 (void) { // spawns AE vision when enterting or exiting closet
+	SpawnSpot ("AEVision", 800);
+}
+
  
 script 11 ENTER {
 	Log(s:"ACS ENTER");

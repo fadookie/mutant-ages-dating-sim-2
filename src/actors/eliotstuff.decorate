@@ -200,20 +200,22 @@ actor Phoenix : Actor 30006
 	
   States
   {
-//   Spawn:
-//     PNXS A 10 A_Look
-//     Loop
-  Spawn:
-    PNXH A 5
-	PNXH B 5
-	PNXH C 5
-	PNXH D 5
-	PNXH E 5
-	PNXH F 5
-	PNXH G 5
-	PNXH H 5
-	PNXH I 5
-    Loop
+	Spawn:
+     PNXS A 10 A_Look
+     Loop
+
+
+	Freak:
+		PNXH A 5
+		PNXH B 5
+		PNXH C 5
+		PNXH D 5
+		PNXH E 5
+		PNXH F 5
+		PNXH G 5
+		PNXH H 5
+		PNXH I 5
+		Loop
   }
 }
 
