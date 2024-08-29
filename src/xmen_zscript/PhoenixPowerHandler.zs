@@ -55,6 +55,9 @@ class PhoenixPowerHandler : EventHandler
                     doodad.SetOrigin(newpos, true);
                     doodad.bNOGRAVITY = false;
                     doodad.bFLY = false;
+					if (i == doodads.Size()-1) {
+						EndLevitationSequence();
+					}
                 }
 			}
             for (let i = 0; i < doodads.Size(); ++i) {
@@ -64,7 +67,7 @@ class PhoenixPowerHandler : EventHandler
                 Vector3 newpos = doodad.pos;
                 newpos.z += sin(elapsedTimeTk + i * 5.0) / 2.0;
                 doodad.SetOrigin(newpos, true);
-            }
+            }				
 		}
 	}
 
@@ -124,6 +127,14 @@ class PhoenixPowerHandler : EventHandler
 		pheonix.SetStateLabel("Freak");
 		levitating = true;
 		levitationStartTimeTk = level.time;
+	}
+	
+	void EndLevitationSequence() {
+		Console.Printf("PhoenixPowerHandler#EndLevitationSequence");
+// 		FindDoodads();
+		let pheonix = CallBus.FindActor(4);
+		pheonix.SetStateLabel("Spawn");
+		levitating = false;
 	}
 	
 	/*
