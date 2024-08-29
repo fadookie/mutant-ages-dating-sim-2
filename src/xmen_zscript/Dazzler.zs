@@ -16,6 +16,10 @@ class Dazzler: Actor
 		DZLR A 10 A_Look; //actively looks for player
 		Loop;
 		
+		Throw:
+		DZLR BCDEFGH 5 A_Look;
+		Goto Spawn;
+		
 		// See:  
 		// CDBB AB 10 A_Chase;
 		// goto spawn;

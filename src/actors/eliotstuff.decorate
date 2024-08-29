@@ -306,9 +306,9 @@ actor Pyro : Actor 30011
     PYRO A 10 A_Look
     Loop
 	
-	Cheer:
-		PYRO BC 15 A_Look
-		Loop
+  Cheer:
+	PYRO BC 15 A_Look
+	Loop
   }
 }
 
@@ -327,9 +327,9 @@ actor Gator : Actor 30012
     GATO A 10 A_Look
     Loop
 	
-	Cheer:
-		GATO BC 15 A_Look
-		Loop
+  Cheer:
+	GATO BC 15 A_Look
+	Loop
   }
 }
 
@@ -348,9 +348,9 @@ actor Mono : Actor 30013
     MONO A 10 A_Look
     Loop
 	
-	Cheer:
-		MONO BC 15 A_Look
-		Loop
+  Cheer:
+	MONO BC 15 A_Look
+	Loop
   }
 }
 
@@ -407,9 +407,9 @@ actor Storm : Actor 30016
     STOR A 10 A_Look
     Loop
 	
-	Cheer:
-		STOR BC 15 A_Look
-		Loop
+  Cheer:
+	STOR BC 15 A_Look
+	Loop
   }
 }
 

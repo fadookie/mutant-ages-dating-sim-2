@@ -228,6 +228,8 @@ class DazzlerPowerHandler : EventHandler
 				} else {
 					Console.Printf("WorldTick Single Event encountered null ball");
 				}
+				//Dazzler animation
+				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
@@ -246,6 +248,8 @@ class DazzlerPowerHandler : EventHandler
 						Console.Printf("SpawnBallLine encountered null ball");
 					}
 				}
+				//Dazzler animation
+				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
@@ -266,15 +270,21 @@ class DazzlerPowerHandler : EventHandler
 						Console.Printf("WorldTick Circle Event encountered null ball");
 					}
 				}
+				//Dazzler animation
+				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
 			case HORIZONTAL_LINE_CROUCH: {
-				SpawnBallLine(32.0);	
+				//Dazzler animation
+				dazzler.SetStateLabel("Throw");
+				SpawnBallLine(32.0);
 				break;
 			}
 
 			case HORIZONTAL_LINE_JUMP: {
+				//Dazzler animation
+				dazzler.SetStateLabel("Throw");
 				SpawnBallLine(8.0);	
 				break;
 			}
