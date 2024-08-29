@@ -167,7 +167,7 @@ actor Wolverine : Actor 30004
     WOLV A 10 A_Look
     Loop
   See:
-    WOLV A 3 A_Chase
+    WOLV BCDE 3 A_Chase
     Loop
   }
 }
