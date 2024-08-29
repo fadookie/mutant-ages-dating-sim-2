@@ -294,6 +294,8 @@ class DazzlerPowerHandler : EventHandler
 				barrageMaxBalls = 10;
 				barrageNumBallsFired = 0;
 				barrageType = RTL;
+				//Dazzler animation
+				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
@@ -302,6 +304,8 @@ class DazzlerPowerHandler : EventHandler
 				barrageMaxBalls = 10;
 				barrageNumBallsFired = 0;
 				barrageType = LTR;
+				//Dazzler animation
+				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
