@@ -34,11 +34,13 @@ class DazzlerPowerHandler : EventHandler
 	const EXIT_DOOR_SECTOR_TAG = 715;
 	const INNER_CIRCLE_DOOR_SECTOR_TAG = 716;
 	const CHEERING_ACTOR_TID = 3;
+	const DAZZLER_WIND_UP_SEEK_AHEAD_AMOUNT_SEC = 0.5;
 
 	bool CHEAT_INVINCIBLE; // Player can't fail sequence
 
 	DazzlerPowerEventSequence events;
 	int currentEventIdx;
+	bool dazzlerWindUpTriggeredThisEvent;
 
 	int danceQueueTimeTk;
 
@@ -130,10 +132,27 @@ class DazzlerPowerHandler : EventHandler
 
 		// Console.Printf("timeSinceStartTk:" .. timeSinceStartTk .. " timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
 
+		// Seek ahead to next event to trigger dazzler's wind-up animation
+		if (!dazzlerWindUpTriggeredThisEvent
+			&& timeSinceStartS >= currentEventTimeS - DAZZLER_WIND_UP_SEEK_AHEAD_AMOUNT_SEC
+			&& (currentEventType == SINGLE
+					|| currentEventType == VERTICAL_LINE
+					|| currentEventType == CIRCLE
+					|| currentEventType == HORIZONTAL_LINE_CROUCH
+					|| currentEventType == HORIZONTAL_LINE_JUMP
+					// Process barrage elsewhere
+			)
+		) {
+			dazzler.SetStateLabel("Throw");
+			dazzlerWindUpTriggeredThisEvent = true;
+		}
+
+		// Check if next event should be dequeued
 		while (timeSinceStartS >= currentEventTimeS) {
 			if(CheckDesync()) { return; }
 			FireEvent(currentEventType, currentEventTimeS);
 			++currentEventIdx;
+			dazzlerWindUpTriggeredThisEvent = false;
 			if (currentEventIdx >= events.eventTimestampsS.Size()) {
 				// We've reached the end of the dance sequence.
 				EndDanceSequence();
@@ -177,6 +196,7 @@ class DazzlerPowerHandler : EventHandler
 				}
 				Console.Printf("Barrage FIRE, numFired:" .. barrageNumBallsFired .. " maxBalls:" .. barrageMaxBalls .. " intervalIdx:" .. intervalIdx);
 				++barrageNumBallsFired;
+				if (intervalIdx % 3 == 0) dazzler.SetStateLabel("Throw");
 			}
 			if (barrageNumBallsFired >= barrageMaxBalls) {
 				Console.Printf("Barrage terminate numFired:" .. barrageNumBallsFired .. " maxBalls:");
@@ -228,8 +248,6 @@ class DazzlerPowerHandler : EventHandler
 				} else {
 					Console.Printf("WorldTick Single Event encountered null ball");
 				}
-				//Dazzler animation
-				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
@@ -248,8 +266,6 @@ class DazzlerPowerHandler : EventHandler
 						Console.Printf("SpawnBallLine encountered null ball");
 					}
 				}
-				//Dazzler animation
-				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
@@ -270,21 +286,15 @@ class DazzlerPowerHandler : EventHandler
 						Console.Printf("WorldTick Circle Event encountered null ball");
 					}
 				}
-				//Dazzler animation
-				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
 			case HORIZONTAL_LINE_CROUCH: {
-				//Dazzler animation
-				dazzler.SetStateLabel("Throw");
 				SpawnBallLine(32.0);
 				break;
 			}
 
 			case HORIZONTAL_LINE_JUMP: {
-				//Dazzler animation
-				dazzler.SetStateLabel("Throw");
 				SpawnBallLine(8.0);	
 				break;
 			}
@@ -294,8 +304,6 @@ class DazzlerPowerHandler : EventHandler
 				barrageMaxBalls = 10;
 				barrageNumBallsFired = 0;
 				barrageType = RTL;
-				//Dazzler animation
-				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
@@ -304,8 +312,6 @@ class DazzlerPowerHandler : EventHandler
 				barrageMaxBalls = 10;
 				barrageNumBallsFired = 0;
 				barrageType = LTR;
-				//Dazzler animation
-				dazzler.SetStateLabel("Throw");
 				break;
 			}
 
