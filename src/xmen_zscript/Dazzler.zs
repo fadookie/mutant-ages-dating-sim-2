@@ -17,7 +17,7 @@ class Dazzler: Actor
 		Loop;
 		
 		Throw:
-		DZLR BCDEFGH 5 A_Look;
+		DZLR BCDEFGH 4 A_Look;
 		Goto Spawn;
 		
 		// See:  

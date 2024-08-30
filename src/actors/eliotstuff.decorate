@@ -282,11 +282,11 @@ actor Blob : Actor 30010
   States
   {
   Spawn:
-	BLOB A 15 A_Look
+	BLOB A 10 A_Look
 	Loop
   
   Cheer:
-    BLOB BC 15 A_Look
+    BLOB BC 16 A_Look
     Loop
   }
 }
@@ -307,7 +307,7 @@ actor Pyro : Actor 30011
     Loop
 	
   Cheer:
-	PYRO BC 15 A_Look
+	PYRO BC 16 A_Look
 	Loop
   }
 }
@@ -328,7 +328,7 @@ actor Gator : Actor 30012
     Loop
 	
   Cheer:
-	GATO BC 15 A_Look
+	GATO BC 16 A_Look
 	Loop
   }
 }
@@ -349,7 +349,7 @@ actor Mono : Actor 30013
     Loop
 	
   Cheer:
-	MONO BC 15 A_Look
+	MONO BC 16 A_Look
 	Loop
   }
 }
@@ -387,7 +387,7 @@ actor Colossus : Actor 30015
     Loop
 	
   Cheer:
-    COLL BC 15 A_Look
+    COLL BC 16 A_Look
     Loop
   }
 }
@@ -408,7 +408,7 @@ actor Storm : Actor 30016
     Loop
 	
   Cheer:
-	STOR BC 15 A_Look
+	STOR BC 16 A_Look
 	Loop
   }
 }
