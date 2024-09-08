@@ -12,7 +12,14 @@ write() {
 
 write 'version "4.1"'
 write ''
-find -s xmen_zscript -type f | while read index; do
+
+# macOS version:
+#find -s xmen_zscript -type f | while read index; do
+#    write '#include "'$index'"'
+#done
+
+# linux version (unsorted):
+find xmen_zscript -type f | while read index; do
     write '#include "'$index'"'
 done
 

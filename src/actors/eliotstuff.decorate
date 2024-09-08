@@ -354,23 +354,6 @@ actor Mono : Actor 30013
   }
 }
 
-actor CoffeeGuy : Actor 30014
-{
-	+FRIENDLY
-	+BUDDHA
-	+NOBLOOD
-	+LOOKALLAROUND
-	
-	PainChance 0
-	
-  States
-  {
-  Spawn:
-    FHOC A 10 A_Look
-    Loop
-  }
-}
-
 actor Colossus : Actor 30015
 {
 	+FRIENDLY
