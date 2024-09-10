@@ -103,3 +103,42 @@ class DazzlerBall : DoomImpBall
 		A_SetTranslation(randTranslation);
   }
 }
+
+class DazzlerHealth : Actor
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 10;
+		FastSpeed 20;
+		Damage 0;
+		Projectile;
+		//+RANDOMIZE
+		//+ZDOOMTRANS
+		//RenderStyle "Add";
+		//Alpha 1;
+		//SeeSound "imp/attack";
+		//DeathSound "imp/shotx";
+
+		// Inventory.Amount 10;
+		// Inventory.PickupMessage "$GOTSTIM";
+	}
+	States
+	{
+	Spawn:
+		STIM A 1;
+		Loop;
+	Death:
+		TNT1 A -1;
+		Stop;
+	}
+
+	override int SpecialMissileHit(Actor victim) {
+		// Heal target
+		Console.Printf("SpecialMissileHit victim:" .. victim .. " self:" .. self);
+		victim.GiveBody(5);
+		A_StartSound("misc/health_pkup");
+		return 0; // destroy projectile
+	}
+}

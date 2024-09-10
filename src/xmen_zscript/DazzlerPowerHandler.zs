@@ -303,7 +303,7 @@ class DazzlerPowerHandler : EventHandler
 				for(int i = 0; i < NUM_BALLS; ++i) {
 					let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 					let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
-					let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+					let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerHealth"));
 					if (ball) {
 						ball.SetTranslation(i);
 					} else {
