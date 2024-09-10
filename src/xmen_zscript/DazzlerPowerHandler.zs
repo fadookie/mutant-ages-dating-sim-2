@@ -1,6 +1,7 @@
 enum DazzlerEventType
 {
 		NOOP,
+		END, // Ends dance sequence prematurely. Not neccessary if there's an event at the end of the sequence, but allows early termination.
 		HUD_1,
 		HUD_2,
 		HUD_3,
@@ -11,8 +12,7 @@ enum DazzlerEventType
 		SINGLE,
 		VERTICAL_LINE,
 		CIRCLE,
-		HORIZONTAL_LINE_CROUCH,
-		HORIZONTAL_LINE_JUMP,
+		HORIZONTAL_LINE,
 		BARRAGE_RTL,
 		BARRAGE_LTR,
 }
@@ -51,6 +51,7 @@ class DazzlerPowerHandler : EventHandler
 	int barrageStartTimeTk;
 	int barrageMaxBalls;
 	int barrageNumBallsFired;
+	float barrageHeight;
 	BarrageType barrageType;
 
 	PoochyPlayer player;
@@ -138,8 +139,7 @@ class DazzlerPowerHandler : EventHandler
 			&& (currentEventType == SINGLE
 					|| currentEventType == VERTICAL_LINE
 					|| currentEventType == CIRCLE
-					|| currentEventType == HORIZONTAL_LINE_CROUCH
-					|| currentEventType == HORIZONTAL_LINE_JUMP
+					|| currentEventType == HORIZONTAL_LINE
 					// Process barrage elsewhere
 			)
 		) {
@@ -150,6 +150,11 @@ class DazzlerPowerHandler : EventHandler
 		// Check if next event should be dequeued
 		while (timeSinceStartS >= currentEventTimeS) {
 			if(CheckDesync()) { return; }
+			if (currentEventType == END) {
+				Console.Printf("END dance sequence event fired");
+				EndDanceSequence();
+				return;
+			}
 			FireEvent(currentEventType, currentEventTimeS);
 			++currentEventIdx;
 			dazzlerWindUpTriggeredThisEvent = false;
@@ -167,7 +172,6 @@ class DazzlerPowerHandler : EventHandler
 		if (barrageStartTimeTk > 0) {
 			let NUM_BALLS = barrageMaxBalls;
 			let BALL_SPACING = 38.0;
-			let height = 32.0;
 
 			let BARRAGE_INTERVAL_TK = 5;
 			let timeSinceBarrageStartTk = level.time - barrageStartTimeTk;
@@ -187,7 +191,7 @@ class DazzlerPowerHandler : EventHandler
 				}
 				Console.Printf("intervalIdx:" .. intervalIdx);
 				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
-				let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
+				let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, barrageHeight);
 				let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 				if (ball) {
 					ball.SetTranslation(intervalIdx);
@@ -242,7 +246,10 @@ class DazzlerPowerHandler : EventHandler
 		switch(currentEventType) {
 			case SINGLE: {
 				let originIndex = events.eventArg0Ints[currentEventIdx];
-				let ball = DazzlerBall(spawnOrigins[originIndex].SpawnMissile(target, "DazzlerBall"));
+				let height = events.eventArg0Floats[currentEventIdx];
+				let spawnOrigin = spawnOrigins[originIndex];
+				let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y, spawnOrigin.Pos.z + height);
+				let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 				if (ball) {
 					ball.SetRandomTranslation();
 				} else {
@@ -289,21 +296,30 @@ class DazzlerPowerHandler : EventHandler
 				break;
 			}
 
-			case HORIZONTAL_LINE_CROUCH: {
-				SpawnBallLine(32.0);
+			case HORIZONTAL_LINE: {
+				let NUM_BALLS = 20;
+				let BALL_SPACING = 18.0;
+				let height = events.eventArg0Floats[currentEventIdx];
+				for(int i = 0; i < NUM_BALLS; ++i) {
+					let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
+					let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
+					let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+					if (ball) {
+						ball.SetTranslation(i);
+					} else {
+						Console.Printf("SpawnBallLine encountered null ball");
+					}
+				}
 				break;
 			}
 
-			case HORIZONTAL_LINE_JUMP: {
-				SpawnBallLine(8.0);	
-				break;
-			}
 
 			case BARRAGE_RTL: {
 				barrageStartTimeTk = level.time;
 				barrageMaxBalls = 10;
 				barrageNumBallsFired = 0;
 				barrageType = RTL;
+				barrageHeight = events.eventArg0Floats[currentEventIdx];
 				break;
 			}
 
@@ -312,6 +328,7 @@ class DazzlerPowerHandler : EventHandler
 				barrageMaxBalls = 10;
 				barrageNumBallsFired = 0;
 				barrageType = LTR;
+				barrageHeight = events.eventArg0Floats[currentEventIdx];
 				break;
 			}
 
@@ -354,18 +371,6 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	void SpawnBallLine(double height) {
-		let NUM_BALLS = 20;
-		let BALL_SPACING = 18.0;
-		for(int i = 0; i < NUM_BALLS; ++i) {
-			let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
-			let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
-			let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
-			if (ball) {
-				ball.SetTranslation(i);
-			} else {
-				Console.Printf("SpawnBallLine encountered null ball");
-			}
-		}
 	}
 
 	void QueueDanceSequence() {
