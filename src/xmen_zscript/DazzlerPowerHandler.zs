@@ -17,6 +17,12 @@ enum DazzlerEventType
 		BARRAGE_LTR,
 }
 
+enum DazzlerShotType {
+	SHOT_NONE,
+	DAZZLER_BALL,
+	DAZZLER_HEALTH,
+}
+
 enum BarrageType {
 	NONE,
 	LTR,
@@ -190,6 +196,7 @@ class DazzlerPowerHandler : EventHandler
 						ThrowAbortException("Unknown barrage type: %d", barrageType);
 				}
 				Console.Printf("intervalIdx:" .. intervalIdx);
+				// TODO: support health?
 				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 				let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, barrageHeight);
 				let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
@@ -249,12 +256,7 @@ class DazzlerPowerHandler : EventHandler
 				let height = events.eventArg0Floats[currentEventIdx];
 				let spawnOrigin = spawnOrigins[originIndex];
 				let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y, spawnOrigin.Pos.z + height);
-				let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
-				if (ball) {
-					ball.SetRandomTranslation();
-				} else {
-					Console.Printf("WorldTick Single Event encountered null ball");
-				}
+				SpawnDazzlerShot(events.eventShotTypes[currentEventIdx], spawnOrigin, pos, true);
 				break;
 			}
 
@@ -303,12 +305,7 @@ class DazzlerPowerHandler : EventHandler
 				for(int i = 0; i < NUM_BALLS; ++i) {
 					let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 					let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
-					let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerHealth"));
-					if (ball) {
-						ball.SetTranslation(i);
-					} else {
-						Console.Printf("SpawnBallLine encountered null ball");
-					}
+					SpawnDazzlerShot(events.eventShotTypes[currentEventIdx], centerSpawnOrigin, pos, false, i);
 				}
 				break;
 			}
@@ -370,7 +367,30 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
-	void SpawnBallLine(double height) {
+	void SpawnDazzlerShot(DazzlerShotType shotType, Actor spawnOrigin, Vector3 pos, bool useRandomTranslation = false, int translationIdx = 0) {
+		switch (shotType) {
+			case SHOT_NONE:
+				return;
+			case DAZZLER_BALL: {
+				let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
+				if (ball) {
+					if (useRandomTranslation) {
+						ball.SetRandomTranslation();
+					} else {
+						ball.SetTranslation(translationIdx);
+					}
+				} else {
+					Console.Printf("SpawnDazzlerShot encountered null ball");
+				}
+				return;
+			}
+			case DAZZLER_HEALTH: {
+				spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerHealth");
+				return;
+			}
+			default:
+				ThrowAbortException("Unknown dazzler shot type: %d", shotType);
+		}
 	}
 
 	void QueueDanceSequence() {

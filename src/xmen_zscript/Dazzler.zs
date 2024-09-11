@@ -127,18 +127,18 @@ class DazzlerHealth : Actor
 	States
 	{
 	Spawn:
-		STIM A 1;
+		DHEA A 4;
+		BAL1 AB 4 BRIGHT;
 		Loop;
 	Death:
-		TNT1 A -1;
+		TNT1 A 1;
 		Stop;
 	}
 
 	override int SpecialMissileHit(Actor victim) {
 		// Heal target
-		Console.Printf("SpecialMissileHit victim:" .. victim .. " self:" .. self);
 		victim.GiveBody(5);
-		A_StartSound("misc/health_pkup");
+		victim.A_StartSound("misc/health_pkup");
 		return 0; // destroy projectile
 	}
 }
