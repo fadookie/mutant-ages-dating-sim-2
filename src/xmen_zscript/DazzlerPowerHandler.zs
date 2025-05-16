@@ -42,6 +42,9 @@ class DazzlerPowerHandler : EventHandler
 	const CHEERING_ACTOR_TID = 3;
 	const DAZZLER_WIND_UP_SEEK_AHEAD_AMOUNT_SEC = 0.5;
 
+	// Lose/Win condition stuff
+	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 2;
+	int numPlayerFailures;
 	bool CHEAT_INVINCIBLE; // Player can't fail sequence
 
 	DazzlerPowerEventSequence events;
@@ -70,7 +73,7 @@ class DazzlerPowerHandler : EventHandler
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 
- 		CHEAT_INVINCIBLE = true; // TODO: Disable
+ 		CHEAT_INVINCIBLE = false; // TODO: Disable
 		
 		events = New("DazzlerPowerEventSequence");
 		events.Init();
@@ -115,7 +118,7 @@ class DazzlerPowerHandler : EventHandler
 		
 		if (!CHEAT_INVINCIBLE && player.health == 1) {
 			EndDanceSequence();
-			PrintLoseMessage();
+			OnPlayerLose();
 			return;
 		}
 		
@@ -225,12 +228,18 @@ class DazzlerPowerHandler : EventHandler
 			Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
 		} else {
 			// Player was too hurt to win
-			PrintLoseMessage();
+			OnPlayerLose();
 		}
 	}
 
-	void PrintLoseMessage() {
-		Console.MidPrint("BIGFONT", "Ooh, nice try, but you looked a little clumsy out there.\nWhy don't we give it another shot?");
+	void OnPlayerLose() {
+		numPlayerFailures++;
+
+		if (numPlayerFailures >= PLAYER_FAILURES_BEFORE_SKIP_OPTION) {
+			Console.MidPrint("BIGFONT", "You've really been dancing your little heart out even if you look a bit ridiculous.\nI might be willing to cut you a little slack, what do you say?");
+		} else {
+			Console.MidPrint("BIGFONT", "Ooh, nice try, but you looked a little clumsy out there.\nWhy don't we give it another shot?");
+		}
 	}
 
 	void FireEvent(DazzlerEventType currentEventType, float currentEventTimeS) {
