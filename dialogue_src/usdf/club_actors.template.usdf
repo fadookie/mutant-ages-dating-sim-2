@@ -1,3 +1,5 @@
+// club_actors.template.usdf BEGIN
+
 conversation
 {
 	actor = "Magneto";
@@ -65,7 +67,7 @@ conversation
 	page
 	{
 		name = "Ordinary Working Stiff";
-		dialog = "I love this place! I come here every day after work with my 20 closest friends.";
+		dialog = "I love this place! I come here every day after work at Imps 'R Us, with my 20 closest friends.";
 	}
 }
 
@@ -88,3 +90,5 @@ conversation
 		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Dark & Stormy if you're buying.";
 	}
 }
+
+// club_actors.template.usdf END

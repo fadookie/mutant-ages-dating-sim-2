@@ -1,9 +1,11 @@
-namespace = "ZDoom";
+namespace = "GZDoom";
 
 // This is a build artifact from template-tool.js. DO NOT EDIT DIRECTLY!
 // Edit the source templates in dialogue_src/usdf and then run template-tool to update!
 
 
+
+// club_actors.template.usdf BEGIN
 
 conversation
 {
@@ -82,7 +84,7 @@ conversation
 	page
 	{
 		name = "Colossus";
-		dialog = "I order white russian, server tell me limit one per table! Nyet.";
+		dialog = "I order white russian, server tell me I already have one at my table! Nyet.";
 	}
 }
 
@@ -92,15 +94,20 @@ conversation
 	page
 	{
 		name = "Storm";
-		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, time for another round.";
+		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Dark & Stormy if you're buying.";
 	}
 }
+
+// club_actors.template.usdf END
+
+// cyclops.template.usdf BEGIN
 
 conversation
 {
 	actor = "Cyclops";
-	page //ID={{PAGE_START}} Index=1
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]What do you want?";
@@ -120,7 +127,7 @@ conversation
 		choice
 		{
 			text = "Hey, could you help me with something?";
-			nextpage = 2; // PAGE_WHERE_GET 
+			nextpage = "PAGE_WHERE_GET";
 			nomessage = "\c[Cyan]With what? Come back when you've found something I can help with.";
 			cost
 			{
@@ -129,19 +136,21 @@ conversation
 			}
 		}
 	}
-	page //ID={{PAGE_WHERE_GET}} Index=2
+	page
 	{
+		pagename = "PAGE_WHERE_GET";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]Hey, where did you get that? Give it back!";
 		choice
 		{
 			text = "I'm looking for the key to the hangar! If you blast it open I'll give everything else back.";
-			nextpage = 3; // PAGE_OK 
+			nextpage = "PAGE_OK";
 		}
 	}
-	page //ID={{PAGE_OK}} Index=3
+	page
 	{
+		pagename = "PAGE_OK";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]Fine, but you are not allowed to call me a tool like Logan does! And don't look at what else is inside!";
@@ -149,11 +158,12 @@ conversation
 		{
 			text = "I pinkie swear.";
 			giveitem = "BlueCard";
-			nextpage = 4; // PAGE_GIVEKEY 
+			nextpage = "PAGE_GIVEKEY";
 		}
 	}
-	page //ID={{PAGE_GIVEKEY}} Index=4
+	page
 	{
+		pagename = "PAGE_GIVEKEY";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]Okay, here's the key. If I hear you tell anyone else about this box I will have Xavier wipe your memories!";
@@ -166,13 +176,16 @@ conversation
 	}
 }
 
+// cyclops.template.usdf END
 
+// dazzler.template.usdf BEGIN
 
 conversation
 {
 	actor = "Dazzler";
-	page //ID={{PAGE_START}} Index=1
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
 		dialog = "Wanna dance for me, hotshot?";
@@ -186,13 +199,16 @@ conversation
 	}
 }
 
+// dazzler.template.usdf END
 
+// emma.template.usdf BEGIN
 
 conversation
 {
 	actor = "EmmaFrost";
-	page //ID={{PAGE_START}} Index=1
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
@@ -207,17 +223,18 @@ conversation
 		{
 			text = "I'm Ryan!"; // give inventory
 			giveitem = "IsRyanInventory";
-			nextpage = 2; // PAGE_CLASS_SELECT 
+			nextpage = "PAGE_CLASS_SELECT";
 		}
 		choice
 		{
 			text = "The name's Poochy. Dr. Poochy.";
 			giveitem = "IsPoochyInventory";
-			nextpage = 2; // PAGE_CLASS_SELECT 
+			nextpage = "PAGE_CLASS_SELECT";
 		}
 	}
-	page //ID={{PAGE_CLASS_SELECT}} Index=2
+	page
 	{
+		pagename = "PAGE_CLASS_SELECT";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]And what class would you like to play in the campaign?";
@@ -225,13 +242,13 @@ conversation
 		{
 			text = "A Warcraft!";
 			giveitem = "WarcraftDnDInventory";
-			nextpage = 3; // PAGE_CLASS_SELECT_WARCRAFT 
+			nextpage = "PAGE_CLASS_SELECT_WARCRAFT";
 		}
 		choice
 		{
 			text = "Dr. Nathaniel \"Poochy\" Chainlink.";
 			giveitem = "PoochyDnDInventory";
-			nextpage = 4; // PAGE_CLASS_SELECT_POOCHY 
+			nextpage = "PAGE_CLASS_SELECT_POOCHY";
 		}
 // 		choice
 // 		{
@@ -239,108 +256,117 @@ conversation
 // 			nextpage = 3;
 // 		}
 	}
-	page //ID={{PAGE_CLASS_SELECT_WARCRAFT}} Index=3
+	page
 	{
+		pagename = "PAGE_CLASS_SELECT_WARCRAFT";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]You mean like the MMO? That doesn't make any sense, but whatever. At least Shaw isn't here messing up my campaign like in the bad old days. You said that's kind of like a wolf? I guess we'll make you a druid.";
 		choice
 		{
 			text = "Next";
-			nextpage = 6; // PAGE_LOGAN_CLASS_QUESTION  
+			nextpage = "PAGE_LOGAN_CLASS_QUESTION";
 		}
 	}
-	page //ID={{PAGE_CLASS_SELECT_POOCHY}} Index=4
+	page
 	{
+		pagename = "PAGE_CLASS_SELECT_POOCHY";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]I don't know who that is or what class they should be, but whatever. You want to be a doctor, I guess we'll make you a Cleric. At least Shaw isn't here messing up my campaign like in the bad old days.";
 		choice
 		{
 			text = "Next";
-			nextpage = 6; // PAGE_LOGAN_CLASS_QUESTION  
+			nextpage = "PAGE_LOGAN_CLASS_QUESTION";
 		}
 		ifitem
 		{
 			item = "IsPoochyInventory";
 		}
-		link = 5; // PAGE_CLASS_SELECT_DOUBLE_POOCHY   
+		link = "PAGE_CLASS_SELECT_DOUBLE_POOCHY";
 	}
-	page //ID={{PAGE_CLASS_SELECT_DOUBLE_POOCHY}} Index=5
+	page
 	{
+		pagename = "PAGE_CLASS_SELECT_DOUBLE_POOCHY";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]So you mean to tell me that you, a self-insert fanfiction character, would like to play your own self-insert character in my D&D campaign without even attempting to conceal this? You're hurting my brain... but, whatever. Just don't blame me for breaking the fourth wall, you started it.";
 		choice
 		{
 			text = "Next";
-			nextpage = 6; // PAGE_LOGAN_CLASS_QUESTION  
+			nextpage = "PAGE_LOGAN_CLASS_QUESTION";
 		}
 	}
-	page //ID={{PAGE_LOGAN_CLASS_QUESTION}} Index=6
+	page
 	{
+		pagename = "PAGE_LOGAN_CLASS_QUESTION";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]*sigh* And how about you, fuzzball?";
 		choice
 		{
 			text = "Next";
-			nextpage = 7; // PAGE_LOGAN_CLASS_RESPONSE  
+			nextpage = "PAGE_LOGAN_CLASS_RESPONSE";
 		}
 	}
-	page //ID={{PAGE_LOGAN_CLASS_RESPONSE}} Index=7
+	page
 	{
+		pagename = "PAGE_LOGAN_CLASS_RESPONSE";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]The name's Logan, bub. I like to break stuff!";
 		choice
 		{
 			text = "Next";
-			nextpage = 8; // PAGE_LOGAN_CLASS_ASSIGNMENT  
+			nextpage = "PAGE_LOGAN_CLASS_ASSIGNMENT";
 		}
 	}
-	page //ID={{PAGE_LOGAN_CLASS_ASSIGNMENT}} Index=8
+	page
 	{
+		pagename = "PAGE_LOGAN_CLASS_ASSIGNMENT";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]Okay tough guy, let's make you a barbarian.";
 		choice
 		{
 			text = "Next";
-			nextpage = 9; // PAGE_MAGNETO_CRAFTING
+			nextpage = "PAGE_MAGNETO_CRAFTING";
 		}
 	}
-	page //ID={{PAGE_MAGNETO_CRAFTING}} Index=9
+	page
 	{
+		pagename = "PAGE_MAGNETO_CRAFTING";
 		name = "Magneto";
 		panel = "MGNPA0";
 		dialog = "\c[Purple]I would like to use my downtime to craft a spell scroll.";
 		choice
 		{
 			text = "Next";
-			nextpage = 10; // PAGE_EMMA_NO_CRAFTING 
+			nextpage = "PAGE_EMMA_NO_CRAFTING";
 		}
 	}
-	page //ID={{PAGE_EMMA_NO_CRAFTING}} Index=10
+	page
 	{
+		pagename = "PAGE_EMMA_NO_CRAFTING";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]You're not getting any downtime. Now, let's begin.";
 		choice
 		{
 			text = "Next";
-			nextpage = 11; // PAGE_EMMA_FOREST_INTRO 
+			nextpage = "PAGE_EMMA_FOREST_INTRO";
 		}
 	}
-	page //ID={{PAGE_EMMA_FOREST_INTRO}} Index=11
+	page
 	{
+		pagename = "PAGE_EMMA_FOREST_INTRO";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]You are in a dark forest. Something is putting you on edge, but you aren't sure what. What would you like to do?";
 		choice
 		{
 			text = "(Poochy) I use my AE Vision!";
-			nextpage = 12; // PAGE_EMMA_POOCHY_PERCEPTION_CHECK 
+			nextpage = "PAGE_EMMA_POOCHY_PERCEPTION_CHECK";
 			cost
 			{
 					item = "PoochyDnDInventory";
@@ -351,7 +377,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft) I listen and smell for danger.";
-			nextpage = 13; // PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK 
+			nextpage = "PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK";
 			cost
 			{
 					item = "WarcraftDnDInventory";
@@ -360,52 +386,57 @@ conversation
 			}
 		}
 	}
-	page //ID={{PAGE_EMMA_POOCHY_PERCEPTION_CHECK}} Index=12
+	page
 	{
+		pagename = "PAGE_EMMA_POOCHY_PERCEPTION_CHECK";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]I'm not really sure what that is... but sure, make a perception check. Roll a d20 and add your perception bonus.";
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 14; // PAGE_EMMA_PERCEPTION_CHECK_RESULT 
+			nextpage = "PAGE_EMMA_PERCEPTION_CHECK_RESULT";
 		}
 	}
-	page //ID={{PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK}} Index=13
+	page
 	{
+		pagename = "PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]Okay, make a perception check. Roll a d20 and add your perception bonus.";
 		choice
 		{
 			text = "Roll 1d20";
-			nextpage = 14; // PAGE_EMMA_PERCEPTION_CHECK_RESULT 
+			nextpage = "PAGE_EMMA_PERCEPTION_CHECK_RESULT";
 		}
 	}
-	page //ID={{PAGE_EMMA_PERCEPTION_CHECK_RESULT}} Index=14
+	page
 	{
+		pagename = "PAGE_EMMA_PERCEPTION_CHECK_RESULT";
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]That's 15 total? You succeed! You can sense the nasty boys lying in ambush up ahead.";
 		choice
 		{
 			text = "Next";
-			nextpage = 15; // PAGE_LOGAN_WANTS_ATTACK 
+			nextpage = "PAGE_LOGAN_WANTS_ATTACK";
 		}
 	}
-	page //ID={{PAGE_LOGAN_WANTS_ATTACK}} Index=15
+	page
 	{
+		pagename = "PAGE_LOGAN_WANTS_ATTACK";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Let's attack them!";
 		choice
 		{
 			text = "Next";
-			nextpage = 16; // PAGE_MAGNETO_WAIT_ATTACK 
+			nextpage = "PAGE_MAGNETO_WAIT_ATTACK";
 		}
 	}
-	page //ID={{PAGE_MAGNETO_WAIT_ATTACK}} Index=16
+	page
 	{
+		pagename = "PAGE_MAGNETO_WAIT_ATTACK";
 		name = "Magneto";
 		panel = "MGNPA0";
 		dialog = "\c[Purple]Slow your roll there, cowboy. We don't even know that these people are hostile. Maybe we should just talk to them first.";
@@ -422,14 +453,16 @@ conversation
 	}
 }
 
+// emma.template.usdf END
 
-
+// jean.template.usdf BEGIN
 
 conversation
 {
 	actor = "Phoenix";
-	page //ID={{PAGE_START}} Index=1
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Jean";
 		panel = "PNXPA0";
 		dialog = "\c[Orange]Hey there! How can I help you?";
@@ -444,10 +477,11 @@ conversation
 		choice
 		{
 			text = "How are you doing, Jean?";
-			nextpage = 2; // PAGE_PHOENIXLEFT 
+			nextpage = "PAGE_PHOENIXLEFT";
 		}
 	}
-	page { //ID={{PAGE_PHOENIXLEFT}} Index=2
+	page {
+		pagename = "PAGE_PHOENIXLEFT";
 		name = "Jean";
 		panel = "PNXPA0";
 		dialog = "\c[Orange]I'm so glad the Phoenix Force finally left me alone. I'm all back to normal now with my perfect boyfriend, Scott, whom I totally love!";
@@ -462,11 +496,16 @@ conversation
 	}
 }
 
+// jean.template.usdf END
+
+// wolverine.template.usdf BEGIN
+
 conversation
 {
 	actor = "Wolverine";
-	page //ID={{PAGE_START}} Index=1
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]I thought you were gonna stand me up!";
@@ -474,64 +513,69 @@ conversation
 		{
 			text = "I would never!";
 			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
-			nextpage = 2; // PAGE_OTHER_BOYFRIENDS 
+			nextpage = "PAGE_OTHER_BOYFRIENDS";
 			special = 80;
 			arg0 = 15;
 		}
 		choice
 		{
 			text = "Says the king of fucking off to Alaska without telling anybody.";
-			nextpage = 3; // PAGE_BROOD 
+			nextpage = "PAGE_BROOD";
 			special = 80;
 			arg0 = 15;
 		}
 	}
-	page //ID={{PAGE_OTHER_BOYFRIENDS}} Index=2
+	page
 	{
+		pagename = "PAGE_OTHER_BOYFRIENDS";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Sure, tell that to your other boyfriends...";
 		choice
 		{
 			text = "You seem a little down, what's wrong?";
-			nextpage = 3; // PAGE_BROOD 
+			nextpage = "PAGE_BROOD";
 		}
 	}
-	page //ID={{PAGE_BROOD}} Index=3
+	page
 	{
+		pagename = "PAGE_BROOD";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Hey now, we all need a little alone time to brood now and then.";
 		choice
 		{
 			text = "And what have you been brooding about recently, babe?";
-			nextpage = 4; // PAGE_JEAN_BACK 
+			nextpage = "PAGE_JEAN_BACK";
 		}
 	}
-	page //ID={{PAGE_JEAN_BACK}} Index=4
+	page
 	{
+		pagename = "PAGE_JEAN_BACK";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, the usual. Jean is back so I don't get to fuck Scott anymore.";
 		choice
 		{
 			text = "Oh, cry me a river. I thought I was the only one for you?";
-			nextpage = 5; // PAGE_POLYCULE 
+			nextpage = "PAGE_POLYCULE";
 		}
 	}
-	page //ID={{PAGE_POLYCULE}} Index=5
+	page
 	{
+		pagename = "PAGE_POLYCULE";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Come on now, did you really think you could tame the Wolverine? Don't worry, I'll always have room for you in by bed, babe.";
 		choice
 		{
 			text = "Sure, if you've earned it! So why did you invite me over exactly?";
-			nextpage = 6; // PAGE_SURPRISE 
+			nextpage = "PAGE_SURPRISE";
 		}
 	}
-	page //ID={{PAGE_SURPRISE}} Index=6
+	page
 	{
+		pagename = "PAGE_SURPRISE";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, heh heh... I had planned a little surprise for you but I seem to have misplaced the key to the X-Jet Hangar... could you help me find it?";
@@ -550,16 +594,17 @@ conversation
 		choice
 		{
 			text = "Can't you just cut a hole in the door?";
-			nextpage = 7; // PAGE_WONT_BREAK_DOOR 
+			nextpage = "PAGE_WONT_BREAK_DOOR";
 		}
 		ifitem
 		{
 				item = "UselessJunk";
 		}
-		link = 8; // PAGE_FOUND_JUNK 
+		link = "PAGE_FOUND_JUNK";
 	}
-	page //ID={{PAGE_WONT_BREAK_DOOR}} Index=7
+	page
 	{
+		pagename = "PAGE_WONT_BREAK_DOOR";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Xavier only just stopped whining about the last time I did that. \"Logan, don't you know it's almost impossible for mutants to get business insurance? Blah blah blah...\" It would save me a real headache if you could just find the key, bub.";
@@ -573,10 +618,11 @@ conversation
 		{
 				item = "UselessJunk";
 		}
-		link = 8; // PAGE_FOUND_JUNK 
+		link = "PAGE_FOUND_JUNK";
 	}
-	page //ID={{PAGE_FOUND_JUNK}} Index=8
+	page
 	{ // Player only found useless junk
+		pagename = "PAGE_FOUND_JUNK";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]That ain't no key, bub! Keep lookin'.";
@@ -584,10 +630,11 @@ conversation
 		{
 				item = "ScottsBox";
 		}
-		link = 9; // PAGE_FOUND_SCOTTS_BOX 
+		link = "PAGE_FOUND_SCOTTS_BOX";
 	}
-	page //ID={{PAGE_FOUND_SCOTTS_BOX}} Index=9
+	page
 	{ //Player found (but hasn't opened) scott's box - Note: FORCE THE PLAYER TO PICK UP JUNK FIRST or they will get stuck in the logic above!!!!
+		pagename = "PAGE_FOUND_SCOTTS_BOX";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]It must be in there, I can smell the ozone! I'd open it for you, but Jeannie might not take too kindly to me going through Scott's private effects, if you catch my drift. Maybe you can find a way to do it?";
@@ -595,10 +642,11 @@ conversation
 		{
 				item = "BlueCard";
 		}
-		link = 10; // PAGE_GOT_HANGAR_KEY 
+		link = "PAGE_GOT_HANGAR_KEY";
 	}
-	page //ID={{PAGE_GOT_HANGAR_KEY}} Index=10
+	page
 	{
+		pagename = "PAGE_GOT_HANGAR_KEY";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
@@ -606,3 +654,4 @@ conversation
 	}
 }
 
+// wolverine.template.usdf END

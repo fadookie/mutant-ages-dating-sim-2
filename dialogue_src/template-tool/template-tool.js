@@ -40,7 +40,7 @@ const mergedDialogue = usdfDialogueContents.reduce((acc, dialogueTemplateString,
   return acc + "\n\n" + subsitutedDialogue;
 }, "");
 
-const finalUsdfContents = `namespace = "ZDoom";
+const finalUsdfContents = `namespace = "GZDoom";
 
 // This is a build artifact from template-tool.js. DO NOT EDIT DIRECTLY!
 // Edit the source templates in dialogue_src/usdf and then run template-tool to update!

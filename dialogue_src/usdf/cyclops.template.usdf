@@ -1,8 +1,11 @@
+// cyclops.template.usdf BEGIN
+
 conversation
 {
 	actor = "Cyclops";
-	page //ID={{PAGE_START}} Index=<%= PAGE_START %>
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]What do you want?";
@@ -22,7 +25,7 @@ conversation
 		choice
 		{
 			text = "Hey, could you help me with something?";
-			nextpage = <%= PAGE_WHERE_GET %>; // PAGE_WHERE_GET 
+			nextpage = "PAGE_WHERE_GET";
 			nomessage = "\c[Cyan]With what? Come back when you've found something I can help with.";
 			cost
 			{
@@ -31,19 +34,21 @@ conversation
 			}
 		}
 	}
-	page //ID={{PAGE_WHERE_GET}} Index=<%= PAGE_WHERE_GET %>
+	page
 	{
+		pagename = "PAGE_WHERE_GET";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]Hey, where did you get that? Give it back!";
 		choice
 		{
 			text = "I'm looking for the key to the hangar! If you blast it open I'll give everything else back.";
-			nextpage = <%= PAGE_OK %>; // PAGE_OK 
+			nextpage = "PAGE_OK";
 		}
 	}
-	page //ID={{PAGE_OK}} Index=<%= PAGE_OK %>
+	page
 	{
+		pagename = "PAGE_OK";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]Fine, but you are not allowed to call me a tool like Logan does! And don't look at what else is inside!";
@@ -51,11 +56,12 @@ conversation
 		{
 			text = "I pinkie swear.";
 			giveitem = "BlueCard";
-			nextpage = <%= PAGE_GIVEKEY %>; // PAGE_GIVEKEY 
+			nextpage = "PAGE_GIVEKEY";
 		}
 	}
-	page //ID={{PAGE_GIVEKEY}} Index=<%= PAGE_GIVEKEY %>
+	page
 	{
+		pagename = "PAGE_GIVEKEY";
 		name = "Scott";
 		panel = "CYCPA0";
 		dialog = "\c[Cyan]Okay, here's the key. If I hear you tell anyone else about this box I will have Xavier wipe your memories!";
@@ -68,3 +74,4 @@ conversation
 	}
 }
 
+// cyclops.template.usdf END

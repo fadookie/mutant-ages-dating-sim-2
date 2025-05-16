@@ -1,8 +1,11 @@
+// dazzler.template.usdf BEGIN
+
 conversation
 {
 	actor = "Dazzler";
-	page //ID={{PAGE_START}} Index=<%= PAGE_START %>
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
 		dialog = "Wanna dance for me, hotshot?";
@@ -16,3 +19,4 @@ conversation
 	}
 }
 
+// dazzler.template.usdf END

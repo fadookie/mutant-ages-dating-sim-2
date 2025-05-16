@@ -1,8 +1,11 @@
+// wolverine.template.usdf BEGIN
+
 conversation
 {
 	actor = "Wolverine";
-	page //ID={{PAGE_START}} Index=<%= PAGE_START %>
+	page
 	{
+		pagename = "PAGE_START";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]I thought you were gonna stand me up!";
@@ -10,64 +13,69 @@ conversation
 		{
 			text = "I would never!";
 			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
-			nextpage = <%= PAGE_OTHER_BOYFRIENDS %>; // PAGE_OTHER_BOYFRIENDS 
+			nextpage = "PAGE_OTHER_BOYFRIENDS";
 			special = 80;
 			arg0 = 15;
 		}
 		choice
 		{
 			text = "Says the king of fucking off to Alaska without telling anybody.";
-			nextpage = <%= PAGE_BROOD %>; // PAGE_BROOD 
+			nextpage = "PAGE_BROOD";
 			special = 80;
 			arg0 = 15;
 		}
 	}
-	page //ID={{PAGE_OTHER_BOYFRIENDS}} Index=<%= PAGE_OTHER_BOYFRIENDS %>
+	page
 	{
+		pagename = "PAGE_OTHER_BOYFRIENDS";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Sure, tell that to your other boyfriends...";
 		choice
 		{
 			text = "You seem a little down, what's wrong?";
-			nextpage = <%= PAGE_BROOD %>; // PAGE_BROOD 
+			nextpage = "PAGE_BROOD";
 		}
 	}
-	page //ID={{PAGE_BROOD}} Index=<%= PAGE_BROOD %>
+	page
 	{
+		pagename = "PAGE_BROOD";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Hey now, we all need a little alone time to brood now and then.";
 		choice
 		{
 			text = "And what have you been brooding about recently, babe?";
-			nextpage = <%= PAGE_JEAN_BACK %>; // PAGE_JEAN_BACK 
+			nextpage = "PAGE_JEAN_BACK";
 		}
 	}
-	page //ID={{PAGE_JEAN_BACK}} Index=<%= PAGE_JEAN_BACK %>
+	page
 	{
+		pagename = "PAGE_JEAN_BACK";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, the usual. Jean is back so I don't get to fuck Scott anymore.";
 		choice
 		{
 			text = "Oh, cry me a river. I thought I was the only one for you?";
-			nextpage = <%= PAGE_POLYCULE %>; // PAGE_POLYCULE 
+			nextpage = "PAGE_POLYCULE";
 		}
 	}
-	page //ID={{PAGE_POLYCULE}} Index=<%= PAGE_POLYCULE %>
+	page
 	{
+		pagename = "PAGE_POLYCULE";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Come on now, did you really think you could tame the Wolverine? Don't worry, I'll always have room for you in by bed, babe.";
 		choice
 		{
 			text = "Sure, if you've earned it! So why did you invite me over exactly?";
-			nextpage = <%= PAGE_SURPRISE %>; // PAGE_SURPRISE 
+			nextpage = "PAGE_SURPRISE";
 		}
 	}
-	page //ID={{PAGE_SURPRISE}} Index=<%= PAGE_SURPRISE %>
+	page
 	{
+		pagename = "PAGE_SURPRISE";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, heh heh... I had planned a little surprise for you but I seem to have misplaced the key to the X-Jet Hangar... could you help me find it?";
@@ -86,16 +94,17 @@ conversation
 		choice
 		{
 			text = "Can't you just cut a hole in the door?";
-			nextpage = <%= PAGE_WONT_BREAK_DOOR %>; // PAGE_WONT_BREAK_DOOR 
+			nextpage = "PAGE_WONT_BREAK_DOOR";
 		}
 		ifitem
 		{
 				item = "UselessJunk";
 		}
-		link = <%= PAGE_FOUND_JUNK %>; // PAGE_FOUND_JUNK 
+		link = "PAGE_FOUND_JUNK";
 	}
-	page //ID={{PAGE_WONT_BREAK_DOOR}} Index=<%= PAGE_WONT_BREAK_DOOR %>
+	page
 	{
+		pagename = "PAGE_WONT_BREAK_DOOR";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Xavier only just stopped whining about the last time I did that. \"Logan, don't you know it's almost impossible for mutants to get business insurance? Blah blah blah...\" It would save me a real headache if you could just find the key, bub.";
@@ -109,10 +118,11 @@ conversation
 		{
 				item = "UselessJunk";
 		}
-		link = <%= PAGE_FOUND_JUNK %>; // PAGE_FOUND_JUNK 
+		link = "PAGE_FOUND_JUNK";
 	}
-	page //ID={{PAGE_FOUND_JUNK}} Index=<%= PAGE_FOUND_JUNK %>
+	page
 	{ // Player only found useless junk
+		pagename = "PAGE_FOUND_JUNK";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]That ain't no key, bub! Keep lookin'.";
@@ -120,10 +130,11 @@ conversation
 		{
 				item = "ScottsBox";
 		}
-		link = <%= PAGE_FOUND_SCOTTS_BOX %>; // PAGE_FOUND_SCOTTS_BOX 
+		link = "PAGE_FOUND_SCOTTS_BOX";
 	}
-	page //ID={{PAGE_FOUND_SCOTTS_BOX}} Index=<%= PAGE_FOUND_SCOTTS_BOX %>
+	page
 	{ //Player found (but hasn't opened) scott's box - Note: FORCE THE PLAYER TO PICK UP JUNK FIRST or they will get stuck in the logic above!!!!
+		pagename = "PAGE_FOUND_SCOTTS_BOX";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]It must be in there, I can smell the ozone! I'd open it for you, but Jeannie might not take too kindly to me going through Scott's private effects, if you catch my drift. Maybe you can find a way to do it?";
@@ -131,10 +142,11 @@ conversation
 		{
 				item = "BlueCard";
 		}
-		link = <%= PAGE_GOT_HANGAR_KEY %>; // PAGE_GOT_HANGAR_KEY 
+		link = "PAGE_GOT_HANGAR_KEY";
 	}
-	page //ID={{PAGE_GOT_HANGAR_KEY}} Index=<%= PAGE_GOT_HANGAR_KEY %>
+	page
 	{
+		pagename = "PAGE_GOT_HANGAR_KEY";
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
@@ -142,3 +154,4 @@ conversation
 	}
 }
 
+// wolverine.template.usdf END
