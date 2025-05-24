@@ -43,7 +43,7 @@ class DazzlerPowerHandler : EventHandler
 	const DAZZLER_WIND_UP_SEEK_AHEAD_AMOUNT_SEC = 0.5;
 
 	// Lose/Win condition stuff
-	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 2;
+	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 1;
 	int numPlayerFailures;
 	bool CHEAT_INVINCIBLE; // Player can't fail sequence
 
@@ -224,19 +224,28 @@ class DazzlerPowerHandler : EventHandler
 	void CheckWinCondition() {
 		if (player.health > 1 || CHEAT_INVINCIBLE) {
 			// Player won
-			Console.MidPrint("BIGFONT", "Nice footwork! You impressed me.\nI'll let you through to see my friends in the inner circle...");
-			Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
+			OnPlayerWin(false);
 		} else {
 			// Player was too hurt to win
 			OnPlayerLose();
 		}
 	}
 
+	void OnPlayerWin(bool wasSkipped) {
+		if (wasSkipped) {
+			Console.MidPrint("BIGFONT", "Okay, your dance skills could use some work but you definitely tried your best.\nI'll let you through to see my friends in the inner circle...");
+		} else {
+			Console.MidPrint("BIGFONT", "Nice footwork! You impressed me.\nI'll let you through to see my friends in the inner circle...");
+		}
+		Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
+	}
+
 	void OnPlayerLose() {
 		numPlayerFailures++;
 
 		if (numPlayerFailures >= PLAYER_FAILURES_BEFORE_SKIP_OPTION) {
-			Console.MidPrint("BIGFONT", "You've really been dancing your little heart out even if you look a bit ridiculous.\nI might be willing to cut you a little slack, what do you say?");
+			player.GiveInventoryType("DazzlerAskForSkipInventory");
+			dazzler.StartConversation(player);
 		} else {
 			Console.MidPrint("BIGFONT", "Ooh, nice try, but you looked a little clumsy out there.\nWhy don't we give it another shot?");
 		}
@@ -426,6 +435,11 @@ class DazzlerPowerHandler : EventHandler
 		player.A_ResetHealth();
 
 		SetCheeringActorState(true);
+	}
+
+	void SkipDanceSequence() {
+		Console.Printf("DazzlerPowerHandler#SkipDanceSequence");
+		OnPlayerWin(true);
 	}
 
 	void EndDanceSequence() {

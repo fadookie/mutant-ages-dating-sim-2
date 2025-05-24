@@ -125,6 +125,11 @@ script 11 ENTER {
  	Log(s:"ACS Trigger Dance Sequence");
 	ScriptCall("CallBus", "StartDanceSequence");
  }
+
+ script 17 (void) {
+ 	Log(s:"ACS Trigger Dazzler Skip");
+	ScriptCall("CallBus", "SkipDanceSequence");
+ }
  
  // Logan intro chat
  script 14 (void) {
@@ -174,6 +179,8 @@ script 16 (void) // Trigger D&D end sequence
 	
 	StartConversation(2, 1);
 }
+
+// !!! script 17 is moved up above to keep dazzler scripts together !!!
 
 // script 33 ENTER
 // {

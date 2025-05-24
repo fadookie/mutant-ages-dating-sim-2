@@ -14,6 +14,17 @@ class CallBus
     }
   }
 
+  play static void SkipDanceSequence(Actor activator)
+  {
+		Console.Printf("CallBus.SkipDanceSequence");
+    DazzlerPowerHandler dazzlerPowerHandler = DazzlerPowerHandler(EventHandler.Find("DazzlerPowerHandler"));
+    if(dazzlerPowerHandler) {
+      dazzlerPowerHandler.SkipDanceSequence();
+    } else {
+      Console.Printf("Error! DazzlerPowerHandler not found!");
+    }
+  }
+
 	play static PoochyPlayer FindPlayer() {
 		let result = PoochyPlayer(players[consoleplayer].Mo);
 		if (result == null) {

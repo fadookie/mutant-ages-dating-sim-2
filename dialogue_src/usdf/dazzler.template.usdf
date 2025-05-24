@@ -16,6 +16,32 @@ conversation
 			special = 80;
 			arg0 = 13;
 		}
+		ifitem
+		{
+				item = "DazzlerAskForSkipInventory";
+		}
+		link = "PAGE_ASK_FOR_SKIP";
+	}
+	page
+	{
+		pagename = "PAGE_ASK_FOR_SKIP";
+		name = "Alison (Dazzler)";
+		panel = "DZLPA0";
+		dialog = "You've really been dancing your little heart out even if you look a bit ridiculous.\nI might be willing to cut you a little slack, what do you say?";
+		choice
+		{
+			text = "No thanks, I've got this!";
+			closedialog = true;
+			special = 80;
+			arg0 = 13;
+		}
+		choice
+		{
+			text = "Yes, take pity on me! I can't dance to save my life.";
+			closedialog = true;
+			special = 80;
+			arg0 = 17;
+		}
 	}
 }
 
