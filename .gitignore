@@ -9,6 +9,7 @@ ehthumbs.db
 Thumbs.db
 
 .codemod.bookmark
+*.swp
 
 #Ultimate Doom Builder meta files
 /src/maps/*.dbs

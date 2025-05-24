@@ -177,6 +177,7 @@ script 16 (void) // Trigger D&D end sequence
 	
 	Log(s:"All PartyCacos are Dead");
 	
+	GiveInventory("AllCacosFedInventory", 1);
 	StartConversation(2, 1);
 }
 

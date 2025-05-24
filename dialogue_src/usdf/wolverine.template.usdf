@@ -187,6 +187,18 @@ conversation
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]I'm WolverineInnerCircle!";
+		ifitem
+		{
+				item = "AllCacosFedInventory";
+		}
+		link = "PAGE_ALL_CACOS_FED";
+	}
+	page
+	{
+		pagename = "PAGE_ALL_CACOS_FED";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I guess they were just hungry!";
 	}
 }
 
