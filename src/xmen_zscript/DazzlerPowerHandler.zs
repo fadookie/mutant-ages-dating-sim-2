@@ -43,7 +43,7 @@ class DazzlerPowerHandler : EventHandler
 	const DAZZLER_WIND_UP_SEEK_AHEAD_AMOUNT_SEC = 0.5;
 
 	// Lose/Win condition stuff
-	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 1;
+	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 2;
 	int numPlayerFailures;
 	bool CHEAT_INVINCIBLE; // Player can't fail sequence
 
@@ -73,7 +73,7 @@ class DazzlerPowerHandler : EventHandler
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 
- 		CHEAT_INVINCIBLE = false; // TODO: Disable
+ 		CHEAT_INVINCIBLE = true; // TODO: Disable
 		
 		events = New("DazzlerPowerEventSequence");
 		events.Init();
@@ -232,11 +232,14 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	void OnPlayerWin(bool wasSkipped) {
+		let innerCircleLine = "\nI'll let you through to see my friends in the inner circle, go through the door to your right...";
 		if (wasSkipped) {
-			Console.MidPrint("BIGFONT", "Okay, your dance skills could use some work but you definitely tried your best.\nI'll let you through to see my friends in the inner circle...");
+			Console.MidPrint("BIGFONT", "Okay, your dance skills could use some work but you definitely tried your best." .. innerCircleLine);
 		} else {
-			Console.MidPrint("BIGFONT", "Nice footwork! You impressed me.\nI'll let you through to see my friends in the inner circle...");
+			Console.MidPrint("BIGFONT", "Nice footwork! You impressed me." .. innerCircleLine);
 		}
+		player.GiveInventoryType("DazzlerAskForSkipInventory"); // Needed to skip to end of dialogue
+		player.GiveInventoryType("DazzlerWonInventory");
 		Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
 	}
 
@@ -244,6 +247,7 @@ class DazzlerPowerHandler : EventHandler
 		numPlayerFailures++;
 
 		if (numPlayerFailures >= PLAYER_FAILURES_BEFORE_SKIP_OPTION) {
+			numPlayerFailures = 0;
 			player.GiveInventoryType("DazzlerAskForSkipInventory");
 			dazzler.StartConversation(player);
 		} else {
@@ -431,8 +435,10 @@ class DazzlerPowerHandler : EventHandler
 		// Close exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
 		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 128, 8 + 64);
-
-		player.A_ResetHealth();
+ 		// TODO: Disable A_SetHealth and re-enable A_ResetHealth
+		// player.A_ResetHealth();
+		player.A_SetHealth(2);
+		player.SetInventory("DazzlerAskForSkipInventory", 0);
 
 		SetCheeringActorState(true);
 	}

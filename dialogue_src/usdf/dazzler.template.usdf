@@ -42,6 +42,18 @@ conversation
 			special = 80;
 			arg0 = 17;
 		}
+		ifitem
+		{
+				item = "DazzlerWonInventory";
+		}
+		link = "PAGE_WON";
+	}
+	page
+	{
+		pagename = "PAGE_WON";
+		name = "Alison (Dazzler)";
+		panel = "DZLPA0";
+		dialog = "Good effort! You can get to the inner circle through the door on your right. Have fun, champ!";
 	}
 }
 
