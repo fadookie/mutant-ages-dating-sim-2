@@ -251,7 +251,7 @@ conversation
 		panel = "WQNPA0";
 		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
 		choice
-		{
+		{ // TODO Remove skip option
 			text = "SKIP DIALOGUE";
 			closedialog = true;
 			special = 80;
@@ -488,6 +488,13 @@ conversation
 			text = "Attack!";
 			// nextpage = 17;
 		}
+		choice
+		{ // TODO Remove skip option
+			text = "SKIP DIALOGUE";
+			closedialog = true;
+			special = 80;
+			arg0 = 16;
+		}
 	}
 }
 
@@ -540,7 +547,7 @@ conversation
 
 conversation
 {
-	actor = "Wolverine";
+	actor = "WolverineFoyer";
 	page
 	{
 		pagename = "PAGE_START";
@@ -689,6 +696,42 @@ conversation
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
 		goodbye = "I can't wait! Let's go!";
+	}
+}
+
+conversation
+{
+	actor = "WolverineJet";
+	page
+	{
+		pagename = "PAGE_START";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm WolverineJet!";
+	}
+}
+
+conversation
+{
+	actor = "WolverineClub";
+	page
+	{
+		pagename = "PAGE_START";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm WolverineClub!";
+	}
+}
+
+conversation
+{
+	actor = "WolverineInnerCircle";
+	page
+	{
+		pagename = "PAGE_START";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm WolverineInnerCircle!";
 	}
 }
 

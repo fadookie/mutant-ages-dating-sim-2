@@ -2,7 +2,7 @@
 
 conversation
 {
-	actor = "Wolverine";
+	actor = "WolverineFoyer";
 	page
 	{
 		pagename = "PAGE_START";
@@ -151,6 +151,42 @@ conversation
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
 		goodbye = "I can't wait! Let's go!";
+	}
+}
+
+conversation
+{
+	actor = "WolverineJet";
+	page
+	{
+		pagename = "PAGE_START";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm WolverineJet!";
+	}
+}
+
+conversation
+{
+	actor = "WolverineClub";
+	page
+	{
+		pagename = "PAGE_START";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm WolverineClub!";
+	}
+}
+
+conversation
+{
+	actor = "WolverineInnerCircle";
+	page
+	{
+		pagename = "PAGE_START";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm WolverineInnerCircle!";
 	}
 }
 

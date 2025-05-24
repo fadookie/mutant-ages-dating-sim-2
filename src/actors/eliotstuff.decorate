@@ -152,7 +152,7 @@ actor Cupcake_Missile : Actor
 	}
 }
 
-actor Wolverine : Actor 30004
+actor WolverineBase : Actor 25000
 {
 	+FRIENDLY
 	+BUDDHA
@@ -171,6 +171,14 @@ actor Wolverine : Actor 30004
     Loop
   }
 }
+
+actor WolverineFoyer : WolverineBase 25001 {}
+
+actor WolverineJet : WolverineBase 25002 {}
+
+actor WolverineClub : WolverineBase 25003 {}
+
+actor WolverineInnerCircle : WolverineBase 25004 {}
 
 actor Cyclops : Actor 30005
 {
