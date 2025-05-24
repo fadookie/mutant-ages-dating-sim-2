@@ -73,7 +73,7 @@ class DazzlerPowerHandler : EventHandler
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 
- 		CHEAT_INVINCIBLE = true; // TODO: Disable
+ 		CHEAT_INVINCIBLE = false; // TODO: Disable
 		
 		events = New("DazzlerPowerEventSequence");
 		events.Init();
@@ -453,7 +453,7 @@ class DazzlerPowerHandler : EventHandler
 		currentEventIdx = 0;
 		danceStartTimeTk = 0;
 		// Restore default music
-		S_ChangeMusic("*");
+		S_ChangeMusic("D_STALKS");
 
 		// Open exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
