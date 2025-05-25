@@ -16,6 +16,7 @@ conversation
 			nextpage = "PAGE_OTHER_BOYFRIENDS";
 			special = 80;
 			arg0 = 15;
+			giveitem = "TalkedToWolverineFoyerInventory"; // Disable bark script
 		}
 		choice
 		{
@@ -23,6 +24,7 @@ conversation
 			nextpage = "PAGE_BROOD";
 			special = 80;
 			arg0 = 15;
+			giveitem = "TalkedToWolverineFoyerInventory"; // Disable bark script
 		}
 	}
 	page

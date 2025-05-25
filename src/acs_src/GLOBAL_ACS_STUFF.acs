@@ -133,18 +133,21 @@ script 11 ENTER {
  
  // Logan intro chat
  script 14 (void) {
- 	Log(s:"ACS Trigger Logan Sequence");
-	SetFont("BIGFONT");
-	print(s:"\c[Yellow]Hey, you came! What's up?");
+	int hasTalkedToWolverineFoyer = CheckInventory("TalkedToWolverineFoyerInventory");
+ 	Log(s:"ACS Trigger Logan Sequence, hasTalkedToWolverineFoyer:", i:hasTalkedToWolverineFoyer);
+	if (hasTalkedToWolverineFoyer < 1) { 
+		SetFont("BIGFONT");
+		print(s:"\c[Yellow]Hey, you came! What's up?");
 
-	Delay(3 * TICS_PER_SECOND);
-	PrintBold(s:"\c[Yellow]Cat got your tongue?");
-	
-	Delay(3 * TICS_PER_SECOND);
-	PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", bub!");
-	
-	Delay(6 * TICS_PER_SECOND);
-	PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Press ", k:"+use", s:"!");
+		Delay(3 * TICS_PER_SECOND);
+		PrintBold(s:"\c[Yellow]Cat got your tongue?");
+		
+		Delay(3 * TICS_PER_SECOND);
+		PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", bub!");
+		
+		Delay(6 * TICS_PER_SECOND);
+		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Press ", k:"+use", s:"!");
+	}
  }
  
  script 15 (void) // Got quest from Logan dialogue
