@@ -73,7 +73,7 @@ class DazzlerPowerHandler : EventHandler
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 
- 		CHEAT_INVINCIBLE = false; // TODO: Disable
+ 		CHEAT_INVINCIBLE = true; // TODO: Disable
 		
 		events = New("DazzlerPowerEventSequence");
 		events.Init();
