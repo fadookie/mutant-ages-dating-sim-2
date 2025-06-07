@@ -163,6 +163,7 @@ script 16 (void) // Trigger D&D end sequence
 	Log(s:"Trigger end of D&D sequence");
 	// Raise the cake
 	Floor_RaiseToNearest(718, 16);
+	SetMusic("music/D_ELBDAY.mid");
 	
 	// Remove invisible wall around cake
 	Line_SetBlocking(2, 0, BLOCKF_EVERYTHING);
@@ -179,9 +180,25 @@ script 16 (void) // Trigger D&D end sequence
     }
 	
 	Log(s:"All PartyCacos are Dead");
+
+	// SetMusic("*");
 	
 	GiveInventory("AllCacosFedInventory", 1);
 	StartConversation(2, 1);
+
+	// disable player movement
+	SetActorProperty(0, APROP_Speed, 0.0);
+	ChangeCamera(5, TRUE, FALSE);
+	
+	// fade out screen
+	FadeTo(0, 0, 0, 1.0, 3.0);
+
+	Delay(3 * TICS_PER_SECOND);
+	SetFont("BIGFONT");
+	HudMessage(s:"The End!"; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+	Delay(INTRO_MESSAGE_DELAY_TICS);
+
+	Exit_Normal(0);
 }
 
 // !!! script 17 is moved up above to keep dazzler scripts together !!!
