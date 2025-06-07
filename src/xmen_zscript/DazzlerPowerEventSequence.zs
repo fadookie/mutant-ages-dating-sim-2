@@ -563,6 +563,12 @@ class DazzlerPowerEventSequence {
 		eventArg0Ints.Push(EVENT_ARG_NA);
 		eventArg0Floats.Push(JUMP_HEIGHT);
 
+		eventTimestampsS.Push(44.308);
+		eventTypes.Push(HORIZONTAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(JUMP_HEIGHT);
+
 		eventTimestampsS.Push(45.692);
 		eventTypes.Push(BARRAGE_LTR);
 		eventShotTypes.Push(DAZZLER_BALL);
@@ -694,8 +700,140 @@ class DazzlerPowerEventSequence {
 		eventArg0Ints.Push(3);
 		eventArg0Floats.Push(EVENT_ARG_NA);
 
+		eventTimestampsS.Push(54.923);
+		eventTypes.Push(HORIZONTAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(JUMP_HEIGHT);
+
+		// Triple event
+		eventTimestampsS.Push(56.308);
+		eventTypes.Push(VERTICAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(1);
+		eventArg0Floats.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(56.308);
+		eventTypes.Push(HORIZONTAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		eventTimestampsS.Push(56.308);
+		eventTypes.Push(VERTICAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(3);
+		eventArg0Floats.Push(EVENT_ARG_NA);
+
+		// BEGIN FINAL BASS SEQUENCE
+		eventTimestampsS.Push(57.692);
+		eventTypes.Push(HORIZONTAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(JUMP_HEIGHT);
+
+		eventTimestampsS.Push(59.077);
+		eventTypes.Push(HORIZONTAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(JUMP_HEIGHT);
+
+		eventTimestampsS.Push(60.462);
+		eventTypes.Push(HORIZONTAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		// BEGIN last bar. Quadruple Event
+		eventTimestampsS.Push(61.385);
+		eventTypes.Push(CIRCLE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		eventTimestampsS.Push(61.385);
+		eventTypes.Push(VERTICAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(0);
+		eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		eventTimestampsS.Push(61.385);
+		eventTypes.Push(VERTICAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(4);
+		eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		eventTimestampsS.Push(61.385);
+		eventTypes.Push(HORIZONTAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(EVENT_ARG_NA);
+		eventArg0Floats.Push(16.0 * 6);
+
+
+		// BEGIN final arpeggio
+		// Double event
+		// JK
+		// eventTimestampsS.Push(63.068);
+		// eventTypes.Push(SINGLE);
+		// eventShotTypes.Push(DAZZLER_BALL);
+		// eventArg0Ints.Push(1);
+		// eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		// eventTimestampsS.Push(63.068);
+		// eventTypes.Push(SINGLE);
+		// eventShotTypes.Push(DAZZLER_BALL);
+		// eventArg0Ints.Push(1);
+		// eventArg0Floats.Push(JUMP_HEIGHT);
+
+		eventTimestampsS.Push(63.068);
+		eventTypes.Push(VERTICAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(3);
+		eventArg0Floats.Push(EVENT_ARG_NA);
+
+		// Double event
+		// JK
+		// eventTimestampsS.Push(63.068);
+		// eventTypes.Push(SINGLE);
+		// eventShotTypes.Push(DAZZLER_BALL);
+		// eventArg0Ints.Push(2);
+		// eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		// eventTimestampsS.Push(63.068);
+		// eventTypes.Push(SINGLE);
+		// eventShotTypes.Push(DAZZLER_BALL);
+		// eventArg0Ints.Push(2);
+		// eventArg0Floats.Push(JUMP_HEIGHT);
+
+		eventTimestampsS.Push(63.068);
+		eventTypes.Push(VERTICAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(1);
+		eventArg0Floats.Push(EVENT_ARG_NA);
+
+		// Double event
+		// JK
+		// eventTimestampsS.Push(63.187);
+		// eventTypes.Push(SINGLE);
+		// eventShotTypes.Push(DAZZLER_BALL);
+		// eventArg0Ints.Push(3);
+		// eventArg0Floats.Push(CROUCH_HEIGHT);
+
+		// eventTimestampsS.Push(63.187);
+		// eventTypes.Push(SINGLE);
+		// eventShotTypes.Push(DAZZLER_BALL);
+		// eventArg0Ints.Push(3);
+		// eventArg0Floats.Push(JUMP_HEIGHT);
+
+		eventTimestampsS.Push(63.187);
+		eventTypes.Push(VERTICAL_LINE);
+		eventShotTypes.Push(DAZZLER_BALL);
+		eventArg0Ints.Push(2);
+		eventArg0Floats.Push(EVENT_ARG_NA);
+
 		////// End of song - marker for end of game //////
-		eventTimestampsS.Push(eventTimestampsS[eventTimestampsS.Size() - 2] + 5.0); // 93.544; = REAL VALUE
+		// eventTimestampsS.Push(eventTimestampsS[eventTimestampsS.Size() - 2] + 5.0); // Debug auto space to 5 seconds after end of song
+		eventTimestampsS.Push(66.000);
 		eventTypes.Push(NOOP);
 		eventShotTypes.Push(SHOT_NONE);
 		eventArg0Ints.Push(EVENT_ARG_NA);

@@ -285,11 +285,13 @@ class DazzlerPowerHandler : EventHandler
 			case VERTICAL_LINE: {
 				let originIndex = events.eventArg0Ints[currentEventIdx];
 				let spawnOrigin = spawnOrigins[originIndex];
+				let arg0Float = events.eventArg0Floats[currentEventIdx];
+				let originZOffset = arg0Float == DazzlerPowerEventSequence.EVENT_ARG_NA ? 0 : arg0Float;
 				let NUM_BALLS = 10;
 				let BALL_SPACING = 15.0;
 				for(int i = 0; i < NUM_BALLS; ++i) {
-					let zOffset = i * BALL_SPACING;
-					let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y, spawnOrigin.Pos.z + zOffset);
+					let ballZOffset = i * BALL_SPACING;
+					let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y, spawnOrigin.Pos.z + originZOffset + ballZOffset);
 					let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 					if (ball) {
 						ball.SetTranslation(i);
@@ -435,9 +437,10 @@ class DazzlerPowerHandler : EventHandler
 		// Close exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
 		Floor_MoveToValue(EXIT_DOOR_SECTOR_TAG, 128, 8 + 64);
- 		// TODO: Disable A_SetHealth and re-enable A_ResetHealth
-		// player.A_ResetHealth();
-		player.A_SetHealth(2);
+
+ 		// To force player to low health at beginning, uncomment A_SetHealth and comment out A_ResetHealth:
+		// player.A_SetHealth(2);
+		player.A_ResetHealth();
 		player.SetInventory("DazzlerAskForSkipInventory", 0);
 
 		SetCheeringActorState(true);
