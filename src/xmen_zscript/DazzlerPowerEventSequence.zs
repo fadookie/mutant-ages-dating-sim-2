@@ -57,7 +57,7 @@ class DazzlerPowerEventSequence {
 
 		eventTimestampsS.Push(2.307);
 		eventTypes.Push(SINGLE);
-		eventShotTypes.Push(DAZZLER_HEALTH);
+		eventShotTypes.Push(DAZZLER_BALL); // Was DAZZLER_HEALTH for testing
 		eventArg0Ints.Push(2);
 		eventArg0Floats.Push(CROUCH_HEIGHT);
 
@@ -788,7 +788,7 @@ class DazzlerPowerEventSequence {
 		eventTimestampsS.Push(63.068);
 		eventTypes.Push(VERTICAL_LINE);
 		eventShotTypes.Push(DAZZLER_BALL);
-		eventArg0Ints.Push(3);
+		eventArg0Ints.Push(1);
 		eventArg0Floats.Push(EVENT_ARG_NA);
 
 		// Double event
@@ -808,7 +808,7 @@ class DazzlerPowerEventSequence {
 		eventTimestampsS.Push(63.068);
 		eventTypes.Push(VERTICAL_LINE);
 		eventShotTypes.Push(DAZZLER_BALL);
-		eventArg0Ints.Push(1);
+		eventArg0Ints.Push(2);
 		eventArg0Floats.Push(EVENT_ARG_NA);
 
 		// Double event
@@ -828,7 +828,13 @@ class DazzlerPowerEventSequence {
 		eventTimestampsS.Push(63.187);
 		eventTypes.Push(VERTICAL_LINE);
 		eventShotTypes.Push(DAZZLER_BALL);
-		eventArg0Ints.Push(2);
+		eventArg0Ints.Push(3);
+		eventArg0Floats.Push(EVENT_ARG_NA);
+
+		eventTimestampsS.Push(64.615);
+		eventTypes.Push(HUD_WIN);
+		eventShotTypes.Push(SHOT_NONE);
+		eventArg0Ints.Push(EVENT_ARG_NA);
 		eventArg0Floats.Push(EVENT_ARG_NA);
 
 		////// End of song - marker for end of game //////

@@ -9,6 +9,7 @@ enum DazzlerEventType
 		HUD_GO,
 		HUD_JUMP,
 		HUD_CROUCH,
+		HUD_WIN,
 		SINGLE,
 		VERTICAL_LINE,
 		CIRCLE,
@@ -232,14 +233,15 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	void OnPlayerWin(bool wasSkipped) {
-		let innerCircleLine = "\nI'll let you through to see my friends in the inner circle, go through the door to your right...";
-		if (wasSkipped) {
-			Console.MidPrint("BIGFONT", "Okay, your dance skills could use some work but you definitely tried your best." .. innerCircleLine);
-		} else {
-			Console.MidPrint("BIGFONT", "Nice footwork! You impressed me." .. innerCircleLine);
-		}
+		// let innerCircleLine = "\nI'll let you through to see my friends in the inner circle, go through the door to your right...";
+		// if (wasSkipped) {
+		// 	Console.MidPrint("BIGFONT", "Okay, your dance skills could use some work but you definitely tried your best." .. innerCircleLine);
+		// } else {
+		// 	Console.MidPrint("BIGFONT", "Nice footwork! You impressed me." .. innerCircleLine);
+		// }
 		player.GiveInventoryType("DazzlerAskForSkipInventory"); // Needed to skip to end of dialogue
 		player.GiveInventoryType("DazzlerWonInventory");
+		dazzler.StartConversation(player);
 		Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
 	}
 
@@ -384,6 +386,10 @@ class DazzlerPowerHandler : EventHandler
 			case HUD_CROUCH:
 				// Console.MidPrint("BIGFONT", "CROUCH!");
 				player.ACS_NamedExecute("DazzlerPrintCrouch", 0);
+				break;
+
+			case HUD_WIN:
+				Console.MidPrint("BIGFONT", "CLEARED!");
 				break;
 
 			default:
