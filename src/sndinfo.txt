@@ -9,7 +9,9 @@ el/horn sounds/partyhorn.wav
 el/sm_nom sounds/172137__paulmorek__nom-c-01.wav
 el/lg_nom sounds/172135__paulmorek__nom-c-06.wav
 el/menuselect sounds/xmen_select1_long.wav
-el/dazzlerSong music/clickTrack.mp3
+el/clickTrack music/clickTrack.mp3
+el/dazzlerClickTrack music/petty-0.75-clicktrack.ogg
+el/dazzlerSong music/petty-0.75.ogg
 
 chckn0 sounds/CHOOK0
 chckn1 sounds/CHOOK1
