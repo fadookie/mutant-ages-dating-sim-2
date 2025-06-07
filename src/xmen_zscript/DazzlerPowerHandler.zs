@@ -205,7 +205,7 @@ class DazzlerPowerHandler : EventHandler
 				let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, barrageHeight);
 				let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 				if (ball) {
-					ball.SetTranslation(intervalIdx);
+					SetBallTranslation(ball, pos, intervalIdx);
 				} else {
 					Console.Printf("Barrage time slice encountered null ball");
 				}
@@ -280,7 +280,7 @@ class DazzlerPowerHandler : EventHandler
 				let height = events.eventArg0Floats[currentEventIdx];
 				let spawnOrigin = spawnOrigins[originIndex];
 				let pos = (spawnOrigin.Pos.x, spawnOrigin.Pos.y, spawnOrigin.Pos.z + height);
-				SpawnDazzlerShot(events.eventShotTypes[currentEventIdx], spawnOrigin, pos, true);
+				SpawnDazzlerShot(events.eventShotTypes[currentEventIdx], spawnOrigin, pos);
 				break;
 			}
 
@@ -331,7 +331,7 @@ class DazzlerPowerHandler : EventHandler
 				for(int i = 0; i < NUM_BALLS; ++i) {
 					let posY = (i * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 					let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, height);
-					SpawnDazzlerShot(events.eventShotTypes[currentEventIdx], centerSpawnOrigin, pos, false, i);
+					SpawnDazzlerShot(events.eventShotTypes[currentEventIdx], centerSpawnOrigin, pos, i);
 				}
 				break;
 			}
@@ -397,18 +397,14 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
-	void SpawnDazzlerShot(DazzlerShotType shotType, Actor spawnOrigin, Vector3 pos, bool useRandomTranslation = false, int translationIdx = 0) {
+	void SpawnDazzlerShot(DazzlerShotType shotType, Actor spawnOrigin, Vector3 pos, int translationIdx = -1) {
 		switch (shotType) {
 			case SHOT_NONE:
 				return;
 			case DAZZLER_BALL: {
 				let ball = DazzlerBall(spawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 				if (ball) {
-					if (useRandomTranslation) {
-						ball.SetRandomTranslation();
-					} else {
-						ball.SetTranslation(translationIdx);
-					}
+					SetBallTranslation(ball, pos, translationIdx);
 				} else {
 					Console.Printf("SpawnDazzlerShot encountered null ball");
 				}
@@ -420,6 +416,18 @@ class DazzlerPowerHandler : EventHandler
 			}
 			default:
 				ThrowAbortException("Unknown dazzler shot type: %d", shotType);
+		}
+	}
+
+	void SetBallTranslation(DazzlerBall ball, Vector3 pos, int translationIdx = -1) {
+		if (pos.z == DazzlerPowerEventSequence.JUMP_HEIGHT) {
+			ball.A_SetTranslation(DazzlerBall.JUMP_TRANSLATION);
+		} else if (pos.z == DazzlerPowerEventSequence.CROUCH_HEIGHT) {
+			ball.A_SetTranslation(DazzlerBall.CROUCH_TRANSLATION);
+		} else if (translationIdx >= 0) {
+			ball.SetTranslation(translationIdx);
+		} else {
+			ball.SetRandomTranslation();
 		}
 	}
 

@@ -68,7 +68,11 @@ class DazzlerBall : DoomImpBall
 	// 	Loop;
   // }
 
-  static const String TRANSLATIONS[] =
+	const JUMP_TRANSLATION = "PurpleDesat";
+
+	const CROUCH_TRANSLATION = "OrangeDesat";
+
+  static const String RAINBOW_TRANSLATIONS[] =
   {
       // "GreenBall",
       // "Ice"
@@ -90,15 +94,15 @@ class DazzlerBall : DoomImpBall
   }
 
   void SetRandomTranslation() {
-    int randIdx = Random(0, TRANSLATIONS.Size() - 1);
-    // int randIdx = (TID - 1) % TRANSLATIONS.Size();
+    int randIdx = Random(0, RAINBOW_TRANSLATIONS.Size() - 1);
+    // int randIdx = (TID - 1) % RAINBOW_TRANSLATIONS.Size();
     // int randIdx = 0;
     // Console.Printf("TID" .. TID .. ", randIdx:" .. randIdx);
     SetTranslation(randIdx);
   }
 
   void SetTranslation(int translationIdx) {
-    let randTranslation = TRANSLATIONS[translationIdx % TRANSLATIONS.Size()];
+    let randTranslation = RAINBOW_TRANSLATIONS[translationIdx % RAINBOW_TRANSLATIONS.Size()];
 		//Console.Printf("DazzlerBall#SetTranslation index:" .. translationIdx .. ", randTranslation:" .. randTranslation);
 		A_SetTranslation(randTranslation);
   }

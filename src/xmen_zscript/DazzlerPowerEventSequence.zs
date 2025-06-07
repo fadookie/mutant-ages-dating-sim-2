@@ -412,93 +412,93 @@ class DazzlerPowerEventSequence {
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(2);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.076 + (lineBarrageOffset * 1));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(2);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.076 + (lineBarrageOffset * 2));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(2);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.076 + (lineBarrageOffset * 3));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(2);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.076 + (lineBarrageOffset * 4));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(2);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		// Line barrage
 		eventTimestampsS.Push(29.538 + (lineBarrageOffset * 0));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(1);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.538 + (lineBarrageOffset * 1));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(1);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.538 + (lineBarrageOffset * 2));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(1);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.538 + (lineBarrageOffset * 3));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(1);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(29.538 + (lineBarrageOffset * 4));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(1);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		// Line barrage
 		eventTimestampsS.Push(30.461 + (lineBarrageOffset * 0));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(3);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(30.461 + (lineBarrageOffset * 1));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(3);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(30.461 + (lineBarrageOffset * 2));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(3);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(30.461 + (lineBarrageOffset * 3));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(3);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(30.461 + (lineBarrageOffset * 4));
 		eventTypes.Push(SINGLE);
 		eventShotTypes.Push(DAZZLER_BALL);
 		eventArg0Ints.Push(3);
-		eventArg0Floats.Push(CROUCH_HEIGHT);
+		eventArg0Floats.Push(JUMP_HEIGHT);
 
 		eventTimestampsS.Push(19.384);
 		eventTypes.Push(VERTICAL_LINE);
