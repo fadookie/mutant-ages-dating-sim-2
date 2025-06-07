@@ -218,7 +218,7 @@ conversation
 		choice
 		{
 			text = "Yes, take pity on me! I can't dance to save my life.";
-			closedialog = true;
+			nextpage = "PAGE_SKIPPED";
 			special = 80;
 			arg0 = 17;
 		}
@@ -230,10 +230,17 @@ conversation
 	}
 	page
 	{
+		pagename = "PAGE_SKIPPED";
+		name = "Alison (Dazzler)";
+		panel = "DZLPA0";
+		dialog = "Alright, I'll give you an \"E\" for effort. You can get to the inner circle through the door on your right. Have fun, champ!";
+	}
+	page
+	{
 		pagename = "PAGE_WON";
 		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
-		dialog = "Good effort! You can get to the inner circle through the door on your right. Have fun, champ!";
+		dialog = "You impressed me with your footwork! I'll let you through to meet my friends in the inner circle. Use the door on your right. Have fun, champ!";
 	}
 }
 

@@ -74,7 +74,7 @@ class DazzlerPowerHandler : EventHandler
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 
- 		CHEAT_INVINCIBLE = true; // TODO: Disable
+ 		CHEAT_INVINCIBLE = false; // TODO: Disable
 		
 		events = New("DazzlerPowerEventSequence");
 		events.Init();
@@ -240,8 +240,10 @@ class DazzlerPowerHandler : EventHandler
 		// 	Console.MidPrint("BIGFONT", "Nice footwork! You impressed me." .. innerCircleLine);
 		// }
 		player.GiveInventoryType("DazzlerAskForSkipInventory"); // Needed to skip to end of dialogue
-		player.GiveInventoryType("DazzlerWonInventory");
-		dazzler.StartConversation(player);
+		if (!wasSkipped) {
+			player.GiveInventoryType("DazzlerWonInventory");
+			dazzler.StartConversation(player);
+		}
 		Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
 	}
 
