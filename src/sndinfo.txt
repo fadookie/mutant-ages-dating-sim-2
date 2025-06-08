@@ -12,6 +12,9 @@ el/menuselect sounds/xmen_select1_long.wav
 el/clickTrack music/clickTrack.mp3
 el/dazzlerClickTrack music/petty-0.75-clicktrack.ogg
 el/dazzlerSong music/petty-0.75.ogg
+el/instrumentalTheme sounds/mutant-ages-theme-instrumental.ogg
+el/mutantAgesComicBookTheme sounds/mutant-ages-comic-book-theme.ogg
+el/xMenMetaphorSong sounds/x-men-are-a-metaphor.ogg
 
 chckn0 sounds/CHOOK0
 chckn1 sounds/CHOOK1

@@ -3,6 +3,17 @@
  */
 class CallBus
 {
+  play static void TriggerClubEnter(Actor activator)
+  {
+		Console.Printf("CallBus.TriggerClubEnter");
+    ClubMusicHandler clubMusicHandler = ClubMusicHandler(EventHandler.Find("ClubMusicHandler"));
+    if(clubMusicHandler) {
+      clubMusicHandler.StartMusic();
+    } else {
+      Console.Printf("Error! ClubMusicHandler not found!");
+    }
+	}
+
   play static void StartDanceSequence(Actor activator)
   {
 		Console.Printf("CallBus.StartDanceSequence");

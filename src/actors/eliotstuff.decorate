@@ -496,7 +496,7 @@ actor Plant : Actor 31007
   }
 }
 
-actor Statue : Actor 31008
+actor XMansionStatue : Actor 31008
 {
 
     States

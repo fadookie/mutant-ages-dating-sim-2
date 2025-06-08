@@ -165,6 +165,13 @@ conversation
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]I'm WolverineJet!";
+		choice
+		{
+			text = "Let's go!";
+			special = 80;
+			arg0 = 18;
+			closedialog = true;
+		}
 	}
 }
 

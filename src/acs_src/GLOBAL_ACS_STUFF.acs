@@ -203,6 +203,12 @@ script 16 (void) // Trigger D&D end sequence
 
 // !!! script 17 is moved up above to keep dazzler scripts together !!!
 
+script 18 (void) { // Trigger club enter
+	// SetMusic("music/mutant-ages-theme-instrumental.ogg");
+	Teleport(10);
+	ScriptCall("CallBus", "TriggerClubEnter");
+}
+
 // script 33 ENTER
 // {
 //   SetCVar ("numPlayerRespawns", PLAYER_RESPAWNS_INITIAL);
