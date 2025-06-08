@@ -69,7 +69,6 @@ class DazzlerPowerHandler : EventHandler
 	Actor spawnOrigins[NUM_SPAWN_ORIGINS];
 	Actor centerSpawnOrigin;
 	Actor target;
-	ActorIterator cheeringActorFinder;
 
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
@@ -99,8 +98,6 @@ class DazzlerPowerHandler : EventHandler
 		} else {
 			Console.Printf("Found Dazzler Target: " .. target);
 		}
-
-		cheeringActorFinder = ActorIterator.Create(CHEERING_ACTOR_TID);
 
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
@@ -513,7 +510,7 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	void SetCheeringActorState(bool cheering) {
-		cheeringActorFinder.Reinit();
+		let cheeringActorFinder = level.CreateActorIterator(CHEERING_ACTOR_TID);
 		let actor = cheeringActorFinder.Next(); 
 		while (actor != null) {
 			if (cheering) {

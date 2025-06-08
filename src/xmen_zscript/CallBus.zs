@@ -6,11 +6,11 @@ class CallBus
   play static void TriggerClubEnter(Actor activator)
   {
 		Console.Printf("CallBus.TriggerClubEnter");
-    ClubMusicHandler clubMusicHandler = ClubMusicHandler(EventHandler.Find("ClubMusicHandler"));
+    ClubMusicHandlerStatic clubMusicHandler = ClubMusicHandlerStatic(StaticEventHandler.Find("ClubMusicHandlerStatic"));
     if(clubMusicHandler) {
       clubMusicHandler.StartMusic();
     } else {
-      Console.Printf("Error! ClubMusicHandler not found!");
+      Console.Printf("Error! ClubMusicHandlerStatic not found!");
     }
 	}
 
@@ -58,7 +58,7 @@ class CallBus
 	}
 
   play static Actor FindActor(int tid) {
-		let actorFinder = ActorIterator.Create(tid);
+		let actorFinder = level.CreateActorIterator(tid);
 		return actorFinder.Next(); 
 	}
 }

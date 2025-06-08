@@ -1,60 +1,35 @@
+/**
+ * This class is just a shim so we can serialize the music playing state
+ * so it can be resumed when loading a savegame.
+ * See ClubMusicHandlerStatic for most of the logic.
+ */
 class ClubMusicHandler : EventHandler
 {
 	bool musicPlaying;
 	int currentTrackIdx;
-	float currentTrackLengthSec;
-	int trackStartTimeTk;
-  static const Sound MUSIC_TRACKS[] =
-  {
-		Sound("el/instrumentalTheme"),
-		Sound("el/mutantAgesComicBookTheme"),
-		Sound("el/xMenMetaphorSong")
-	};
-	
-	override void WorldLoaded(WorldEvent e) {
-		// currentTrackIdx = 0;
-		// musicPlaying = false;
-		UpdateCurrentTrackLength();
-	}
-	
-	override void WorldTick()
+
+	override void OnRegister()
 	{
-		if (musicPlaying) {
-			let timeSeconds = Utils.Tics2Secondsf(level.time);
-			int elapsedTimeTk = level.time - trackStartTimeTk;
-			let elapsedTimeS = Utils.Tics2Secondsf(elapsedTimeTk);
+		SetOrder(ClubMusicHandlerStatic.EVENT_HANDLER_ORDER_CLUB_MUSIC_HANDLER);
+	}
 
-			if (elapsedTimeS > currentTrackLengthSec) {
-				currentTrackIdx = (currentTrackIdx + 1) % MUSIC_TRACKS.Size();
-				PlayNextTrack();
-			}
+	override /*play*/ void WorldLoaded(WorldEvent e) {
+		Console.Printf("ClubMusicHandler.WorldLoaded");
+		// EventHandler.SendInterfaceEvent(consoleplayer, ClubMusicHandlerStatic.INTERFACEEVENT_WORLDLOADED, int(musicPlaying), currentTrackIdx);
+	}
+
+	/**
+	 * Handler for incoming events from ui scope  -> play scope
+	 */
+	override /*play*/ void NetworkProcess (ConsoleEvent e)
+	{
+		if (e.name == ClubMusicHandlerStatic.NETWORKEVENT_ON_LOAD_REFRESH_QUERY) {
+			// Send serialized state to static handler
+			Console.Printf("ClubMusicHandler.NetworkProcess NETWORKEVENT_ON_LOAD_REFRESH_QUERY e:" .. e);
+			EventHandler.SendInterfaceEvent(consoleplayer, ClubMusicHandlerStatic.INTERFACEEVENT_ON_LOAD_REFRESH_REPLY, int(musicPlaying), currentTrackIdx);
+		} else if (e.name == ClubMusicHandlerStatic.NETWORKEVENT_SET_TRACK_IDX) {
+			currentTrackIdx = e.Args[0];
+			Console.Printf("ClubMusicHandler.NetworkProcess NETWORKEVENT_SET_TRACK_IDX currentTrackIdx:" .. currentTrackIdx);
 		}
-	}
-
-	void UpdateCurrentTrackLength() {
-		let currentTrack = MUSIC_TRACKS[currentTrackIdx];
-		currentTrackLengthSec = S_GetLength(currentTrack);
-	}
-
-	void StartMusic() {
-		S_ChangeMusic("music/silence.ogg", force: true);
-		Console.Printf("ClubMusicHandler.StartMusic");
-		musicPlaying = true;
-		PlayNextTrack();
-	}
-
-	private void PlayNextTrack() {
-		trackStartTimeTk = level.time;
-		let currentTrack = MUSIC_TRACKS[currentTrackIdx];
-		// Play music track at user's current music volume setting
-		let musicVolumeCVar = CVar.GetCVar("snd_musicvolume", players[consoleplayer]).GetFloat();
-		UpdateCurrentTrackLength();
-		Console.Printf("ClubMusicHandler.PlayNextTrack musicVolumeCVar:" .. musicVolumeCVar .. " currentTrack:" .. currentTrack .. " currentTrackIdx" .. currentTrackIdx .. " currentTrackLengthSec:" .. currentTrackLengthSec);
-		S_StartSound(currentTrack, CHAN_AUTO, CHANF_DEFAULT, musicVolumeCVar);
-	}
-
-	void StopMusic() {
-		musicPlaying = false;
-		S_ChangeMusic("*", force: true);
 	}
 }
