@@ -56,7 +56,6 @@ class DazzlerPowerHandler : EventHandler
 
 	private int danceStartTimeTk;
 	private uint danceStartTimeMs;
-	private float danceStartSync;
 
 	private int barrageStartTimeTk;
 	private int barrageMaxBalls;
@@ -70,10 +69,14 @@ class DazzlerPowerHandler : EventHandler
 	private Actor centerSpawnOrigin;
 	private Actor target;
 
+	private Sound music;
+
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
 
  		CHEAT_INVINCIBLE = false; // TODO: Disable
+
+		music = Sound("el/dazzlerSong");
 		
 		events = New("DazzlerPowerEventSequence");
 		events.Init();
@@ -133,8 +136,6 @@ class DazzlerPowerHandler : EventHandler
 		let timeSinceStartTk = level.time - danceStartTimeTk;
 		let timeSinceStartS = Utils.Tics2Secondsf(timeSinceStartTk);
 
-		if(CheckDesync()) { return; }
-
 		float currentEventTimeS = events.eventTimestampsS[currentEventIdx];
 		let currentEventType = events.eventTypes[currentEventIdx];
 
@@ -156,7 +157,6 @@ class DazzlerPowerHandler : EventHandler
 
 		// Check if next event should be dequeued
 		while (timeSinceStartS >= currentEventTimeS) {
-			if(CheckDesync()) { return; }
 			if (currentEventType == END) {
 				Console.Printf("END dance sequence event fired");
 				EndDanceSequence();
@@ -441,12 +441,10 @@ class DazzlerPowerHandler : EventHandler
 		Console.MidPrint("BIGFONT", "Let's jam!");
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
-		danceStartSync = calculateSync(danceStartTimeTk, danceStartTimeMs);
 
+		StartMusic();
 		// S_ChangeMusic(String music_name, int order = 0, bool looping = true, bool force = false)
 		// Force restart of music if already playing
-		CallBus.FindClubMusicHandler().StopMusic();
-		S_ChangeMusic("music/silence.ogg", force: true);
 		// S_ChangeMusic("*", force: true);
 		// S_ChangeMusic("music/petty-0.75.ogg", force: true);
 
@@ -471,9 +469,8 @@ class DazzlerPowerHandler : EventHandler
 		Console.Printf("DazzlerPowerHandler#EndDanceSequence");
 		currentEventIdx = 0;
 		danceStartTimeTk = 0;
-		// Restore default music
-		CallBus.FindClubMusicHandler().StartMusic();
-		// S_ChangeMusic("D_STALKS");
+
+		StopMusic();
 
 		// Open exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
@@ -484,33 +481,22 @@ class DazzlerPowerHandler : EventHandler
 		SetCheeringActorState(false);
 	}
 
-	private bool CheckDesync() {
-		let currentSync = CalculateSync(level.time, MSTime());
-		let desync = Abs(currentSync - danceStartSync);
-		// Console.Printf("DazzlerHandler#WorldTick desync check level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
-		if (desync > DESYNC_THRESHOLD_S) {
-			Console.Printf("Desync detected!");
-			// MidPrint(Font fontname, string textlabel, bool bold = false);
-			// let font = Font.GetFont("SMALLFONT");
-			// Console.MidPrint(font, "Don't you know it's rude to not pay attention during a performance? Please don't pause the game while we are dancing. Let's try that again...", bold: false);
-			// CallBus.PrintDazzlerDesyncWarning();
-			// Console.MidPrint("BIGFONT", "Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...");
-			EndDanceSequence();
-			player.ACS_NamedExecute("DazzlerPrintDesync", 0);
-			return true;
+	private void StartMusic() {
+		CallBus.FindClubMusicHandler().StopMusic();
+		S_ChangeMusic("music/silence.ogg", force: true);
+
+		// Play music track at user's current music volume setting
+		let musicVolumeCVar = CVar.GetCVar("snd_musicvolume", players[consoleplayer]).GetFloat();
+		Console.Printf("DazzlerPowerHandler.StartMusic musicVolumeCVar:" .. musicVolumeCVar .. " music:" .. music);
+		if (player != null) {
+			player.A_StartSound(music, CHAN_WEAPON, CHANF_DEFAULT /* pause while game is paused */, musicVolumeCVar);
 		}
-		return false;
 	}
 
-	/**
-	 * Calculates the drift in sync between wall time and sim time, in fractional seconds
-	 */
-	private float CalculateSync(float ticks, uint epochMs) {
-			let ticksInSeconds = (ticks / 35.0);
-			float epochMsInSeconds = epochMs / 1000.0;
-			let sync = ticksInSeconds - epochMsInSeconds;
-			// Console.Printf("DazzlerPowerHandler#calculateSync(ticks:" .. ticks .. " epochMs:" .. epochMs .. ") => ticksInSeconds:" .. ticksInSeconds .. " - epochMsInSeconds" .. epochMsInSeconds .. " = sync:" .. sync);
-			return sync;
+	private void StopMusic() {
+		player.A_StopSound(CHAN_WEAPON);
+		CallBus.FindClubMusicHandler().StartMusic();
+		// S_ChangeMusic("D_STALKS");
 	}
 
 	private void SetCheeringActorState(bool cheering) {

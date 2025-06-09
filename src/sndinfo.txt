@@ -11,10 +11,14 @@ el/lg_nom sounds/172135__paulmorek__nom-c-06.wav
 el/menuselect sounds/xmen_select1_long.wav
 el/clickTrack music/clickTrack.mp3
 el/dazzlerClickTrack music/petty-0.75-clicktrack.ogg
-el/dazzlerSong music/petty-0.75.ogg
+el/dazzlerSong sounds/petty-0.75.ogg
 el/instrumentalTheme sounds/mutant-ages-theme-instrumental.ogg
 el/mutantAgesComicBookTheme sounds/mutant-ages-comic-book-theme.ogg
 el/xMenMetaphorSong sounds/x-men-are-a-metaphor.ogg
+
+$volume el/instrumentalTheme 0.5
+$volume el/mutantAgesComicBookTheme 0.5
+$volume el/xMenMetaphorSong 0.5
 
 chckn0 sounds/CHOOK0
 chckn1 sounds/CHOOK1
