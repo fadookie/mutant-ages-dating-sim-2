@@ -8,7 +8,7 @@ class ClubMusicHandlerStatic : StaticEventHandler
 	const INTERFACEEVENT_ON_LOAD_REFRESH_REPLY = "ClubMusicHandlerStatic:OnLoadRefreshReply"; // Reply for ClubMusicHandler state
 
 	const NETWORKEVENT_ON_LOAD_REFRESH_QUERY = "ClubMusicHandler:OnLoadRefreshQuery"; // Query ClubMusicHandler state
-	const NETWORKEVENT_START_MUSIC = "ClubMusicHandlerStatic:StartMusic";
+	const NETWORKEVENT_SYNC_SERIALIZED_MUSIC_PLAYING = "ClubMusicHandlerStatic:SyncSerializedMusicPlaying";
 	const NETWORKEVENT_SET_TRACK_IDX = "ClubMusicHandler:SetTrackIdx";
 
 	// Event order numbers to try to ensure proper ordering of init event/messages
@@ -29,6 +29,7 @@ class ClubMusicHandlerStatic : StaticEventHandler
 	private ui int currentTrackIdx;
 	private ui float currentTrackLengthSec;
 	private ui float trackStartTimeMs;
+	private ui bool hasUiTickedSinceMusicStarted;
 	private ui float lastUiTickMs;
 
 	private play PoochyPlayer player;
@@ -47,13 +48,14 @@ class ClubMusicHandlerStatic : StaticEventHandler
 			// Console.Printf("ClubMusicHandlerStatic.UiTick MSTime:" .. MSTime() .. " MSTimeF:" .. MSTimeF() (which I am assuming are in milliseconds), System.GetTimeFrac(),  SystemTime.Now(), etc but havi
 			let desyncThreshold = MSTimeF() - lastUiTickMs;
 			// Console.Printf("ClubMusicHandlerStatic.UiTick MSTimeF:" .. MSTimeF() .. " desyncThrehsold:" .. desyncThreshold);
-			if (desyncThreshold > DESYNC_THRESHOLD_MS) {
-				Console.Printf("ClubMusicHandlerStatic.UiTick DESYNC DETECTED, desyncThreshold:" .. desyncThreshold);
+			if (hasUiTickedSinceMusicStarted && desyncThreshold > DESYNC_THRESHOLD_MS) {
+				Console.Printf("ClubMusicHandlerStatic.UiTick DESYNC DETECTED, desyncThreshold:" .. desyncThreshold ..  " MSTimeF:" .. MSTimeF());
 				lastUiTickMs = MSTimeF();
 				AdvanceTrackIndex();
 				PlayNextTrack();
 				return;
 			}
+			hasUiTickedSinceMusicStarted = true;
 
 			lastUiTickMs = MSTimeF();
 			let elapsedTimeMs = lastUiTickMs - trackStartTimeMs;
@@ -72,16 +74,14 @@ class ClubMusicHandlerStatic : StaticEventHandler
 	override /*ui*/ void InterfaceProcess(ConsoleEvent e) {
 		if (e.name == INTERFACEEVENT_ON_LOAD_REFRESH_REPLY) {
 				// ClubMusicHandler has loaded
-				let serializedMusicPlaying = bool(e.Args[0]);
 				let serializedCurrentTrackIdx = e.Args[1];
-				Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_ON_LOAD_REFRESH_REPLY serializedMusicPlaying:" .. serializedMusicPlaying .. " serializedCurrentTrackIdx:" .. serializedCurrentTrackIdx .. " e:" .. e);
+				Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_ON_LOAD_REFRESH_REPLY serializedMusicPlaying:" .. e.Args[0] .. " serializedCurrentTrackIdx:" .. serializedCurrentTrackIdx .. " e:" .. e);
 				currentTrackIdx = serializedCurrentTrackIdx;
-				if (serializedMusicPlaying) {
-					EventHandler.SendNetworkEvent(NETWORKEVENT_START_MUSIC);
-				}
+				EventHandler.SendNetworkEvent(NETWORKEVENT_SYNC_SERIALIZED_MUSIC_PLAYING, e.Args[0]);
 		} else if (e.name == INTERFACEEVENT_WORLDLOADED_STATIC) {
-				Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_WORLDLOADED_STATIC e:" .. e);
-				lastUiTickMs = MSTimeF();
+				Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_WORLDLOADED_STATIC MSTimeF (reset lastUiTickMs):" .. MSTimeF());
+				hasUiTickedSinceMusicStarted = false;
+				lastUiTickMs = 0.0;
 		} else if (e.name == INTERFACEEVENT_UPDATE_CURRENT_TRACK_LENGTH) {
 			Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_UPDATE_CURRENT_TRACK_LENGTH e:" .. e);
 			UpdateCurrentTrackLength();
@@ -89,9 +89,12 @@ class ClubMusicHandlerStatic : StaticEventHandler
 			Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_PLAY_NEXT_TRACK e:" .. e);
 			PlayNextTrack();
 		} else if (e.name == INTERFACEEVENT_UPDATE_MUSIC_PLAYING) {
-			Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_UPDATE_MUSIC_PLAYING e:" .. e);
-			PlayNextTrack();
 			musicPlaying = bool(e.Args[0]);
+			hasUiTickedSinceMusicStarted = false;
+			Console.Printf("ClubMusicHandlerStatic.InterfaceProcess INTERFACEEVENT_UPDATE_MUSIC_PLAYING musicPlaying:" .. musicPlaying .. " e:" .. e);
+			if (musicPlaying) {
+				PlayNextTrack();
+			}
 		}
 	}
 
@@ -113,7 +116,9 @@ class ClubMusicHandlerStatic : StaticEventHandler
 		let musicVolumeCVar = CVar.GetCVar("snd_musicvolume", players[consoleplayer]).GetFloat();
 		UpdateCurrentTrackLength();
 		Console.Printf("ClubMusicHandlerStatic.PlayNextTrack musicVolumeCVar:" .. musicVolumeCVar .. " currentTrack:" .. currentTrack .. " currentTrackIdx" .. currentTrackIdx .. " currentTrackLengthSec:" .. currentTrackLengthSec);
-		player.A_StartSound(currentTrack, CHAN_WEAPON, CHANF_UI /* = play while paused */, musicVolumeCVar);
+		if (player != null) {
+			player.A_StartSound(currentTrack, CHAN_WEAPON, CHANF_UI /* = play while paused */, musicVolumeCVar);
+		}
 	}
 
 	// #endregion ui scoped methods
@@ -127,7 +132,7 @@ class ClubMusicHandlerStatic : StaticEventHandler
       ThrowAbortException("Error! ClubMusicHandler not found!");
     }
 		wasLoadedFromSave = e.IsSaveGame;
-		Console.Printf("ClubMusicHandlerStatic.WorldLoaded IsSaveGame:" .. e.IsSaveGame); //.. " this.musicPlaying:" .. musicPlaying .. " ClubMusicHandler.musicPlaying:" .. ClubMusicHandler.musicPlaying);
+		Console.Printf("ClubMusicHandlerStatic.WorldLoaded IsSaveGame:" .. e.IsSaveGame ..  " MSTimeF:" .. MSTimeF()); //.. " this.musicPlaying:" .. musicPlaying .. " ClubMusicHandler.musicPlaying:" .. ClubMusicHandler.musicPlaying);
 		// TODO: Handle Load from save desync
 		EventHandler.SendNetworkEvent(NETWORKEVENT_ON_LOAD_REFRESH_QUERY);
 		EventHandler.SendInterfaceEvent(consoleplayer, INTERFACEEVENT_WORLDLOADED_STATIC);
@@ -138,24 +143,50 @@ class ClubMusicHandlerStatic : StaticEventHandler
 	 */
 	override /*play*/ void NetworkProcess (ConsoleEvent e)
 	{
-		if (e.name == NETWORKEVENT_START_MUSIC) {
-			Console.Printf("ClubMusicHandlerStatic.NetworkProcess NETWORKEVENT_START_MUSIC e:" .. e);
-			StartMusic();
+		if (e.name == NETWORKEVENT_SYNC_SERIALIZED_MUSIC_PLAYING) {
+			let serializedMusicPlaying = bool(e.Args[0]);
+			Console.Printf("ClubMusicHandlerStatic.NetworkProcess NETWORKEVENT_SYNC_SERIALIZED_MUSIC_PLAYING serializedMusicPlaying:" .. serializedMusicPlaying .. " e:" .. e);
+			SetSerializedMusicPlaying(serializedMusicPlaying);
+			if (serializedMusicPlaying) {
+      	StartMusicImpl();
+			}
 		}
 	}
 
+	private play void SetSerializedMusicPlaying(bool playing) {
+		clubMusicHandler.musicPlaying = playing;
+	}
+
 	play void StartMusic() {
+		Console.Printf("ClubMusicHandlerStatic.StartMusic clubMusicHandler:" .. clubMusicHandler);
+		if (clubMusicHandler != null && !clubMusicHandler.musicPlaying) {
+			StartMusicImpl();
+		}
+	}
+
+	private play void StartMusicImpl() {
 		S_ChangeMusic("music/silence.ogg", force: true);
-		Console.Printf("ClubMusicHandlerStatic.StartMusic");
-		ClubMusicHandler.musicPlaying = true;
+		Console.Printf("ClubMusicHandlerStatic.StartMusicImpl");
+		clubMusicHandler.musicPlaying = true;
 		EventHandler.SendInterfaceEvent(consoleplayer, INTERFACEEVENT_UPDATE_MUSIC_PLAYING, 1);
 		EventHandler.SendNetworkEvent(INTERFACEEVENT_PLAY_NEXT_TRACK);
 	}
 
 	play void StopMusic() {
-		ClubMusicHandler.musicPlaying = false;
+		Console.Printf("ClubMusicHandlerStatic.StopMusic");
+		if (clubMusicHandler.musicPlaying) {
+			StopMusicImpl();
+		}
+	}
+
+
+	private play void StopMusicImpl() {
+		Console.Printf("ClubMusicHandlerStatic.StopMusicImpl");
+		clubMusicHandler.musicPlaying = false;
 		EventHandler.SendInterfaceEvent(consoleplayer, INTERFACEEVENT_UPDATE_MUSIC_PLAYING, 0);
-		S_ChangeMusic("*", force: true);
+		player.A_StopSound(CHAN_WEAPON);
+		// S_ChangeMusic("*", force: true);
+		S_ChangeMusic("D_STALKS", force: true);
 	}
 
 	// #endregion play scoped methods

@@ -64,6 +64,7 @@ class DazzlerPowerHandler : EventHandler
 	float barrageHeight;
 	BarrageType barrageType;
 
+	ClubMusicHandlerStatic clubMusicHandler;
 	PoochyPlayer player;
 	Dazzler dazzler;
 	Actor spawnOrigins[NUM_SPAWN_ORIGINS];
@@ -80,6 +81,10 @@ class DazzlerPowerHandler : EventHandler
 
 		player = CallBus.FindPlayer();
 		dazzler = CallBus.FindDazzler();
+    clubMusicHandler = ClubMusicHandlerStatic(StaticEventHandler.Find("ClubMusicHandlerStatic"));
+    if (clubMusicHandler == null) {
+			ThrowAbortException("ClubMusicHandlerStatic was null");
+		}
 
 		for(int i = 0; i < NUM_SPAWN_ORIGINS; ++i) {
 			let spawnOriginTID = SPAWN_ORIGIN_TID_RANGE_START + i;
@@ -442,10 +447,13 @@ class DazzlerPowerHandler : EventHandler
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
 		danceStartSync = calculateSync(danceStartTimeTk, danceStartTimeMs);
+
 		// S_ChangeMusic(String music_name, int order = 0, bool looping = true, bool force = false)
 		// Force restart of music if already playing
-		S_ChangeMusic("*", force: true);
-		S_ChangeMusic("music/petty-0.75.ogg", force: true);
+		clubMusicHandler.StopMusic();
+		S_ChangeMusic("music/silence.ogg", force: true);
+		// S_ChangeMusic("*", force: true);
+		// S_ChangeMusic("music/petty-0.75.ogg", force: true);
 
 		// Close exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
@@ -469,7 +477,8 @@ class DazzlerPowerHandler : EventHandler
 		currentEventIdx = 0;
 		danceStartTimeTk = 0;
 		// Restore default music
-		S_ChangeMusic("D_STALKS");
+		clubMusicHandler.StartMusic();
+		// S_ChangeMusic("D_STALKS");
 
 		// Open exit door
 		Floor_Stop(EXIT_DOOR_SECTOR_TAG);
