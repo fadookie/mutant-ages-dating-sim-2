@@ -12,11 +12,19 @@ conversation
 		choice
 		{
 			text = "I'm looking for the hangar key, do you know where it is?";
-			yesmessage = "\c[Orange]Hm.... I'm not sure! I could pry the door open with my mind, but I think Charles would get annoyed that I was actually doing someting...";
-			closedialog = true;
-			special = 80;
-			arg0 = 12;
+			nextpage = "PAGE_HANGARKEY";
 		}
+		choice
+		{
+			text = "How are you doing, Jean?";
+			nextpage = "PAGE_PHOENIXLEFT";
+		}
+	}
+	page {
+		pagename = "PAGE_HANGARKEY";
+		name = "Jean";
+		panel = "PNXPA0";
+		dialog = "\c[Orange]Hm.... I'm not sure! I could pry the door open with my mind, but I think Charles would get annoyed that I was actually doing someting...";
 		choice
 		{
 			text = "How are you doing, Jean?";
@@ -30,8 +38,23 @@ conversation
 		dialog = "\c[Orange]I'm so glad the Phoenix Force finally left me alone. I'm all back to normal now with my perfect boyfriend, Scott, whom I totally love!";
 		choice
 		{
+			text = "I'm looking for the hangar key, do you know where it is?";
+			nextpage = "PAGE_HANGARKEY";
+		}
+		choice
+		{
 			text = "Fine with me, I was getting a little tired of sharing Logan with him.";
-			yesmessage = "\c[Orange]Yes, tell him to stay away from Scott!";
+			nextpage = "PAGE_SHARING";
+		}
+	}
+	page {
+		pagename = "PAGE_SHARING";
+		name = "Jean";
+		panel = "PNXPA0";
+		dialog = "\c[Orange]What are you talking about? Scott is a perfect and perfecly straight and faithful boyfriend. He would never cheat on me!";
+		choice
+		{
+			text = "Tell that to Logan.";
 			closedialog = true;
 			special = 80;
 			arg0 = 12;

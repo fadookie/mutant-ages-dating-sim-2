@@ -122,6 +122,7 @@ class PhoenixPowerHandler : EventHandler
 	
 	void StartLevitationSequence() {
 		Console.Printf("PhoenixPowerHandler#StartLevitationSequence");
+    Console.MidPrint("BIGFONT", "\c[Red]If he tries to steal my man again I will destroy this planet and everyone in it!");
 // 		FindDoodads();
 		let phoenix = CallBus.FindActor(4);
 		phoenix.SetStateLabel("Freak");
@@ -135,6 +136,7 @@ class PhoenixPowerHandler : EventHandler
 // 		FindDoodads();
 		let phoenix = CallBus.FindActor(4);
 		phoenix.SetStateLabel("Spawn");
+		Console.MidPrint("BIGFONT", "\c[Orange]Ha ha, just kidding! Scott is mine and he knows it.");
 		levitating = false;
 	}
 	
