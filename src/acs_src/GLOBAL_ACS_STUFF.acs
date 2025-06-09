@@ -203,10 +203,20 @@ script 16 (void) // Trigger D&D end sequence
 
 // !!! script 17 is moved up above to keep dazzler scripts together !!!
 
-script 18 (void) { // Trigger club enter
+script 18 (void) { // Trigger club enter from blackbird
 	// SetMusic("music/mutant-ages-theme-instrumental.ogg");
 	Teleport(10);
 	ScriptCall("CallBus", "TriggerClubEnter");
+}
+
+script 19 (void) { // Trigger club enter from inner circle
+ 	Log(s:"ACS Trigger club enter from inner circle");
+	ScriptCall("CallBus", "TriggerClubEnter");
+}
+
+script 20 (void) { // Trigger club exit
+ 	Log(s:"ACS Trigger club exit");
+	ScriptCall("CallBus", "TriggerClubExit");
 }
 
 // script 33 ENTER

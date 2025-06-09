@@ -6,12 +6,15 @@ class CallBus
   play static void TriggerClubEnter(Actor activator)
   {
 		Console.Printf("CallBus.TriggerClubEnter");
-    ClubMusicHandlerStatic clubMusicHandler = ClubMusicHandlerStatic(StaticEventHandler.Find("ClubMusicHandlerStatic"));
-    if(clubMusicHandler) {
-      clubMusicHandler.StartMusic();
-    } else {
-      ThrowAbortException("Error! ClubMusicHandlerStatic not found!");
-    }
+    ClubMusicHandlerStatic clubMusicHandler = FindClubMusicHandler();
+    clubMusicHandler.StartMusic();
+	}
+
+  play static void TriggerClubExit(Actor activator)
+  {
+		Console.Printf("CallBus.TriggerClubExit");
+    ClubMusicHandlerStatic clubMusicHandler = FindClubMusicHandler();
+    clubMusicHandler.StopMusic();
 	}
 
   play static void StartDanceSequence(Actor activator)
