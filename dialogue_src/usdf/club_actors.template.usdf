@@ -27,7 +27,7 @@ conversation
 	page
 	{
 		name = "Fred Dukes";
-		dialog = "Bro, do you even lift?";
+		dialog = "I can bench a schoolbus without breaking a sweat. Bro, do you even lift?";
 	}
 }
 
@@ -87,7 +87,7 @@ conversation
 	page
 	{
 		name = "Storm";
-		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Dark & Stormy if you're buying.";
+		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Hurricane if you're buying.";
 	}
 }
 

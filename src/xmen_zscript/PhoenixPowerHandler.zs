@@ -136,7 +136,7 @@ class PhoenixPowerHandler : EventHandler
 // 		FindDoodads();
 		let phoenix = CallBus.FindActor(4);
 		phoenix.SetStateLabel("Spawn");
-		Console.MidPrint("BIGFONT", "\c[Orange]Ha ha, just kidding! Scott is mine and he knows it.");
+		Console.MidPrint("BIGFONT", "\c[Orange]Ha ha, just kidding!");
 		levitating = false;
 	}
 	

@@ -34,7 +34,7 @@ conversation
 	page
 	{
 		name = "Fred Dukes";
-		dialog = "Bro, do you even lift?";
+		dialog = "I can bench a schoolbus without breaking a sweat. Bro, do you even lift?";
 	}
 }
 
@@ -94,7 +94,7 @@ conversation
 	page
 	{
 		name = "Storm";
-		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Dark & Stormy if you're buying.";
+		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Hurricane if you're buying.";
 	}
 }
 
@@ -188,10 +188,41 @@ conversation
 		pagename = "PAGE_START";
 		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
-		dialog = "Wanna dance for me, hotshot?";
+		dialog = "Hey, come to see my show?";
 		choice
 		{
-			text = "Let's do this!";
+			text = "Start dance sequence";
+			closedialog = true;
+			special = 80;
+			arg0 = 13;
+		}
+		choice
+		{
+			text = "Yeah! Also, do you know how I can get in to the inner circle?";
+			nextpage = "PAGE_INNER_CIRCLE";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_INNER_CIRCLE";
+		name = "Alison (Dazzler)";
+		panel = "DZLPA0";
+		dialog = "Hmm, I do know, but only the coolest of kids are allowed back there. Let's make a deal: If you can impress me with your groove, I'll let you in.";
+		choice
+		{
+			text = "Deal!";
+			nextpage = "PAGE_START_DANCE";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_START_DANCE";
+		name = "Alison (Dazzler)";
+		panel = "DZLPA0";
+		dialog = "Alright, show me your moves, hotshot!";
+		choice
+		{
+			text = "OK, let's do this!";
 			closedialog = true;
 			special = 80;
 			arg0 = 13;
