@@ -143,10 +143,10 @@ script 11 ENTER {
 		PrintBold(s:"\c[Yellow]Cat got your tongue?");
 		
 		Delay(3 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", bub!");
+		PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", on me, bub!");
 		
 		Delay(6 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Press ", k:"+use", s:"!");
+		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Come over here and press ", k:"+use", s:"!");
 	}
  }
  
@@ -184,7 +184,7 @@ script 16 (void) // Trigger D&D end sequence
 	// SetMusic("*");
 	
 	GiveInventory("AllCacosFedInventory", 1);
-	StartConversation(2, 1);
+	StartConversation(2, 1); // Logan dialogue
 
 	// disable player movement
 	SetActorProperty(0, APROP_Speed, 0.0);
@@ -207,6 +207,7 @@ script 18 (void) { // Trigger club enter from blackbird
 	// SetMusic("music/mutant-ages-theme-instrumental.ogg");
 	Teleport(10);
 	ScriptCall("CallBus", "TriggerClubEnter");
+	StartConversation(5, 1); // Logan dialogue
 }
 
 script 19 (void) { // Trigger club enter from inner circle

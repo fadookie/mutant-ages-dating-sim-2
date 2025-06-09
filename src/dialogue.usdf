@@ -770,10 +770,10 @@ conversation
 		pagename = "PAGE_START";
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]I'm WolverineJet!";
+		dialog = "\c[Yellow]All right, I think you're gonna like the next part! I found a cool place for us to celebrate.";
 		choice
 		{
-			text = "Let's go!";
+			text = "OK, let's go!";
 			special = 80;
 			arg0 = 18;
 			closedialog = true;
@@ -789,7 +789,37 @@ conversation
 		pagename = "PAGE_START";
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]I'm WolverineClub!";
+		dialog = "\c[Yellow]So this place is called the Hellfire Club. It doesn't matter whose side you're on, everyone is welcome here as long as they don't lose their cool.";
+		choice
+		{
+			text = "Nice. I like the vibe. So are we just gonna have a drink?";
+			nextpage = "PAGE_INNER_CIRCLE_HINT";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_INNER_CIRCLE_HINT";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Sure, but I got somethin' else in mind too. I hear there's a real *exclusive* VIP room somewhere called the Inner Circle. But I don't know how to get in. Maybe you can find a way?";
+		choice
+		{
+			text = "Sounds interesting. But you're making me do all the work today!";
+			yesmessage = "\c[Yellow]Heh, don't lie, bub, you love it!";
+			closedialog = true;
+		}
+		ifitem
+		{
+				item = "DazzlerWonInventory";
+		}
+		link = "PAGE_DAZZLER_WON";
+	}
+	page
+	{
+		pagename = "PAGE_DAZZLER_WON";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]Hey, nice moves out there. I don't dance but I like watching you. Let's go to the Inner Circle!";
 	}
 }
 
