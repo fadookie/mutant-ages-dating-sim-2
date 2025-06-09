@@ -124,6 +124,7 @@ intermission Credits {
     
 	// credits 1 --------------
 	Fader{
+		Music = "music/wolverine-on-a-date-with-you.ogg"
 		Background = "CREDIT1"
 	    FadeType = FadeIn
 		Time = 2
