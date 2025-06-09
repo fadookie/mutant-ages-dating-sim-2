@@ -123,8 +123,9 @@ class PhoenixPowerHandler : EventHandler
 	void StartLevitationSequence() {
 		Console.Printf("PhoenixPowerHandler#StartLevitationSequence");
 // 		FindDoodads();
-		let pheonix = CallBus.FindActor(4);
-		pheonix.SetStateLabel("Freak");
+		let phoenix = CallBus.FindActor(4);
+		phoenix.SetStateLabel("Freak");
+		phoenix.A_StartSound("el/phoenixPower", CHAN_WEAPON, CHANF_DEFAULT /* pause while game is paused */);
 		levitating = true;
 		levitationStartTimeTk = level.time;
 	}
@@ -132,8 +133,8 @@ class PhoenixPowerHandler : EventHandler
 	void EndLevitationSequence() {
 		Console.Printf("PhoenixPowerHandler#EndLevitationSequence");
 // 		FindDoodads();
-		let pheonix = CallBus.FindActor(4);
-		pheonix.SetStateLabel("Spawn");
+		let phoenix = CallBus.FindActor(4);
+		phoenix.SetStateLabel("Spawn");
 		levitating = false;
 	}
 	
