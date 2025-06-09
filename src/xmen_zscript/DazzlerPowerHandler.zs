@@ -45,31 +45,30 @@ class DazzlerPowerHandler : EventHandler
 
 	// Lose/Win condition stuff
 	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 2;
-	int numPlayerFailures;
-	bool CHEAT_INVINCIBLE; // Player can't fail sequence
+	private int numPlayerFailures;
+	private bool CHEAT_INVINCIBLE; // Player can't fail sequence
 
-	DazzlerPowerEventSequence events;
-	int currentEventIdx;
-	bool dazzlerWindUpTriggeredThisEvent;
+	private DazzlerPowerEventSequence events;
+	private int currentEventIdx;
+	private bool dazzlerWindUpTriggeredThisEvent;
 
-	int danceQueueTimeTk;
+	private int danceQueueTimeTk;
 
-	int danceStartTimeTk;
-	uint danceStartTimeMs;
-	float danceStartSync;
+	private int danceStartTimeTk;
+	private uint danceStartTimeMs;
+	private float danceStartSync;
 
-	int barrageStartTimeTk;
-	int barrageMaxBalls;
-	int barrageNumBallsFired;
-	float barrageHeight;
-	BarrageType barrageType;
+	private int barrageStartTimeTk;
+	private int barrageMaxBalls;
+	private int barrageNumBallsFired;
+	private float barrageHeight;
+	private BarrageType barrageType;
 
-	ClubMusicHandlerStatic clubMusicHandler;
-	PoochyPlayer player;
-	Dazzler dazzler;
-	Actor spawnOrigins[NUM_SPAWN_ORIGINS];
-	Actor centerSpawnOrigin;
-	Actor target;
+	private PoochyPlayer player;
+	private Dazzler dazzler;
+	private Actor spawnOrigins[NUM_SPAWN_ORIGINS];
+	private Actor centerSpawnOrigin;
+	private Actor target;
 
 	override void WorldLoaded(WorldEvent e) {
 		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
@@ -81,10 +80,6 @@ class DazzlerPowerHandler : EventHandler
 
 		player = CallBus.FindPlayer();
 		dazzler = CallBus.FindDazzler();
-    clubMusicHandler = ClubMusicHandlerStatic(StaticEventHandler.Find("ClubMusicHandlerStatic"));
-    if (clubMusicHandler == null) {
-			ThrowAbortException("ClubMusicHandlerStatic was null");
-		}
 
 		for(int i = 0; i < NUM_SPAWN_ORIGINS; ++i) {
 			let spawnOriginTID = SPAWN_ORIGIN_TID_RANGE_START + i;
@@ -224,7 +219,7 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	// Should only be called after reaching end of events list
-	void CheckWinCondition() {
+	private void CheckWinCondition() {
 		if (player.health > 1 || CHEAT_INVINCIBLE) {
 			// Player won
 			OnPlayerWin(false);
@@ -234,7 +229,7 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
-	void OnPlayerWin(bool wasSkipped) {
+	private void OnPlayerWin(bool wasSkipped) {
 		// let innerCircleLine = "\nI'll let you through to see my friends in the inner circle, go through the door to your right...";
 		// if (wasSkipped) {
 		// 	Console.MidPrint("BIGFONT", "Okay, your dance skills could use some work but you definitely tried your best." .. innerCircleLine);
@@ -249,7 +244,7 @@ class DazzlerPowerHandler : EventHandler
 		Door_Open(INNER_CIRCLE_DOOR_SECTOR_TAG, 16);
 	}
 
-	void OnPlayerLose() {
+	private void OnPlayerLose() {
 		numPlayerFailures++;
 
 		if (numPlayerFailures >= PLAYER_FAILURES_BEFORE_SKIP_OPTION) {
@@ -261,7 +256,7 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
-	void FireEvent(DazzlerEventType currentEventType, float currentEventTimeS) {
+	private void FireEvent(DazzlerEventType currentEventType, float currentEventTimeS) {
 		Console.Printf("Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
 		// Console.Printf("DazzlerHandler#WorldTick event level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
 		/* Missile options:
@@ -401,7 +396,7 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
-	void SpawnDazzlerShot(DazzlerShotType shotType, Actor spawnOrigin, Vector3 pos, int translationIdx = -1) {
+	private void SpawnDazzlerShot(DazzlerShotType shotType, Actor spawnOrigin, Vector3 pos, int translationIdx = -1) {
 		switch (shotType) {
 			case SHOT_NONE:
 				return;
@@ -423,7 +418,7 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
-	void SetBallTranslation(DazzlerBall ball, Vector3 pos, int translationIdx = -1) {
+	private void SetBallTranslation(DazzlerBall ball, Vector3 pos, int translationIdx = -1) {
 		if (pos.z == DazzlerPowerEventSequence.JUMP_HEIGHT) {
 			ball.A_SetTranslation(DazzlerBall.JUMP_TRANSLATION);
 		} else if (pos.z == DazzlerPowerEventSequence.CROUCH_HEIGHT) {
@@ -441,7 +436,7 @@ class DazzlerPowerHandler : EventHandler
 		Console.MidPrint("BIGFONT", "Get ready in 3, 2, 1...");
 	}
 
-	void StartDanceSequence() {
+	private void StartDanceSequence() {
 		Console.Printf("DazzlerPowerHandler#StartDanceSequence CHEAT_INVINCIBLE:" .. CHEAT_INVINCIBLE .. " level.time:" .. level.time .. " MSTime:" .. MSTime());
 		Console.MidPrint("BIGFONT", "Let's jam!");
 		danceStartTimeTk = level.time;
@@ -450,7 +445,7 @@ class DazzlerPowerHandler : EventHandler
 
 		// S_ChangeMusic(String music_name, int order = 0, bool looping = true, bool force = false)
 		// Force restart of music if already playing
-		clubMusicHandler.StopMusic();
+		CallBus.FindClubMusicHandler().StopMusic();
 		S_ChangeMusic("music/silence.ogg", force: true);
 		// S_ChangeMusic("*", force: true);
 		// S_ChangeMusic("music/petty-0.75.ogg", force: true);
@@ -472,12 +467,12 @@ class DazzlerPowerHandler : EventHandler
 		OnPlayerWin(true);
 	}
 
-	void EndDanceSequence() {
+	private void EndDanceSequence() {
 		Console.Printf("DazzlerPowerHandler#EndDanceSequence");
 		currentEventIdx = 0;
 		danceStartTimeTk = 0;
 		// Restore default music
-		clubMusicHandler.StartMusic();
+		CallBus.FindClubMusicHandler().StartMusic();
 		// S_ChangeMusic("D_STALKS");
 
 		// Open exit door
@@ -489,7 +484,7 @@ class DazzlerPowerHandler : EventHandler
 		SetCheeringActorState(false);
 	}
 
-	bool CheckDesync() {
+	private bool CheckDesync() {
 		let currentSync = CalculateSync(level.time, MSTime());
 		let desync = Abs(currentSync - danceStartSync);
 		// Console.Printf("DazzlerHandler#WorldTick desync check level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
@@ -510,7 +505,7 @@ class DazzlerPowerHandler : EventHandler
 	/**
 	 * Calculates the drift in sync between wall time and sim time, in fractional seconds
 	 */
-	float CalculateSync(float ticks, uint epochMs) {
+	private float CalculateSync(float ticks, uint epochMs) {
 			let ticksInSeconds = (ticks / 35.0);
 			float epochMsInSeconds = epochMs / 1000.0;
 			let sync = ticksInSeconds - epochMsInSeconds;
@@ -518,7 +513,7 @@ class DazzlerPowerHandler : EventHandler
 			return sync;
 	}
 
-	void SetCheeringActorState(bool cheering) {
+	private void SetCheeringActorState(bool cheering) {
 		let cheeringActorFinder = level.CreateActorIterator(CHEERING_ACTOR_TID);
 		let actor = cheeringActorFinder.Next(); 
 		while (actor != null) {
@@ -530,21 +525,4 @@ class DazzlerPowerHandler : EventHandler
 			actor = cheeringActorFinder.Next();
 		}
 	}
-
-/*
-	void FindDoodads() {
-		ActorIterator iterator = level.CreateActorIterator(DOODAD_TID);
-		Actor current;
-		while(true) {
-			current = iterator.Next();
-			Console.Printf("FindDoodads for TID: " .. DOODAD_TID .. " :" .. current);
-			if (current == null) {
-				Console.Printf("DazzlerPowerHandler#FindDoodads, found " .. doodads.Size() .. " doodads.");
-				return;
-			} else {
-				doodads.Push(current);
-			}
-		}
-	}
-	*/
 }

@@ -10,7 +10,7 @@ class CallBus
     if(clubMusicHandler) {
       clubMusicHandler.StartMusic();
     } else {
-      Console.Printf("Error! ClubMusicHandlerStatic not found!");
+      ThrowAbortException("Error! ClubMusicHandlerStatic not found!");
     }
 	}
 
@@ -21,7 +21,7 @@ class CallBus
     if(dazzlerPowerHandler) {
       dazzlerPowerHandler.QueueDanceSequence();
     } else {
-      Console.Printf("Error! DazzlerPowerHandler not found!");
+      ThrowAbortException("Error! DazzlerPowerHandler not found!");
     }
   }
 
@@ -32,14 +32,22 @@ class CallBus
     if(dazzlerPowerHandler) {
       dazzlerPowerHandler.SkipDanceSequence();
     } else {
-      Console.Printf("Error! DazzlerPowerHandler not found!");
+      ThrowAbortException("Error! DazzlerPowerHandler not found!");
     }
   }
+
+	play static ClubMusicHandlerStatic FindClubMusicHandler() {
+    let clubMusicHandler = ClubMusicHandlerStatic(StaticEventHandler.Find("ClubMusicHandlerStatic"));
+    if (clubMusicHandler == null) {
+			ThrowAbortException("ClubMusicHandlerStatic was null");
+		}
+		return clubMusicHandler;
+	}
 
 	play static PoochyPlayer FindPlayer() {
 		let result = PoochyPlayer(players[consoleplayer].Mo);
 		if (result == null) {
-			Console.Printf("Error! No player found.");
+			ThrowAbortException("Error! No player found.");
 		} else {
 			Console.Printf("Found player: " .. result);
 		}
@@ -50,7 +58,7 @@ class CallBus
 		ThinkerIterator finder = ThinkerIterator.Create("Dazzler");
 		let result = Dazzler(finder.Next());
 		if (result == null) {
-			Console.Printf("Error! No Dazzler found.");
+			ThrowAbortException("Error! No Dazzler found.");
 		} else {
 			Console.Printf("Found Dazzler: " .. result);
 		}
