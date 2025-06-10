@@ -238,6 +238,18 @@ conversation
 		name = "Logan";
 		panel = "WOLPA2";
 		dialog = "\c[Yellow]I guess they were just hungry! Well, this was fun. Let's go back to my place, I have some more ideas of how we could celebrate your birthday!";
+		choice
+		{
+			text = "Yeah, this was fun, but let's get out of here.";
+			yesmessage = "\c[Yellow]Let's go, birthday boy!";
+			closedialog = true;
+		}
+		choice
+		{
+			text = "Do you think Scott would join us?";
+			yesmessage = "\c[Yellow]I didn't know you were into insecure boy scouts with anger management issues, but they happen to be one of my types! We can ask.";
+			closedialog = true;
+		}
 	}
 }
 

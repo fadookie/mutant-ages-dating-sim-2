@@ -186,9 +186,11 @@ script 16 (void) // Trigger D&D end sequence
 	GiveInventory("AllCacosFedInventory", 1);
 	StartConversation(2, 1); // Logan dialogue
 
+	Delay(3 * TICS_PER_SECOND);
+
 	// disable player movement
 	SetActorProperty(0, APROP_Speed, 0.0);
-	ChangeCamera(5, TRUE, FALSE);
+	ChangeCamera(0, TRUE, FALSE);
 	
 	// fade out screen
 	FadeTo(0, 0, 0, 1.0, 3.0);
