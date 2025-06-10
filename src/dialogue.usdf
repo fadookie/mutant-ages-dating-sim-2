@@ -620,16 +620,12 @@ conversation
 			text = "I would never!";
 			// yesmessage = "\c[Yellow]Sure, tell that to your other boyfriends..."; // If dialog doesn't close these never fade away
 			nextpage = "PAGE_OTHER_BOYFRIENDS";
-			special = 80;
-			arg0 = 15;
 			giveitem = "TalkedToWolverineFoyerInventory"; // Disable bark script
 		}
 		choice
 		{
 			text = "Says the king of fucking off to Alaska without telling anybody.";
 			nextpage = "PAGE_BROOD";
-			special = 80;
-			arg0 = 15;
 			giveitem = "TalkedToWolverineFoyerInventory"; // Disable bark script
 		}
 	}
@@ -689,19 +685,23 @@ conversation
 		dialog = "\c[Yellow]Oh, heh heh... I had planned a little surprise for you but I seem to have misplaced the key to the X-Jet Hangar... could you help me find it?";
 		choice
 		{
-			text = "Of course! Let me look...";
+			text = "Of course! Let me look. Can you open the mansion door?";
 			yesmessage = "\c[Yellow]Thanks! I think it was in a box somewhere...";
+			special = 80;
+			arg0 = 15; // Open Door
 			closedialog = true;
 		}
 		choice
 		{
-			text = "Wow, some surprise...";
+			text = "Wow, some surprise... Can you open the mansion door?";
 			yesmessage = "\c[Yellow]Sorry... trust me it will be great! I think it was in a box somewhere...";
+			special = 80;
+			arg0 = 15; // Open Door
 			closedialog = true;
 		}
 		choice
 		{
-			text = "Can't you just cut a hole in the door?";
+			text = "Can't you just cut a hole in the hangar lift door?";
 			nextpage = "PAGE_WONT_BREAK_DOOR";
 		}
 		ifitem
@@ -718,8 +718,10 @@ conversation
 		dialog = "\c[Yellow]Xavier only just stopped whining about the last time I did that. \"Logan, don't you know it's almost impossible for mutants to get business insurance? Blah blah blah...\" It would save me a real headache if you could just find the key, bub.";
 		choice
 		{
-			text = "Fine, I'll look for it.";
+			text = "Fine, I'll look for it. Can you open the mansion door?";
 			yesmessage = "\c[Yellow]Sorry... trust me it will be great! I think it was in a box somewhere...";
+			special = 80;
+			arg0 = 15; // Open Door
 			closedialog = true;
 		}
 		ifitem
