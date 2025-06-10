@@ -225,7 +225,7 @@ conversation
 		pagename = "PAGE_START";
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]I'm WolverineInnerCircle!";
+		dialog = "\c[Yellow]So I guess the Inner Circle just plays D&D? This isn't as cool as I was imagining...";
 		ifitem
 		{
 				item = "AllCacosFedInventory";
@@ -237,7 +237,7 @@ conversation
 		pagename = "PAGE_ALL_CACOS_FED";
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]I guess they were just hungry!";
+		dialog = "\c[Yellow]I guess they were just hungry! Well, this was fun. Let's go back to my place, I have some more ideas of how we could celebrate your birthday!";
 	}
 }
 

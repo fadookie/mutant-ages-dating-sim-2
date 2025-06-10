@@ -7,7 +7,7 @@ conversation
 	page
 	{
 		name = "Magneto";
-		dialog = "Welcome, friend. I'm busy at the moment, please talk to Emma.";
+		dialog = "Welcome to the Inner Circle, friend. I'm busy at the moment preparing for our D&D session, please talk to Emma if you'd like to join us.";
 	}
 }
 
