@@ -7,7 +7,7 @@ conversation
 	{
 		pagename = "PAGE_START";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]I thought you were gonna stand me up!";
 		choice
 		{
@@ -39,7 +39,7 @@ conversation
 	{
 		pagename = "PAGE_BROOD";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]Hey now, we all need a little alone time to brood now and then.";
 		choice
 		{
@@ -51,7 +51,7 @@ conversation
 	{
 		pagename = "PAGE_JEAN_BACK";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]Oh, the usual. Jean is back so I don't get to fuck Scott anymore.";
 		choice
 		{
@@ -108,7 +108,7 @@ conversation
 	{
 		pagename = "PAGE_WONT_BREAK_DOOR";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]Xavier only just stopped whining about the last time I did that. \"Logan, don't you know it's almost impossible for mutants to get business insurance? Blah blah blah...\" It would save me a real headache if you could just find the key, bub.";
 		choice
 		{
@@ -128,7 +128,7 @@ conversation
 	{ // Player only found useless junk
 		pagename = "PAGE_FOUND_JUNK";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]That ain't no key, bub! Keep lookin'.";
 		ifitem
 		{
@@ -140,7 +140,7 @@ conversation
 	{ //Player found (but hasn't opened) scott's box - Note: FORCE THE PLAYER TO PICK UP JUNK FIRST or they will get stuck in the logic above!!!!
 		pagename = "PAGE_FOUND_SCOTTS_BOX";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]It must be in there, I can smell the ozone! I'd open it for you, but Jeannie might not take too kindly to me going through Scott's private effects, if you catch my drift. Maybe you can find a way to do it?";
 		ifitem
 		{
@@ -196,7 +196,7 @@ conversation
 	{
 		pagename = "PAGE_INNER_CIRCLE_HINT";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]Sure, but I got somethin' else in mind too. I hear there's a real *exclusive* VIP room somewhere called the Inner Circle. But I don't know how to get in. Maybe you can find a way?";
 		choice
 		{
@@ -226,7 +226,7 @@ conversation
 	{
 		pagename = "PAGE_START";
 		name = "Logan";
-		panel = "WOLPA2";
+		panel = "WOLPB2";
 		dialog = "\c[Yellow]So I guess the Inner Circle just plays D&D? This isn't as cool as I was imagining...";
 		ifitem
 		{

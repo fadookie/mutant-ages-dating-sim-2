@@ -38,7 +38,7 @@ conversation
 	{
 		pagename = "PAGE_START_DANCE";
 		name = "Alison (Dazzler)";
-		panel = "DZLPA0";
+		panel = "DZLPB0";
 		dialog = "Alright, show me your moves, hotshot!";
 		choice
 		{
