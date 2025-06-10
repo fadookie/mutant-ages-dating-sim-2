@@ -26,7 +26,7 @@ conversation
 	{
 		pagename = "PAGE_INNER_CIRCLE";
 		name = "Alison (Dazzler)";
-		panel = "DZLPA0";
+		panel = "DZLPC0";
 		dialog = "Hmm, I do know, but only the coolest of kids are allowed back there. Let's make a deal: If you can impress me with your groove, I'll let you in.";
 		choice
 		{
@@ -57,7 +57,7 @@ conversation
 	{
 		pagename = "PAGE_ASK_FOR_SKIP";
 		name = "Alison (Dazzler)";
-		panel = "DZLPA0";
+		panel = "DZLPC0";
 		dialog = "You've really been dancing your little heart out even if you look a bit ridiculous.\nI might be willing to cut you a little slack, what do you say?";
 		choice
 		{
@@ -83,7 +83,7 @@ conversation
 	{
 		pagename = "PAGE_SKIPPED";
 		name = "Alison (Dazzler)";
-		panel = "DZLPA0";
+		panel = "DZLPC0";
 		dialog = "Alright, I'll give you an \"E\" for effort. You can get to the inner circle through the door on your right. Have fun, champ!";
 	}
 	page

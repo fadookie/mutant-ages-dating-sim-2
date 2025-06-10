@@ -44,6 +44,7 @@ conversation
 	page
 	{
 		name = "Pyro";
+		panel = "PYRPA0";
 		dialog = "Need a light?";
 	}
 }
@@ -84,6 +85,7 @@ conversation
 	page
 	{
 		name = "Colossus";
+		panel = "COLPA0";
 		dialog = "I order white russian, server tell me I already have one at my table! Nyet.";
 	}
 }
@@ -94,6 +96,7 @@ conversation
 	page
 	{
 		name = "Storm";
+		panel = "STOPA0";
 		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Hurricane if you're buying.";
 	}
 }
@@ -206,7 +209,7 @@ conversation
 	{
 		pagename = "PAGE_INNER_CIRCLE";
 		name = "Alison (Dazzler)";
-		panel = "DZLPA0";
+		panel = "DZLPC0";
 		dialog = "Hmm, I do know, but only the coolest of kids are allowed back there. Let's make a deal: If you can impress me with your groove, I'll let you in.";
 		choice
 		{
@@ -237,7 +240,7 @@ conversation
 	{
 		pagename = "PAGE_ASK_FOR_SKIP";
 		name = "Alison (Dazzler)";
-		panel = "DZLPA0";
+		panel = "DZLPC0";
 		dialog = "You've really been dancing your little heart out even if you look a bit ridiculous.\nI might be willing to cut you a little slack, what do you say?";
 		choice
 		{
@@ -263,7 +266,7 @@ conversation
 	{
 		pagename = "PAGE_SKIPPED";
 		name = "Alison (Dazzler)";
-		panel = "DZLPA0";
+		panel = "DZLPC0";
 		dialog = "Alright, I'll give you an \"E\" for effort. You can get to the inner circle through the door on your right. Have fun, champ!";
 	}
 	page

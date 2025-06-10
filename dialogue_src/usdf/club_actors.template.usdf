@@ -37,6 +37,7 @@ conversation
 	page
 	{
 		name = "Pyro";
+		panel = "PYRPA0";
 		dialog = "Need a light?";
 	}
 }
@@ -77,6 +78,7 @@ conversation
 	page
 	{
 		name = "Colossus";
+		panel = "COLPA0";
 		dialog = "I order white russian, server tell me I already have one at my table! Nyet.";
 	}
 }
@@ -87,6 +89,7 @@ conversation
 	page
 	{
 		name = "Storm";
+		panel = "STOPA0";
 		dialog = "All this time I've been on so many shows, barely getting to do anything, and now when you finally are here you catch me when I'm off duty! Oh well, I'll take another Hurricane if you're buying.";
 	}
 }
