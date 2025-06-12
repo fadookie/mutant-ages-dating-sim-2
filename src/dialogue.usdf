@@ -10,11 +10,22 @@ namespace = "GZDoom";
 conversation
 {
 	actor = "Magneto";
-  panel = "MGNPA0";
 	page
 	{
 		name = "Magneto";
+		panel = "MGNPA0";
 		dialog = "Welcome to the Inner Circle, friend. I'm busy at the moment with our D&D session, please talk to Emma if you'd like to join us.";
+	}
+}
+
+conversation
+{
+	actor = "Nightcrawler";
+	page
+	{
+		name = "Kurt (Nightcrawler)";
+		panel = "NCRPA0";
+		dialog = "Willkommen, please join us, friend! Emma can get you set up with a character sheet.";
 	}
 }
 

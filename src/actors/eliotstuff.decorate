@@ -404,6 +404,23 @@ actor Storm : Actor 30016
   }
 }
 
+actor Nightcrawler : Actor 30017
+{
+	+FRIENDLY
+	+BUDDHA
+	+NOBLOOD
+	+LOOKALLAROUND
+	
+	PainChance 0
+	
+  States
+  {
+  Spawn:
+    NCRL A 10 A_Look
+    Loop
+  }
+}
+
 actor ScottsBox : Inventory 31000
 {
   Inventory.PickupMessage "Found Scott's butt plug collection!"
