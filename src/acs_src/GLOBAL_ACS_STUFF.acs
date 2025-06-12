@@ -23,6 +23,7 @@
 // bool talked_to_buddy = false;
 // int corpses_cleaned = 0;
 bool talked_logan_mnsn_entrance = false;
+int player_tid = 0;
 
 /***
  * Global functions
@@ -46,6 +47,11 @@ script "DazzlerPrintDesync" (void)
 	HudMessageBold(s:"Don't you know it's rude to not pay attention during a performance?\nPlease don't pause the game while we are dancing.\nLet's try that again...";
 		HUDMSG_PLAIN, 0, CR_WHITE, 1.5, 0.5, 8.0 /* hold time in seconds */);
 	//HudMessageBold(s:"I can't believe Wolverine went on a date with me! And then more! I guess he is my boyfriend now... "; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+}
+
+script 99 ENTER {
+	player_tid = UniqueTID();
+	Thing_ChangeTID(0, player_tid);
 }
  
 /**
@@ -206,10 +212,37 @@ script 16 (void) // Trigger D&D end sequence
 // !!! script 17 is moved up above to keep dazzler scripts together !!!
 
 script 18 (void) { // Trigger club enter from blackbird
-	// SetMusic("music/mutant-ages-theme-instrumental.ogg");
-	Teleport(10);
+	Log(s:"@@@ player_tid:", i: player_tid);
+	
+	// disable player movement
+	SetActorProperty(0, APROP_Speed, 0.0);
+	ChangeCamera(0, TRUE, FALSE);
+	
+	// fade out screen
+	FadeTo(0, 0, 0, 1.0, 2.0);
+
+	PlaySound(0, "el/blackbirdFlyby");
+
+	Delay(2 * TICS_PER_SECOND);
+
+	// Teleport to club
+	Teleport_NoFog(10, 1, 515, 0);
+
+	// Start club music
 	ScriptCall("CallBus", "TriggerClubEnter");
+
+	// fade from black
+	FadeTo(0, 0, 0, 0.0, 2.0);
+
+	Delay(2 * TICS_PER_SECOND);
+
 	StartConversation(5, 1); // Logan dialogue
+
+	Delay(2 * TICS_PER_SECOND);
+
+	// Restore movement
+	SetActorProperty(0, APROP_Speed, 1.0);
+	ChangeCamera(0, TRUE, FALSE);
 }
 
 script 19 (void) { // Trigger club enter from inner circle
