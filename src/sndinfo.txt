@@ -11,6 +11,7 @@ el/lg_nom sounds/172135__paulmorek__nom-c-06.wav
 el/menuselect sounds/xmen_select1_long.wav
 el/clickTrack music/clickTrack.mp3
 el/phoenixPower sounds/237497__ofuscapreto__noise_rising_low_pass_trim.wav
+el/blackbirdFlyby sounds/274820__robinhood76__05800-space-jet-flyby.wav
 
 el/dazzlerClickTrack music/petty-0.75-clicktrack.ogg
 el/dazzlerSong sounds/petty-0.75.ogg
