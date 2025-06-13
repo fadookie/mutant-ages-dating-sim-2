@@ -426,11 +426,11 @@ actor ScottsBox : Inventory 31000
   Inventory.PickupMessage "Found Scott's butt plug collection!"
 	Inventory.Amount 500
 	Inventory.MaxAmount 999
-    States
+  States
   {
   Spawn:
-    CBOX A 10
-    Loop
+    CBOX A -1
+    Stop
   }
 }
 
@@ -439,132 +439,122 @@ actor UselessJunk : Ammo 31001
   Inventory.PickupMessage "Found some useless junk!"
 	Inventory.Amount 1
 	Inventory.MaxAmount 999
-    States
+  States
   {
   Spawn:
-    JNK0 A 10
-    Loop
+    CELP A -1
+    Stop
   }
 }
 
 actor AirConditioner : UselessJunk 31002
 {
   Inventory.PickupMessage "Is that an air conditioner?"
-    States
+  States
   {
   Spawn:
-    AIRC A 10
-    Loop
+    AIRC A -1
+    Stop
   }
 }
 
 actor TeddyBear : Actor 31003
 {
-
-    States
+  States
   {
   Spawn:
-    TEDY A 10
-    Loop
+    TEDY A -1
+    Stop
   }
 }
 
 actor Backback : Actor 31004
 {
-
-    States
+  States
   {
   Spawn:
-    JBPK A 10
-    Loop
+    JBPK A -1
+    Stop
   }
 }
 
 actor Picture : Actor 31005
 {
-
-    States
+  States
   {
   Spawn:
-    PICT A 10
-    Loop
+    PICT A -1
+    Stop
   }
 }
 
 actor Lamp : Actor 31006
 {
-
-    States
+  States
   {
   Spawn:
-    LAMP A 10 Bright
-    Loop
+    LAMP A -1 Bright
+    Stop
   }
 }
 
 actor Plant : Actor 31007
 {
-
-    States
+  States
   {
   Spawn:
-    PLAN A 10
-    Loop
+    PLAN A -1
+    Stop
   }
 }
 
 actor XMansionStatue : Actor 31008
 {
-
-    States
+  States
   {
   Spawn:
-    STAT A 10
-    Loop
+    STAT A -1
+    Stop
   }
 }
 
 actor Chair : Actor 31009
 {
-
-    States
+  States
   {
   Spawn:
-    CHAI A 10
-    Loop
+    CHAI A -1
+    Stop
   }
 }
 
 actor BackRightGear : Actor 31011
 {
-
-    States
+  States
   {
   Spawn:
-    BRGR A 10
-    Loop
+    BRGR A -1
+    Stop
   }
 }
 
 actor BackLeftGear : Actor 31012
 {
-
-    States
+  States
   {
   Spawn:
-    BLGR A 10
-    Loop
+    BLGR A -1
+    Stop
   }
 }
 
 actor FrontGear : Actor 31013
 {
-
-    States
+  States
   {
   Spawn:
-    FGER A 10
-    Loop
+    FGER A -1
+    Stop
   }
 }
 
