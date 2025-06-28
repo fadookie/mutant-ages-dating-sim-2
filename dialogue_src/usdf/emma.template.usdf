@@ -47,11 +47,6 @@ conversation
 			giveitem = "PoochyDnDInventory";
 			nextpage = "PAGE_CLASS_SELECT_POOCHY";
 		}
-// 		choice
-// 		{
-// 			text = "Mary Sue!";
-// 			nextpage = 3;
-// 		}
 	}
 	page
 	{
@@ -191,7 +186,7 @@ conversation
 		dialog = "\c[White]I'm not really sure what that is... but sure, make a perception check. Roll a d20 and add your perception bonus.";
 		choice
 		{
-			text = "Roll 1d20";
+			text = "Roll a d20";
 			nextpage = "PAGE_EMMA_PERCEPTION_CHECK_RESULT";
 		}
 	}
@@ -203,7 +198,7 @@ conversation
 		dialog = "\c[White]Okay, make a perception check. Roll a d20 and add your perception bonus.";
 		choice
 		{
-			text = "Roll 1d20";
+			text = "Roll a d20";
 			nextpage = "PAGE_EMMA_PERCEPTION_CHECK_RESULT";
 		}
 	}
@@ -228,12 +223,12 @@ conversation
 		choice
 		{
 			text = "Next";
-			nextpage = "PAGE_MAGNETO_WAIT_ATTACK";
+			nextpage = "PAGE_WAIT_ATTACK";
 		}
 	}
 	page
 	{
-		pagename = "PAGE_MAGNETO_WAIT_ATTACK";
+		pagename = "PAGE_WAIT_ATTACK";
 		name = "Magneto";
 		panel = "MGNPA0";
 		dialog = "\c[Purple]Slow your roll there, cowboy. We don't even know that these people are hostile. Maybe we should just talk to them first.";

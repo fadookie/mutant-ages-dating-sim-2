@@ -1,0 +1,109 @@
+title: Start
+strifeSpinner_Actor: EmmaFrost
+strifeSpinner_Defaults_Panel_Emma: WQNPA0
+strifeSpinner_Defaults_Color_Emma: White
+strifeSpinner_Defaults_Panel_Logan: WOLPA2
+strifeSpinner_Defaults_Color_Logan: Yellow
+strifeSpinner_Defaults_Panel_Magneto: MGNPA0
+strifeSpinner_Defaults_Color_Magneto: Purple
+strifeSpinner_Defaults_Panel_Kurt: NCRPA0
+strifeSpinner_Defaults_Color_Kurt: Blue
+---
+Magneto: Slow your roll there, cowboy. We don't even know that these people are hostile. Maybe we should just talk to them first.
+
+-> Let's try talking.
+    <<jump PAGE_START_NASTY_BOYS_PARLEY_1>>
+-> Attack!
+    <<jump PAGE_ATTACK_NASTY_BOYS>>
+===
+
+title: PAGE_START_NASTY_BOYS_PARLEY_1
+---
+Kurt: Hello, friends! We mean you no harm. Please show yourselves!
+
+-> Continue
+    <<jump PAGE_START_NASTY_BOYS_PARLEY_2>>
+===
+
+title: PAGE_START_NASTY_BOYS_PARLEY_2
+---
+Emma: A tall man with long, flowing white hair emerges from the bushes with a camcorder. "You've spotted us!"
+
+-> Ask him what he's doing!
+    <<jump PAGE_START_NASTY_BOYS_PARLEY_3>>
+
+-> Attack him!
+    <<jump PAGE_ATTACK_NASTY_BOYS>>
+===
+
+title: PAGE_START_NASTY_BOYS_PARLEY_3
+---
+Emma: "Mr. Sinister has sent us to film you all as you go about your daily life. We can't allow you to leave here with this knowledge!" The rest of the Nasty Boys spring from their hiding place and attack!
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS
+---
+Emma: Alright, everyone roll initiative. Roll a d20 and add your dexterity bonus.
+
+-> Roll a d20
+    <<jump PAGE_ATTACK_NASTY_BOYS_2>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_2
+---
+Emma: Logan, you're up first. What would you like to do?
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_3>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_3
+---
+Logan: I pop my claws and slice the pretty boy like a salami!
+
+-> Roll a d20
+    <<jump PAGE_ATTACK_NASTY_BOYS_4>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_4
+---
+Emma: Your character doesn't have claws, please read your character sheet I gave you. He has a Battleaxe which you may use to make an attack. Roll a d20 and add your strength and proficiency bonus, and a d8 plus your strength bonus to determine the damage.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_5>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_5
+---
+Logan: Okay, which one of these is the d20? Let's roll the big one!
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_6>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_6
+---
+Emma: Your attack hits and you deal 9 slashing damage and Ruckus drops the camcorder he was holding. It's now Kurt's turn.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_7>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_7
+---
+Kurt: I attack Gorgeous George with my +1 Rapier. That's a 15 to hit.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_8>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_8
+---
+Emma: That hits, you deal 5 piercing damage. It's now Ramrod's turn. Ramrod increases the length of his shillelagh
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_3>>
+===
