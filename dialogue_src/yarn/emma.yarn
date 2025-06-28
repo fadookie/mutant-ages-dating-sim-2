@@ -7,8 +7,10 @@ strifeSpinner_Defaults_Color_Logan: Yellow
 strifeSpinner_Defaults_Panel_Magneto: MGNPA0
 strifeSpinner_Defaults_Color_Magneto: Purple
 strifeSpinner_Defaults_Panel_Kurt: NCRPA0
-strifeSpinner_Defaults_Color_Kurt: Blue
+strifeSpinner_Defaults_Color_Kurt: LightBlue
 ---
+<<declare $PoochyDnDInventory = 0 as number>>
+<<declare $WarcraftDnDInventory = 0 as number>>
 Magneto: Slow your roll there, cowboy. We don't even know that these people are hostile. Maybe we should just talk to them first.
 
 -> Let's try talking.
@@ -21,7 +23,7 @@ title: PAGE_START_NASTY_BOYS_PARLEY_1
 ---
 Kurt: Hello, friends! We mean you no harm. Please show yourselves!
 
--> Continue
+-> Next
     <<jump PAGE_START_NASTY_BOYS_PARLEY_2>>
 ===
 
@@ -40,7 +42,7 @@ title: PAGE_START_NASTY_BOYS_PARLEY_3
 ---
 Emma: "Mr. Sinister has sent us to film you all as you go about your daily life. We can't allow you to leave here with this knowledge!" The rest of the Nasty Boys spring from their hiding place and attack!
 
--> Continue
+-> Next
     <<jump PAGE_ATTACK_NASTY_BOYS>>
 ===
 
@@ -56,7 +58,7 @@ title: PAGE_ATTACK_NASTY_BOYS_2
 ---
 Emma: Logan, you're up first. What would you like to do?
 
--> Continue
+-> Next
     <<jump PAGE_ATTACK_NASTY_BOYS_3>>
 ===
 
@@ -72,7 +74,7 @@ title: PAGE_ATTACK_NASTY_BOYS_4
 ---
 Emma: Your character doesn't have claws, please read your character sheet I gave you. He has a Battleaxe which you may use to make an attack. Roll a d20 and add your strength and proficiency bonus, and a d8 plus your strength bonus to determine the damage.
 
--> Continue
+-> Next
     <<jump PAGE_ATTACK_NASTY_BOYS_5>>
 ===
 
@@ -80,7 +82,7 @@ title: PAGE_ATTACK_NASTY_BOYS_5
 ---
 Logan: Okay, which one of these is the d20? Let's roll the big one!
 
--> Continue
+-> Next
     <<jump PAGE_ATTACK_NASTY_BOYS_6>>
 ===
 
@@ -88,7 +90,7 @@ title: PAGE_ATTACK_NASTY_BOYS_6
 ---
 Emma: Your attack hits and you deal 9 slashing damage and Ruckus drops the camcorder he was holding. It's now Kurt's turn.
 
--> Continue
+-> Next
     <<jump PAGE_ATTACK_NASTY_BOYS_7>>
 ===
 
@@ -96,14 +98,123 @@ title: PAGE_ATTACK_NASTY_BOYS_7
 ---
 Kurt: I attack Gorgeous George with my +1 Rapier. That's a 15 to hit.
 
--> Continue
+-> Next
     <<jump PAGE_ATTACK_NASTY_BOYS_8>>
 ===
 
 title: PAGE_ATTACK_NASTY_BOYS_8
 ---
-Emma: That hits, you deal 5 piercing damage. It's now Ramrod's turn. Ramrod increases the length of his shillelagh
+Emma: That hits, you deal 5 piercing damage. It's now Ramrod's turn. Ramrod increases the length of his shillelagh and tries to shove it into you.
+
+-> Next
+    <<jump PAGE_ATTACK_NASTY_BOYS_9>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_9
+---
+Logan: Pfffffft! Gay.
 
 -> Continue
-    <<jump PAGE_ATTACK_NASTY_BOYS_3>>
+    <<jump PAGE_ATTACK_NASTY_BOYS_10>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_10
+---
+Emma: That's an 18 to hit, he hits. You take 6 damage and are grappled. Magento, it's your turn.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_11>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_11
+---
+Magneto: I will not harm another mutant. I refuse to fight.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_12>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_12
+---
+Kurt: We've been over this! It's just a game, also, your character isn't a mutant anyway, you're a human wizard!
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_13>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_13
+---
+Magneto: Fine. I cast banishment on Ramrod.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_14>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_14
+---
+Emma: Okay, Ramrod will make a charisma saving throw. That's an 11, he fails. Ramrod is transported into a demiplane for one minute. Kurt, you're now free of the grapple.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_15>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_15
+---
+Kurt: Thank you, friend. That wasn't so hard, was it?
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_16>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_16
+---
+Emma: It's Ruckus's turn. He opens his mouth and a powerful sound pierces your ears. I need everyone to make a constitution saving throw.
+
+-> Make wisdom saving throw
+    <<jump PAGE_ATTACK_NASTY_BOYS_17>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_17
+---
+Emma: Everyone fails, you all take 10 thunder damage. Now, it's your turn again, what did you say your name was?
+
+-> Poochy!
+    <<jump PAGE_ATTACK_NASTY_BOYS_18>>
+-> Ryan!
+    <<jump PAGE_ATTACK_NASTY_BOYS_18>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_18
+---
+Emma: Right, sorry. What would you like to do?
+
+-> I subject all the Nasty Boys to invasive medical procedures! (Poochy) <<if $PoochyDnDInventory > 0>>
+    <<jump PAGE_ATTACK_NASTY_BOYS_19_POOCHY>>
+
+-> I go black! (Warcraft) <<if $WarcraftDnDInventory > 0>>
+    <<jump PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_19_POOCHY
+---
+Emma: Poochy attack
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_20>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT
+---
+Emma: Warcraft attack
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_20>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_20
+---
+Emma: End
+
+// -> Continue
+//     <<jump PAGE_ATTACK_NASTY_BOYS_>>
 ===
