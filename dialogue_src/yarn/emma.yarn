@@ -31,7 +31,10 @@ title: PAGE_START_NASTY_BOYS_PARLEY_2
 ---
 Emma: A tall man with long, flowing white hair emerges from the bushes with a camcorder. "You've spotted us!"
 
--> Ask him what he's doing!
+-> (Poochy Only) I use my communication sunglasses to interrogate him! <<if $PoochyDnDInventory > 0>>
+    <<jump PAGE_START_NASTY_BOYS_PARLEY_3>>
+
+-> (Warcraft Only) I intimidate him with my half-human, half-wolf form and ask him what he's doing! <<if $WarcraftDnDInventory > 0>>
     <<jump PAGE_START_NASTY_BOYS_PARLEY_3>>
 
 -> Attack him!
@@ -40,7 +43,7 @@ Emma: A tall man with long, flowing white hair emerges from the bushes with a ca
 
 title: PAGE_START_NASTY_BOYS_PARLEY_3
 ---
-Emma: "Mr. Sinister has sent us to film you all as you go about your daily life. We can't allow you to leave here with this knowledge!" The rest of the Nasty Boys spring from their hiding place and attack!
+Emma: "I am Ruckus. Mr. Sinister has sent us to film you all as you go about your daily life. We can't allow you to leave here with this knowledge!" The rest of the Nasty Boys spring from their hiding place and attack!
 
 -> Next
     <<jump PAGE_ATTACK_NASTY_BOYS>>
@@ -170,7 +173,7 @@ title: PAGE_ATTACK_NASTY_BOYS_16
 ---
 Emma: It's Ruckus's turn. He opens his mouth and a powerful sound pierces your ears. I need everyone to make a constitution saving throw.
 
--> Make wisdom saving throw
+-> Make constitution saving throw
     <<jump PAGE_ATTACK_NASTY_BOYS_17>>
 ===
 
@@ -188,16 +191,16 @@ title: PAGE_ATTACK_NASTY_BOYS_18
 ---
 Emma: Right, sorry. What would you like to do?
 
--> I subject all the Nasty Boys to invasive medical procedures! (Poochy) <<if $PoochyDnDInventory > 0>>
+-> (Poochy Only) I subject all the Nasty Boys to invasive medical procedures! <<if $PoochyDnDInventory > 0>>
     <<jump PAGE_ATTACK_NASTY_BOYS_19_POOCHY>>
 
--> I go black! (Warcraft) <<if $WarcraftDnDInventory > 0>>
+-> (Warcraft Only) I go black! <<if $WarcraftDnDInventory > 0>>
     <<jump PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT>>
 ===
 
 title: PAGE_ATTACK_NASTY_BOYS_19_POOCHY
 ---
-Emma: Poochy attack
+Emma: Alright, I'll have the Nasty Boys make constitution saves. Bloody hell, they all fail. Gorgeous George dissolves into a puddle of black tar and shouts "You haven't seen the last of us!" With that, the Nasty Boys retreat.
 
 -> Continue
     <<jump PAGE_ATTACK_NASTY_BOYS_20>>
@@ -205,7 +208,7 @@ Emma: Poochy attack
 
 title: PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT
 ---
-Emma: Warcraft attack
+Emma: Everything is a blur, you lose consciousness. *Rolling dice* Bloody hell, the Nasty Boys all take 28 piercing damage from your attack. You come to, and Gorgeous George has been reduced to a puddle of black tar on the floor. He shouts "You haven't seen the last of us!" With that, the Nasty Boys retreat.
 
 -> Continue
     <<jump PAGE_ATTACK_NASTY_BOYS_20>>
@@ -213,8 +216,24 @@ Emma: Warcraft attack
 
 title: PAGE_ATTACK_NASTY_BOYS_20
 ---
-Emma: End
+Logan: Nice. Do we win?
 
-// -> Continue
-//     <<jump PAGE_ATTACK_NASTY_BOYS_>>
+-> Continue
+    <<jump PAGE_END_SEQUENCE_1>>
+===
+
+title: PAGE_END_SEQUENCE_1
+---
+Emma: Please let me finish. Yes, you are now out of combat and all gain 30 XP. Now, we would normally have our session go a bit longer, but Logan, you said you had a surprise?
+
+-> Continue
+    <<jump PAGE_END_SEQUENCE_2>>
+===
+
+title: PAGE_END_SEQUENCE_2
+---
+Logan: Oh yeah, I don't bake but I had Gambit make you something, Happy Birthday!
+
+-> Thank you!
+    <<special 80 16>>
 ===

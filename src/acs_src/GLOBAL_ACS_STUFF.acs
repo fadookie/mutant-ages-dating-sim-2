@@ -178,6 +178,9 @@ script 16 (void) // Trigger D&D end sequence
 
 	// Open monster closet
 	Door_Open(717, 16);
+
+	SetFont("BIGFONT");
+	PrintBold(s:"\c[Yellow]Uh oh, they look hungry! Maybe they like cake?");
 	
 	// Wait for all PartyCacos to die
 	while(ThingCount(T_NONE, 1) > 0)

@@ -31,7 +31,7 @@
 		pagename = "PAGE_CLASS_SELECT";
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]And what class would you like to play in the campaign?";
+		dialog = "\c[White]And what class would you like to play in the campaign, darling?";
 		choice
 		{
 			text = "A Warcraft!";
@@ -154,7 +154,7 @@
 		dialog = "\c[White]You are in a dark forest. Something is putting you on edge, but you aren't sure what. What would you like to do?";
 		choice
 		{
-			text = "(Poochy) I use my AE Vision!";
+			text = "(Poochy Only) I use my AE Vision!";
 			nextpage = "PAGE_EMMA_POOCHY_PERCEPTION_CHECK";
 			cost
 			{
@@ -165,7 +165,7 @@
 		}
 		choice
 		{
-			text = "(Warcraft) I listen and smell for danger.";
+			text = "(Warcraft Only) I listen and smell for danger.";
 			nextpage = "PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK";
 			cost
 			{
