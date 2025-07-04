@@ -174,12 +174,13 @@ script 16 (void) // Trigger D&D end sequence
 	// Remove invisible wall around cake
 	Line_SetBlocking(2, 0, BLOCKF_EVERYTHING);
 
+	SetFont("BIGFONT");
+	PrintBold(s:"\c[Yellow]Surprise!");
+
 	Delay(6 * TICS_PER_SECOND);
 
 	// Open monster closet
 	Door_Open(717, 16);
-
-	SetFont("BIGFONT");
 
 	int barkCount = 0;
 	

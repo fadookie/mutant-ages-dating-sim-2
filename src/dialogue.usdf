@@ -589,17 +589,25 @@ conversation
 		pagename = "PAGE_START_NASTY_BOYS_PARLEY_2";
 		name = "Emma";
 		panel = "WQNPA0";
-		dialog = "\c[White]A tall man with long, flowing white hair emerges from the bushes with a camcorder. \"You've spotted us!\"";
+		dialog = "\c[White]A tall bloke with long, flowing white hair emerges from the bushes with a camcorder. \"You've spotted us!\"";
 		choice
 		{
 			text = "(Poochy Only) I use my communication sunglasses to interrogate him!";
 			nextpage = "PAGE_START_NASTY_BOYS_PARLEY_3";
+			cost {
+				item = "PoochyDnDInventory";
+				amount = 1;
+			}
 		}
 		
 		choice
 		{
 			text = "(Warcraft Only) I intimidate him with my half-human, half-wolf form and ask him what he's doing!";
 			nextpage = "PAGE_START_NASTY_BOYS_PARLEY_3";
+			cost {
+				item = "WarcraftDnDInventory";
+				amount = 1;
+			}
 		}
 		
 		choice
@@ -878,12 +886,20 @@ conversation
 		{
 			text = "(Poochy Only) I subject all the Nasty Boys to invasive medical procedures!";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_19_POOCHY";
+			cost {
+				item = "PoochyDnDInventory";
+				amount = 1;
+			}
 		}
 		
 		choice
 		{
 			text = "(Warcraft Only) I go black!";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT";
+			cost {
+				item = "WarcraftDnDInventory";
+				amount = 1;
+			}
 		}
 		
 	}
@@ -935,7 +951,7 @@ conversation
 		pagename = "PAGE_END_SEQUENCE_1";
 		name = "Emma";
 		panel = "WQNPA0";
-		dialog = "\c[White]Please let me finish. Yes, you are now out of combat and all gain 30 XP. Now, we would normally have our session go a bit longer, but Logan, you said you had a surprise?";
+		dialog = "\c[White]It's rude to interrupt the dungeon master while she is talking, please let me finish. Yes, you are now out of combat and all gain 30 XP. Now, we would normally have our session go a bit longer, but Logan, you said you had a surprise?";
 		choice
 		{
 			text = "Continue";

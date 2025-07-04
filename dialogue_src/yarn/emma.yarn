@@ -29,12 +29,12 @@ Kurt: Hello, friends! We mean you no harm. Please show yourselves!
 
 title: PAGE_START_NASTY_BOYS_PARLEY_2
 ---
-Emma: A tall man with long, flowing white hair emerges from the bushes with a camcorder. "You've spotted us!"
+Emma: A tall bloke with long, flowing white hair emerges from the bushes with a camcorder. "You've spotted us!"
 
--> (Poochy Only) I use my communication sunglasses to interrogate him! <<if $PoochyDnDInventory > 0>>
+-> (Poochy Only) I use my communication sunglasses to interrogate him! #cost:PoochyDnDInventory
     <<jump PAGE_START_NASTY_BOYS_PARLEY_3>>
 
--> (Warcraft Only) I intimidate him with my half-human, half-wolf form and ask him what he's doing! <<if $WarcraftDnDInventory > 0>>
+-> (Warcraft Only) I intimidate him with my half-human, half-wolf form and ask him what he's doing! #cost:WarcraftDnDInventory
     <<jump PAGE_START_NASTY_BOYS_PARLEY_3>>
 
 -> Attack him!
@@ -191,10 +191,10 @@ title: PAGE_ATTACK_NASTY_BOYS_18
 ---
 Emma: Right, sorry. What would you like to do?
 
--> (Poochy Only) I subject all the Nasty Boys to invasive medical procedures! <<if $PoochyDnDInventory > 0>>
+-> (Poochy Only) I subject all the Nasty Boys to invasive medical procedures! #cost:PoochyDnDInventory
     <<jump PAGE_ATTACK_NASTY_BOYS_19_POOCHY>>
 
--> (Warcraft Only) I go black! <<if $WarcraftDnDInventory > 0>>
+-> (Warcraft Only) I go black! #cost:WarcraftDnDInventory
     <<jump PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT>>
 ===
 
@@ -224,7 +224,7 @@ Logan: Nice. Do we win?
 
 title: PAGE_END_SEQUENCE_1
 ---
-Emma: Please let me finish. Yes, you are now out of combat and all gain 30 XP. Now, we would normally have our session go a bit longer, but Logan, you said you had a surprise?
+Emma: It's rude to interrupt the dungeon master while she is talking, please let me finish. Yes, you are now out of combat and all gain 30 XP. Now, we would normally have our session go a bit longer, but Logan, you said you had a surprise?
 
 -> Continue
     <<jump PAGE_END_SEQUENCE_2>>
