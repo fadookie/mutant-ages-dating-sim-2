@@ -9,6 +9,7 @@ conversation
 		name = "Alison (Dazzler)";
 		panel = "DZLPA0";
 		dialog = "Hey, come to see my show?";
+		/* Dialogue skip
 		choice
 		{
 			text = "Start dance sequence";
@@ -16,6 +17,7 @@ conversation
 			special = 80;
 			arg0 = 13;
 		}
+		*/
 		choice
 		{
 			text = "Yeah! Also, do you know how I can get in to the inner circle?";

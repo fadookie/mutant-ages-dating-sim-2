@@ -44,7 +44,7 @@ class DazzlerPowerHandler : EventHandler
 	const DAZZLER_WIND_UP_SEEK_AHEAD_AMOUNT_SEC = 0.5;
 
 	// Lose/Win condition stuff
-	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 2;
+	const PLAYER_FAILURES_BEFORE_SKIP_OPTION = 5;
 	private int numPlayerFailures;
 	private bool CHEAT_INVINCIBLE; // Player can't fail sequence
 

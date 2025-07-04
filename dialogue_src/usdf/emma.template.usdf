@@ -11,13 +11,15 @@ conversation
 		name = "Emma Frost";
 		panel = "WQNPA0";
 		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new chaps here tonight, why don't you introduce yourselves?";
+    /*
 		choice
-		{ // TODO Remove skip option
+		{ // TODO Ensure this debug skip remains commented out
 			text = "SKIP DIALOGUE";
 			closedialog = true;
 			special = 80;
 			arg0 = 16;
 		}
+    */
 		choice
 		{
 			text = "I'm Ryan!"; // give inventory
