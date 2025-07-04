@@ -22,7 +22,6 @@ DoomEdNums
 
 clearepisodes
 
-// Episode "map01"
 Episode "XMEN2"
 {
 	Name = "X-Men Dating Origins 2: Dates of Future Past"
@@ -37,88 +36,6 @@ Map "XMEN2" "X-Men Dating Origins 2: Dates of Future Past"
 	Sky1 = "B_SKY"
 	Next = EndSequence, "Credits"
 }
-
-// Map "SABMHC01" "The Great Escape"
-// {
-// 	music = "music/OBS"
-// 	levelnum = 1
-// 	sky1 = "SKY1"
-// 	Next = "AIRCOND"
-// 	exitpic = "HDYDFK"
-// 	Intermusic = "HDAYS"
-// }
-
-// Map "AIRCOND" "Air Conditioned Nightmare"
-// {
-// 	enterpic = "FB"
-// 	cluster = 1
-// 	levelnum = 2
-// 	sky1 = "SKY1"
-// 	music = "music/FISHER"
-// 	Next = "SEMICAKE"
-
-// }
-
-/*
-Map "COFFEE_TEST" "CoffeeGuy Test Map"
-{
-	levelnum = 1
-	music = "D_READ_M"
-	Next = "map01"
-}
-
-Map "XMENEL" "Eliot's test map copy"
-{
-	levelnum = 1
-	music = "D_READ_M"
-	Next = "map01"
-}
-
-Map "XMEN" "Patrick's test map copy"
-{
-	levelnum = 2
-	music = "D_READ_M"
-	Next = "map01"
-}
-
-Map "XMEN2EL" "Patrick's test map 2 Eliot copy"
-{
-	levelnum = 2
-	music = "D_READ_M"
-	Next = "map01"
-	Sky1 = "B_SKY"
-}
-
-
-Map "map01" "code test map"
-{
-	levelnum = 2
-	music = "D_READ_M"
-	Next = "SEMICAKE"
-}
-
-Map "SEMICAKE" "Segway"
-{
-	cluster = 1
-	music = "music/Nova_Observatory_Background.ogg"
-	levelnum = 2
-	SpecialAction = "PartyCaco", "Door_Open", 666, 16
-	Next = EndSequence, "Credits"
-}
-
-// Cluster text only works between levels, can't be shown before first level
-// cluster 1
-// {
-//    flat = "FLOOR4_8"
-//    entertext = "I can't believe Wolverine went on",
-//    "a date with me! And then more! I guess he is",
-//    "my boyfriend now... ",
-//    "",
-//    "Yesterday I recieved a mysterious invitation to meet him at the",
-//    "X-Mansion. I hope he remembered that my birthday",
-//    "is today!"
-// }
-*/
 
 intermission Credits {
     

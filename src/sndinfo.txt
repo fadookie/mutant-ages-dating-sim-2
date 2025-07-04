@@ -23,11 +23,6 @@ $volume el/instrumentalTheme 0.5
 $volume el/mutantAgesComicBookTheme 0.5
 $volume el/xMenMetaphorSong 0.5
 
-chckn0 sounds/CHOOK0
-chckn1 sounds/CHOOK1
-
-$ambient 1 chckn1 point periodic 17.0 1.0
-
 // see https://github.com/rheit/zdoom/blob/master/wadsrc/static/filter/game-doomchex/sndinfo.txt
 /*
 menu/activate			dsswtchn	// Activate a new menu
