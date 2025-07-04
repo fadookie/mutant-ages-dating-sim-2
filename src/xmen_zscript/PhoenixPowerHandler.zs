@@ -28,7 +28,7 @@ class PhoenixPowerHandler : EventHandler
 		FindDoodads();
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
-// 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
+// 			Console.DebugPrintf(DMSG_SPAMMY, "No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
 // 			boardSpot = player.Spawn("Shotgun", (0,0,0), NO_REPLACE);
 // 		}
 // 		currentPreset = 1;
@@ -73,12 +73,12 @@ class PhoenixPowerHandler : EventHandler
 
 // 	override void WorldThingDamaged(WorldEvent e) {
 // 		//For some reason e.Inflictor is null here so we have to save it off in GridCell#DamageMobj
-// 		Console.Printf("WorldThingDamaged thing:" .. e.Thing.GetClassName() .. ", Inflictor: " .. e.Inflictor);
+// 		Console.DebugPrintf(DMSG_SPAMMY, "WorldThingDamaged thing:" .. e.Thing.GetClassName() .. ", Inflictor: " .. e.Inflictor);
 // 		int x, y;
 // 		let gridCell = GridCell(e.thing);
 // 		if (gridCell != null) {
 // 			[x, y] = gridCell.GetCoords();
-// 			Console.Printf("WTD:Cell shot at x:" .. x .. ", y:" .. y .. " by inflictor:" .. gridCell.lastInflictor.GetClassName());
+// 			Console.DebugPrintf(DMSG_SPAMMY, "WTD:Cell shot at x:" .. x .. ", y:" .. y .. " by inflictor:" .. gridCell.lastInflictor.GetClassName());
 // 			MakeCellAlive(x, y);
 // 			return;
 // 		}
@@ -86,10 +86,10 @@ class PhoenixPowerHandler : EventHandler
 // 		if (imp != null) {
 // 			[x, y] = SzudzikUnpair(imp.tid);
 // 			if (!IsDead(imp)) {
-// 				Console.Printf("WTD:fired on living imp at %i, %i", x, y);
+// 				Console.DebugPrintf(DMSG_SPAMMY, "WTD:fired on living imp at %i, %i", x, y);
 // 				MakeCellDead(x, y);
 // 			} else {
-// 				Console.Printf("WTD:fired on dead imp at %i, %i", x, y);
+// 				Console.DebugPrintf(DMSG_SPAMMY, "WTD:fired on dead imp at %i, %i", x, y);
 // 				MakeCellAlive(x, y);
 // 			}
 // 			return;
@@ -110,9 +110,9 @@ class PhoenixPowerHandler : EventHandler
 		Actor current;
 		while(true) {
 			current = iterator.Next();
-			Console.Printf("FindDoodads for TID: " .. DOODAD_TID .. " :" .. current);
+			Console.DebugPrintf(DMSG_SPAMMY, "FindDoodads for TID: " .. DOODAD_TID .. " :" .. current);
 			if (current == null) {
-				Console.Printf("PhoenixPowerHandler#FindDoodads, found " .. doodads.Size() .. " doodads.");
+				Console.DebugPrintf(DMSG_SPAMMY, "PhoenixPowerHandler#FindDoodads, found " .. doodads.Size() .. " doodads.");
 				return;
 			} else {
 				doodads.Push(current);
@@ -121,7 +121,7 @@ class PhoenixPowerHandler : EventHandler
 	}
 	
 	void StartLevitationSequence() {
-		Console.Printf("PhoenixPowerHandler#StartLevitationSequence");
+		Console.DebugPrintf(DMSG_SPAMMY, "PhoenixPowerHandler#StartLevitationSequence");
     Console.MidPrint("BIGFONT", "\c[Red]If he tries to steal my man again I will destroy this planet and everyone in it!");
 // 		FindDoodads();
 		let phoenix = CallBus.FindActor(4);
@@ -132,7 +132,7 @@ class PhoenixPowerHandler : EventHandler
 	}
 	
 	void EndLevitationSequence() {
-		Console.Printf("PhoenixPowerHandler#EndLevitationSequence");
+		Console.DebugPrintf(DMSG_SPAMMY, "PhoenixPowerHandler#EndLevitationSequence");
 // 		FindDoodads();
 		let phoenix = CallBus.FindActor(4);
 		phoenix.SetStateLabel("Spawn");
@@ -142,10 +142,10 @@ class PhoenixPowerHandler : EventHandler
 	
 	/*
 	void InitBoardFromPreset() {
-		//Console.Printf("InitBoardFromPreset currentPreset:%i", currentPreset);
+		//Console.DebugPrintf(DMSG_SPAMMY, "InitBoardFromPreset currentPreset:%i", currentPreset);
 		switch (currentPreset) {
 			case 0:
-				Console.Printf("Loading preset: Glider");
+				Console.DebugPrintf(DMSG_SPAMMY, "Loading preset: Glider");
 				board[0][1] = true;
 				board[1][2] = true;
 				board[2][0] = true;
@@ -153,13 +153,13 @@ class PhoenixPowerHandler : EventHandler
 				board[2][2] = true;
 				return;
 			case 1:
-				Console.Printf("Loading preset: Spinner");
+				Console.DebugPrintf(DMSG_SPAMMY, "Loading preset: Spinner");
 				board[1][1] = true;
 				board[1][2] = true;
 				board[1][3] = true;
 				return;
 			case 2:
-				Console.Printf("Loading preset: Lightweight Spaceship");
+				Console.DebugPrintf(DMSG_SPAMMY, "Loading preset: Lightweight Spaceship");
 				board[0][3] = true;
 				board[0][5] = true;
 				board[1][2] = true;
@@ -171,7 +171,7 @@ class PhoenixPowerHandler : EventHandler
 				board[4][4] = true;
 				return;
 			case 3:
-				Console.Printf("Loading preset: R-Pentomino");
+				Console.DebugPrintf(DMSG_SPAMMY, "Loading preset: R-Pentomino");
 				// board[3][4] = true;
 				// board[3][5] = true;
 				// board[4][3] = true;
@@ -185,7 +185,7 @@ class PhoenixPowerHandler : EventHandler
 				board[24][24] = true;
 				return;
 			default:
-				Console.Printf("Unknown preset %i", currentPreset);
+				Console.DebugPrintf(DMSG_SPAMMY, "Unknown preset %i", currentPreset);
 				return;
 		}
 	}
@@ -211,9 +211,9 @@ class PhoenixPowerHandler : EventHandler
 	bool IsDead(ConwayImp actor) {
 		let isDead = actor.InStateSequence(actor.CurState, actor.ResolveState("XDeath"))
 			|| actor.InStateSequence(actor.CurState, actor.ResolveState("Death"));
-					//Console.Printf("actor.CurState:%s", actor.CurState);
+					//Console.DebugPrintf(DMSG_SPAMMY, "actor.CurState:%s", actor.CurState);
 		// let nameCount = ThingCountName(actor.Name, actor.tid);
-		//Console.Printf("actor.name:" .. actor.GetClassName() .. " isDead:" .. !actor.alive);
+		//Console.DebugPrintf(DMSG_SPAMMY, "actor.name:" .. actor.GetClassName() .. " isDead:" .. !actor.alive);
 		return !actor.alive;
 	}
 	
@@ -221,9 +221,9 @@ class PhoenixPowerHandler : EventHandler
 		board[x][y] = true;
 		let cellTid = SzudzikPair(x, y);
 		let cellActor = FindActor(cellTid);
-		//Console.Printf("Spawn Cell tid:" .. cellTid);
+		//Console.DebugPrintf(DMSG_SPAMMY, "Spawn Cell tid:" .. cellTid);
 		if (cellActor == null) {
-			//Console.Printf("SPAWN:SPAWN " .. cellTid);
+			//Console.DebugPrintf(DMSG_SPAMMY, "SPAWN:SPAWN " .. cellTid);
 			cellActor = player.Spawn("ConwayImp", GetWorldPosForGrid(x, y), NO_REPLACE);
 			let cellImp = ConwayImp(cellActor);
 			cellImp.ChangeTid(cellTid);
@@ -232,12 +232,12 @@ class PhoenixPowerHandler : EventHandler
 			// Raise if dead, otherwise do nothing
 			let cellImp = ConwayImp(cellActor);
 			if (IsDead(cellImp)) {
-				//Console.Printf("SPAWN:REZ " .. cellTid);
+				//Console.DebugPrintf(DMSG_SPAMMY, "SPAWN:REZ " .. cellTid);
 				cellImp.SetState(cellActor.ResolveState("Raise"));
 				cellImp.alive = true;
 				//Thing_Raise(cellTid, true);
 			} else {
-				//Console.Printf("SPAWN:NOP " .. cellTid);
+				//Console.DebugPrintf(DMSG_SPAMMY, "SPAWN:NOP " .. cellTid);
 			}
 		}
 		cellActor.bFRIENDLY = true;
@@ -257,13 +257,13 @@ class PhoenixPowerHandler : EventHandler
 			if (!IsDead(cellImp)) {
 				cellImp.SetState(cellActor.ResolveState("XDeath"));
 				cellImp.alive = false;
-				//Console.Printf("MakeCellDead tid:" .. cellTid);
+				//Console.DebugPrintf(DMSG_SPAMMY, "MakeCellDead tid:" .. cellTid);
 			}
 		}
 	}
 	
 	// override void WorldThingRevived(WorldEvent e) {
-		// Console.Printf("WorldThingRevived:" .. e.Thing);
+		// Console.DebugPrintf(DMSG_SPAMMY, "WorldThingRevived:" .. e.Thing);
 		// e.Thing.bDormant = true;
 	// }
 	
@@ -280,7 +280,7 @@ class PhoenixPowerHandler : EventHandler
 	}
 
 	void PrintBoard() {
-		Console.Printf("======NEW GENERATION=====");
+		Console.DebugPrintf(DMSG_SPAMMY, "======NEW GENERATION=====");
 		for (let x = 0; x < GRID_SIZE; x++) {
 			let l = "";
 			for (let y = 0; y < GRID_SIZE; y++) {
@@ -290,7 +290,7 @@ class PhoenixPowerHandler : EventHandler
 					l = l .. "_";
 				}
 			}
-			Console.Printf(l);
+			Console.DebugPrintf(DMSG_SPAMMY, l);
 		}
 	}
 

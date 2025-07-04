@@ -72,7 +72,7 @@ class DazzlerPowerHandler : EventHandler
 	private Sound music;
 
 	override void WorldLoaded(WorldEvent e) {
-		Console.Printf("DazzlerPowerHandler#WorldLoaded v2");
+		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#WorldLoaded v2");
 
  		CHEAT_INVINCIBLE = false; // TODO: Disable
 
@@ -88,23 +88,23 @@ class DazzlerPowerHandler : EventHandler
 			let spawnOriginTID = SPAWN_ORIGIN_TID_RANGE_START + i;
 			spawnOrigins[i] = CallBus.FindActor(spawnOriginTID);
 			if (spawnOrigins[i] == null) {
-				Console.Printf("Error! No Dazzler spawnOrigin found for spawnOrigins[" .. i .. "], TID:" .. spawnOriginTID);
+				Console.DebugPrintf(DMSG_SPAMMY, "Error! No Dazzler spawnOrigin found for spawnOrigins[" .. i .. "], TID:" .. spawnOriginTID);
 			} else {
-				Console.Printf("Found Dazzler spawnOrigin: spawnOrigins[" .. i .. "], TID:" .. spawnOriginTID .. " actor: ".. spawnOrigins[i]);
+				Console.DebugPrintf(DMSG_SPAMMY, "Found Dazzler spawnOrigin: spawnOrigins[" .. i .. "], TID:" .. spawnOriginTID .. " actor: ".. spawnOrigins[i]);
 			}
 		}
 		centerSpawnOrigin = spawnOrigins[2];
 
 		target = CallBus.FindActor(TARGET_TID);
 		if (target == null) {
-			Console.Printf("Error! No Dazzler target found.");
+			Console.DebugPrintf(DMSG_SPAMMY, "Error! No Dazzler target found.");
 		} else {
-			Console.Printf("Found Dazzler Target: " .. target);
+			Console.DebugPrintf(DMSG_SPAMMY, "Found Dazzler Target: " .. target);
 		}
 
 // 		boardSpot = FindActor(BOARD_SPOT_TID);
 // 		if (boardSpot == null) {
-// 			Console.Printf("No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
+// 			Console.DebugPrintf(DMSG_SPAMMY, "No board spot found with TID " .. BOARD_SPOT_TID .. ", creating one...");
 // 			boardSpot = player.Spawn("Shotgun", (0,0,0), NO_REPLACE);
 // 		}
 	}
@@ -139,7 +139,7 @@ class DazzlerPowerHandler : EventHandler
 		float currentEventTimeS = events.eventTimestampsS[currentEventIdx];
 		let currentEventType = events.eventTypes[currentEventIdx];
 
-		// Console.Printf("timeSinceStartTk:" .. timeSinceStartTk .. " timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
+		// Console.DebugPrintf(DMSG_SPAMMY, "timeSinceStartTk:" .. timeSinceStartTk .. " timeSinceStartS:" .. timeSinceStartS .. " currentEventTimeS:" .. currentEventTimeS);
 
 		// Seek ahead to next event to trigger dazzler's wind-up animation
 		if (!dazzlerWindUpTriggeredThisEvent
@@ -158,7 +158,7 @@ class DazzlerPowerHandler : EventHandler
 		// Check if next event should be dequeued
 		while (timeSinceStartS >= currentEventTimeS) {
 			if (currentEventType == END) {
-				Console.Printf("END dance sequence event fired");
+				Console.DebugPrintf(DMSG_SPAMMY, "END dance sequence event fired");
 				EndDanceSequence();
 				return;
 			}
@@ -182,7 +182,7 @@ class DazzlerPowerHandler : EventHandler
 
 			let BARRAGE_INTERVAL_TK = 5;
 			let timeSinceBarrageStartTk = level.time - barrageStartTimeTk;
-			// Console.Printf("Barrage in progress, barrageStartTimeTk:" .. barrageStartTimeTk .. " timeSinceStart:" .. timeSinceBarrageStartTk);
+			// Console.DebugPrintf(DMSG_SPAMMY, "Barrage in progress, barrageStartTimeTk:" .. barrageStartTimeTk .. " timeSinceStart:" .. timeSinceBarrageStartTk);
 			if (timeSinceBarrageStartTk % BARRAGE_INTERVAL_TK == 0) {
 				// We just crossed the interval time
 				int intervalIdx;
@@ -196,7 +196,7 @@ class DazzlerPowerHandler : EventHandler
 					default:
 						ThrowAbortException("Unknown barrage type: %d", barrageType);
 				}
-				Console.Printf("intervalIdx:" .. intervalIdx);
+				Console.DebugPrintf(DMSG_SPAMMY, "intervalIdx:" .. intervalIdx);
 				// TODO: support health?
 				let posY = (intervalIdx * BALL_SPACING) - ((NUM_BALLS * BALL_SPACING) / 2)+5;
 				let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + posY, barrageHeight);
@@ -204,14 +204,14 @@ class DazzlerPowerHandler : EventHandler
 				if (ball) {
 					SetBallTranslation(ball, pos, intervalIdx);
 				} else {
-					Console.Printf("Barrage time slice encountered null ball");
+					Console.DebugPrintf(DMSG_SPAMMY, "Barrage time slice encountered null ball");
 				}
-				Console.Printf("Barrage FIRE, numFired:" .. barrageNumBallsFired .. " maxBalls:" .. barrageMaxBalls .. " intervalIdx:" .. intervalIdx);
+				Console.DebugPrintf(DMSG_SPAMMY, "Barrage FIRE, numFired:" .. barrageNumBallsFired .. " maxBalls:" .. barrageMaxBalls .. " intervalIdx:" .. intervalIdx);
 				++barrageNumBallsFired;
 				if (intervalIdx % 3 == 0) dazzler.SetStateLabel("Throw");
 			}
 			if (barrageNumBallsFired >= barrageMaxBalls) {
-				Console.Printf("Barrage terminate numFired:" .. barrageNumBallsFired .. " maxBalls:");
+				Console.DebugPrintf(DMSG_SPAMMY, "Barrage terminate numFired:" .. barrageNumBallsFired .. " maxBalls:");
 				barrageNumBallsFired = 0;
 				barrageStartTimeTk = 0;
 			}
@@ -257,8 +257,8 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	private void FireEvent(DazzlerEventType currentEventType, float currentEventTimeS) {
-		Console.Printf("Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
-		// Console.Printf("DazzlerHandler#WorldTick event level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
+		Console.DebugPrintf(DMSG_SPAMMY, "Fire event[" .. currentEventIdx .. "] = type " .. currentEventType .. " at " .. currentEventTimeS);
+		// Console.DebugPrintf(DMSG_SPAMMY, "DazzlerHandler#WorldTick event level.time:" .. level.time .. " MSTime:" .. MSTime() .. " currentSync:" .. currentSync .. " danceStartSync:" .. danceStartSync .. " Desync:" .. desync);
 		/* Missile options:
 		native Actor SpawnMissile(Actor dest, class<Actor> type, Actor owner = null);
 		native Actor SpawnMissileXYZ(Vector3 pos, Actor dest, Class<Actor> type, bool checkspawn = true, Actor owner = null);
@@ -297,7 +297,7 @@ class DazzlerPowerHandler : EventHandler
 					if (ball) {
 						ball.SetTranslation(i);
 					} else {
-						Console.Printf("SpawnBallLine encountered null ball");
+						Console.DebugPrintf(DMSG_SPAMMY, "SpawnBallLine encountered null ball");
 					}
 				}
 				break;
@@ -312,12 +312,12 @@ class DazzlerPowerHandler : EventHandler
 					let result = Utils.Polar2Cartesian(radius, theta);
 					let pos = (centerSpawnOrigin.Pos.x, centerSpawnOrigin.Pos.y + result.x, result.y);
 					pos += offset;
-					// Console.Printf("Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
+					// Console.DebugPrintf(DMSG_SPAMMY, "Spawn missile, pos:" .. pos .. " i:" .. i .. " theta:" .. theta .. " result:" .. result);
 					let ball = DazzlerBall(centerSpawnOrigin.SpawnMissileXYZ(pos, target, "DazzlerBall"));
 					if (ball) {
 						ball.SetTranslation(i);
 					} else {
-						Console.Printf("WorldTick Circle Event encountered null ball");
+						Console.DebugPrintf(DMSG_SPAMMY, "WorldTick Circle Event encountered null ball");
 					}
 				}
 				break;
@@ -405,7 +405,7 @@ class DazzlerPowerHandler : EventHandler
 				if (ball) {
 					SetBallTranslation(ball, pos, translationIdx);
 				} else {
-					Console.Printf("SpawnDazzlerShot encountered null ball");
+					Console.DebugPrintf(DMSG_SPAMMY, "SpawnDazzlerShot encountered null ball");
 				}
 				return;
 			}
@@ -431,13 +431,13 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	void QueueDanceSequence() {
-		Console.Printf("DazzlerPowerHandler#QueueDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
+		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#QueueDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
 		danceQueueTimeTk = level.time;
 		Console.MidPrint("BIGFONT", "Get ready in 3, 2, 1...");
 	}
 
 	private void StartDanceSequence() {
-		Console.Printf("DazzlerPowerHandler#StartDanceSequence CHEAT_INVINCIBLE:" .. CHEAT_INVINCIBLE .. " level.time:" .. level.time .. " MSTime:" .. MSTime());
+		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#StartDanceSequence CHEAT_INVINCIBLE:" .. CHEAT_INVINCIBLE .. " level.time:" .. level.time .. " MSTime:" .. MSTime());
 		Console.MidPrint("BIGFONT", "Let's jam!");
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
@@ -461,12 +461,12 @@ class DazzlerPowerHandler : EventHandler
 	}
 
 	void SkipDanceSequence() {
-		Console.Printf("DazzlerPowerHandler#SkipDanceSequence");
+		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#SkipDanceSequence");
 		OnPlayerWin(true);
 	}
 
 	private void EndDanceSequence() {
-		Console.Printf("DazzlerPowerHandler#EndDanceSequence");
+		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#EndDanceSequence");
 		currentEventIdx = 0;
 		danceStartTimeTk = 0;
 
@@ -487,7 +487,7 @@ class DazzlerPowerHandler : EventHandler
 
 		// Play music track at user's current music volume setting
 		let musicVolumeCVar = CVar.GetCVar("snd_musicvolume", players[consoleplayer]).GetFloat();
-		Console.Printf("DazzlerPowerHandler.StartMusic musicVolumeCVar:" .. musicVolumeCVar .. " music:" .. music);
+		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler.StartMusic musicVolumeCVar:" .. musicVolumeCVar .. " music:" .. music);
 		if (player != null) {
 			player.A_StartSound(music, CHAN_WEAPON, CHANF_DEFAULT /* pause while game is paused */, musicVolumeCVar);
 		}

@@ -92,7 +92,7 @@ script 7 (void) { // spawns AE vision when enterting or exiting closet
 
  
 script 11 ENTER {
-	Log(s:"ACS ENTER");
+	// Log(s:"ACS ENTER");
 
 	if(INTRO_ENABLED) {
 		// disable player movement
@@ -123,24 +123,24 @@ script 11 ENTER {
  }
  
  script 12 (void) {
- 	Log(s:"ACS Trigger Jean Levitation");
+ 	// Log(s:"ACS Trigger Jean Levitation");
 	SetActorState(0, "StartLevitating", true);
  }
 
  script 13 (void) {
- 	Log(s:"ACS Trigger Dance Sequence");
+ 	// Log(s:"ACS Trigger Dance Sequence");
 	ScriptCall("CallBus", "StartDanceSequence");
  }
 
  script 17 (void) {
- 	Log(s:"ACS Trigger Dazzler Skip");
+ 	// Log(s:"ACS Trigger Dazzler Skip");
 	ScriptCall("CallBus", "SkipDanceSequence");
  }
  
  // Logan intro chat
  script 14 (void) {
 	int hasTalkedToWolverineFoyer = CheckInventory("TalkedToWolverineFoyerInventory");
- 	Log(s:"ACS Trigger Logan Sequence, hasTalkedToWolverineFoyer:", i:hasTalkedToWolverineFoyer);
+ 	// Log(s:"ACS Trigger Logan Sequence, hasTalkedToWolverineFoyer:", i:hasTalkedToWolverineFoyer);
 	if (hasTalkedToWolverineFoyer < 1) { 
 		SetFont("BIGFONT");
 		print(s:"\c[Yellow]Hey, you came! What's up?");
@@ -158,7 +158,7 @@ script 11 ENTER {
  
  script 15 (void) // Got quest from Logan dialogue
 {
-	Log(s:"Got quest from Logan dialogue script called");
+	// Log(s:"Got quest from Logan dialogue script called");
 	ACS_Terminate(14, 0);
 	Line_SetPortalTarget(42,1);
 	talked_logan_mnsn_entrance = true;
@@ -166,7 +166,7 @@ script 11 ENTER {
 
 script 16 (void) // Trigger D&D end sequence
 {
-	Log(s:"Trigger end of D&D sequence");
+	// Log(s:"Trigger end of D&D sequence");
 	// Raise the cake
 	Floor_RaiseToNearest(718, 16);
 	SetMusic("music/D_ELBDAY.mid");
@@ -222,7 +222,7 @@ script 16 (void) // Trigger D&D end sequence
 			barkCount = (barkCount + 1) % 7; // Mod by number of barks
 	}
 	
-	Log(s:"All PartyCacos are Dead");
+	// Log(s:"All PartyCacos are Dead");
 
 	// SetMusic("*");
 	
@@ -249,7 +249,7 @@ script 16 (void) // Trigger D&D end sequence
 // !!! script 17 is moved up above to keep dazzler scripts together !!!
 
 script 18 (void) { // Trigger club enter from blackbird
-	Log(s:"@@@ player_tid:", i: player_tid);
+	// Log(s:"@@@ player_tid:", i: player_tid);
 	
 	// disable player movement
 	SetActorProperty(0, APROP_Speed, 0.0);
@@ -283,12 +283,12 @@ script 18 (void) { // Trigger club enter from blackbird
 }
 
 script 19 (void) { // Trigger club enter from inner circle
- 	Log(s:"ACS Trigger club enter from inner circle");
+ 	// Log(s:"ACS Trigger club enter from inner circle");
 	ScriptCall("CallBus", "TriggerClubEnter");
 }
 
 script 20 (void) { // Trigger club exit
- 	Log(s:"ACS Trigger club exit");
+ 	// Log(s:"ACS Trigger club exit");
 	ScriptCall("CallBus", "TriggerClubExit");
 }
 

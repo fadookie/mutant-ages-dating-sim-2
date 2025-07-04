@@ -14,7 +14,7 @@ class ClubMusicHandler : EventHandler
 	}
 
 	override /*play*/ void WorldLoaded(WorldEvent e) {
-		Console.Printf("ClubMusicHandler.WorldLoaded");
+		Console.DebugPrintf(DMSG_SPAMMY, "ClubMusicHandler.WorldLoaded");
 		// EventHandler.SendInterfaceEvent(consoleplayer, ClubMusicHandlerStatic.INTERFACEEVENT_WORLDLOADED, int(musicPlaying), currentTrackIdx);
 	}
 
@@ -25,11 +25,11 @@ class ClubMusicHandler : EventHandler
 	{
 		if (e.name == ClubMusicHandlerStatic.NETWORKEVENT_ON_LOAD_REFRESH_QUERY) {
 			// Send serialized state to static handler
-			Console.Printf("ClubMusicHandler.NetworkProcess NETWORKEVENT_ON_LOAD_REFRESH_QUERY e:" .. e);
+			Console.DebugPrintf(DMSG_SPAMMY, "ClubMusicHandler.NetworkProcess NETWORKEVENT_ON_LOAD_REFRESH_QUERY e:" .. e);
 			EventHandler.SendInterfaceEvent(consoleplayer, ClubMusicHandlerStatic.INTERFACEEVENT_ON_LOAD_REFRESH_REPLY, int(musicPlaying), currentTrackIdx);
 		} else if (e.name == ClubMusicHandlerStatic.NETWORKEVENT_SET_TRACK_IDX) {
 			currentTrackIdx = e.Args[0];
-			Console.Printf("ClubMusicHandler.NetworkProcess NETWORKEVENT_SET_TRACK_IDX currentTrackIdx:" .. currentTrackIdx);
+			Console.DebugPrintf(DMSG_SPAMMY, "ClubMusicHandler.NetworkProcess NETWORKEVENT_SET_TRACK_IDX currentTrackIdx:" .. currentTrackIdx);
 		}
 	}
 }

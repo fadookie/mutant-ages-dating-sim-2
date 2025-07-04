@@ -37,11 +37,11 @@ class PoochyPlayer : DoomPlayer
 	override void PostBeginPlay()
     {
 		super.PostBeginPlay();
-		A_Log("Player init");
+		Console.DebugPrintf(DMSG_SPAMMY, "Player init");
 		ClearInventory();
 		phoenixHandler = PhoenixPowerHandler(EventHandler.Find("PhoenixPowerHandler"));
 		if (phoenixHandler == null) {
-			Console.Printf("Error: Unable to locate PhoenixPowerHandler.");
+			Console.DebugPrintf(DMSG_SPAMMY, "Error: Unable to locate PhoenixPowerHandler.");
 		}
 	}
 	
@@ -51,7 +51,7 @@ class PoochyPlayer : DoomPlayer
 		if (levitating) {
 			int elapsedTimeTk = level.time - levitationStartTimeTk;
 			float elapsedTimeS = Utils.Tics2Secondsf(elapsedTimeTk);
-// 			A_Log("elapsedTimeS:");
+// 			Console.DebugPrintf(DMSG_SPAMMY, "elapsedTimeS:");
 // 			A_LogInt(elapsedTimeS);
 			if (elapsedTimeS > TOTAL_LEVITATION_TIME_S) {
 				SetState(ResolveState("Falling"));
@@ -64,10 +64,10 @@ class PoochyPlayer : DoomPlayer
 		// Check for DEBUG options
 		let printInventoryFlagCV = CVar.FindCVar("print_inventory_flag");
 		if (printInventoryFlagCV.GetInt() != 0) {
-			Console.Printf("Print Inventory.");
+			Console.DebugPrintf(DMSG_SPAMMY, "Print Inventory.");
 			printInventoryFlagCV.SetInt(0);
-			Console.Printf("ScottsBox:" .. CountInv("ScottsBox"));
-			Console.Printf("UselessJunk:" .. CountInv("UselessJunk"));
+			Console.DebugPrintf(DMSG_SPAMMY, "ScottsBox:" .. CountInv("ScottsBox"));
+			Console.DebugPrintf(DMSG_SPAMMY, "UselessJunk:" .. CountInv("UselessJunk"));
 		}
 	}
 	
@@ -75,13 +75,13 @@ class PoochyPlayer : DoomPlayer
 	{
 		Spawn:
 		TNT1 A 2 {
-// 			A_Log("Poochy.Spawn");
+// 			Console.DebugPrintf(DMSG_SPAMMY, "Poochy.Spawn");
 		}
 		Loop;
 		
 		StartLevitating:
 		TNT1 A 0 {
-			A_Log("Poochy.StartLevitating");
+			Console.DebugPrintf(DMSG_SPAMMY, "Poochy.StartLevitating");
 // 			self.ViewHeight = 100;
 			self.bFly = true;
 			self.bNogravity = true;
@@ -148,7 +148,7 @@ class EffectPlayer : DoomPlayer
 
 	override void PostBeginPlay()
 	{
-		Console.Printf("Player init");
+		Console.DebugPrintf(DMSG_SPAMMY, "Player init");
 		super.PostBeginPlay();
 		
 		//Shader.SetEnabled(Player, DISTORTION_SHADER, true);
@@ -160,7 +160,7 @@ class EffectPlayer : DoomPlayer
             if ( mo.bIsMonster )
             {
                 //mo.RenderStyle = "Fuzzy";
-				Console.Printf("Got monster" .. mo);
+				Console.DebugPrintf(DMSG_SPAMMY, "Got monster" .. mo);
             }
 		}
 		*//*
@@ -177,7 +177,7 @@ class Imp: DoomPlayer
 	override void PostBeginPlay()
     {
 		super.PostBeginPlay();
-		//A_Log("Player init");
+		//Console.DebugPrintf(DMSG_SPAMMY, "Player init");
 		A_GiveInventory ("Mana1", 200);
 		//bInvulnerable = true;  // It works to set invulnerable flag here to switch to godmode mugshot - iddqd also works but not after teleport happens :/
 	}
@@ -210,7 +210,7 @@ class Imp: DoomPlayer
 	{
 		Spawn:
 		TNT1 A 2 {
-			//A_Log("Imp.Spawn");
+			//Console.DebugPrintf(DMSG_SPAMMY, "Imp.Spawn");
 		}
 		
 		Pain:  //CHECK HP... IF == 1 teleport
@@ -222,18 +222,18 @@ class Imp: DoomPlayer
 				let numRespawns = numRespawnsCVar.GetInt();
 				
 				if (justUsedMemeTeleporter) {
-					//A_Log("Skipping count for teleporting back from meme level");
+					//Console.DebugPrintf(DMSG_SPAMMY, "Skipping count for teleporting back from meme level");
 					justUsedMemeTeleporter = false;
 				} else {
 					numRespawns++;
 					numRespawnsCVar.SetInt(numRespawns);
-					//A_Log("Respawns:");
+					//Console.DebugPrintf(DMSG_SPAMMY, "Respawns:");
 					//A_LogInt(numRespawns);
 				}
 				// Simulated teleport
 				let teleporter = GetTeleporter();
 				if (!teleporter) {
-					A_Log("Teleporter null");
+					Console.DebugPrintf(DMSG_SPAMMY, "Teleporter null");
 				} else {
 					// Teleport/TeleportFrag are a ZScript actor functions with the following signatures:
 					// bool Teleport(Vector3 pos, double angle, int flags)
@@ -254,14 +254,14 @@ class Imp: DoomPlayer
 		
 		MemeTeleported:
 		TNT1 A 0 {
-			//A_Log("Imp.MemeTeleported");
+			//Console.DebugPrintf(DMSG_SPAMMY, "Imp.MemeTeleported");
 			justUsedMemeTeleporter = true;
 		}
 		Goto Spawn;
 		
 		FormerHuman:
 		TNT1 A 2 {
-			//A_Log("Imp.FormerHuman");
+			//Console.DebugPrintf(DMSG_SPAMMY, "Imp.FormerHuman");
 			//bInvulnerable = true; //Try to get former human mugshot to show on HUD. doesn't seem to work after you take damage once.
 		}
 		Loop;
@@ -274,7 +274,7 @@ class Imp: DoomPlayer
 		
 		DisableGod: // Currently unused
 		TNT1 A 2 {
-			//A_Log("Imp.DisableGod");
+			//Console.DebugPrintf(DMSG_SPAMMY, "Imp.DisableGod");
 			//bInvulnerable = false;
 		}
 		Goto Spawn;
@@ -282,12 +282,12 @@ class Imp: DoomPlayer
 	
 	Actor GetTeleporter()
     {
-		//A_Log("GetTeleporter");
+		//Console.DebugPrintf(DMSG_SPAMMY, "GetTeleporter");
         let MonsterFinder = ActorIterator.Create(TELEPORT_TARGET_TID);
         Actor mo = null;
         while ( mo = Actor(MonsterFinder.Next()) )
         {
-			//A_Log("got actor");
+			//Console.DebugPrintf(DMSG_SPAMMY, "got actor");
 			//A_LogInt(mo.tid);
 			return mo;
         }

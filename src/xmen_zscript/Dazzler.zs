@@ -45,7 +45,7 @@ class Dazzler: Actor
 	// 	if (!lastDamageWasCoffee) {
 	// 		source.bBuddha = false; // Actually kill target/player if possible
 	// 	}
-	// 	// A_Log("Damaged by inflictor:" .. inflictor.GetClassName() .. " lastDamageWasCoffee:" .. lastDamageWasCoffee);
+	// 	// Console.DebugPrintf(DMSG_SPAMMY, "Damaged by inflictor:" .. inflictor.GetClassName() .. " lastDamageWasCoffee:" .. lastDamageWasCoffee);
 	// 	return super.DamageMobj(inflictor, source, damage, mod, flags, angle);
 	// }
 }
@@ -86,7 +86,7 @@ class DazzlerBall : DoomImpBall
 
 	override void PostBeginPlay() {
 		super.PostBeginPlay();
-		// A_Log("DazzlerBall init");
+		// Console.DebugPrintf(DMSG_SPAMMY, "DazzlerBall init");
     // SetRandomTranslation();
 
 		// Make SeeSound a bit quieter
@@ -97,13 +97,13 @@ class DazzlerBall : DoomImpBall
     int randIdx = Random(0, RAINBOW_TRANSLATIONS.Size() - 1);
     // int randIdx = (TID - 1) % RAINBOW_TRANSLATIONS.Size();
     // int randIdx = 0;
-    // Console.Printf("TID" .. TID .. ", randIdx:" .. randIdx);
+    // Console.DebugPrintf(DMSG_SPAMMY, "TID" .. TID .. ", randIdx:" .. randIdx);
     SetTranslation(randIdx);
   }
 
   void SetTranslation(int translationIdx) {
     let randTranslation = RAINBOW_TRANSLATIONS[translationIdx % RAINBOW_TRANSLATIONS.Size()];
-		//Console.Printf("DazzlerBall#SetTranslation index:" .. translationIdx .. ", randTranslation:" .. randTranslation);
+		//Console.DebugPrintf(DMSG_SPAMMY, "DazzlerBall#SetTranslation index:" .. translationIdx .. ", randTranslation:" .. randTranslation);
 		A_SetTranslation(randTranslation);
   }
 }

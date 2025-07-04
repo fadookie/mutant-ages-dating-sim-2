@@ -26,7 +26,7 @@ class CoffeeGuy : Actor //30014
 	CheerBounce:
     FHOC A 1 {
 			int elapsedTimeTk = level.time - levitationStartTimeTk;
-			// Console.Printf("CoffeeGuy CheerBounce frame elapsedTimeTk:" .. elapsedTimeTk);
+			// Console.DebugPrintf(DMSG_SPAMMY, "CoffeeGuy CheerBounce frame elapsedTimeTk:" .. elapsedTimeTk);
 			self.bNOGRAVITY = true;
 			self.bFLY = true;
 			Vector3 newpos = self.pos;

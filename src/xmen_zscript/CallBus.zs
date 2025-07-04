@@ -5,21 +5,21 @@ class CallBus
 {
   play static void TriggerClubEnter(Actor activator)
   {
-		Console.Printf("CallBus.TriggerClubEnter");
+		Console.DebugPrintf(DMSG_SPAMMY, "CallBus.TriggerClubEnter");
     ClubMusicHandlerStatic clubMusicHandler = FindClubMusicHandler();
     clubMusicHandler.StartMusic();
 	}
 
   play static void TriggerClubExit(Actor activator)
   {
-		Console.Printf("CallBus.TriggerClubExit");
+		Console.DebugPrintf(DMSG_SPAMMY, "CallBus.TriggerClubExit");
     ClubMusicHandlerStatic clubMusicHandler = FindClubMusicHandler();
     clubMusicHandler.StopMusic();
 	}
 
   play static void StartDanceSequence(Actor activator)
   {
-		Console.Printf("CallBus.StartDanceSequence");
+		Console.DebugPrintf(DMSG_SPAMMY, "CallBus.StartDanceSequence");
     DazzlerPowerHandler dazzlerPowerHandler = DazzlerPowerHandler(EventHandler.Find("DazzlerPowerHandler"));
     if(dazzlerPowerHandler) {
       dazzlerPowerHandler.QueueDanceSequence();
@@ -30,7 +30,7 @@ class CallBus
 
   play static void SkipDanceSequence(Actor activator)
   {
-		Console.Printf("CallBus.SkipDanceSequence");
+		Console.DebugPrintf(DMSG_SPAMMY, "CallBus.SkipDanceSequence");
     DazzlerPowerHandler dazzlerPowerHandler = DazzlerPowerHandler(EventHandler.Find("DazzlerPowerHandler"));
     if(dazzlerPowerHandler) {
       dazzlerPowerHandler.SkipDanceSequence();
@@ -52,7 +52,7 @@ class CallBus
 		if (result == null) {
 			ThrowAbortException("Error! No player found.");
 		} else {
-			Console.Printf("Found player: " .. result);
+			Console.DebugPrintf(DMSG_SPAMMY, "Found player: " .. result);
 		}
 		return result;
 	}
@@ -63,7 +63,7 @@ class CallBus
 		if (result == null) {
 			ThrowAbortException("Error! No Dazzler found.");
 		} else {
-			Console.Printf("Found Dazzler: " .. result);
+			Console.DebugPrintf(DMSG_SPAMMY, "Found Dazzler: " .. result);
 		}
 		return result;
 	}
