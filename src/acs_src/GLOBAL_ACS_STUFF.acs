@@ -180,13 +180,46 @@ script 16 (void) // Trigger D&D end sequence
 	Door_Open(717, 16);
 
 	SetFont("BIGFONT");
-	PrintBold(s:"\c[Yellow]Uh oh, they look hungry! Maybe they like cake?");
+
+	int barkCount = 0;
 	
-	// Wait for all PartyCacos to die
-	while(ThingCount(T_NONE, 1) > 0)
-    {
-        Delay(1);
-    }
+	// Wait for all PartyCacos to die and print hint barks
+	while(ThingCount(T_NONE, 1) > 0) {
+			switch (barkCount)
+			{
+				case 0:
+					Delay(5 * TICS_PER_SECOND);
+					if (ThingCount(T_NONE, 1) <= 0) break;
+					PrintBold(s:"\c[Yellow]Uh oh, they look hungry! Maybe they like cake?");
+					break;
+				case 1:
+					Delay(10 * TICS_PER_SECOND);
+					if (ThingCount(T_NONE, 1) <= 0) break;
+					PrintBold(s:"\c[Yellow]Quick, feed them something!");
+					break;
+				case 2:
+					Delay(10 * TICS_PER_SECOND);
+					if (ThingCount(T_NONE, 1) <= 0) break;
+					PrintBold(s:"\c[Yellow]Maybe they like cake?");
+					break;
+				case 3:
+					Delay(10 * TICS_PER_SECOND);
+					if (ThingCount(T_NONE, 1) <= 0) break;
+					PrintBold(s:"\c[Yellow]There's a cake on the table!");
+					break;
+				case 4:
+					Delay(10 * TICS_PER_SECOND);
+					if (ThingCount(T_NONE, 1) <= 0) break;
+					PrintBold(s:"\c[Yellow]Once you have some cake press ", k:"+attack", s:" to throw it!");
+					break;
+				case 5:
+				case 6:
+					// No bark
+					Delay(10 * TICS_PER_SECOND);
+					break;
+			}
+			barkCount = (barkCount + 1) % 7; // Mod by number of barks
+	}
 	
 	Log(s:"All PartyCacos are Dead");
 
