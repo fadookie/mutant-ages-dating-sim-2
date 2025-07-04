@@ -1,11 +1,13 @@
 title: Start
 strifeSpinner_Actor: EmmaFrost
+strifeSpinner_Defaults_DisplayName_Emma: Emma Frost
 strifeSpinner_Defaults_Panel_Emma: WQNPA0
 strifeSpinner_Defaults_Color_Emma: White
 strifeSpinner_Defaults_Panel_Logan: WOLPA2
 strifeSpinner_Defaults_Color_Logan: Yellow
 strifeSpinner_Defaults_Panel_Magneto: MGNPA0
 strifeSpinner_Defaults_Color_Magneto: Purple
+strifeSpinner_Defaults_DisplayName_Kurt: Kurt (Nightcrawler)
 strifeSpinner_Defaults_Panel_Kurt: NCRPA0
 strifeSpinner_Defaults_Color_Kurt: LightBlue
 ---

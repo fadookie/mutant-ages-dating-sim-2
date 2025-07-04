@@ -106,9 +106,9 @@ script 11 ENTER {
 		HudMessage(s:"This game is mutant ages canon."; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
 		SetFont("BIGFONT");
 		Delay(INTRO_MESSAGE_DELAY_TICS);
-		HudMessage(s:"I can't believe Wolverine went on a date with me! And then more! I guess he is my boyfriend now... "; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+		HudMessage(s:"I can't believe Wolverine went on a date with me!\nAnd then more! I guess he is my boyfriend now... "; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
 		Delay(INTRO_MESSAGE_DELAY_TICS);
-		HudMessage(s:"Yesterday I recieved a mysterious invitation to meet him at the X-Mansion. I hope he remembered that my birthday is today!"; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
+		HudMessage(s:"Yesterday I recieved a mysterious\ninvitation to meet him at the X-Mansion.\nI hope he remembered that my birthday is today!"; HUDMSG_FADEINOUT, 0, CR_TAN, 1.5, 0.5, INTRO_MESSAGE_HOLDTIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX, INTRO_MESSAGE_FADETIME_S_FIX);
 		Delay(INTRO_MESSAGE_DELAY_TICS);
 		
 		// fade from black
@@ -152,7 +152,7 @@ script 11 ENTER {
 		PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", on me, bub!");
 		
 		Delay(6 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall! Come over here and press ", k:"+use", s:"!");
+		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall!\nCome over here and press ", k:"+use", s:"!");
 	}
  }
  

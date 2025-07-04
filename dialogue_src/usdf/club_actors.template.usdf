@@ -18,7 +18,7 @@ conversation
 	{
 		name = "Kurt (Nightcrawler)";
 		panel = "NCRPA0";
-		dialog = "\c[Blue]Willkommen, please join us, friend! Emma can get you set up with a character sheet.";
+		dialog = "\c[LightBlue]Willkommen, please join us, friend! Emma can get you set up with a character sheet.";
 	}
 }
 
