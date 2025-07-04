@@ -249,9 +249,15 @@ conversation
 		choice
 		{
 			text = "Do you think Scott would join us?";
-			yesmessage = "\c[Yellow]I didn't know you were into insecure boy scouts with anger management issues, but they happen to be one of my types! We can ask.";
-			closedialog = true;
+			nextpage = "PAGE_SCOTT_THREESOME";
 		}
+	}
+	page
+	{
+		pagename = "PAGE_SCOTT_THREESOME";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I didn't know you were into insecure boy scouts with daddy issues, but they happen to be one of my types! We can ask.";
 	}
 }
 

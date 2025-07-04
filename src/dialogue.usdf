@@ -303,7 +303,7 @@ conversation
 		pagename = "PAGE_START";
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
+		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new chaps here tonight, why don't you introduce yourselves?";
 		choice
 		{ // TODO Remove skip option
 			text = "SKIP DIALOGUE";
@@ -1295,9 +1295,15 @@ conversation
 		choice
 		{
 			text = "Do you think Scott would join us?";
-			yesmessage = "\c[Yellow]I didn't know you were into insecure boy scouts with anger management issues, but they happen to be one of my types! We can ask.";
-			closedialog = true;
+			nextpage = "PAGE_SCOTT_THREESOME";
 		}
+	}
+	page
+	{
+		pagename = "PAGE_SCOTT_THREESOME";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I didn't know you were into insecure boy scouts with daddy issues, but they happen to be one of my types! We can ask.";
 	}
 }
 

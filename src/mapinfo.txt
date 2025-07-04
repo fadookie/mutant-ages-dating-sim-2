@@ -132,7 +132,7 @@ intermission Credits {
 	
 	Image{
 		Background = "CREDIT1"
-		Time = 6
+		Time = 7
 	}
 	
 	Fader{
@@ -146,7 +146,7 @@ intermission Credits {
 	Fader{
 		Background = "CREDIT2"
 	    FadeType = FadeIn
-		Time = 2
+		Time = 7
 	}
 	
 	Image{

@@ -5,7 +5,7 @@
 		pagename = "PAGE_START";
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new faces tonight, why don't you introduce yourselves?";
+		dialog = "\c[White]Alright boys, girls, and nonbinary folk, welcome to the The Hellfire D&D Club! Looks like we have some new chaps here tonight, why don't you introduce yourselves?";
 		choice
 		{ // TODO Remove skip option
 			text = "SKIP DIALOGUE";
