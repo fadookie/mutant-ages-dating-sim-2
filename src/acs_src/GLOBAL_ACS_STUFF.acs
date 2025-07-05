@@ -152,7 +152,7 @@ script 11 ENTER {
 		PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", on me, bub!");
 		
 		Delay(6 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall!\nCome over here and press ", k:"+use", s:"!");
+		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall!\n\c[Yellow]Come over here and press ", k:"+use", s:"!");
 	}
  }
  
