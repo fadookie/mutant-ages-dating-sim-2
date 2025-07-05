@@ -32,13 +32,13 @@ int player_tid = 0;
 script "DazzlerPrintJump" (void)
 {
 	SetFont("BIGFONT");
-	PrintBold(s:"\c[White]JUMP! Press ", k:"+jump", s:".");
+	PrintBold(s:"\c[Purple]JUMP! Press ", k:"+jump", s:".");
 }
 
 script "DazzlerPrintCrouch" (void)
 {
 	SetFont("BIGFONT");
-	PrintBold(s:"\c[White]CROUCH! Press ", k:"crouch", s:".");
+	PrintBold(s:"\c[Orange]CROUCH! Press ", k:"crouch", s:".");
 }
 
 script "DazzlerPrintDesync" (void)
