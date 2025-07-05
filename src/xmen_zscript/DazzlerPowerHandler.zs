@@ -388,7 +388,7 @@ class DazzlerPowerHandler : EventHandler
 				break;
 
 			case HUD_WIN:
-				Console.MidPrint("BIGFONT", "CLEARED!");
+				Console.MidPrint("BIGFONT", "CLEAR!");
 				break;
 
 			default:
