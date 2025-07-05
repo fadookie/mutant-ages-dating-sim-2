@@ -22,14 +22,14 @@ conversation
     */
 		choice
 		{
-			text = "I'm Ryan!"; // give inventory
-			giveitem = "IsRyanInventory";
+			text = "The name's Poochy. Dr. Poochy.";
+			giveitem = "IsPoochyInventory";
 			nextpage = "PAGE_CLASS_SELECT";
 		}
 		choice
 		{
-			text = "The name's Poochy. Dr. Poochy.";
-			giveitem = "IsPoochyInventory";
+			text = "Don't you know who I am? I'm Ryan Pagella!"; // give inventory
+			giveitem = "IsRyanInventory";
 			nextpage = "PAGE_CLASS_SELECT";
 		}
 	}
@@ -41,15 +41,15 @@ conversation
 		dialog = "\c[White]And what class would you like to play in the campaign, darling?";
 		choice
 		{
-			text = "A Warcraft!";
-			giveitem = "WarcraftDnDInventory";
-			nextpage = "PAGE_CLASS_SELECT_WARCRAFT";
-		}
-		choice
-		{
 			text = "Dr. Nathaniel \"Poochy\" Chainlink.";
 			giveitem = "PoochyDnDInventory";
 			nextpage = "PAGE_CLASS_SELECT_POOCHY";
+		}
+		choice
+		{
+			text = "A Warcraft!";
+			giveitem = "WarcraftDnDInventory";
+			nextpage = "PAGE_CLASS_SELECT_WARCRAFT";
 		}
 	}
 	page
@@ -277,6 +277,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -291,6 +292,7 @@ conversation
 			nextpage = "PAGE_START_NASTY_BOYS_PARLEY_2";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -325,6 +327,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -339,6 +342,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -353,6 +357,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_2";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -367,6 +372,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_3";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -381,6 +387,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_4";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -395,6 +402,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_5";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -409,6 +417,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_6";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -423,6 +432,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_7";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -437,6 +447,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_8";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -451,6 +462,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_9";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -465,6 +477,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_10";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -472,13 +485,44 @@ conversation
 		pagename = "PAGE_ATTACK_NASTY_BOYS_10";
 		name = "Emma Frost";
 		panel = "WQNPA0";
-		dialog = "\c[White]That's an 18 to hit, he hits. You take 6 damage and are grappled. Magento, it's your turn.";
+		dialog = "\c[White]That's an 18 to hit, he hits. You take 16 damage and are grappled and restrained.";
+		choice
+		{
+			text = "Continue";
+			nextpage = "PAGE_ATTACK_NASTY_BOYS_10_2";
+		}
+		
+		goodbye = "Exit";
+	}
+	
+	page
+	{
+		pagename = "PAGE_ATTACK_NASTY_BOYS_10_2";
+		name = "Kurt (Nightcrawler)";
+		panel = "NCRPA0";
+		dialog = "\c[LightBlue]Mein Gott! Help me!";
+		choice
+		{
+			text = "Continue";
+			nextpage = "PAGE_ATTACK_NASTY_BOYS_10_3";
+		}
+		
+		goodbye = "Exit";
+	}
+	
+	page
+	{
+		pagename = "PAGE_ATTACK_NASTY_BOYS_10_3";
+		name = "Emma Frost";
+		panel = "WQNPA0";
+		dialog = "\c[White]You may try to break the grapple on your next turn. Magento, it's your turn.";
 		choice
 		{
 			text = "Continue";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_11";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -493,6 +537,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_12";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -507,6 +552,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_13";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -521,6 +567,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_14";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -535,6 +582,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_15";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -542,13 +590,14 @@ conversation
 		pagename = "PAGE_ATTACK_NASTY_BOYS_15";
 		name = "Kurt (Nightcrawler)";
 		panel = "NCRPA0";
-		dialog = "\c[LightBlue]Thank you, friend. That wasn't so hard, was it?";
+		dialog = "\c[LightBlue]Danke schön, friend. That wasn't so hard, was it?";
 		choice
 		{
 			text = "Continue";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_16";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -563,6 +612,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_17";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -583,6 +633,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_18";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -611,6 +662,7 @@ conversation
 			}
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -625,6 +677,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_20";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -639,6 +692,7 @@ conversation
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_20";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -653,6 +707,7 @@ conversation
 			nextpage = "PAGE_END_SEQUENCE_1";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -667,6 +722,7 @@ conversation
 			nextpage = "PAGE_END_SEQUENCE_2";
 		}
 		
+		goodbye = "Exit";
 	}
 	
 	page
@@ -674,15 +730,16 @@ conversation
 		pagename = "PAGE_END_SEQUENCE_2";
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]Oh yeah, I don't bake but I had Gambit make you something, Happy Birthday!";
+		dialog = "\c[Yellow]Oh yeah, I don't bake but I had Gambit make you a cake, Happy Birthday!";
 		choice
 		{
-			text = "Thank you!";
+			text = "Thank you! I love cake!";
 			closedialog = True;
 			special = 80;
 			arg0 = 16;
 		}
 		
+		goodbye = "Exit";
 	}
 	
 }

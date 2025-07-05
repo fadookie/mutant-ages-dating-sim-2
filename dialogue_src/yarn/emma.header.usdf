@@ -17,14 +17,14 @@
     */
 		choice
 		{
-			text = "I'm Ryan!"; // give inventory
-			giveitem = "IsRyanInventory";
+			text = "The name's Poochy. Dr. Poochy.";
+			giveitem = "IsPoochyInventory";
 			nextpage = "PAGE_CLASS_SELECT";
 		}
 		choice
 		{
-			text = "The name's Poochy. Dr. Poochy.";
-			giveitem = "IsPoochyInventory";
+			text = "Don't you know who I am? I'm Ryan Pagella!"; // give inventory
+			giveitem = "IsRyanInventory";
 			nextpage = "PAGE_CLASS_SELECT";
 		}
 	}
@@ -36,15 +36,15 @@
 		dialog = "\c[White]And what class would you like to play in the campaign, darling?";
 		choice
 		{
-			text = "A Warcraft!";
-			giveitem = "WarcraftDnDInventory";
-			nextpage = "PAGE_CLASS_SELECT_WARCRAFT";
-		}
-		choice
-		{
 			text = "Dr. Nathaniel \"Poochy\" Chainlink.";
 			giveitem = "PoochyDnDInventory";
 			nextpage = "PAGE_CLASS_SELECT_POOCHY";
+		}
+		choice
+		{
+			text = "A Warcraft!";
+			giveitem = "WarcraftDnDInventory";
+			nextpage = "PAGE_CLASS_SELECT_WARCRAFT";
 		}
 	}
 	page

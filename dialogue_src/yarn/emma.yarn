@@ -1,15 +1,16 @@
 title: Start
 strifeSpinner_Actor: EmmaFrost
-strifeSpinner_Defaults_DisplayName_Emma: Emma Frost
-strifeSpinner_Defaults_Panel_Emma: WQNPA0
-strifeSpinner_Defaults_Color_Emma: White
-strifeSpinner_Defaults_Panel_Logan: WOLPA2
-strifeSpinner_Defaults_Color_Logan: Yellow
-strifeSpinner_Defaults_Panel_Magneto: MGNPA0
-strifeSpinner_Defaults_Color_Magneto: Purple
-strifeSpinner_Defaults_DisplayName_Kurt: Kurt (Nightcrawler)
-strifeSpinner_Defaults_Panel_Kurt: NCRPA0
-strifeSpinner_Defaults_Color_Kurt: LightBlue
+strifeSpinner_GlobalDefaults_Goodbye: Exit
+strifeSpinner_ActorDefaults_DisplayName_Emma: Emma Frost
+strifeSpinner_ActorDefaults_Panel_Emma: WQNPA0
+strifeSpinner_ActorDefaults_Color_Emma: White
+strifeSpinner_ActorDefaults_Panel_Logan: WOLPA2
+strifeSpinner_ActorDefaults_Color_Logan: Yellow
+strifeSpinner_ActorDefaults_Panel_Magneto: MGNPA0
+strifeSpinner_ActorDefaults_Color_Magneto: Purple
+strifeSpinner_ActorDefaults_DisplayName_Kurt: Kurt (Nightcrawler)
+strifeSpinner_ActorDefaults_Panel_Kurt: NCRPA0
+strifeSpinner_ActorDefaults_Color_Kurt: LightBlue
 ---
 <<declare $PoochyDnDInventory = 0 as number>>
 <<declare $WarcraftDnDInventory = 0 as number>>
@@ -125,7 +126,23 @@ Logan: Pfffffft! Gay.
 
 title: PAGE_ATTACK_NASTY_BOYS_10
 ---
-Emma: That's an 18 to hit, he hits. You take 6 damage and are grappled. Magento, it's your turn.
+Emma: That's an 18 to hit, he hits. You take 16 damage and are grappled and restrained.
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_10_2>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_10_2
+---
+Kurt: Mein Gott! Help me!
+
+-> Continue
+    <<jump PAGE_ATTACK_NASTY_BOYS_10_3>>
+===
+
+title: PAGE_ATTACK_NASTY_BOYS_10_3
+---
+Emma: You may try to break the grapple on your next turn. Magento, it's your turn.
 
 -> Continue
     <<jump PAGE_ATTACK_NASTY_BOYS_11>>
@@ -165,7 +182,7 @@ Emma: Okay, Ramrod will make a charisma saving throw. That's an 11, he fails. Ra
 
 title: PAGE_ATTACK_NASTY_BOYS_15
 ---
-Kurt: Thank you, friend. That wasn't so hard, was it?
+Kurt: Danke schön, friend. That wasn't so hard, was it?
 
 -> Continue
     <<jump PAGE_ATTACK_NASTY_BOYS_16>>
@@ -234,8 +251,8 @@ Emma: It's rude to interrupt the dungeon master while she is talking, please let
 
 title: PAGE_END_SEQUENCE_2
 ---
-Logan: Oh yeah, I don't bake but I had Gambit make you something, Happy Birthday!
+Logan: Oh yeah, I don't bake but I had Gambit make you a cake, Happy Birthday!
 
--> Thank you!
+-> Thank you! I love cake!
     <<special 80 16>>
 ===
