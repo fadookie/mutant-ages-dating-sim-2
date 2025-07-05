@@ -186,7 +186,7 @@ class ClubMusicHandlerStatic : StaticEventHandler
 		EventHandler.SendInterfaceEvent(consoleplayer, INTERFACEEVENT_UPDATE_MUSIC_PLAYING, 0);
 		player.A_StopSound(CHAN_WEAPON);
 		// S_ChangeMusic("*", force: true);
-		S_ChangeMusic("D_STALKS", force: true);
+		S_ChangeMusic("D_RUNNIN", force: true);
 	}
 
 	// #endregion play scoped methods
