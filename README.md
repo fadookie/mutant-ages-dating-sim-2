@@ -1,92 +1,56 @@
-ZDoomProjectTemplate
-====================
+# X-Men Dating Origins 2
+This repository contains the source for a Doom mod I made. It's a queer X-Men dating simulator which is the sequel to [X-Men Dating Origins: Wolverine](https://www.eliotlash.com/works/mutant-ages-dating-sim).
 
-********************************************************************************
+**Content Warning**: This game contains crude language, adult humor, and LGBTQ+ content. There is no nudity or suggestive graphic content, however, it is not safe for work and is not intended for minors.
 
-NASH'S (G)ZDOOM PROJECT TEMPLATE
+**This game is a work of parody** and is not associated with or endorsed by Marvel.  X-Men are copyrighted by Marvel.
 
-Version 2.0
+# System Requirements
+This is a mod for Doom 2 requiring a recent version of the [GZDoom engine](https://zdoom.org/downloads) and should be supported by any OS which GZDoom supports. I have been testing it with GZDoom 4.14.1, it should work on newer versions but is not guaranteed to work on older versions.
 
-Created by Nash Muhandes
+It's recommended to play this game using `DOOM2.WAD` as the base game (IWAD), which may be purchased from [various PC game stores](https://doom.bethesda.net/en-US/doom_doomii). However, `freedoom2.wad` [(Freedoom Phase 2)](https://freedoom.github.io/download.html) is a free alternative which may be used instead.
 
-Currently for Windows only
+# Installation
+For Windows you may use the standalone portable application which includes everything you need to run the game: GZDoom, `mutant-ages-dating-sim-2.pk3`, `freedoom2.wad`, and a pre-configured `gzdoom_portable.ini` file. If you own `DOOM2.WAD` you may also drop it into this folder and select it from the launch menu when starting GZDoom.
 
-You can reach me on the ZDoom and DRDTeam forums. But I'm more active on the
-ZDoom forums.
+## Standalone PK3 Setup
+If you are not on Windows or are comfortable running doom mods on your own, you may use the `pk3` by itself.
 
-********************************************************************************
+Install GZDoom and your selected Doom 2/Freedoom Phase 2 IWAD file. You may drop it in the folder next to the GZDoom executable or place it on your IWAD search path. Please see the [ZDoom Wiki article on installing and configuring GZDoom](https://zdoom.org/wiki/Installation_and_execution_of_ZDoom).
 
-Get the latest version of this project template at:
+Download the `mutant-ages-dating-sim-2` pk3 file and copy the full path to it.
 
-https://github.com/nashmuhandes/ZDoomProjectTemplate/
+Launch GZDoom and drag the pk3 onto it or add the following launch argument:
+`-file "/PATH/TO/mutant-ages-dating-sim-2.pk3"` (this should be the path you copied in the previous step.) If needed, select either `DOOM2.WAD` or `freedoom2.wad` from the IWAD selection menu.
 
-ZDoom forum thread:
+If it worked you should see the splash screen for the mod instead of the default Doom 2 splash screen.
 
-http://forum.zdoom.org/viewtopic.php?f=3&t=25083
+### Standalone Game Configuration
+If you are not using the Windows portable application I would strongly recommend taking some time to configure GZDoom before playing. To do so, click the mouse or hit the escape or enter key and select the options menu with the mouse or arrow keys. The following settings are recommended for the ideal play experience:
 
-Youtube video tutorial:
+**Most importantly** be sure to go into `Customize Controls` -> `Action` menu and bind keys for `Jump` and `Crouch`. I use Space for jump and Control for crouch but it can be whatever you want, just be careful not to overwrite any other necessary keybinds for movement, `Use`, and shooting.
 
-http://youtu.be/ncHR831LBfk
+Please ensure that under `Sound Options` the sound, music, and master volume is loud enough for you to hear it.
 
-========================================
-              PERMISSIONS               
-========================================
+Under `Display Options` set the `Texture Filter Mode` to `None`.
 
-You are free to use this project template for anything you can think of. No
-need to ask for my permission, although a mention in the credits would be nice!
-And definitely tell me about your projects, I am always looking forward to see
-what people come up with in ZDoom!
+Under `Scaling Options` set `HUD preserves aspect ratio` to `Yes` if it's not set already.
 
-========================================
-              WHAT'S NEW?               
-========================================
+Feel free to adjust any other settings to your liking, then hit escape and select "New Game" to begin playing.
 
-15/06/2014 (version 2.0)
-- Removed KSSC dependency and replaced it with ZSDF.
-- Minor tweaks here and there to make use of new ZDoom features (long file
-  names, named scripts, etc).
+Once in-game I recommend using the classic "doomguy" portrait status bar which can be selected by pressing the + and - keys.
 
-13/02/2010 (version 1.0)
-- First release.
-  
-========================================
-             PREREQUISITES              
-========================================
+# In-game Controls
+The game uses standard GZDoom controls by default, WASD for movement and mouse look. Left mouse button is the default for fire and E for use/talk. And whatever keys you selected for Jump/Crouch, which in the standalone Windows build use Spacebar and Control by default, respectively.
 
-These tools MUST be installed or compile will fail!
--------------------------------------------------------------------------------
+Dialogue trees can be navigated by clicking or using arrow keys and enter to select dialogue options.
 
-Name: ACC 1.54 (or later)
+The game should prompt you with your currently assigned keybinds at points in which the controls may not be completely obvious.
 
-Description: The standard ACC compiler for ZDoom.
+GZDoom does not provide an auto-save mechanism so you may wish to take advantage of the quicksave key (default binding is F6) or save menu which can be accessed by hitting the escape key. Although the game is short enough it can be played in one sitting.
 
-Link: http://zdoom.org/Download
+***
 
--------------------------------------------------------------------------------
+Please see the [credits file](./CREDITS.md) for information on people who helped make this game and a list of assets used.
 
-Name: Latest ACC headers
-
-Description: Overwrite ACC 1.54's headers with the latest copies from the
-following GitHub repository. You only need to download the *.acs files.
-
-Link: https://github.com/rheit/acc
-
--------------------------------------------------------------------------------
-
-Name: FBInserter
-
-Description: Inserts compiled ACS objects into map WADs.
-
-Link: https://github.com/nashmuhandes/FBInserter/tree/master/bin/win32
-
--------------------------------------------------------------------------------
-
-Name: 7-Zip
-
-Description: A compression utility with command line support.
-
-Link: http://www.7-zip.org/
-
--------------------------------------------------------------------------------
-
-Please read instructions.txt for setup instructions.
+That's about it, thanks for playing and I hope you enjoy!
