@@ -12,8 +12,14 @@ set -o xtrace
 # Build pk3 archive to $PK3_ARCHIVE_INPUT_NAME - uncomment to enable auto-builds
 ./make_pk3.sh
 
+# Build docs
+./make_markdown.sh
+
 # Copy pk3 archive to builds folder
 cp -v "$PK3_ARCHIVE_INPUT_NAME" "$PK3_ARCHIVE_COPY_PATH"
+
+# Copy docs to builds folder
+cp -v *.md *.html "$WIN_STANDALONE_PARENT_PATH/$WIN_STANDALONE_RELATIVE_PATH"
 
 # cd to windows folder for gzdoom portable install
 pushd "$WIN_STANDALONE_PARENT_PATH"
