@@ -436,7 +436,7 @@ class DazzlerPowerHandler : EventHandler
 	void QueueDanceSequence() {
 		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#QueueDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
 		danceQueueTimeTk = level.time;
-		player.Teleport(boardCenterTeleportDest.Pos, 0, TF_USEACTORFOG);
+		player.Teleport(boardCenterTeleportDest.Pos, 0, true);
 		Console.MidPrint("BIGFONT", "Get ready in 3, 2, 1...");
 	}
 
