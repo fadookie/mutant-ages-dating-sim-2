@@ -37,6 +37,7 @@ class DazzlerPowerHandler : EventHandler
 	const DESYNC_THRESHOLD_S = 0.5;
 	const NUM_SPAWN_ORIGINS = 5;
 	const SPAWN_ORIGIN_TID_RANGE_START = 994;
+	const BOARD_CENTER_TELEPORT_DEST_TID = 175;
 	const TARGET_TID = 999;
 	const EXIT_DOOR_SECTOR_TAG = 715;
 	const INNER_CIRCLE_DOOR_SECTOR_TAG = 716;
@@ -65,6 +66,7 @@ class DazzlerPowerHandler : EventHandler
 
 	private PoochyPlayer player;
 	private Dazzler dazzler;
+	private Actor boardCenterTeleportDest;
 	private Actor spawnOrigins[NUM_SPAWN_ORIGINS];
 	private Actor centerSpawnOrigin;
 	private Actor target;
@@ -83,6 +85,7 @@ class DazzlerPowerHandler : EventHandler
 
 		player = CallBus.FindPlayer();
 		dazzler = CallBus.FindDazzler();
+		boardCenterTeleportDest = CallBus.FindActor(BOARD_CENTER_TELEPORT_DEST_TID);
 
 		for(int i = 0; i < NUM_SPAWN_ORIGINS; ++i) {
 			let spawnOriginTID = SPAWN_ORIGIN_TID_RANGE_START + i;
@@ -433,6 +436,7 @@ class DazzlerPowerHandler : EventHandler
 	void QueueDanceSequence() {
 		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#QueueDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
 		danceQueueTimeTk = level.time;
+		player.Teleport(boardCenterTeleportDest.Pos, 0, TF_USEACTORFOG);
 		Console.MidPrint("BIGFONT", "Get ready in 3, 2, 1...");
 	}
 
