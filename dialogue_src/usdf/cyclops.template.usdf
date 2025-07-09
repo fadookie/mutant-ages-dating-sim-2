@@ -12,26 +12,68 @@ conversation
 		choice
 		{
 			text = "Stay away from Logan, he's mine!";
-			yesmessage = "\c[Cyan]Logan was just a rebound, I'm back with Jean now! Don't you know I'm a super straight superhero?";
-			closedialog = true;
-// 			special = 80;
-// 			arg0 = 13;
+			nextpage = "PAGE_REBOUND";
 		}
-// 		ifitem
-//         {
-//             item = "ScottsBox";
-//         }
-// 		link = 2;
 		choice
 		{
-			text = "Hey, could you help me with something?";
-			nextpage = "PAGE_WHERE_GET";
-			nomessage = "\c[Cyan]With what? Come back when you've found something I can help with.";
-			cost
-			{
-					item = "ScottsBox";
-					amount = 1;
-			}
+			text = "I'm looking for the hangar key, do you know where it is?";
+			nextpage = "PAGE_HANGARKEY";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_REBOUND";
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Logan was just a rebound, I'm back with Jean now! Don't you know I'm a super straight superhero?";
+		ifitem
+		{
+				item = "ScottsBox";
+		}
+		link = "PAGE_WHERE_GET";
+		choice
+		{
+			text = "Yeah. Logan told me you were *deep* in the closet.";
+			nextpage = "PAGE_CLOSET";
+		}
+		choice
+		{
+			text = "Good. Also, I'm looking for the hangar key, do you know where it is?";
+			nextpage = "PAGE_HANGARKEY";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_CLOSET";
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Hey don't get any ideas about poking around in my closet! The fact that I got the largest closet in the X-Mansion was just a coincidence!";
+		ifitem
+		{
+				item = "ScottsBox";
+		}
+		link = "PAGE_WHERE_GET";
+		choice
+		{
+			text = "Whatever. Also, I'm looking for the hangar key, do you know where it is?";
+			nextpage = "PAGE_HANGARKEY";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_HANGARKEY";
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Why, does Logan want to take the X-Jet out for another joyride? Xavier says the X-Jet is only to be used for *official* X-Men business! Not happening, chief.";
+		ifitem
+		{
+				item = "ScottsBox";
+		}
+		link = "PAGE_WHERE_GET";
+		choice
+		{
+			text = "Stay away from Logan, he's mine!";
+			nextpage = "PAGE_REBOUND";
 		}
 	}
 	page
@@ -39,10 +81,10 @@ conversation
 		pagename = "PAGE_WHERE_GET";
 		name = "Scott";
 		panel = "CYCPA0";
-		dialog = "\c[Cyan]Hey, where did you get that? Give it back!";
+		dialog = "\c[Cyan]Hey, where did you get that box? Give it back!";
 		choice
 		{
-			text = "I'm looking for the key to the hangar! If you blast this box open I'll give everything else back.";
+			text = "I want the damn hangar key and Logan said it was in here! If you blast this box open I'll give everything else back.";
 			nextpage = "PAGE_OK";
 		}
 	}

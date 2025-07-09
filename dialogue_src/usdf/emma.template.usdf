@@ -163,22 +163,22 @@ conversation
 		{
 			text = "(Poochy Only) I use my AE Vision!";
 			nextpage = "PAGE_EMMA_POOCHY_PERCEPTION_CHECK";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			cost
 			{
 					item = "PoochyDnDInventory";
 					amount = 1;
-					nomessage = "\c[White]Sorry, you're not allowed to do that.";
 			}
 		}
 		choice
 		{
 			text = "(Warcraft Only) I listen and smell for danger.";
 			nextpage = "PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			cost
 			{
 					item = "WarcraftDnDInventory";
 					amount = 1;
-					nomessage = "\c[White]Sorry, you're not allowed to do that.";
 			}
 		}
 	}
@@ -304,6 +304,7 @@ conversation
 		choice
 		{
 			text = "(Poochy Only) I use my communication sunglasses to interrogate him!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_START_NASTY_BOYS_PARLEY_3";
 			cost {
 				item = "PoochyDnDInventory";
@@ -314,6 +315,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft Only) I intimidate him with my half-human, half-wolf form and ask him what he's doing!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_START_NASTY_BOYS_PARLEY_3";
 			cost {
 				item = "WarcraftDnDInventory";
@@ -473,7 +475,7 @@ conversation
 		dialog = "\c[Yellow]Pfffffft! Gay.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_10";
 		}
 		
@@ -488,7 +490,7 @@ conversation
 		dialog = "\c[White]That's an 18 to hit, he hits. You take 16 damage and are grappled and restrained.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_10_2";
 		}
 		
@@ -503,7 +505,7 @@ conversation
 		dialog = "\c[LightBlue]Mein Gott! Help me!";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_10_3";
 		}
 		
@@ -518,7 +520,7 @@ conversation
 		dialog = "\c[White]You may try to break the grapple on your next turn. Magento, it's your turn.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_11";
 		}
 		
@@ -533,7 +535,7 @@ conversation
 		dialog = "\c[Purple]I will not harm another mutant. I refuse to fight.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_12";
 		}
 		
@@ -548,7 +550,7 @@ conversation
 		dialog = "\c[LightBlue]We've been over this! It's just a game, also, your character isn't a mutant anyway, you're a human wizard!";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_13";
 		}
 		
@@ -563,7 +565,7 @@ conversation
 		dialog = "\c[Purple]Fine. I cast banishment on Ramrod.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_14";
 		}
 		
@@ -578,7 +580,7 @@ conversation
 		dialog = "\c[White]Okay, Ramrod will make a charisma saving throw. That's an 11, he fails. Ramrod is transported into a demiplane for one minute. Kurt, you're now free of the grapple.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_15";
 		}
 		
@@ -593,7 +595,7 @@ conversation
 		dialog = "\c[LightBlue]Danke schön, friend. That wasn't so hard, was it?";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_16";
 		}
 		
@@ -645,6 +647,7 @@ conversation
 		choice
 		{
 			text = "(Poochy Only) I subject all the Nasty Boys to invasive medical procedures!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_19_POOCHY";
 			cost {
 				item = "PoochyDnDInventory";
@@ -655,6 +658,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft Only) I go black!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT";
 			cost {
 				item = "WarcraftDnDInventory";
@@ -673,7 +677,7 @@ conversation
 		dialog = "\c[White]Alright, I'll have the Nasty Boys make constitution saves. Bloody hell, they all fail. Gorgeous George dissolves into a puddle of black tar and shouts \"You haven't seen the last of us!\" With that, the Nasty Boys retreat.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_20";
 		}
 		
@@ -688,7 +692,7 @@ conversation
 		dialog = "\c[White]Everything is a blur, you lose consciousness. *Rolling dice* Bloody hell, the Nasty Boys all take 28 piercing damage from your attack. You come to, and Gorgeous George has been reduced to a puddle of black tar on the floor. He shouts \"You haven't seen the last of us!\" With that, the Nasty Boys retreat.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_20";
 		}
 		
@@ -703,7 +707,7 @@ conversation
 		dialog = "\c[Yellow]Nice. Do we win?";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_END_SEQUENCE_1";
 		}
 		
@@ -718,7 +722,7 @@ conversation
 		dialog = "\c[White]It's rude to interrupt the dungeon master while she is talking, please let me finish. Yes, you are now out of combat and all gain 30 XP. Now, we would normally have our session go a bit longer, but Logan, you said you had a surprise?";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_END_SEQUENCE_2";
 		}
 		

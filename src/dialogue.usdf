@@ -128,26 +128,68 @@ conversation
 		choice
 		{
 			text = "Stay away from Logan, he's mine!";
-			yesmessage = "\c[Cyan]Logan was just a rebound, I'm back with Jean now! Don't you know I'm a super straight superhero?";
-			closedialog = true;
-// 			special = 80;
-// 			arg0 = 13;
+			nextpage = "PAGE_REBOUND";
 		}
-// 		ifitem
-//         {
-//             item = "ScottsBox";
-//         }
-// 		link = 2;
 		choice
 		{
-			text = "Hey, could you help me with something?";
-			nextpage = "PAGE_WHERE_GET";
-			nomessage = "\c[Cyan]With what? Come back when you've found something I can help with.";
-			cost
-			{
-					item = "ScottsBox";
-					amount = 1;
-			}
+			text = "I'm looking for the hangar key, do you know where it is?";
+			nextpage = "PAGE_HANGARKEY";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_REBOUND";
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Logan was just a rebound, I'm back with Jean now! Don't you know I'm a super straight superhero?";
+		ifitem
+		{
+				item = "ScottsBox";
+		}
+		link = "PAGE_WHERE_GET";
+		choice
+		{
+			text = "Yeah. Logan told me you were *deep* in the closet.";
+			nextpage = "PAGE_CLOSET";
+		}
+		choice
+		{
+			text = "Good. Also, I'm looking for the hangar key, do you know where it is?";
+			nextpage = "PAGE_HANGARKEY";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_CLOSET";
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Hey don't get any ideas about poking around in my closet! The fact that I got the largest closet in the X-Mansion was just a coincidence!";
+		ifitem
+		{
+				item = "ScottsBox";
+		}
+		link = "PAGE_WHERE_GET";
+		choice
+		{
+			text = "Whatever. Also, I'm looking for the hangar key, do you know where it is?";
+			nextpage = "PAGE_HANGARKEY";
+		}
+	}
+	page
+	{
+		pagename = "PAGE_HANGARKEY";
+		name = "Scott";
+		panel = "CYCPA0";
+		dialog = "\c[Cyan]Why, does Logan want to take the X-Jet out for another joyride? Xavier says the X-Jet is only to be used for *official* X-Men business! Not happening, chief.";
+		ifitem
+		{
+				item = "ScottsBox";
+		}
+		link = "PAGE_WHERE_GET";
+		choice
+		{
+			text = "Stay away from Logan, he's mine!";
+			nextpage = "PAGE_REBOUND";
 		}
 	}
 	page
@@ -155,10 +197,10 @@ conversation
 		pagename = "PAGE_WHERE_GET";
 		name = "Scott";
 		panel = "CYCPA0";
-		dialog = "\c[Cyan]Hey, where did you get that? Give it back!";
+		dialog = "\c[Cyan]Hey, where did you get that box? Give it back!";
 		choice
 		{
-			text = "I'm looking for the key to the hangar! If you blast this box open I'll give everything else back.";
+			text = "I want the damn hangar key and Logan said it was in here! If you blast this box open I'll give everything else back.";
 			nextpage = "PAGE_OK";
 		}
 	}
@@ -235,7 +277,7 @@ conversation
 		pagename = "PAGE_START_DANCE";
 		name = "Alison (Dazzler)";
 		panel = "DZLPB0";
-		dialog = "Alright, show me your moves, hotshot!";
+		dialog = "Alright, I want to see you stay on your toes and dodge my light blasts. Show me your moves, hotshot!";
 		choice
 		{
 			text = "OK, let's do this!";
@@ -458,22 +500,22 @@ conversation
 		{
 			text = "(Poochy Only) I use my AE Vision!";
 			nextpage = "PAGE_EMMA_POOCHY_PERCEPTION_CHECK";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			cost
 			{
 					item = "PoochyDnDInventory";
 					amount = 1;
-					nomessage = "\c[White]Sorry, you're not allowed to do that.";
 			}
 		}
 		choice
 		{
 			text = "(Warcraft Only) I listen and smell for danger.";
 			nextpage = "PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			cost
 			{
 					item = "WarcraftDnDInventory";
 					amount = 1;
-					nomessage = "\c[White]Sorry, you're not allowed to do that.";
 			}
 		}
 	}
@@ -599,6 +641,7 @@ conversation
 		choice
 		{
 			text = "(Poochy Only) I use my communication sunglasses to interrogate him!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_START_NASTY_BOYS_PARLEY_3";
 			cost {
 				item = "PoochyDnDInventory";
@@ -609,6 +652,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft Only) I intimidate him with my half-human, half-wolf form and ask him what he's doing!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_START_NASTY_BOYS_PARLEY_3";
 			cost {
 				item = "WarcraftDnDInventory";
@@ -768,7 +812,7 @@ conversation
 		dialog = "\c[Yellow]Pfffffft! Gay.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_10";
 		}
 		
@@ -783,7 +827,7 @@ conversation
 		dialog = "\c[White]That's an 18 to hit, he hits. You take 16 damage and are grappled and restrained.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_10_2";
 		}
 		
@@ -798,7 +842,7 @@ conversation
 		dialog = "\c[LightBlue]Mein Gott! Help me!";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_10_3";
 		}
 		
@@ -813,7 +857,7 @@ conversation
 		dialog = "\c[White]You may try to break the grapple on your next turn. Magento, it's your turn.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_11";
 		}
 		
@@ -828,7 +872,7 @@ conversation
 		dialog = "\c[Purple]I will not harm another mutant. I refuse to fight.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_12";
 		}
 		
@@ -843,7 +887,7 @@ conversation
 		dialog = "\c[LightBlue]We've been over this! It's just a game, also, your character isn't a mutant anyway, you're a human wizard!";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_13";
 		}
 		
@@ -858,7 +902,7 @@ conversation
 		dialog = "\c[Purple]Fine. I cast banishment on Ramrod.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_14";
 		}
 		
@@ -873,7 +917,7 @@ conversation
 		dialog = "\c[White]Okay, Ramrod will make a charisma saving throw. That's an 11, he fails. Ramrod is transported into a demiplane for one minute. Kurt, you're now free of the grapple.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_15";
 		}
 		
@@ -888,7 +932,7 @@ conversation
 		dialog = "\c[LightBlue]Danke schön, friend. That wasn't so hard, was it?";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_16";
 		}
 		
@@ -940,6 +984,7 @@ conversation
 		choice
 		{
 			text = "(Poochy Only) I subject all the Nasty Boys to invasive medical procedures!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_19_POOCHY";
 			cost {
 				item = "PoochyDnDInventory";
@@ -950,6 +995,7 @@ conversation
 		choice
 		{
 			text = "(Warcraft Only) I go black!";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_19_WARCRAFT";
 			cost {
 				item = "WarcraftDnDInventory";
@@ -968,7 +1014,7 @@ conversation
 		dialog = "\c[White]Alright, I'll have the Nasty Boys make constitution saves. Bloody hell, they all fail. Gorgeous George dissolves into a puddle of black tar and shouts \"You haven't seen the last of us!\" With that, the Nasty Boys retreat.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_20";
 		}
 		
@@ -983,7 +1029,7 @@ conversation
 		dialog = "\c[White]Everything is a blur, you lose consciousness. *Rolling dice* Bloody hell, the Nasty Boys all take 28 piercing damage from your attack. You come to, and Gorgeous George has been reduced to a puddle of black tar on the floor. He shouts \"You haven't seen the last of us!\" With that, the Nasty Boys retreat.";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_ATTACK_NASTY_BOYS_20";
 		}
 		
@@ -998,7 +1044,7 @@ conversation
 		dialog = "\c[Yellow]Nice. Do we win?";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_END_SEQUENCE_1";
 		}
 		
@@ -1013,7 +1059,7 @@ conversation
 		dialog = "\c[White]It's rude to interrupt the dungeon master while she is talking, please let me finish. Yes, you are now out of combat and all gain 30 XP. Now, we would normally have our session go a bit longer, but Logan, you said you had a surprise?";
 		choice
 		{
-			text = "Continue";
+			text = "Next";
 			nextpage = "PAGE_END_SEQUENCE_2";
 		}
 		
@@ -1087,6 +1133,17 @@ conversation
 			text = "Fine with me, I was getting a little tired of sharing Logan with him.";
 			nextpage = "PAGE_SHARING";
 		}
+		choice
+		{
+			text = "Can you help me open this box?";
+			nextpage = "PAGE_SCOTTS_BOX";
+
+			require
+			{
+					item   = "ScottsBox";
+					amount = 1;
+			}
+		}
 	}
 	page {
 		pagename = "PAGE_SHARING";
@@ -1099,6 +1156,28 @@ conversation
 			closedialog = true;
 			special = 80;
 			arg0 = 12;
+		}
+		choice
+		{
+			text = "Can you help me open this box?";
+			nextpage = "PAGE_SCOTTS_BOX";
+
+			require
+			{
+					item   = "ScottsBox";
+					amount = 1;
+			}
+		}
+	}
+	page {
+		pagename = "PAGE_SCOTTS_BOX";
+		name = "Jean";
+		panel = "PNXPA0";
+		dialog = "\c[Orange]Oh, Scott told me he keeps his uh... private things in there! I'm sure it's all important stuff for a team leader to have! Why don't you ask him about it?";
+		choice
+		{
+			text = "How are you doing, Jean?";
+			nextpage = "PAGE_PHOENIXLEFT";
 		}
 	}
 }
@@ -1260,7 +1339,7 @@ conversation
 		pagename = "PAGE_GOT_HANGAR_KEY";
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
+		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the hangar door and I will take you to your surprise!";
 		goodbye = "I can't wait! Let's go!";
 	}
 }

@@ -153,7 +153,7 @@ conversation
 		pagename = "PAGE_GOT_HANGAR_KEY";
 		name = "Logan";
 		panel = "WOLPA2";
-		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the door and I will take you to your surprise!";
+		dialog = "\c[Yellow]Oh, great, you found the hangar key! Just use that on the hangar door and I will take you to your surprise!";
 		goodbye = "I can't wait! Let's go!";
 	}
 }

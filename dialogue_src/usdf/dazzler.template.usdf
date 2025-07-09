@@ -41,7 +41,7 @@ conversation
 		pagename = "PAGE_START_DANCE";
 		name = "Alison (Dazzler)";
 		panel = "DZLPB0";
-		dialog = "Alright, show me your moves, hotshot!";
+		dialog = "Alright, I want to see you stay on your toes and dodge my light blasts. Show me your moves, hotshot!";
 		choice
 		{
 			text = "OK, let's do this!";
