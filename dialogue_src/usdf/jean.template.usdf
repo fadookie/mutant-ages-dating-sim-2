@@ -46,6 +46,17 @@ conversation
 			text = "Fine with me, I was getting a little tired of sharing Logan with him.";
 			nextpage = "PAGE_SHARING";
 		}
+		choice
+		{
+			text = "Can you help me open this box?";
+			nextpage = "PAGE_SCOTTS_BOX";
+
+			require
+			{
+					item   = "ScottsBox";
+					amount = 1;
+			}
+		}
 	}
 	page {
 		pagename = "PAGE_SHARING";
@@ -58,6 +69,28 @@ conversation
 			closedialog = true;
 			special = 80;
 			arg0 = 12;
+		}
+		choice
+		{
+			text = "Can you help me open this box?";
+			nextpage = "PAGE_SCOTTS_BOX";
+
+			require
+			{
+					item   = "ScottsBox";
+					amount = 1;
+			}
+		}
+	}
+	page {
+		pagename = "PAGE_SCOTTS_BOX";
+		name = "Jean";
+		panel = "PNXPA0";
+		dialog = "\c[Orange]Oh, Scott told me he keeps his uh... private things in there! I'm sure it's all important stuff for a team leader to have! Why don't you ask him about it?";
+		choice
+		{
+			text = "How are you doing, Jean?";
+			nextpage = "PAGE_PHOENIXLEFT";
 		}
 	}
 }

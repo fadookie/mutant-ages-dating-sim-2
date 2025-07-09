@@ -158,22 +158,22 @@
 		{
 			text = "(Poochy Only) I use my AE Vision!";
 			nextpage = "PAGE_EMMA_POOCHY_PERCEPTION_CHECK";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			cost
 			{
 					item = "PoochyDnDInventory";
 					amount = 1;
-					nomessage = "\c[White]Sorry, you're not allowed to do that.";
 			}
 		}
 		choice
 		{
 			text = "(Warcraft Only) I listen and smell for danger.";
 			nextpage = "PAGE_EMMA_WARCRAFT_PERCEPTION_CHECK";
+			nomessage = "\c[White]Sorry, your character doesn't have that ability.";
 			cost
 			{
 					item = "WarcraftDnDInventory";
 					amount = 1;
-					nomessage = "\c[White]Sorry, you're not allowed to do that.";
 			}
 		}
 	}
