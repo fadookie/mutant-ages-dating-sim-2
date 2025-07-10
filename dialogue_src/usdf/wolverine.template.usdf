@@ -169,6 +169,25 @@ conversation
 		dialog = "\c[Yellow]All right, I think you're gonna like the next part! I found a cool place for us to celebrate.";
 		choice
 		{
+			text = "Wait, how did you get down here?";
+			nextpage = "PAGE_HOW_GET_HERE";
+		}
+		choice
+		{
+			text = "OK, let's go!";
+			special = 80;
+			arg0 = 18;
+			closedialog = true;
+		}
+	}
+	page
+	{
+		pagename = "PAGE_HOW_GET_HERE";
+		name = "Logan";
+		panel = "WOLPA2";
+		dialog = "\c[Yellow]I'm as fast and sneaky as a real wolverine. They never see me coming, bub. Don't worry about it.";
+		choice
+		{
 			text = "OK, let's go!";
 			special = 80;
 			arg0 = 18;
