@@ -88,6 +88,7 @@ class PoochyPlayer : DoomPlayer
             self.ViewBob = 0;
 			levitating = true;
 			levitationStartTimeTk = level.time;
+			self.Speed = 0;
 			phoenixHandler.StartLevitationSequence();
 		}
 		
@@ -102,6 +103,7 @@ class PoochyPlayer : DoomPlayer
 			self.bNogravity = false;
             self.ViewBob = 1;
 			levitating = false;
+			self.Speed = 1;
 		}
 		Goto Spawn;
 		
