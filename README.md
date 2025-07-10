@@ -41,7 +41,7 @@ Feel free to adjust any other settings to your liking, then hit escape and selec
 Once in-game I recommend using the classic "doomguy" portrait status bar which can be selected by pressing the + and - keys.
 
 # In-game Controls
-The game uses standard GZDoom controls by default, WASD for movement and mouse look. Left mouse button is the default for fire and E for use/talk. And whatever keys you selected for Jump/Crouch, which in the standalone Windows build use Spacebar and Control by default, respectively.
+The game uses standard GZDoom controls by default, WASD for movement and mouse look. Left mouse button is the default for fire and E for use/talk. And whatever keys you selected for Jump/Crouch, which in the standalone Windows build use Spacebar and Control by default, respectively. Tab toggles the automap.
 
 Dialogue trees can be navigated by clicking or using arrow keys and enter to select dialogue options.
 
