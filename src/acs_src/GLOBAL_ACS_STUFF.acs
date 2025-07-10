@@ -65,8 +65,25 @@ script 1 (void) { // open mansion front door
 	}
 }
 
-script 2 (void) { // close mansion front door
+script 2 (void) { // close mansion front door and logan bark trigger
 	Line_SetPortalTarget(42,0);
+
+	// Logan intro chat
+	int hasTalkedToWolverineFoyer = CheckInventory("TalkedToWolverineFoyerInventory");
+ 	// Log(s:"ACS Trigger Logan Sequence, hasTalkedToWolverineFoyer:", i:hasTalkedToWolverineFoyer);
+	if (hasTalkedToWolverineFoyer < 1) { 
+		SetFont("BIGFONT");
+		print(s:"\c[Yellow]Hey, you came! What's up?");
+
+		Delay(3 * TICS_PER_SECOND);
+		PrintBold(s:"\c[Yellow]Cat got your tongue?");
+		
+		Delay(3 * TICS_PER_SECOND);
+		PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", on me, bub!");
+		
+		Delay(6 * TICS_PER_SECOND);
+		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall!\n\c[Yellow]Come over here and press ", k:"+use", s:"!");
+	}
 }
 
 script 3 (void) { // top of mansion foyer stairs - does what?
@@ -138,24 +155,7 @@ script 11 ENTER { // Intro cutscene
 	ScriptCall("CallBus", "SkipDanceSequence");
  }
  
- // Logan intro chat
- script 14 (void) {
-	int hasTalkedToWolverineFoyer = CheckInventory("TalkedToWolverineFoyerInventory");
- 	// Log(s:"ACS Trigger Logan Sequence, hasTalkedToWolverineFoyer:", i:hasTalkedToWolverineFoyer);
-	if (hasTalkedToWolverineFoyer < 1) { 
-		SetFont("BIGFONT");
-		print(s:"\c[Yellow]Hey, you came! What's up?");
-
-		Delay(3 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Cat got your tongue?");
-		
-		Delay(3 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Press ", k:"+use", s:", on me, bub!");
-		
-		Delay(6 * TICS_PER_SECOND);
-		PrintBold(s:"\c[Yellow]Come on, stop making me break the fourth wall!\n\c[Yellow]Come over here and press ", k:"+use", s:"!");
-	}
- }
+ // script 14 merged with script 2 for now
  
  script 15 (void) // Got quest from Logan dialogue
 {
