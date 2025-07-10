@@ -1292,6 +1292,38 @@ conversation
 	}
 	page
 	{
+		pagename = "PAGE_QUEST_REMINDER";
+		name = "Logan";
+		panel = "WOLPB2";
+		dialog = "\c[Yellow]Sure, bub. I need you to find the key to the X-Jet hangar. Last time I saw it it was in a box.";
+		choice
+		{
+			text = "Got it, thanks! What did you say again?";
+			nextpage = "PAGE_SURPRISE";
+		}
+		choice
+		{
+			text = "Is it in this box?";
+			nextpage = "PAGE_SURPRISE";
+			require
+			{
+					item   = "UselessJunk";
+					amount = 1;
+			}
+		}
+		choice
+		{
+			text = "I found this box in Scott's closet, is it in here?";
+			nextpage = "PAGE_SURPRISE";
+			require
+			{
+					item   = "ScottsBox";
+					amount = 1;
+			}
+		}
+	}
+	page
+	{
 		pagename = "PAGE_WONT_BREAK_DOOR";
 		name = "Logan";
 		panel = "WOLPB2";
@@ -1304,6 +1336,11 @@ conversation
 			arg0 = 15; // Open Door
 			closedialog = true;
 		}
+		choice
+		{
+			text = "Uh, could you remind me about what you asked me to do?";
+			nextpage = "PAGE_QUEST_REMINDER";
+		}
 		ifitem
 		{
 				item = "UselessJunk";
@@ -1315,7 +1352,12 @@ conversation
 		pagename = "PAGE_FOUND_JUNK";
 		name = "Logan";
 		panel = "WOLPB2";
-		dialog = "\c[Yellow]That ain't no key, bub! Keep lookin'.";
+		dialog = "\c[Yellow]There ain't no key in there, bub! Keep lookin'.";
+		choice
+		{
+			text = "Uh, could you remind me about what you asked me to do?";
+			nextpage = "PAGE_QUEST_REMINDER";
+		}
 		ifitem
 		{
 				item = "ScottsBox";
@@ -1327,7 +1369,7 @@ conversation
 		pagename = "PAGE_FOUND_SCOTTS_BOX";
 		name = "Logan";
 		panel = "WOLPB2";
-		dialog = "\c[Yellow]It must be in there, I can smell the ozone! I'd open it for you, but Jeannie might not take too kindly to me going through Scott's private effects, if you catch my drift. Maybe you can find a way to do it?";
+		dialog = "\c[Yellow]The hangar key must be in that box, I can smell the ozone! I'd open it for you, but Jeannie might not take too kindly to me touching Scott's private... effects, if you catch my drift. Maybe you can find a way to do it?";
 		ifitem
 		{
 				item = "BlueCard";
