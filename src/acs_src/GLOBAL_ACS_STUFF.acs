@@ -24,6 +24,7 @@
 // int corpses_cleaned = 0;
 bool talked_logan_mnsn_entrance = false;
 int player_tid = 0;
+bool triggered_inner_circle_autosave = false;
 
 /***
  * Global functions
@@ -292,6 +293,14 @@ script 19 (void) { // Trigger club enter from inner circle
 script 20 (void) { // Trigger club exit
  	// Log(s:"ACS Trigger club exit");
 	ScriptCall("CallBus", "TriggerClubExit");
+}
+
+script 21 (void) { // Trigger autosave entering inner circle
+ 	// Log(s:"ACS Trigger inner circle autosave, triggered_inner_circle_autosave = ", i: triggered_inner_circle_autosave);
+	if (!triggered_inner_circle_autosave) {
+		triggered_inner_circle_autosave = true;
+		Autosave();
+	}
 }
 
 // script 33 ENTER
