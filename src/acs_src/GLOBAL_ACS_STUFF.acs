@@ -88,7 +88,7 @@ script 6 (void) { // scott's maze powerup remover
 }
 
 script 7 (void) { // spawns AE vision when enterting or exiting closet
-	SpawnSpot ("AEVision", 800);
+	SpawnSpot("AEVision", 800);
 }
 
  
@@ -215,6 +215,11 @@ script 16 (void) // Trigger D&D end sequence
 					PrintBold(s:"\c[Yellow]Once you have some cake press ", k:"+attack", s:" to throw it!");
 					break;
 				case 5:
+					Delay(10 * TICS_PER_SECOND);
+					if (ThingCount(T_NONE, 1) <= 0) break;
+					PrintBold(s:"\c[Yellow]Here, have some more cake!");
+					SpawnSpot("Cupcake_Gun", 176); // Respawn cake
+					break;
 				case 6:
 					// No bark
 					Delay(10 * TICS_PER_SECOND);
