@@ -160,7 +160,7 @@ script 11 ENTER { // Intro cutscene
  script 15 (void) // Got quest from Logan dialogue
 {
 	// Log(s:"Got quest from Logan dialogue script called");
-	ACS_Terminate(14, 0);
+	ACS_Terminate(2, 0);
 	Line_SetPortalTarget(42,1);
 	talked_logan_mnsn_entrance = true;
 }
