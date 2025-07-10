@@ -14,6 +14,7 @@ conversation
 		{
 			text = "Start dance sequence";
 			closedialog = true;
+			giveitem = "TalkedToDazzlerInventory";
 			special = 80;
 			arg0 = 13;
 		}
@@ -22,6 +23,7 @@ conversation
 		{
 			text = "Yeah! Also, do you know how I can get in to the inner circle?";
 			nextpage = "PAGE_INNER_CIRCLE";
+			giveitem = "TalkedToDazzlerInventory";
 		}
 	}
 	page

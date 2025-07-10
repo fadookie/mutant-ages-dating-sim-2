@@ -311,6 +311,14 @@ script 21 (void) { // Trigger autosave entering inner circle
 	}
 }
 
+script 22 (void) { // Dazzler bark trigger
+	int hasTalkedToDazzler = CheckInventory("TalkedToDazzlerInventory");
+	if (hasTalkedToDazzler < 1) { 
+		SetFont("BIGFONT");
+		PrintBold(s:"\c[White]Hey there, you look like you're ready to dance!\nDon't be shy, you can talk to me.");
+	}
+}
+
 // script 33 ENTER
 // {
 //   SetCVar ("numPlayerRespawns", PLAYER_RESPAWNS_INITIAL);
