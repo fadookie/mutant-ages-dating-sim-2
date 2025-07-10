@@ -92,7 +92,7 @@ script 7 (void) { // spawns AE vision when enterting or exiting closet
 }
 
  
-script 11 ENTER {
+script 11 ENTER { // Intro cutscene
 	// Log(s:"ACS ENTER");
 
 	if(INTRO_ENABLED) {
@@ -171,6 +171,9 @@ script 16 (void) // Trigger D&D end sequence
 	// Raise the cake
 	Floor_RaiseToNearest(718, 16);
 	SetMusic("music/D_ELBDAY.mid");
+
+	// Close inner circle room entrance door
+	Door_Close(716, 16);
 	
 	// Remove invisible wall around cake
 	Line_SetBlocking(2, 0, BLOCKF_EVERYTHING);
