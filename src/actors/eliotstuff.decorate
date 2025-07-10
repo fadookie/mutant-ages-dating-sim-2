@@ -437,8 +437,8 @@ actor ScottsBox : Inventory 31000
 actor UselessJunk : Ammo 31001
 {
   Inventory.PickupMessage "Found some useless junk!"
-	Inventory.Amount 1
-	Inventory.MaxAmount 999
+	Inventory.Amount 100
+	Inventory.MaxAmount 9999
   States
   {
   Spawn:
