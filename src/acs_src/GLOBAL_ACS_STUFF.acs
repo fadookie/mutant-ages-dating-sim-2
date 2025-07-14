@@ -8,7 +8,7 @@
 
 #define TICS_PER_SECOND 35
 
-#define INTRO_ENABLED false 
+#define INTRO_ENABLED true 
  
 #define INTRO_MESSAGE_FADETIME_S 2
 #define INTRO_MESSAGE_HOLDTIME_S 5
