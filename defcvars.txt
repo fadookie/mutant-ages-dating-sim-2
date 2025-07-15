@@ -1,0 +1,3 @@
+version 225
+set gl_texture_filter "0"
+set gl_texture_filter_anisotropic "1"

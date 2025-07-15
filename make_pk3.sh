@@ -8,6 +8,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source _build_common.sh
 
 set -o xtrace
+# TODO: Exclude freedoom2.wad
 # Set flag --worktree-attributes to use .gitattributes from working directory instead of HEAD commit
 git archive --format=zip -o "$PK3_ARCHIVE_INPUT_NAME" HEAD:src
 
