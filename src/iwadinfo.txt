@@ -8,5 +8,6 @@ IWad
     Config = "XMenDatingOrigins2"
     MapInfo = "mapinfo/doom2.txt"
     MustContain = "XMenDatingOrigins2"
+    Load = "freedoom2.wad"
     // BannerColors = "FF AA AA", "77 77 FF"
 }
