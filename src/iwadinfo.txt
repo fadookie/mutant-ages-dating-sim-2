@@ -6,7 +6,7 @@ IWad
     Autoname = "XMenDatingOrigins2"
     Game = "Doom"
     Config = "XMenDatingOrigins2"
-    // Mapinfo = "mapinfo/mindefaults.txt"
+    MapInfo = "mapinfo/doom2.txt"
     MustContain = "XMenDatingOrigins2"
     // BannerColors = "FF AA AA", "77 77 FF"
 }
