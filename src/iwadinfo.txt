@@ -1,0 +1,12 @@
+// Must be sorted in identification order (easiest to recognize first!)
+
+IWad
+{
+    Name = "X-Men Dating Origins 2: Dates of Future Past"
+    Autoname = "XMenDatingOrigins2"
+    Game = "Doom"
+    Config = "XMenDatingOrigins2"
+    // Mapinfo = "mapinfo/mindefaults.txt"
+    MustContain = "XMenDatingOrigins2"
+    // BannerColors = "FF AA AA", "77 77 FF"
+}

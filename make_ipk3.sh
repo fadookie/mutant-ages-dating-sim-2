@@ -14,7 +14,10 @@ set -o xtrace
 git archive --format=zip -o "$IPK3_ARCHIVE_INPUT_NAME" HEAD:src
 
 # Copy pk3 archive to windows standalone folder
-# cp -v "$PK3_ARCHIVE_INPUT_NAME" "$WIN_STANDALONE_PARENT_PATH/$WIN_STANDALONE_RELATIVE_PATH"
+# cp -v "$IPK3_ARCHIVE_INPUT_NAME" "$WIN_STANDALONE_PARENT_PATH/$WIN_STANDALONE_RELATIVE_PATH"
+
+# Copy ipk3 to iwad search path
+cp -v "$IPK3_ARCHIVE_INPUT_NAME" "/Users/eliot/Library/Application Support/gzdoom"
 
 # Comment out to not display archive contents
-# unzip -l "$PK3_ARCHIVE_INPUT_NAME" | less
+# unzip -l "$IPK3_ARCHIVE_INPUT_NAME" | less
