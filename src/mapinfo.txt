@@ -21,12 +21,12 @@ DoomEdNums
 	30014 = CoffeeGuy 
 }
 
-clearepisodes
+// clearepisodes // TODO: patch this in for pk3 mod version
 
 Episode "XMEN2"
 {
 	Name = "X-Men Dating Origins 2: Dates of Future Past"
-	// noskillmenu // TODO: patch this in for pk3 mod version
+	noskillmenu
 }
 
 
