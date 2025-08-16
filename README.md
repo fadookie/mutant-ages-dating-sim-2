@@ -13,7 +13,9 @@ It's recommended to play this game using `DOOM2.WAD` as the base game (IWAD), wh
 # Installation
 For Windows you may use the standalone portable application which includes everything you need to run the game: GZDoom, `mutant-ages-dating-sim-2.pk3`, `freedoom2.wad`, and a pre-configured `gzdoom_portable.ini` file. If you own `DOOM2.WAD` you may also drop it into this folder and select it from the launch menu when starting GZDoom.
 
-## Standalone PK3 Setup
+> **Note**: Do not put the standalone build in `Program Files` on Windows, this will cause the bundled config to be ignored. Put it somewhere in your home directory like the `Desktop`, etc.
+
+## PK3 Mod (PWAD) Setup
 If you are not on Windows or are comfortable running doom mods on your own, you may use the `pk3` by itself.
 
 Install GZDoom and your selected Doom 2/Freedoom Phase 2 IWAD file. You may drop it in the folder next to the GZDoom executable or place it on your IWAD search path. Please see the [ZDoom Wiki article on installing and configuring GZDoom](https://zdoom.org/wiki/Installation_and_execution_of_ZDoom).
@@ -25,7 +27,7 @@ Launch GZDoom and drag the pk3 onto it or add the following launch argument:
 
 If it worked you should see the splash screen for the mod instead of the default Doom 2 splash screen.
 
-### Standalone Game Configuration
+### PK3 Mod (PWAD) Game Configuration
 If you are not using the Windows portable application I would strongly recommend taking some time to configure GZDoom before playing. To do so, click the mouse or hit the escape or enter key and select the options menu with the mouse or arrow keys. The following settings are recommended for the ideal play experience:
 
 **Most importantly** be sure to go into `Customize Controls` -> `Action` menu and bind keys for `Jump` and `Crouch`. I use Space for jump and Control for crouch but it can be whatever you want, just be careful not to overwrite any other necessary keybinds for movement, `Use`, and shooting.
