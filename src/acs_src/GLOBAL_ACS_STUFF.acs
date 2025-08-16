@@ -39,7 +39,7 @@ script "DazzlerPrintJump" (void)
 script "DazzlerPrintCrouch" (void)
 {
 	SetFont("BIGFONT");
-	PrintBold(s:"\c[Orange]CROUCH! Press ", k:"crouch", s:".");
+	PrintBold(s:"\c[Orange]CROUCH! Press ", k:"+crouch", s:".");
 }
 
 script "DazzlerPrintDesync" (void)
