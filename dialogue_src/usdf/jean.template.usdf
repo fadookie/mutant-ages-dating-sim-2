@@ -30,6 +30,17 @@ conversation
 			text = "How are you doing, Jean?";
 			nextpage = "PAGE_PHOENIXLEFT";
 		}
+		choice
+		{
+			text = "Can you help me open this box?";
+			nextpage = "PAGE_SCOTTS_BOX";
+
+			require
+			{
+					item   = "ScottsBox";
+					amount = 1;
+			}
+		}
 	}
 	page {
 		pagename = "PAGE_PHOENIXLEFT";
@@ -69,6 +80,11 @@ conversation
 			closedialog = true;
 			special = 80;
 			arg0 = 12;
+		}
+		choice
+		{
+			text = "How are you doing, Jean?";
+			nextpage = "PAGE_PHOENIXLEFT";
 		}
 		choice
 		{
