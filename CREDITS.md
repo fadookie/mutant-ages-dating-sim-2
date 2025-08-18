@@ -2,13 +2,13 @@
 Note this document may spoil some surprises in the game so I would recommend waiting to read it until after you've finished playing.
 
 ## Developers
-
 Design, Writing, Programming - Eliot Lash
 Level Design, Extra Scripting - Patrick Pacheco
 
 ## Special Thanks
 David Newel - Level Explorations, Playtesting
 Elena Ferrari - Beta Reading, Playtesting
+Gwen C. Katz - Beta Reading, Playtesting
 Kevin Feng (ReimJ) - Playtesting
 
 [The Mutant Ages](https://soundcloud.com/themutantages) hosts and community for being awesome and inspiring me to make this in the first place.
