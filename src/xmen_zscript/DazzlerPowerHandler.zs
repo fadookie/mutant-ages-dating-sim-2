@@ -433,8 +433,25 @@ class DazzlerPowerHandler : EventHandler
 		}
 	}
 
+	bool CheckCommandBound(String command, String commandDisplayName) {
+		let [key1, key2] = Bindings.GetKeysForCommand(command);
+		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#CheckCommandBound GetKeysForCommand key1:" .. key1 .. " key2: " .. key2);
+		if (key1 == 0 && key2 == 0) {
+			Console.MidPrint("BIGFONT", "Hey smooth moves, you need to bind a key for " .. commandDisplayName .. " before we can party!");
+			return false;
+		}
+		return true;
+	}
+
 	void QueueDanceSequence() {
 		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#QueueDanceSequence level.time:" .. level.time .. " MSTime:" .. MSTime());
+
+		// Check crouch key is bound
+		if (!CheckCommandBound("+crouch", "Crouch")) return;
+
+		// Check jump key is bound
+		if (!CheckCommandBound("+jump", "Jump")) return;
+
 		danceQueueTimeTk = level.time;
 		player.Teleport(boardCenterTeleportDest.Pos, 0, true);
 		Console.MidPrint("BIGFONT", "Get ready in 3, 2, 1...");
@@ -442,6 +459,7 @@ class DazzlerPowerHandler : EventHandler
 
 	private void StartDanceSequence() {
 		Console.DebugPrintf(DMSG_SPAMMY, "DazzlerPowerHandler#StartDanceSequence CHEAT_INVINCIBLE:" .. CHEAT_INVINCIBLE .. " level.time:" .. level.time .. " MSTime:" .. MSTime());
+
 		Console.MidPrint("BIGFONT", "Let's jam!");
 		danceStartTimeTk = level.time;
 		danceStartTimeMs = MSTime();
