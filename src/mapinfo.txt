@@ -43,18 +43,18 @@ intermission Credits {
 	// credits 1 --------------
 	Fader{
 		Music = "music/wolverine-on-a-date-with-you.ogg"
-		Background = "CREDIT1"
+		Background = "CRDSPR1"
 	    FadeType = FadeIn
 		Time = 2
 	}
 	
 	Image{
-		Background = "CREDIT1"
+		Background = "CRDSPR1"
 		Time = 7
 	}
 	
 	Fader{
-		Background = "CREDIT1"
+		Background = "CRDSPR1"
 		FadeType = FadeOut
 		Time = 2
 	}
@@ -62,18 +62,18 @@ intermission Credits {
 	//credits 2 ------------------
 	
 	Fader{
-		Background = "CREDIT2"
+		Background = "CRDSPR2"
 	    FadeType = FadeIn
 		Time = 7
 	}
 	
 	Image{
-		Background = "CREDIT2"
+		Background = "CRDSPR2"
 		Time = 6
 	}
 	
 	Fader{
-		Background = "CREDIT2"
+		Background = "CRDSPR2"
 		FadeType = FadeOut
 		Time = 4
 	}
