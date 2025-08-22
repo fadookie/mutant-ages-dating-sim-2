@@ -1,7 +1,7 @@
 # X-Men Dating Origins 2
 This repository contains the source for a Doom mod I made. It's a queer X-Men dating simulator which is the sequel to [X-Men Dating Origins: Wolverine](https://www.eliotlash.com/works/mutant-ages-dating-sim). It's heavily inspired by the queer X-Men alternate universe/headcanons of [The Mutant Ages](https://soundcloud.com/themutantages) podcast.
 
-**Content Warning**: This game contains crude language, adult humor, and LGBTQ+ content. There is no nudity or suggestive graphic content, however, it is not safe for work and is not intended for minors.
+**Content Warning**: This game contains crude language, adult humor, and LGBTQ+ content. There is no nudity or suggestive graphic content, however, it is not safe for work and is not intended for minors. **By playing this game, you agree you are legally of an age where you may view adult content according to your local laws (18 years of age or older in most regions.)**
 
 **This game is a work of parody** and is not associated with or endorsed by Marvel.  X-Men are copyrighted by Marvel.
 
